@@ -110,11 +110,17 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
+        chmod 700 ~/.ssh
+        # Проверяем ключ
+        ssh-keygen -y -f ~/.ssh/id_rsa > ~/.ssh/id_rsa.pub || echo "Key validation failed"
+        # Добавляем хост
         ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+        # Тест подключения
+        ssh -o ConnectTimeout=10 -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa deploy@${{ secrets.VPS_HOST }} "echo 'SSH test successful'"
         
     - name: Deploy to VPS
       run: |
-        ssh -i ~/.ssh/id_rsa deploy@${{ secrets.VPS_HOST }} << 'EOF'
+        ssh -o ConnectTimeout=30 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/id_rsa deploy@${{ secrets.VPS_HOST }} << 'EOF'
           # Переходим в директорию проекта
           cd /opt/nokexpert-fe || exit 1
           
