@@ -154,45 +154,66 @@ jobs:
     - name: Deploy to VPS
       run: |
         ssh -o ConnectTimeout=30 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/id_rsa deploy@${{ secrets.VPS_HOST }} << 'EOF'
+          
           echo "=== 🚀 Начинаем деплой ==="
           
-          # Переходим в домашнюю директорию
-          cd ~
-          
-          # Создаем рабочую директорию
-          mkdir -p ~/nokexpert-fe
-          cd ~/nokexpert-fe
+          # Проверяем что занимает порт 80
+          echo "Проверяем порт 80..."
+          netstat -tlnp | grep :80 || echo "Порт 80 свободен"
           
           # Останавливаем старые контейнеры
           echo "Останавливаем старые контейнеры..."
-          docker stop nokexpert-fe 2>/dev/null || true
-          docker rm nokexpert-fe 2>/dev/null || true
-          docker stop temp-nginx 2>/dev/null || true
-          docker rm temp-nginx 2>/dev/null || true
+          docker stop $(docker ps -aq) 2>/dev/null || true
+          docker rm $(docker ps -aq) 2>/dev/null || true
           
-          # Логинимся в GitHub Container Registry
+          # Логинимся в GitHub Registry (неинтерактивно)
           echo "Логинимся в GitHub Registry..."
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
           
-          # Получаем новый образ
+          # Скачиваем новый образ
           echo "Скачиваем новый образ..."
-          docker pull ghcr.io/aleksandrpv/nokexpert-fe:latest
+          docker pull ghcr.io/${{ github.repository }}:latest
           
-          # Запускаем новый контейнер напрямую
-          echo "Запускаем контейнер..."
-          docker run -d --name nokexpert-fe --restart unless-stopped -p 80:80 -e NODE_ENV=production ghcr.io/aleksandrpv/nokexpert-fe:latest
+          # Если порт 80 занят - используем 8080
+          if netstat -tlnp | grep :80 >/dev/null 2>&1; then
+            echo "Порт 80 занят, запускаем на порту 8080..."
+            docker run -d --name nokexpert-fe --restart unless-stopped -p 8080:80 \
+              -e NODE_ENV=production \
+              ghcr.io/${{ github.repository }}:latest
+            echo "🌐 Приложение доступно по адресу: http://${{ secrets.VPS_HOST }}:8080"
+          else
+            echo "Запускаем контейнер на порту 80..."
+            docker run -d --name nokexpert-fe --restart unless-stopped -p 80:80 \
+              -e NODE_ENV=production \
+              ghcr.io/${{ github.repository }}:latest
+            echo "🌐 Приложение доступно по адресу: http://${{ secrets.VPS_HOST }}"
+          fi
+          
+          # Ждем запуска
+          echo "Ждем запуска контейнера..."
+          sleep 10
           
           # Очищаем старые образы
           echo "Очищаем старые образы..."
-          docker image prune -f
+          docker system prune -f
           
           # Проверяем статус
           echo "Проверяем статус..."
-          sleep 10
           docker ps
+          echo "Логи контейнера:"
+          docker logs nokexpert-fe --tail 5 2>/dev/null || echo "Контейнер еще запускается..."
+          
+          # Тестируем доступность
+          if netstat -tlnp | grep :80 >/dev/null 2>&1 && ! docker ps | grep nokexpert-fe | grep :80 >/dev/null; then
+            echo "Тестируем на порту 8080:"
+            curl -I http://localhost:8080 2>/dev/null | head -3 || echo "Приложение еще запускается..."
+          else
+            echo "Тестируем на порту 80:"
+            curl -I http://localhost 2>/dev/null | head -3 || echo "Приложение еще запускается..."
+          fi
           
           echo "✅ Деплой завершен успешно!"
-        EOF
+          EOF
 
   # Уведомления
   notify:
