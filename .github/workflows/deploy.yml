@@ -92,6 +92,17 @@ jobs:
         labels: ${{ steps.meta.outputs.labels }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
+        
+    - name: Verify pushed image
+      run: |
+        echo "✅ Docker образ успешно создан и загружен!"
+        echo "📦 Тэги: ${{ steps.meta.outputs.tags }}"
+        echo "🔗 Образ доступен: ghcr.io/aleksandrpv/nokexpert-fe:latest"
+        
+        # Проверяем что образ действительно доступен
+        echo "Проверяем доступность образа..."
+        docker pull ghcr.io/aleksandrpv/nokexpert-fe:latest
+        echo "✅ Образ успешно скачан!"
 
   # Деплой на VPS
   deploy:
@@ -152,13 +163,12 @@ jobs:
           mkdir -p ~/nokexpert-fe
           cd ~/nokexpert-fe
           
-          # Копируем docker-compose файл из репозитория (используем curl)
-          echo "Скачиваем docker-compose.yml..."
-          curl -o docker-compose.yml https://raw.githubusercontent.com/AleksandrPV/nokexpert-fe/main/docker-compose.yml
-          
-          # Останавливаем текущие контейнеры
-          echo "Останавливаем контейнеры..."
-          docker-compose down || true
+          # Останавливаем старые контейнеры
+          echo "Останавливаем старые контейнеры..."
+          docker stop nokexpert-fe 2>/dev/null || true
+          docker rm nokexpert-fe 2>/dev/null || true
+          docker stop temp-nginx 2>/dev/null || true
+          docker rm temp-nginx 2>/dev/null || true
           
           # Логинимся в GitHub Container Registry
           echo "Логинимся в GitHub Registry..."
@@ -168,9 +178,9 @@ jobs:
           echo "Скачиваем новый образ..."
           docker pull ghcr.io/aleksandrpv/nokexpert-fe:latest
           
-          # Запускаем новый контейнер
-          echo "Запускаем контейнеры..."
-          docker-compose up -d
+          # Запускаем новый контейнер напрямую
+          echo "Запускаем контейнер..."
+          docker run -d --name nokexpert-fe --restart unless-stopped -p 80:80 -e NODE_ENV=production ghcr.io/aleksandrpv/nokexpert-fe:latest
           
           # Очищаем старые образы
           echo "Очищаем старые образы..."
