@@ -8,7 +8,7 @@ set -e
 # Конфигурация
 ENVIRONMENT="${1:-production}"
 PROJECT_NAME="nokexpert-fe"
-DOCKER_IMAGE="ghcr.io/username/${PROJECT_NAME}"
+DOCKER_IMAGE="ghcr.io/aleksandrpv/${PROJECT_NAME}"
 VPS_USER="${VPS_USERNAME:-root}"
 VPS_HOST="${VPS_HOST:-your-vps-ip}"
 VPS_PORT="${VPS_PORT:-22}"

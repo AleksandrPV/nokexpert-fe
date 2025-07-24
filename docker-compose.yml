@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # Основное приложение
   nokexpert-fe:
-    image: ghcr.io/${GITHUB_REPOSITORY_OWNER:-username}/nokexpert-fe:latest
+    image: ghcr.io/aleksandrpv/nokexpert-fe:latest
     container_name: nokexpert-fe
     restart: unless-stopped
     networks:
