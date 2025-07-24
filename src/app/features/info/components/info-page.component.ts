@@ -1,18 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { InfoSection, InfoPage, InfoCategory } from '../models/info-page.interface';
 import { InfoService } from '../services/info.service';
+import { SeoService } from '../../../shared/services/seo.service';
+import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 
+/**
+ * Компонент страницы информации о НОК
+ * Содержит полную информацию о независимой оценке квалификации
+ */
 @Component({
   selector: 'app-info-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, BreadcrumbsComponent],
   templateUrl: './info-page.component.html',
   styleUrls: ['./info-page.component.scss']
 })
 export class InfoPageComponent implements OnInit {
+  private seoService = inject(SeoService);
   infoSections: InfoSection[] = [];
   featuredPages: InfoPage[] = [];
   searchQuery = '';
@@ -23,6 +30,8 @@ export class InfoPageComponent implements OnInit {
   constructor(private infoService: InfoService) {}
 
   ngOnInit(): void {
+    // Устанавливаем SEO данные для страницы информации о НОК
+    this.seoService.setInfoPageSeo();
     this.loadInfoSections();
     this.loadFeaturedPages();
   }

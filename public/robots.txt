@@ -1,0 +1,35 @@
+User-agent: *
+Allow: /
+
+# Главные страницы
+Allow: /
+Allow: /services
+Allow: /info
+Allow: /blog
+Allow: /contacts
+
+# Запрещаем индексацию служебных страниц
+Disallow: /privacy-policy
+Disallow: /admin/
+Disallow: /api/
+Disallow: /assets/
+Disallow: /*.json$
+Disallow: /*.js$
+Disallow: /*.css$
+
+# Запрещаем для плохих ботов
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+# Время задержки для поисковых роботов
+Crawl-delay: 1
+
+# Ссылка на sitemap
+Sitemap: https://нок-эксперт.рф/sitemap.xml
+Sitemap: https://нок-эксперт.рф/sitemap-blog.xml 

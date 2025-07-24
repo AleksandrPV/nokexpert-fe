@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import { 
   BlogArticle, 
   BlogCategory, 
@@ -11,15 +10,24 @@ import {
   PaginationData 
 } from '../models/blog.interface';
 import { BlogService } from '../services/blog.service';
+import { SeoService } from '../../../shared/services/seo.service';
+import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 
+/**
+ * Компонент страницы блога и новостей
+ * Отображает актуальные статьи и новости о НОК
+ */
 @Component({
   selector: 'app-blog-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, BreadcrumbsComponent],
   templateUrl: './blog-page.component.html',
   styleUrls: ['./blog-page.component.scss']
 })
 export class BlogPageComponent implements OnInit {
+  private seoService = inject(SeoService);
+  private blogService = inject(BlogService);
+
   articles: BlogArticle[] = [];
   categories: BlogCategory[] = [];
   tags: BlogTag[] = [];
@@ -40,9 +48,9 @@ export class BlogPageComponent implements OnInit {
 
   private searchTimeout: any;
 
-  constructor(private blogService: BlogService) {}
-
   ngOnInit(): void {
+    // Устанавливаем SEO данные для страницы блога
+    this.seoService.setBlogPageSeo();
     this.loadCategories();
     this.loadTags();
     this.loadArticles();

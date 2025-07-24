@@ -1,16 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { SeoService } from '../../../shared/services/seo.service';
+import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 import { Service, ServiceCategory } from '../models/service.interface';
 
+/**
+ * Компонент страницы услуг
+ * Отображает все доступные услуги по подготовке к НОК
+ */
 @Component({
   selector: 'app-services-page',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, BreadcrumbsComponent],
   templateUrl: './services-page.component.html',
   styleUrls: ['./services-page.component.scss']
 })
 export class ServicesPageComponent implements OnInit {
+  private seoService = inject(SeoService);
+
   selectedCategory: string = 'all';
   
   categories = [
@@ -131,7 +138,9 @@ export class ServicesPageComponent implements OnInit {
 
   filteredServices: Service[] = [];
 
-  ngOnInit() {
+  ngOnInit(): void {
+    // Устанавливаем SEO данные для страницы услуг
+    this.seoService.setServicesPageSeo();
     this.filteredServices = this.services;
   }
 

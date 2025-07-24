@@ -1,17 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { YandexMapComponent } from '../../../shared/components/yandex-map/yandex-map.component';
 import { MapMarker } from '../../../core/services/yandex-maps.service';
+import { SeoService } from '../../../shared/services/seo.service';
+import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 
+/**
+ * Компонент страницы контактов
+ * Содержит контактную информацию, форму обратной связи и карту
+ */
 @Component({
   selector: 'app-contacts-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, YandexMapComponent],
+  imports: [CommonModule, FormsModule, YandexMapComponent, BreadcrumbsComponent],
   templateUrl: './contacts-page.component.html',
   styleUrls: ['./contacts-page.component.scss']
 })
-export class ContactsPageComponent {
+export class ContactsPageComponent implements OnInit {
+  private seoService = inject(SeoService);
+
+  ngOnInit(): void {
+    // Устанавливаем SEO данные для страницы контактов
+    this.seoService.setContactsPageSeo();
+  }
+
   formData = {
     name: '',
     email: '',
