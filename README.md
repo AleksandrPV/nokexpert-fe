@@ -57,6 +57,26 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-# Автоматический деплой настроен! 🚀
+# НОК Эксперт - Angular Frontend 🚀
 
-Версия: 2025-07-24 16:32:25
+## 🎯 Автоматический CI/CD настроен!
+
+**Последний деплой:** $(date '+%Y-%m-%d %H:%M:%S')  
+**Версия сборки:** v1.0.0
+
+### ✅ Этапы деплоя:
+- ✅ Node.js 20 + Angular сборка
+- ✅ Тестирование (Jest/Karma)  
+- ✅ Docker образ (nginx + app)
+- ✅ GitHub Container Registry
+- 🔄 SSH деплой на VPS (исправлена конфигурация)
+
+### 🌐 Продакшн:
+- **Сервер:** 5.181.108.253
+- **Домен:** nokexpert.ru (планируется)
+- **Статус:** 🔄 Развертывание...
+
+### 🔧 Исправления:
+- SSH timeout увеличен до 60s/10m
+- Добавлен debug режим для диагностики
+- Улучшены permissions для GitHub Actions
