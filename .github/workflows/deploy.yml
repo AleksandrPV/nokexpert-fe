@@ -172,20 +172,20 @@ jobs:
           
           # Скачиваем новый образ
           echo "Скачиваем новый образ..."
-          docker pull ghcr.io/${{ github.repository }}:latest
+          docker pull ghcr.io/aleksandrpv/nokexpert-fe:latest
           
           # Если порт 80 занят - используем 8080
           if netstat -tlnp | grep :80 >/dev/null 2>&1; then
             echo "Порт 80 занят, запускаем на порту 8080..."
             docker run -d --name nokexpert-fe --restart unless-stopped -p 8080:80 \
               -e NODE_ENV=production \
-              ghcr.io/${{ github.repository }}:latest
+              ghcr.io/aleksandrpv/nokexpert-fe:latest
             echo "🌐 Приложение доступно по адресу: http://${{ secrets.VPS_HOST }}:8080"
           else
             echo "Запускаем контейнер на порту 80..."
             docker run -d --name nokexpert-fe --restart unless-stopped -p 80:80 \
               -e NODE_ENV=production \
-              ghcr.io/${{ github.repository }}:latest
+              ghcr.io/aleksandrpv/nokexpert-fe:latest
             echo "🌐 Приложение доступно по адресу: http://${{ secrets.VPS_HOST }}"
           fi
           
