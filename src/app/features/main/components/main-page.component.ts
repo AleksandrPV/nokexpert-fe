@@ -6,45 +6,21 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   template: `
-    <!-- Elegant Consulting Background Effects -->
-    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      <!-- Subtle Professional Lines -->
-      <div class="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-sky/10 to-transparent animate-consulting-line"></div>
-      <div class="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-coral/8 to-transparent animate-consulting-line delay-10000"></div>
-      
-      <!-- Elegant Corner Accents -->
-      <div class="absolute top-0 right-0 w-32 h-32 opacity-5">
-        <div class="w-full h-full border-b border-l border-brand-sky/30 rounded-bl-3xl animate-elegant-fade"></div>
-      </div>
-      <div class="absolute bottom-0 left-0 w-24 h-24 opacity-5">
-        <div class="w-full h-full border-t border-r border-brand-coral/30 rounded-tr-3xl animate-elegant-fade delay-5000"></div>
-      </div>
-      
-      <!-- Professional Grid Pattern -->
-      <div class="absolute inset-0 opacity-2">
-        <div class="w-full h-full" style="background-image: linear-gradient(var(--brand-navy) 0.5px, transparent 0.5px), linear-gradient(90deg, var(--brand-navy) 0.5px, transparent 0.5px); background-size: 80px 80px;"></div>
-      </div>
-    </div>
-
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <!-- Clean minimal background -->
-      <div class="absolute inset-0 bg-gradient-to-b from-white via-gray-50/50 to-white"></div>
-      
-      <!-- Subtle geometric accent -->
-      <div class="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-brand-sky/10 to-brand-coral/10 rounded-full blur-3xl"></div>
-      <div class="absolute bottom-20 left-20 w-48 h-48 bg-gradient-to-tr from-brand-cream/20 to-brand-navy/10 rounded-full blur-2xl"></div>
+      <!-- Простой светлый фон -->
+      <div class="absolute inset-0 bg-white"></div>
       
       <!-- Hero Content -->
       <div class="container mx-auto px-6 text-center relative z-10">
         <!-- Trust Badge -->
-        <div class="inline-flex items-center gap-2 bg-brand-sky/10 text-brand-navy px-6 py-2 rounded-full mb-8 border border-brand-sky/20">
+        <div class="inline-flex items-center gap-2 bg-gray-50 text-brand-navy px-6 py-2 rounded-full mb-8 border border-gray-200">
           <div class="w-2 h-2 bg-brand-coral rounded-full"></div>
           <span class="text-sm font-medium">Лицензированный ЦОК с 2017 года</span>
         </div>
 
         <!-- Main Heading -->
-        <h1 class="text-6xl md:text-7xl lg:text-8xl font-black text-brand-dark mb-8 leading-tight">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-brand-dark mb-8 leading-tight">
           Профессиональная
           <br />
           <span class="text-brand-navy font-black">подготовка к НОК</span>
@@ -82,13 +58,11 @@ import { RouterLink } from '@angular/router';
             Узнать больше →
           </button>
         </div>
-
-
       </div>
     </section>
 
     <!-- What is NOK Section -->
-    <section class="py-24 relative">
+    <section class="py-24 relative bg-white">
       <div class="container mx-auto px-6">
         <!-- Section Header -->
         <div class="text-center mb-16">
@@ -207,8 +181,7 @@ import { RouterLink } from '@angular/router';
     </section>
 
     <!-- Risk vs Benefit Section -->
-    <section class="py-24 bg-gradient-to-br from-brand-coral/5 to-brand-cream/15 rounded-3xl my-16 border border-brand-coral/10 relative">
-      <div class="absolute top-0 left-8 w-1 h-full bg-gradient-to-b from-brand-coral/30 to-brand-cream/30"></div>
+    <section class="py-24 bg-white rounded-3xl my-16 border border-gray-200 relative">
       
       <div class="container mx-auto px-6">
         <div class="grid md:grid-cols-2 gap-12">
@@ -284,7 +257,7 @@ import { RouterLink } from '@angular/router';
     </section>
 
     <!-- Services Section -->
-    <section class="py-24" id="services">
+    <section class="py-24 bg-gray-50" id="services">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
           <h2 class="text-5xl md:text-6xl font-bold mb-6 text-gradient-primary consulting-accent">
@@ -297,8 +270,8 @@ import { RouterLink } from '@angular/router';
 
         <div class="grid lg:grid-cols-3 gap-8">
           <!-- НОСТРОЙ -->
-          <div class="card-modern hover-lift group relative overflow-hidden card-coral">
-            <div class="absolute -top-4 -right-4 bg-gradient-to-r from-brand-coral to-brand-coral text-white px-4 py-2 rounded-full text-sm font-bold">
+          <div class="card-modern hover-lift group relative card-coral overflow-visible">
+            <div class="absolute -top-4 -right-4 bg-brand-coral text-white px-4 py-2 rounded-full text-sm font-bold z-50 shadow-lg">
               ПОПУЛЯРНЫЙ
             </div>
             
@@ -362,7 +335,7 @@ import { RouterLink } from '@angular/router';
 
           <!-- Premium -->
           <div class="card-modern hover-lift group relative overflow-hidden card-navy">
-            <div class="absolute inset-0 bg-gradient-to-br from-brand-cream/10 to-brand-sky/10 opacity-50"></div>
+            <div class="absolute inset-0 bg-gray-50 opacity-50"></div>
             <div class="relative">
               <div class="w-20 h-20 neomorphic rounded-3xl flex items-center justify-center text-4xl mb-6 mx-auto">👑</div>
               
@@ -397,8 +370,7 @@ import { RouterLink } from '@angular/router';
     </section>
 
     <!-- Professional CTA Section -->
-    <section class="py-24 relative overflow-hidden bg-gradient-to-r from-brand-cream/20 to-brand-sky/20 rounded-3xl border border-brand-sky/20">
-      <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-sky/30 to-transparent"></div>
+    <section class="py-24 relative overflow-hidden bg-white rounded-3xl border border-gray-200">
       
       <div class="container mx-auto px-6 text-center relative z-10">
         <div class="max-w-4xl mx-auto">

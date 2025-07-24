@@ -12,14 +12,13 @@ import { InfoService } from '../services/info.service';
   template: `
     <!-- Page Header -->
     <section class="relative py-20 overflow-hidden">
-      <!-- Minimal Background -->
-      <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-cream/5 to-brand-sky/10"></div>
-      <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-sky/20 to-transparent"></div>
+      <!-- Простой светлый фон -->
+      <div class="absolute inset-0 bg-white"></div>
       
       <div class="container mx-auto px-6 relative z-10">
         <div class="max-w-4xl mx-auto text-center">
           <!-- Badge -->
-          <div class="inline-flex items-center gap-3 bg-white/50 backdrop-blur-sm px-6 py-3 rounded-full mb-6 border border-brand-sky/20">
+          <div class="inline-flex items-center gap-3 bg-gray-50 px-6 py-3 rounded-full mb-6 border border-gray-200">
             <div class="w-2 h-2 bg-brand-coral rounded-full animate-pulse"></div>
             <span class="text-sm font-medium text-brand-dark/80">Информационный центр</span>
           </div>
@@ -36,7 +35,7 @@ import { InfoService } from '../services/info.service';
     </section>
 
     <!-- Featured Pages -->
-    <section class="py-16 bg-gradient-to-b from-transparent to-brand-sky/5">
+    <section class="py-16 bg-gray-50">
       <div class="container mx-auto px-6">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-brand-dark mb-4">Рекомендуемые материалы</h2>
@@ -154,7 +153,7 @@ import { InfoService } from '../services/info.service';
     </section>
 
     <!-- Quick Search Section -->
-    <section class="py-20 bg-gradient-to-b from-brand-sky/5 to-transparent">
+    <section class="py-20 bg-white">
       <div class="container mx-auto px-6">
         <div class="max-w-4xl mx-auto text-center">
           <h2 class="text-3xl font-bold text-brand-dark mb-6">Не нашли нужную информацию?</h2>

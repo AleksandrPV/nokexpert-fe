@@ -11,13 +11,12 @@ import { MapMarker } from '../../../core/services/yandex-maps.service';
   template: `
     <!-- Page Header -->
     <section class="relative py-20 overflow-hidden">
-      <!-- Minimal Background -->
-      <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-cream/5 to-brand-sky/10"></div>
-      <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-sky/20 to-transparent"></div>
+      <!-- Простой светлый фон -->
+      <div class="absolute inset-0 bg-white"></div>
       
       <div class="container mx-auto px-6 relative z-10">
         <div class="max-w-4xl mx-auto text-center">
-          <h1 class="text-5xl md:text-6xl font-light text-brand-dark mb-6">
+          <h1 class="text-5xl md:text-6xl font-bold text-brand-dark mb-6">
             Свяжитесь с нами
           </h1>
           <p class="text-xl text-brand-dark/70 leading-relaxed">
@@ -43,7 +42,7 @@ import { MapMarker } from '../../../core/services/yandex-maps.service';
               <div class="relative z-10 flex flex-col h-full">
                 <!-- Header -->
                 <div class="mb-6">
-                  <h2 class="text-3xl font-light text-brand-dark mb-2">Контактная информация</h2>
+                  <h2 class="text-3xl font-bold text-brand-dark mb-2">Контактная информация</h2>
                   <div class="w-16 h-1 bg-gradient-to-r from-brand-coral to-brand-sky rounded-full"></div>
                 </div>
 
@@ -57,7 +56,7 @@ import { MapMarker } from '../../../core/services/yandex-maps.service';
                       </div>
                       <div class="flex-1">
                         <h3 class="text-lg font-medium text-brand-dark mb-1">Телефон</h3>
-                        <a href="tel:+78001234567" class="text-xl font-light text-brand-navy hover:text-brand-coral transition-colors block">
+                        <a href="tel:+78001234567" class="text-xl font-semibold text-brand-navy hover:text-brand-coral transition-colors block">
                           8 (800) 123-45-67
                         </a>
                         <p class="text-sm text-brand-dark/60">Бесплатные звонки по России</p>
@@ -73,7 +72,7 @@ import { MapMarker } from '../../../core/services/yandex-maps.service';
                       </div>
                       <div class="flex-1">
                         <h3 class="text-lg font-medium text-brand-dark mb-1">Email</h3>
-                        <a href="mailto:info&#64;nok-expert.ru" class="text-xl font-light text-brand-navy hover:text-brand-coral transition-colors block">
+                        <a href="mailto:info&#64;nok-expert.ru" class="text-xl font-semibold text-brand-navy hover:text-brand-coral transition-colors block">
                           info&#64;nok-expert.ru
                         </a>
                         <p class="text-sm text-brand-dark/60">Ответим в течение часа</p>
@@ -89,7 +88,7 @@ import { MapMarker } from '../../../core/services/yandex-maps.service';
                       </div>
                       <div class="flex-1">
                         <h3 class="text-lg font-medium text-brand-dark mb-1">Офис</h3>
-                        <p class="text-xl font-light text-brand-dark">Москва, ул. Примерная, д. 1</p>
+                        <p class="text-xl font-semibold text-brand-dark">Москва, ул. Примерная, д. 1</p>
                         <p class="text-sm text-brand-dark/60">Ежедневно 9:00-21:00</p>
                       </div>
                     </div>
@@ -117,7 +116,7 @@ import { MapMarker } from '../../../core/services/yandex-maps.service';
           <!-- Contact Form -->
           <div class="lg:col-span-2">
             <div class="bg-white/50 backdrop-blur-sm rounded-3xl p-8 border border-brand-sky/10 shadow-lg">
-              <h2 class="text-3xl font-light text-brand-dark mb-8">Отправить сообщение</h2>
+              <h2 class="text-3xl font-bold text-brand-dark mb-8">Отправить сообщение</h2>
               
               <form class="space-y-6" (ngSubmit)="onSubmit()">
                 <!-- Name and Email Row -->
@@ -213,10 +212,10 @@ import { MapMarker } from '../../../core/services/yandex-maps.service';
     </section>
 
     <!-- Location & Transport Section -->
-    <section class="py-20 bg-gradient-to-b from-transparent to-brand-sky/5">
+    <section class="py-20 bg-gray-50">
       <div class="container mx-auto px-6">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-light text-brand-dark mb-4">Как добраться до нас</h2>
+          <h2 class="text-3xl font-bold text-brand-dark mb-4">Как добраться до нас</h2>
           <p class="text-brand-dark/70">Удобное расположение в деловом центре Москвы</p>
         </div>
 
@@ -240,7 +239,7 @@ import { MapMarker } from '../../../core/services/yandex-maps.service';
           <!-- Transport Info -->
           <div class="space-y-8">
             <div>
-              <h3 class="text-2xl font-light text-brand-dark mb-6">Как добраться</h3>
+              <h3 class="text-2xl font-bold text-brand-dark mb-6">Как добраться</h3>
             </div>
 
             <!-- Metro -->
@@ -308,7 +307,7 @@ import { MapMarker } from '../../../core/services/yandex-maps.service';
     <section class="py-20">
       <div class="container mx-auto px-6">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-light text-brand-dark mb-4">Частые вопросы</h2>
+          <h2 class="text-3xl font-bold text-brand-dark mb-4">Частые вопросы</h2>
           <p class="text-brand-dark/70">Быстрые ответы на популярные вопросы</p>
         </div>
 

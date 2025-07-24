@@ -10,19 +10,18 @@ import { Service, ServiceCategory } from '../models/service.interface';
   template: `
     <!-- Page Header -->
     <section class="relative py-20 overflow-hidden">
-      <!-- Minimal Background -->
-      <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-cream/5 to-brand-sky/10"></div>
-      <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-sky/20 to-transparent"></div>
+      <!-- Простой светлый фон -->
+      <div class="absolute inset-0 bg-white"></div>
       
       <div class="container mx-auto px-6 relative z-10">
         <div class="max-w-4xl mx-auto text-center">
           <!-- Badge -->
-          <div class="inline-flex items-center gap-3 bg-white/50 backdrop-blur-sm px-6 py-3 rounded-full mb-6 border border-brand-sky/20">
+          <div class="inline-flex items-center gap-3 bg-gray-50 px-6 py-3 rounded-full mb-6 border border-gray-200">
             <div class="w-2 h-2 bg-brand-coral rounded-full animate-pulse"></div>
             <span class="text-sm font-medium text-brand-dark/80">Профессиональная подготовка</span>
           </div>
 
-          <h1 class="text-5xl md:text-6xl font-light text-brand-dark mb-6">
+          <h1 class="text-5xl md:text-6xl font-bold text-brand-dark mb-6">
             Наши услуги
           </h1>
           <p class="text-xl text-brand-dark/70 leading-relaxed max-w-2xl mx-auto">
@@ -71,7 +70,7 @@ import { Service, ServiceCategory } from '../models/service.interface';
             <div class="space-y-4">
               <!-- Title and Difficulty -->
               <div>
-                <h3 class="text-2xl font-light text-brand-dark mb-2 group-hover:text-brand-navy transition-colors">
+                <h3 class="text-2xl font-semibold text-brand-dark mb-2 group-hover:text-brand-navy transition-colors">
                   {{ service.title }}
                 </h3>
                 <div class="flex items-center gap-2 mb-3">
@@ -127,38 +126,38 @@ import { Service, ServiceCategory } from '../models/service.interface';
     </section>
 
     <!-- Stats Section -->
-    <section class="py-20 bg-gradient-to-b from-transparent to-brand-sky/5">
+    <section class="py-20 bg-gray-50">
       <div class="container mx-auto px-6">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-light text-brand-dark mb-4">Наши результаты</h2>
+          <h2 class="text-3xl font-bold text-brand-dark mb-4">Наши результаты</h2>
           <p class="text-brand-dark/70">Статистика успешности наших курсов</p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
           <div class="text-center bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-brand-sky/10">
-            <div class="text-4xl font-light text-brand-navy mb-2">98%</div>
+            <div class="text-4xl font-bold text-brand-navy mb-2">98%</div>
             <div class="text-brand-dark/70">Успешная сдача НОК</div>
           </div>
-          <div class="text-center bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-brand-sky/10">
-            <div class="text-4xl font-light text-brand-coral mb-2">3000+</div>
-            <div class="text-brand-dark/70">Подготовленных специалистов</div>
-          </div>
-          <div class="text-center bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-brand-sky/10">
-            <div class="text-4xl font-light text-brand-navy mb-2">4.9</div>
-            <div class="text-brand-dark/70">Средний балл экзамена</div>
-          </div>
-          <div class="text-center bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-brand-sky/10">
-            <div class="text-4xl font-light text-brand-dark mb-2">30</div>
-            <div class="text-brand-dark/70">Дней подготовки</div>
-          </div>
+                      <div class="text-center bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-brand-sky/10">
+              <div class="text-4xl font-bold text-brand-coral mb-2">3000+</div>
+              <div class="text-brand-dark/70">Подготовленных специалистов</div>
+            </div>
+            <div class="text-center bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-brand-sky/10">
+              <div class="text-4xl font-bold text-brand-navy mb-2">4.9</div>
+              <div class="text-brand-dark/70">Средний балл экзамена</div>
+            </div>
+            <div class="text-center bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-brand-sky/10">
+              <div class="text-4xl font-bold text-brand-dark mb-2">30</div>
+              <div class="text-brand-dark/70">Дней подготовки</div>
+            </div>
         </div>
       </div>
     </section>
 
     <!-- CTA Section -->
     <section class="py-20 relative">
-      <!-- Enhanced Background -->
-      <div class="absolute inset-0 bg-gradient-to-b from-brand-sky/10 via-brand-navy/5 to-brand-dark/10"></div>
+      <!-- Простой светлый фон -->
+      <div class="absolute inset-0 bg-white"></div>
       
       <div class="container mx-auto px-6 relative z-10">
         <div class="max-w-4xl mx-auto text-center">
@@ -175,7 +174,7 @@ import { Service, ServiceCategory } from '../models/service.interface';
                 <span class="text-sm font-medium text-brand-dark">Специальное предложение</span>
               </div>
               
-              <h2 class="text-3xl md:text-4xl font-light mb-6 text-brand-dark">
+              <h2 class="text-3xl md:text-4xl font-bold mb-6 text-brand-dark">
                 Готовы начать подготовку?
               </h2>
               <p class="text-xl text-brand-dark/80 mb-8 max-w-2xl mx-auto leading-relaxed">

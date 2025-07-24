@@ -19,14 +19,13 @@ import { BlogService } from '../services/blog.service';
   template: `
     <!-- Page Header -->
     <section class="relative py-20 overflow-hidden">
-      <!-- Minimal Background -->
-      <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-cream/5 to-brand-sky/10"></div>
-      <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-sky/20 to-transparent"></div>
+      <!-- Простой светлый фон -->
+      <div class="absolute inset-0 bg-white"></div>
       
       <div class="container mx-auto px-6 relative z-10">
         <div class="max-w-4xl mx-auto text-center">
           <!-- Badge -->
-          <div class="inline-flex items-center gap-3 bg-white/50 backdrop-blur-sm px-6 py-3 rounded-full mb-6 border border-brand-sky/20">
+          <div class="inline-flex items-center gap-3 bg-gray-50 px-6 py-3 rounded-full mb-6 border border-gray-200">
             <div class="w-2 h-2 bg-brand-coral rounded-full animate-pulse"></div>
             <span class="text-sm font-medium text-brand-dark/80">Экспертный блог</span>
           </div>
@@ -42,7 +41,7 @@ import { BlogService } from '../services/blog.service';
     </section>
 
     <!-- Search and Filters -->
-    <section class="py-12 bg-gradient-to-b from-transparent to-brand-sky/5">
+    <section class="py-12 bg-gray-50">
       <div class="container mx-auto px-6">
         <!-- Search Bar -->
         <div class="max-w-2xl mx-auto mb-12">
