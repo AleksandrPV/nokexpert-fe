@@ -5,8 +5,21 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --configuration=production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless --code-coverage",
+    "lint": "ng lint",
+    "lint:fix": "ng lint --fix",
+    "e2e": "ng e2e",
+    "deploy": "./scripts/deploy.sh",
+    "deploy:staging": "./scripts/deploy.sh staging",
+    "docker:build": "docker build -t nokexpert-fe .",
+    "docker:run": "docker run -p 8080:8080 nokexpert-fe",
+    "docker:dev": "docker-compose -f docker-compose.dev.yml up",
+    "docker:prod": "docker-compose up -d",
+    "precommit": "npm run lint && npm run test:ci",
+    "analyze": "ng build --stats-json && npx webpack-bundle-analyzer dist/nokexpert-fe/stats.json"
   },
   "prettier": {
     "overrides": [

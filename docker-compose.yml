@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  # Основное приложение
+  nokexpert-fe:
+    image: ghcr.io/${GITHUB_REPOSITORY_OWNER:-username}/nokexpert-fe:latest
+    container_name: nokexpert-fe
+    restart: unless-stopped
+    networks:
+      - nokexpert-network
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nokexpert-fe.rule=Host(`nokexpert.ru`) || Host(`www.nokexpert.ru`)"
+      - "traefik.http.routers.nokexpert-fe.entrypoints=websecure"
+      - "traefik.http.routers.nokexpert-fe.tls.certresolver=letsencrypt"
+      - "traefik.http.services.nokexpert-fe.loadbalancer.server.port=8080"
+
+  # Reverse Proxy (Traefik)
+  traefik:
+    image: traefik:v3.0
+    container_name: traefik
+    restart: unless-stopped
+    command:
+      - "--api.dashboard=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.letsencrypt.acme.tlschallenge=true"
+      - "--certificatesresolvers.letsencrypt.acme.email=admin@nokexpert.ru"
+      - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
+      - "--global.checkNewVersion=false"
+      - "--global.sendAnonymousUsage=false"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"  # Traefik dashboard
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./letsencrypt:/letsencrypt
+    networks:
+      - nokexpert-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.nokexpert.ru`)"
+      - "traefik.http.routers.traefik.entrypoints=websecure"
+      - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.traefik.middlewares=auth"
+      - "traefik.http.middlewares.auth.basicauth.users=admin:$$2y$$10$$YOUR_HASH_HERE"
+
+  # Мониторинг (Watchtower для автообновления)
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_POLL_INTERVAL=300
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+    networks:
+      - nokexpert-network
+
+networks:
+  nokexpert-network:
+    driver: bridge
+
+volumes:
+  letsencrypt:
+    driver: local 

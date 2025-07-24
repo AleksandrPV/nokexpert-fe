@@ -1,0 +1,58 @@
+# Зависимости
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Сборка
+dist
+build
+.angular
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+README.md
+
+# Тесты и покрытие
+coverage
+*.tgz
+*.tar.gz
+
+# Логи
+logs
+*.log
+
+# Временные файлы
+tmp
+temp
+.tmp
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# CI/CD
+.github
+
+# Documentation
+docs
+*.md
+!README.md 
