@@ -1,0 +1,439 @@
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
+@Component({
+  selector: 'app-main-page',
+  standalone: true,
+  imports: [RouterLink],
+  template: `
+    <!-- Elegant Consulting Background Effects -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <!-- Subtle Professional Lines -->
+      <div class="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-sky/10 to-transparent animate-consulting-line"></div>
+      <div class="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-coral/8 to-transparent animate-consulting-line delay-10000"></div>
+      
+      <!-- Elegant Corner Accents -->
+      <div class="absolute top-0 right-0 w-32 h-32 opacity-5">
+        <div class="w-full h-full border-b border-l border-brand-sky/30 rounded-bl-3xl animate-elegant-fade"></div>
+      </div>
+      <div class="absolute bottom-0 left-0 w-24 h-24 opacity-5">
+        <div class="w-full h-full border-t border-r border-brand-coral/30 rounded-tr-3xl animate-elegant-fade delay-5000"></div>
+      </div>
+      
+      <!-- Professional Grid Pattern -->
+      <div class="absolute inset-0 opacity-2">
+        <div class="w-full h-full" style="background-image: linear-gradient(var(--brand-navy) 0.5px, transparent 0.5px), linear-gradient(90deg, var(--brand-navy) 0.5px, transparent 0.5px); background-size: 80px 80px;"></div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <!-- Professional Background Overlay -->
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute inset-0 bg-gradient-to-br from-brand-cream/20 via-white to-brand-sky/15 animate-professional-glow"></div>
+      </div>
+      
+      <!-- Hero Content -->
+      <div class="container mx-auto px-6 text-center relative z-10">
+        <!-- Professional Badge -->
+        <div class="inline-flex items-center gap-3 glass px-8 py-4 rounded-full mb-8 animate-slide-up delay-100 border-brand-sky consulting-accent">
+          <div class="w-3 h-3 bg-brand-sky rounded-full animate-pulse"></div>
+          <span class="text-sm font-semibold text-gradient-accent">Лицензированный ЦОК с 2017 года</span>
+        </div>
+
+        <!-- Main Title -->
+        <h1 class="text-responsive-xl font-black mb-6 text-gradient-primary animate-slide-up delay-200 professional-border">
+          Профессиональная подготовка
+          <br />
+          <span class="text-gradient-secondary">к аттестации НОК</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-xl md:text-2xl text-brand-dark/80 mb-12 max-w-4xl mx-auto leading-relaxed animate-slide-up delay-300">
+          Гарантированная сдача независимой оценки квалификации для специалистов 
+          <span class="text-gradient-accent font-semibold">НОСТРОЙ</span> и 
+          <span class="text-gradient-accent font-semibold">НОПРИЗ</span>
+        </p>
+
+        <!-- Professional Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 animate-slide-up delay-400">
+          <div class="glass-dark rounded-2xl p-6 hover-lift card-sky professional-border">
+            <div class="text-3xl font-bold text-gradient-primary mb-2">98%</div>
+            <div class="text-brand-dark/70 text-sm">Успешная сдача</div>
+          </div>
+          <div class="glass-dark rounded-2xl p-6 hover-lift card-coral consulting-accent">
+            <div class="text-3xl font-bold text-gradient-accent mb-2">3000+</div>
+            <div class="text-brand-dark/70 text-sm">Довольных клиентов</div>
+          </div>
+          <div class="glass-dark rounded-2xl p-6 hover-lift card-navy professional-border">
+            <div class="text-3xl font-bold text-gradient-secondary mb-2">7</div>
+            <div class="text-brand-dark/70 text-sm">Лет опыта</div>
+          </div>
+          <div class="glass-dark rounded-2xl p-6 hover-lift card-sky consulting-accent">
+            <div class="text-3xl font-bold text-gradient-primary mb-2">24/7</div>
+            <div class="text-brand-dark/70 text-sm">Поддержка</div>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up delay-500">
+          <button class="btn-modern px-8 py-4 text-lg hover-glow">
+            📋 Записаться на консультацию
+          </button>
+          <button class="glass px-8 py-4 rounded-full font-semibold text-brand-dark hover-lift border-brand-sky">
+            📞 Бесплатный звонок
+          </button>
+        </div>
+
+        <!-- Professional Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div class="flex flex-col items-center">
+            <div class="w-6 h-10 border-2 border-brand-sky rounded-full flex justify-center relative overflow-hidden">
+              <div class="w-1 h-3 bg-brand-navy rounded-full mt-2 animate-pulse"></div>
+            </div>
+            <div class="mt-2 text-xs text-brand-dark/50 font-medium">Подробнее</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What is NOK Section -->
+    <section class="py-24 relative">
+      <div class="container mx-auto px-6">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+          <h2 class="text-responsive-lg font-bold mb-6 text-gradient-primary consulting-accent">
+            Что такое НОК?
+          </h2>
+          <p class="text-xl text-brand-dark/80 max-w-3xl mx-auto">
+            Независимая оценка квалификации — обязательная процедура для специалистов строительной отрасли
+          </p>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <!-- Left: Information -->
+          <div class="space-y-8">
+            <div class="glass-dark rounded-3xl p-8 card-navy consulting-accent">
+              <h3 class="text-2xl font-bold text-brand-dark mb-4">Федеральный закон №238-ФЗ</h3>
+              <p class="text-brand-dark/80 leading-relaxed">
+                НОК — это процедура подтверждения соответствия квалификации специалиста 
+                профессиональным стандартам, проводимая согласно федеральному законодательству.
+              </p>
+            </div>
+
+            <!-- Professional Feature Cards -->
+            <div class="space-y-6">
+              <div class="card-modern hover-lift group card-sky">
+                <div class="flex items-start gap-4">
+                  <div class="w-16 h-16 neomorphic rounded-2xl flex items-center justify-center text-2xl">📋</div>
+                  <div>
+                    <h4 class="text-xl font-semibold text-gradient-accent mb-2 professional-border">Обязательность</h4>
+                    <p class="text-brand-dark/80">Для всех специалистов НРС НОСТРОЙ/НОПРИЗ</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-modern hover-lift group card-coral">
+                <div class="flex items-start gap-4">
+                  <div class="w-16 h-16 neomorphic rounded-2xl flex items-center justify-center text-2xl">⏰</div>
+                  <div>
+                    <h4 class="text-xl font-semibold text-gradient-accent mb-2 professional-border">Периодичность</h4>
+                    <p class="text-brand-dark/80">Каждые 3-5 лет в зависимости от специализации</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-modern hover-lift group card-navy">
+                <div class="flex items-start gap-4">
+                  <div class="w-16 h-16 neomorphic rounded-2xl flex items-center justify-center text-2xl">🏛️</div>
+                  <div>
+                    <h4 class="text-xl font-semibold text-gradient-accent mb-2 professional-border">Место проведения</h4>
+                    <p class="text-brand-dark/80">Только в аккредитованных ЦОК под видеонаблюдением</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Process Flow -->
+          <div class="relative">
+            <div class="glass rounded-3xl p-8 card-sky consulting-accent">
+              <h3 class="text-2xl font-bold text-center text-gradient-secondary mb-8 professional-border">Процесс сдачи НОК</h3>
+              
+              <div class="space-y-6">
+                <!-- Step 1 -->
+                <div class="flex items-center gap-4 p-4 neomorphic-inset rounded-2xl hover-lift">
+                  <div class="w-12 h-12 bg-brand-navy rounded-full flex items-center justify-center text-white font-bold">1</div>
+                  <div>
+                    <h4 class="font-semibold text-brand-dark">Подача документов</h4>
+                    <p class="text-brand-dark/70 text-sm">Полный пакет в ЦОК</p>
+                  </div>
+                </div>
+
+                <div class="flex justify-center">
+                  <div class="w-px h-8 bg-gradient-to-b from-brand-navy/50 to-brand-sky/50"></div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flex items-center gap-4 p-4 neomorphic-inset rounded-2xl hover-lift">
+                  <div class="w-12 h-12 bg-brand-sky rounded-full flex items-center justify-center text-brand-dark font-bold">2</div>
+                  <div>
+                    <h4 class="font-semibold text-brand-dark">Теоретический экзамен</h4>
+                    <p class="text-brand-dark/70 text-sm">50 вопросов за 60 минут</p>
+                  </div>
+                </div>
+
+                <div class="flex justify-center">
+                  <div class="w-px h-8 bg-gradient-to-b from-brand-sky/50 to-brand-coral/50"></div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flex items-center gap-4 p-4 neomorphic-inset rounded-2xl hover-lift">
+                  <div class="w-12 h-12 bg-brand-coral rounded-full flex items-center justify-center text-white font-bold">3</div>
+                  <div>
+                    <h4 class="font-semibold text-brand-dark">Практическая часть</h4>
+                    <p class="text-brand-dark/70 text-sm">Задачи или портфолио</p>
+                  </div>
+                </div>
+
+                <div class="flex justify-center">
+                  <div class="w-px h-8 bg-gradient-to-b from-brand-coral/50 to-brand-sky/50"></div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flex items-center gap-4 p-4 neomorphic-inset rounded-2xl hover-lift">
+                  <div class="w-12 h-12 bg-brand-sky rounded-full flex items-center justify-center text-brand-dark font-bold">4</div>
+                  <div>
+                    <h4 class="font-semibold text-brand-dark">Получение свидетельства</h4>
+                    <p class="text-brand-dark/70 text-sm">Оформление через 30 дней</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Risk vs Benefit Section -->
+    <section class="py-24 bg-gradient-to-br from-brand-coral/5 to-brand-cream/15 rounded-3xl my-16 border border-brand-coral/10 relative">
+      <div class="absolute top-0 left-8 w-1 h-full bg-gradient-to-b from-brand-coral/30 to-brand-cream/30"></div>
+      
+      <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12">
+          <!-- Risks -->
+          <div class="space-y-8">
+            <div class="text-center">
+              <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-brand-coral/80 to-brand-coral rounded-full flex items-center justify-center text-4xl animate-professional-glow">⚠️</div>
+              <h3 class="text-3xl font-bold text-gradient-accent mb-4 professional-border">Риски провала</h3>
+            </div>
+
+            <div class="space-y-4">
+              <div class="glass-dark rounded-2xl p-6 border-l-4 border-brand-coral hover-lift card-coral">
+                <div class="flex items-center gap-3 mb-2">
+                  <div class="w-8 h-8 bg-brand-coral rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
+                  <h4 class="font-semibold text-brand-coral">Года исключения из НРС</h4>
+                </div>
+                <p class="text-brand-dark/80 text-sm">При неудаче теряете право работать в строительстве</p>
+              </div>
+
+              <div class="glass-dark rounded-2xl p-6 border-l-4 border-brand-coral hover-lift card-coral">
+                <div class="flex items-center gap-3 mb-2">
+                  <div class="w-8 h-8 bg-brand-coral rounded-full flex items-center justify-center text-white font-bold text-sm">0</div>
+                  <h4 class="font-semibold text-brand-coral">Пересдач практики</h4>
+                </div>
+                <p class="text-brand-dark/80 text-sm">Вторая попытка не предусмотрена</p>
+              </div>
+
+              <div class="glass-dark rounded-2xl p-6 border-l-4 border-brand-coral hover-lift card-coral">
+                <div class="flex items-center gap-3 mb-2">
+                  <div class="w-8 h-8 bg-brand-coral rounded-full flex items-center justify-center text-white font-bold text-xs">40К</div>
+                  <h4 class="font-semibold text-brand-coral">Финансовые потери</h4>
+                </div>
+                <p class="text-brand-dark/80 text-sm">Госпошлина + повторная подготовка</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Benefits -->
+          <div class="space-y-8">
+            <div class="text-center">
+              <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-brand-sky/80 to-brand-navy rounded-full flex items-center justify-center text-4xl animate-professional-glow">✨</div>
+              <h3 class="text-3xl font-bold text-gradient-success mb-4 professional-border">Преимущества НОК</h3>
+            </div>
+
+            <div class="space-y-4">
+              <div class="glass-dark rounded-2xl p-6 border-l-4 border-brand-sky hover-lift card-sky">
+                <div class="flex items-center gap-3 mb-2">
+                  <div class="w-8 h-8 bg-brand-sky rounded-full flex items-center justify-center text-brand-dark">🎓</div>
+                  <h4 class="font-semibold text-brand-sky">Подтверждение квалификации</h4>
+                </div>
+                <p class="text-brand-dark/80 text-sm">Независимо от образования и опыта</p>
+              </div>
+
+              <div class="glass-dark rounded-2xl p-6 border-l-4 border-brand-sky hover-lift card-sky">
+                <div class="flex items-center gap-3 mb-2">
+                  <div class="w-8 h-8 bg-brand-sky rounded-full flex items-center justify-center text-brand-dark">💼</div>
+                  <h4 class="font-semibold text-brand-sky">Карьерные возможности</h4>
+                </div>
+                <p class="text-brand-dark/80 text-sm">Расширение профессиональных перспектив</p>
+              </div>
+
+              <div class="glass-dark rounded-2xl p-6 border-l-4 border-brand-sky hover-lift card-sky">
+                <div class="flex items-center gap-3 mb-2">
+                  <div class="w-8 h-8 bg-brand-sky rounded-full flex items-center justify-center text-brand-dark">🏗️</div>
+                  <h4 class="font-semibold text-brand-sky">Особо важные объекты</h4>
+                </div>
+                <p class="text-brand-dark/80 text-sm">Допуск к престижным проектам</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-24" id="services">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-responsive-lg font-bold mb-6 text-gradient-primary consulting-accent">
+            Наши услуги
+          </h2>
+          <p class="text-xl text-brand-dark/80 max-w-3xl mx-auto">
+            Профессиональная подготовка с гарантией результата
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+          <!-- НОСТРОЙ -->
+          <div class="card-modern hover-lift group relative overflow-hidden card-coral">
+            <div class="absolute -top-4 -right-4 bg-gradient-to-r from-brand-coral to-brand-coral text-white px-4 py-2 rounded-full text-sm font-bold">
+              ПОПУЛЯРНЫЙ
+            </div>
+            
+            <div class="w-20 h-20 neomorphic rounded-3xl flex items-center justify-center text-4xl mb-6 mx-auto">🏗️</div>
+            
+            <h3 class="text-2xl font-bold text-center text-gradient-primary mb-4 professional-border">НОК НОСТРОЙ</h3>
+            <p class="text-brand-dark/80 text-center mb-8">Комплексная подготовка строительных специалистов</p>
+            
+            <div class="space-y-4 mb-8">
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 bg-brand-sky rounded-full flex items-center justify-center text-brand-dark text-xs">✓</div>
+                <span class="text-brand-dark/80 text-sm">600+ актуальных вопросов</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 bg-brand-sky rounded-full flex items-center justify-center text-brand-dark text-xs">✓</div>
+                <span class="text-brand-dark/80 text-sm">Симулятор экзамена</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 bg-brand-sky rounded-full flex items-center justify-center text-brand-dark text-xs">✓</div>
+                <span class="text-brand-dark/80 text-sm">Гарантия сдачи с первого раза</span>
+              </div>
+            </div>
+            
+            <div class="text-center mb-6">
+              <div class="text-4xl font-bold text-gradient-primary mb-2">35 000 ₽</div>
+              <div class="text-brand-dark/60 text-sm">+ госпошлина 18-24 тыс.</div>
+            </div>
+            
+            <button class="btn-coral w-full hover-glow">Заказать подготовку</button>
+          </div>
+
+          <!-- НОПРИЗ -->
+          <div class="card-modern hover-lift group card-sky">
+            <div class="w-20 h-20 neomorphic rounded-3xl flex items-center justify-center text-4xl mb-6 mx-auto">📐</div>
+            
+            <h3 class="text-2xl font-bold text-center text-gradient-secondary mb-4 professional-border">НОК НОПРИЗ</h3>
+            <p class="text-brand-dark/80 text-center mb-8">Для проектировщиков и изыскателей</p>
+            
+            <div class="space-y-4 mb-8">
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 bg-brand-navy rounded-full flex items-center justify-center text-white text-xs">✓</div>
+                <span class="text-brand-dark/80 text-sm">Помощь с портфолио</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 bg-brand-navy rounded-full flex items-center justify-center text-white text-xs">✓</div>
+                <span class="text-brand-dark/80 text-sm">Экспертные консультации</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 bg-brand-navy rounded-full flex items-center justify-center text-white text-xs">✓</div>
+                <span class="text-brand-dark/80 text-sm">Полное сопровождение</span>
+              </div>
+            </div>
+            
+            <div class="text-center mb-6">
+              <div class="text-4xl font-bold text-gradient-secondary mb-2">40 000 ₽</div>
+              <div class="text-brand-dark/60 text-sm">+ госпошлина 22 тыс.</div>
+            </div>
+            
+            <button class="btn-modern w-full hover-glow">Заказать подготовку</button>
+          </div>
+
+          <!-- Premium -->
+          <div class="card-modern hover-lift group relative overflow-hidden card-navy">
+            <div class="absolute inset-0 bg-gradient-to-br from-brand-cream/10 to-brand-sky/10 opacity-50"></div>
+            <div class="relative">
+              <div class="w-20 h-20 neomorphic rounded-3xl flex items-center justify-center text-4xl mb-6 mx-auto">👑</div>
+              
+              <h3 class="text-2xl font-bold text-center text-gradient-accent mb-4 professional-border">ПРЕМИУМ</h3>
+              <p class="text-brand-dark/80 text-center mb-8">Максимальные гарантии успеха</p>
+              
+              <div class="space-y-4 mb-8">
+                <div class="flex items-center gap-3">
+                  <div class="w-5 h-5 bg-brand-cream rounded-full flex items-center justify-center text-brand-dark text-xs">✓</div>
+                  <span class="text-brand-dark/80 text-sm">Персональный куратор</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-5 h-5 bg-brand-cream rounded-full flex items-center justify-center text-brand-dark text-xs">✓</div>
+                  <span class="text-brand-dark/80 text-sm">VIP поддержка 24/7</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-5 h-5 bg-brand-cream rounded-full flex items-center justify-center text-brand-dark text-xs">✓</div>
+                  <span class="text-brand-dark/80 text-sm">Гарантия возврата средств</span>
+                </div>
+              </div>
+              
+              <div class="text-center mb-6">
+                <div class="text-4xl font-bold text-gradient-accent mb-2">55 000 ₽</div>
+                <div class="text-brand-dark/60 text-sm">Всё включено</div>
+              </div>
+              
+              <button class="btn-cream w-full hover-glow">Выбрать премиум</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Professional CTA Section -->
+    <section class="py-24 relative overflow-hidden bg-gradient-to-r from-brand-cream/20 to-brand-sky/20 rounded-3xl border border-brand-sky/20">
+      <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-sky/30 to-transparent"></div>
+      
+      <div class="container mx-auto px-6 text-center relative z-10">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-responsive-lg font-bold mb-6 text-gradient-primary consulting-accent">
+            Готовы к успешной аттестации?
+          </h2>
+          <p class="text-xl text-brand-dark/80 mb-12">
+            Получите профессиональную консультацию и выберите оптимальную программу подготовки
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <a href="tel:+78001234567" class="glass px-8 py-4 rounded-full font-semibold text-brand-dark hover-lift border-brand-sky professional-border">
+              📞 8 (800) 123-45-67
+            </a>
+            <a href="mailto:info&#64;nok-expert.ru" class="glass px-8 py-4 rounded-full font-semibold text-brand-dark hover-lift border-brand-sky consulting-accent">
+              ✉️ info&#64;nok-expert.ru
+            </a>
+            <a routerLink="/contacts" class="btn-modern px-8 py-4 hover-glow">
+              💼 Записаться на консультацию
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  `,
+  styles: []
+})
+export class MainPageComponent {} 
