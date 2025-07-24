@@ -8,7 +8,7 @@ on:
     types: [ closed ]
 
 env:
-  NODE_VERSION: '18'
+  NODE_VERSION: '20'
   DOCKER_IMAGE_NAME: nokexpert-fe
 
 jobs:
