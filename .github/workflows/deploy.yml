@@ -11,6 +11,10 @@ env:
   NODE_VERSION: '20'
   DOCKER_IMAGE_NAME: nokexpert-fe
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   # Тестирование и сборка
   build-and-test:
@@ -49,6 +53,9 @@ jobs:
   build-docker:
     needs: build-and-test
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     
     steps:
