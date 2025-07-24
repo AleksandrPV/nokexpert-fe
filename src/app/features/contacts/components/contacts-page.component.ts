@@ -34,7 +34,7 @@ import { MapMarker } from '../../../core/services/yandex-maps.service';
           <!-- Contact Information -->
           <div class="lg:col-span-1">
             <!-- Contact Info Card with Background -->
-            <div class="bg-white/60 backdrop-blur-lg rounded-3xl p-8 border border-brand-sky/20 shadow-xl relative overflow-hidden h-full flex flex-col">
+            <div class="bg-white/60 backdrop-blur-lg rounded-3xl p-7 border border-brand-sky/20 shadow-xl relative overflow-hidden h-full flex flex-col">
               <!-- Decorative Background Elements -->
               <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-brand-sky/10 to-transparent rounded-full -mr-16 -mt-16"></div>
               <div class="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-brand-coral/8 to-transparent rounded-full -ml-12 -mb-12"></div>
@@ -42,7 +42,7 @@ import { MapMarker } from '../../../core/services/yandex-maps.service';
               <div class="relative z-10 flex flex-col h-full">
                 <!-- Header -->
                 <div class="mb-6">
-                  <h2 class="text-3xl font-bold text-brand-dark mb-2">Контактная информация</h2>
+                  <h2 class="text-2xl font-bold text-brand-dark mb-2">Контактная информация</h2>
                   <div class="w-16 h-1 bg-gradient-to-r from-brand-coral to-brand-sky rounded-full"></div>
                 </div>
 
@@ -50,13 +50,13 @@ import { MapMarker } from '../../../core/services/yandex-maps.service';
                 <div class="flex-1 space-y-4">
                   <!-- Phone -->
                   <div class="group">
-                    <div class="flex items-center gap-4 p-3 rounded-2xl transition-all duration-300 hover:bg-white/40">
-                      <div class="w-12 h-12 bg-gradient-to-br from-brand-sky/30 to-brand-navy/30 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <span class="text-brand-navy text-xl">📞</span>
+                    <div class="flex items-center gap-3 p-2.5 rounded-xl transition-all duration-300 hover:bg-white/40">
+                      <div class="w-11 h-11 bg-gradient-to-br from-brand-sky/30 to-brand-navy/30 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <span class="text-brand-navy text-lg">📞</span>
                       </div>
                       <div class="flex-1">
-                        <h3 class="text-lg font-medium text-brand-dark mb-1">Телефон</h3>
-                        <a href="tel:+78001234567" class="text-xl font-semibold text-brand-navy hover:text-brand-coral transition-colors block">
+                        <h3 class="text-base font-medium text-brand-dark mb-1">Телефон</h3>
+                        <a href="tel:+78001234567" class="text-lg font-semibold text-brand-navy hover:text-brand-coral transition-colors block">
                           8 (800) 123-45-67
                         </a>
                         <p class="text-sm text-brand-dark/60">Бесплатные звонки по России</p>
@@ -66,13 +66,13 @@ import { MapMarker } from '../../../core/services/yandex-maps.service';
 
                   <!-- Email -->
                   <div class="group">
-                    <div class="flex items-center gap-4 p-3 rounded-2xl transition-all duration-300 hover:bg-white/40">
-                      <div class="w-12 h-12 bg-gradient-to-br from-brand-coral/30 to-brand-navy/30 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <span class="text-brand-coral text-xl">✉️</span>
+                    <div class="flex items-center gap-3 p-2.5 rounded-xl transition-all duration-300 hover:bg-white/40">
+                      <div class="w-11 h-11 bg-gradient-to-br from-brand-coral/30 to-brand-navy/30 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <span class="text-brand-coral text-lg">✉️</span>
                       </div>
                       <div class="flex-1">
-                        <h3 class="text-lg font-medium text-brand-dark mb-1">Email</h3>
-                        <a href="mailto:info&#64;nok-expert.ru" class="text-xl font-semibold text-brand-navy hover:text-brand-coral transition-colors block">
+                        <h3 class="text-base font-medium text-brand-dark mb-1">Email</h3>
+                        <a href="mailto:info&#64;nok-expert.ru" class="text-lg font-semibold text-brand-navy hover:text-brand-coral transition-colors block">
                           info&#64;nok-expert.ru
                         </a>
                         <p class="text-sm text-brand-dark/60">Ответим в течение часа</p>
@@ -82,13 +82,13 @@ import { MapMarker } from '../../../core/services/yandex-maps.service';
 
                   <!-- Address -->
                   <div class="group">
-                    <div class="flex items-center gap-4 p-3 rounded-2xl transition-all duration-300 hover:bg-white/40">
-                      <div class="w-12 h-12 bg-gradient-to-br from-brand-cream/40 to-brand-coral/30 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <span class="text-brand-coral text-xl">📍</span>
+                    <div class="flex items-center gap-3 p-2.5 rounded-xl transition-all duration-300 hover:bg-white/40">
+                      <div class="w-11 h-11 bg-gradient-to-br from-brand-cream/40 to-brand-coral/30 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <span class="text-brand-coral text-lg">📍</span>
                       </div>
                       <div class="flex-1">
-                        <h3 class="text-lg font-medium text-brand-dark mb-1">Офис</h3>
-                        <p class="text-xl font-semibold text-brand-dark">Москва, ул. Примерная, д. 1</p>
+                        <h3 class="text-base font-medium text-brand-dark mb-1">Офис</h3>
+                        <p class="text-lg font-semibold text-brand-dark">Москва, ул. Примерная, д. 1</p>
                         <p class="text-sm text-brand-dark/60">Ежедневно 9:00-21:00</p>
                       </div>
                     </div>
@@ -98,14 +98,14 @@ import { MapMarker } from '../../../core/services/yandex-maps.service';
                 </div>
 
                 <!-- Quick Contact Actions - Fixed at bottom -->
-                <div class="mt-6 pt-4 border-t border-brand-sky/20 space-y-3">
+                <div class="mt-5 pt-4 border-t border-brand-sky/20 space-y-2.5">
                   <h4 class="text-sm font-medium text-brand-dark/70 uppercase tracking-wide">Быстрая связь</h4>
-                  <a href="tel:+78001234567" class="w-full flex items-center justify-center gap-3 bg-brand-navy hover:bg-brand-dark text-white py-3 px-4 rounded-xl font-bold text-base hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-brand-navy/20">
-                    <span class="text-xl filter drop-shadow-sm">📞</span>
+                  <a href="tel:+78001234567" class="w-full flex items-center justify-center gap-2.5 bg-brand-navy hover:bg-brand-dark text-white py-2.5 px-4 rounded-xl font-semibold text-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-brand-navy/20">
+                    <span class="text-lg filter drop-shadow-sm">📞</span>
                     <span class="filter drop-shadow-sm">Позвонить сейчас</span>
                   </a>
-                  <a href="mailto:info&#64;nok-expert.ru" class="w-full flex items-center justify-center gap-3 bg-brand-coral hover:bg-orange-600 text-white py-3 px-4 rounded-xl font-bold text-base hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-brand-coral/20">
-                    <span class="text-xl filter drop-shadow-sm">✉️</span>
+                  <a href="mailto:info&#64;nok-expert.ru" class="w-full flex items-center justify-center gap-2.5 bg-brand-coral hover:bg-orange-600 text-white py-2.5 px-4 rounded-xl font-semibold text-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-brand-coral/20">
+                    <span class="text-lg filter drop-shadow-sm">✉️</span>
                     <span class="filter drop-shadow-sm">Написать email</span>
                   </a>
                 </div>

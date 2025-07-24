@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { FeedbackPopupService } from '../../feedback-popup/services/feedback-popup.service';
 
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [RouterLink],
+  imports: [],
   template: `
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -51,7 +52,9 @@ import { RouterLink } from '@angular/router';
 
         <!-- CTA Buttons -->
         <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          <button class="bg-brand-coral hover:bg-orange-600 text-white px-10 py-4 text-lg font-bold rounded-2xl transition-all duration-500 hover:shadow-xl hover:-translate-y-1 min-w-[250px]">
+          <button 
+            (click)="openConsultationPopup()"
+            class="bg-brand-coral hover:bg-orange-600 text-white px-10 py-4 text-lg font-bold rounded-2xl transition-all duration-500 hover:shadow-xl hover:-translate-y-1 min-w-[250px]">
             Записаться на консультацию
           </button>
           <button class="text-brand-navy hover:text-brand-coral font-bold text-lg transition-colors duration-300 border-b-2 border-transparent hover:border-brand-coral pb-1">
@@ -300,7 +303,9 @@ import { RouterLink } from '@angular/router';
               <div class="text-brand-dark/60 text-sm">+ госпошлина 18-24 тыс.</div>
             </div>
             
-            <button class="btn-coral w-full hover-glow">Заказать подготовку</button>
+            <button 
+              (click)="openNokNostroyPopup()"
+              class="btn-coral w-full hover-glow">Заказать подготовку</button>
           </div>
 
           <!-- НОПРИЗ -->
@@ -388,9 +393,11 @@ import { RouterLink } from '@angular/router';
             <a href="mailto:info&#64;nok-expert.ru" class="glass px-8 py-4 rounded-full font-semibold text-brand-dark hover-lift border-brand-sky consulting-accent">
               ✉️ info&#64;nok-expert.ru
             </a>
-            <a routerLink="/contacts" class="btn-modern px-8 py-4 hover-glow">
+            <button 
+              (click)="openConsultationPopup()"
+              class="btn-modern px-8 py-4 hover-glow">
               💼 Записаться на консультацию
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -398,4 +405,20 @@ import { RouterLink } from '@angular/router';
   `,
   styles: []
 })
-export class MainPageComponent {} 
+export class MainPageComponent {
+  constructor(private feedbackService: FeedbackPopupService) {}
+
+  /**
+   * Открыть popup для консультации
+   */
+  openConsultationPopup(): void {
+    this.feedbackService.openForConsultation();
+  }
+
+  /**
+   * Открыть popup для НОК НОСТРОЙ
+   */
+  openNokNostroyPopup(): void {
+    this.feedbackService.openForNokNostroy();
+  }
+} 

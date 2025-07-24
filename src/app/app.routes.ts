@@ -9,6 +9,7 @@ import { InfoPageComponent } from './features/info/components/info-page.componen
 import { FaqPageComponent } from './features/faq/components/faq-page.component';
 import { CenterPageComponent } from './features/center/components/center-page.component';
 import { QualificationsPageComponent } from './features/qualifications/components/qualifications-page.component';
+import { PrivacyPolicyPageComponent } from './features/privacy-policy/components/privacy-policy-page.component';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,7 @@ export const routes: Routes = [
       { path: 'faq', component: FaqPageComponent },
       { path: 'center', component: CenterPageComponent },
       { path: 'qualifications', component: QualificationsPageComponent },
+      { path: 'privacy-policy', component: PrivacyPolicyPageComponent },
     ]
   },
   { path: '**', redirectTo: '' }

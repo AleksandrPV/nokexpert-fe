@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { InfoService } from '../../../features/info/services/info.service';
 import { InfoCategory } from '../../../features/info/models/info-page.interface';
+import { FeedbackPopupService } from '../../../features/feedback-popup/services/feedback-popup.service';
 
 @Component({
   selector: 'app-header',
@@ -147,7 +148,9 @@ import { InfoCategory } from '../../../features/info/models/info-page.interface'
                class="glass-dark px-4 py-2 rounded-full text-brand-dark font-medium hover-lift transition-all duration-300 text-sm border-brand-sky">
               📞 Звонок
             </a>
-            <button class="btn-coral px-6 py-2 text-sm hover-glow">
+            <button 
+              (click)="openConsultationPopup()"
+              class="btn-coral px-6 py-2 text-sm hover-glow">
               🚀 Консультация
             </button>
           </div>
@@ -226,7 +229,9 @@ import { InfoCategory } from '../../../features/info/models/info-page.interface'
                  class="block p-3 glass-dark rounded-xl text-center font-medium text-brand-dark border-brand-sky">
                 📞 8 (800) 123-45-67
               </a>
-              <button class="btn-coral w-full py-3">
+              <button 
+                (click)="openConsultationPopup()"
+                class="btn-coral w-full py-3">
                 🚀 Получить консультацию
               </button>
             </div>
@@ -283,7 +288,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   menuCategories: InfoCategory[] = [];
   megaMenuTimeout: any = null;
 
-  constructor(private infoService: InfoService) {}
+  constructor(
+    private infoService: InfoService,
+    private feedbackService: FeedbackPopupService
+  ) {}
 
   ngOnInit(): void {
     this.loadMenuCategories();
@@ -329,5 +337,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   toggleNokSubmenu(): void {
     this.nokSubmenuOpen = !this.nokSubmenuOpen;
+  }
+
+  /**
+   * Открыть popup для консультации
+   */
+  openConsultationPopup(): void {
+    this.feedbackService.openForConsultation();
   }
 } 

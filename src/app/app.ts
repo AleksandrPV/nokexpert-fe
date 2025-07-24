@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { FeedbackPopupComponent } from './features/feedback-popup/components/feedback-popup.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, FeedbackPopupComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
