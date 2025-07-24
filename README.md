@@ -80,3 +80,10 @@ For more information on using the Angular CLI, including detailed command refere
 - SSH timeout увеличен до 60s/10m
 - Добавлен debug режим для диагностики
 - Улучшены permissions для GitHub Actions
+
+
+---
+**Деплой v1.0.1** - 2025-07-24 17:06:30  
+🔑 GitHub Secrets обновлены  
+�� SSH: нативные команды  
+🎯 Тест финального деплоя
