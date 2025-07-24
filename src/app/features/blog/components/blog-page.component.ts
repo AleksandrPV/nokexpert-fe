@@ -1,14 +1,417 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { 
+  BlogArticle, 
+  BlogCategory, 
+  BlogTag, 
+  BlogFilters, 
+  SortOption,
+  PaginationData 
+} from '../models/blog.interface';
+import { BlogService } from '../services/blog.service';
 
 @Component({
   selector: 'app-blog-page',
   standalone: true,
+  imports: [CommonModule, FormsModule, RouterLink],
   template: `
-    <div class="py-8">
-      <h2 class="text-2xl font-bold mb-4">Блог</h2>
-      <p>Здесь будут размещаться новости и статьи.</p>
-    </div>
+    <!-- Page Header -->
+    <section class="relative py-20 overflow-hidden">
+      <!-- Minimal Background -->
+      <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-cream/5 to-brand-sky/10"></div>
+      <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-sky/20 to-transparent"></div>
+      
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-3 bg-white/50 backdrop-blur-sm px-6 py-3 rounded-full mb-6 border border-brand-sky/20">
+            <div class="w-2 h-2 bg-brand-coral rounded-full animate-pulse"></div>
+            <span class="text-sm font-medium text-brand-dark/80">Экспертный блог</span>
+          </div>
+
+          <h1 class="text-5xl md:text-6xl font-bold text-brand-dark mb-6">
+            Блог и новости
+          </h1>
+          <p class="text-xl text-brand-dark/70 leading-relaxed max-w-2xl mx-auto font-medium">
+            Актуальные статьи, новости и экспертные материалы по независимой оценке квалификации
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search and Filters -->
+    <section class="py-12 bg-gradient-to-b from-transparent to-brand-sky/5">
+      <div class="container mx-auto px-6">
+        <!-- Search Bar -->
+        <div class="max-w-2xl mx-auto mb-12">
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <span class="text-brand-dark/40 text-xl">🔍</span>
+            </div>
+            <input
+              type="text"
+              [(ngModel)]="filters.search"
+              (input)="onSearchChange()"
+              placeholder="Поиск статей..."
+              class="w-full pl-12 pr-4 py-4 text-lg bg-white/80 backdrop-blur-sm border border-brand-sky/20 rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand-sky/30 focus:border-transparent transition-all font-medium"
+            >
+            <div *ngIf="filters.search" 
+                 class="absolute inset-y-0 right-0 pr-4 flex items-center">
+              <button (click)="clearSearch()" 
+                      class="text-brand-dark/40 hover:text-brand-coral transition-colors">
+                <span class="text-xl">✕</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters Row -->
+        <div class="max-w-6xl mx-auto">
+          <div class="flex flex-wrap items-center justify-between gap-6 mb-8">
+            <!-- Categories Filter -->
+            <div class="flex flex-wrap gap-3">
+              <button
+                (click)="selectCategory('')"
+                [class]="!filters.category ? 
+                  'bg-brand-navy text-white' : 
+                  'bg-white/50 text-brand-dark hover:bg-white/70'"
+                class="px-6 py-3 rounded-xl font-medium transition-all duration-300 border border-brand-sky/20 backdrop-blur-sm">
+                Все категории
+              </button>
+              <button
+                *ngFor="let category of categories"
+                (click)="selectCategory(category.slug)"
+                [class]="filters.category === category.slug ? 
+                  'bg-brand-navy text-white' : 
+                  'bg-white/50 text-brand-dark hover:bg-white/70'"
+                class="px-6 py-3 rounded-xl font-medium transition-all duration-300 border border-brand-sky/20 backdrop-blur-sm">
+                <span class="mr-2">{{ category.icon }}</span>
+                {{ category.name }}
+              </button>
+            </div>
+
+            <!-- Sort Options -->
+            <div class="flex items-center gap-3">
+              <span class="text-sm font-medium text-brand-dark/70">Сортировка:</span>
+              <select 
+                [(ngModel)]="filters.sortBy"
+                (change)="onFiltersChange()"
+                class="px-4 py-2 bg-white/50 border border-brand-sky/20 rounded-xl font-medium focus:outline-none focus:ring-2 focus:ring-brand-sky/30">
+                <option [value]="SortOption.NEWEST">Новые</option>
+                <option [value]="SortOption.OLDEST">Старые</option>
+                <option [value]="SortOption.MOST_VIEWED">Популярные</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Active Tags -->
+          <div *ngIf="activeTags.length > 0" class="flex flex-wrap gap-2 mb-6">
+            <span class="text-sm font-medium text-brand-dark/70">Активные теги:</span>
+            <span 
+              *ngFor="let tag of activeTags"
+              class="inline-flex items-center gap-2 bg-brand-sky/20 text-brand-navy px-3 py-1 rounded-full text-sm font-medium">
+              {{ tag.name }}
+              <button (click)="removeTag(tag.slug)" class="hover:text-brand-coral transition-colors">
+                ✕
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Articles Grid -->
+    <section class="py-20">
+      <div class="container mx-auto px-6">
+        <!-- Loading State -->
+        <div *ngIf="loading" class="text-center py-12">
+          <div class="inline-block w-8 h-8 border-4 border-brand-sky/30 border-t-brand-navy rounded-full animate-spin"></div>
+          <p class="mt-4 text-brand-dark/60 font-medium">Загрузка статей...</p>
+        </div>
+
+        <!-- No Results -->
+        <div *ngIf="!loading && articles.length === 0" class="text-center py-12">
+          <div class="text-6xl mb-4">📝</div>
+          <h3 class="text-2xl font-bold text-brand-dark mb-2">Статьи не найдены</h3>
+          <p class="text-brand-dark/60 font-medium">Попробуйте изменить критерии поиска</p>
+        </div>
+
+        <!-- Articles Grid -->
+        <div *ngIf="!loading && articles.length > 0" class="grid lg:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <article 
+            *ngFor="let article of articles; trackBy: trackByArticleId"
+            class="group bg-white/50 backdrop-blur-sm rounded-3xl overflow-hidden border border-brand-sky/10 hover:bg-white/70 hover:border-brand-sky/20 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl">
+            
+            <!-- Article Image/Icon -->
+            <div class="relative h-48 bg-gradient-to-br from-brand-sky/10 to-brand-navy/10 flex items-center justify-center overflow-hidden">
+              <div class="text-6xl group-hover:scale-110 transition-transform duration-500">
+                {{ article.featuredImage }}
+              </div>
+              
+              <!-- Category Badge -->
+              <div class="absolute top-4 left-4 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full border border-brand-sky/20">
+                <span class="text-sm">{{ article.category.icon }}</span>
+                <span class="text-xs font-medium text-brand-dark">{{ article.category.name }}</span>
+              </div>
+
+              <!-- Featured Badge -->
+              <div *ngIf="article.featured" 
+                   class="absolute top-4 right-4 bg-brand-coral text-white px-3 py-1 rounded-full text-xs font-bold">
+                ⭐ Рекомендуем
+              </div>
+            </div>
+
+            <!-- Article Content -->
+            <div class="p-6 space-y-4">
+              <!-- Meta Info -->
+              <div class="flex items-center justify-between text-sm text-brand-dark/60">
+                <div class="flex items-center gap-3">
+                  <span class="font-medium">{{ formatDate(article.publishedAt) }}</span>
+                  <span>•</span>
+                  <span>{{ article.readTime }} мин</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <span>👁️</span>
+                  <span>{{ article.views }}</span>
+                </div>
+              </div>
+
+              <!-- Title -->
+              <h2 class="text-xl font-bold text-brand-dark leading-tight group-hover:text-brand-navy transition-colors line-clamp-2">
+                {{ article.title }}
+              </h2>
+
+              <!-- Excerpt -->
+              <p class="text-brand-dark/80 leading-relaxed font-medium line-clamp-3">
+                {{ article.excerpt }}
+              </p>
+
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-2">
+                <span 
+                  *ngFor="let tag of article.tags.slice(0, 3)"
+                  (click)="addTag(tag.slug)"
+                  class="inline-block bg-brand-sky/10 hover:bg-brand-sky/20 text-brand-navy px-2 py-1 rounded-full text-xs font-medium cursor-pointer transition-colors">
+                  #{{ tag.name }}
+                </span>
+              </div>
+
+              <!-- Author -->
+              <div class="flex items-center gap-3 pt-4 border-t border-brand-sky/10">
+                <div class="w-8 h-8 bg-gradient-to-br from-brand-sky/20 to-brand-navy/20 rounded-full flex items-center justify-center">
+                  <span class="text-sm">{{ article.author.avatar }}</span>
+                </div>
+                <div>
+                  <div class="text-sm font-medium text-brand-dark">{{ article.author.name }}</div>
+                  <div class="text-xs text-brand-dark/60">{{ article.author.role }}</div>
+                </div>
+              </div>
+
+              <!-- Read More Button -->
+              <div class="pt-4">
+                <button class="w-full bg-gradient-to-r from-brand-navy to-brand-dark text-white py-3 px-4 rounded-xl font-medium hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                  Читать полностью
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Pagination -->
+        <div *ngIf="!loading && pagination && pagination.totalPages > 1" 
+             class="flex justify-center items-center gap-4 mt-16">
+          <button 
+            (click)="changePage(pagination.currentPage - 1)"
+            [disabled]="!pagination.hasPrev"
+            [class.opacity-50]="!pagination.hasPrev"
+            [class.cursor-not-allowed]="!pagination.hasPrev"
+            class="flex items-center gap-2 px-6 py-3 bg-white/50 border border-brand-sky/20 rounded-xl font-medium hover:bg-white/70 transition-all duration-300 disabled:hover:bg-white/50">
+            ← Назад
+          </button>
+
+          <div class="flex gap-2">
+            <button
+              *ngFor="let page of getPageNumbers()"
+              (click)="changePage(page)"
+              [class]="page === pagination.currentPage ? 
+                'bg-brand-navy text-white' : 
+                'bg-white/50 text-brand-dark hover:bg-white/70'"
+              class="w-12 h-12 rounded-xl font-medium transition-all duration-300 border border-brand-sky/20">
+              {{ page }}
+            </button>
+          </div>
+
+          <button 
+            (click)="changePage(pagination.currentPage + 1)"
+            [disabled]="!pagination.hasNext"
+            [class.opacity-50]="!pagination.hasNext"
+            [class.cursor-not-allowed]="!pagination.hasNext"
+            class="flex items-center gap-2 px-6 py-3 bg-white/50 border border-brand-sky/20 rounded-xl font-medium hover:bg-white/70 transition-all duration-300 disabled:hover:bg-white/50">
+            Вперёд →
+          </button>
+        </div>
+      </div>
+    </section>
   `,
-  styles: []
+  styles: [`
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .line-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  `]
 })
-export class BlogPageComponent {} 
+export class BlogPageComponent implements OnInit {
+  articles: BlogArticle[] = [];
+  categories: BlogCategory[] = [];
+  tags: BlogTag[] = [];
+  activeTags: BlogTag[] = [];
+  pagination: PaginationData | null = null;
+  loading = false;
+  
+  SortOption = SortOption;
+  
+  filters: BlogFilters = {
+    search: '',
+    category: '',
+    tags: [],
+    author: '',
+    sortBy: SortOption.NEWEST,
+    dateRange: { from: null, to: null }
+  };
+
+  private searchTimeout: any;
+
+  constructor(private blogService: BlogService) {}
+
+  ngOnInit(): void {
+    this.loadCategories();
+    this.loadTags();
+    this.loadArticles();
+  }
+
+  loadArticles(page = 1): void {
+    this.loading = true;
+    this.blogService.getArticles(this.filters, page).subscribe({
+      next: (result) => {
+        this.articles = result.articles;
+        this.pagination = result.pagination;
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error('Error loading articles:', error);
+        this.loading = false;
+      }
+    });
+  }
+
+  loadCategories(): void {
+    this.blogService.getCategories().subscribe(categories => {
+      this.categories = categories;
+    });
+  }
+
+  loadTags(): void {
+    this.blogService.getTags().subscribe(tags => {
+      this.tags = tags;
+    });
+  }
+
+  onSearchChange(): void {
+    if (this.searchTimeout) {
+      clearTimeout(this.searchTimeout);
+    }
+    
+    this.searchTimeout = setTimeout(() => {
+      this.loadArticles(1);
+    }, 500);
+  }
+
+  clearSearch(): void {
+    this.filters.search = '';
+    this.loadArticles(1);
+  }
+
+  selectCategory(categorySlug: string): void {
+    this.filters.category = categorySlug;
+    this.loadArticles(1);
+  }
+
+  addTag(tagSlug: string): void {
+    if (!this.filters.tags.includes(tagSlug)) {
+      this.filters.tags.push(tagSlug);
+      this.updateActiveTags();
+      this.loadArticles(1);
+    }
+  }
+
+  removeTag(tagSlug: string): void {
+    this.filters.tags = this.filters.tags.filter(tag => tag !== tagSlug);
+    this.updateActiveTags();
+    this.loadArticles(1);
+  }
+
+  updateActiveTags(): void {
+    this.activeTags = this.tags.filter(tag => 
+      this.filters.tags.includes(tag.slug)
+    );
+  }
+
+  onFiltersChange(): void {
+    this.loadArticles(1);
+  }
+
+  changePage(page: number): void {
+    if (page >= 1 && this.pagination && page <= this.pagination.totalPages) {
+      this.loadArticles(page);
+      // Прокрутка к началу статей
+      document.querySelector('section:nth-of-type(3)')?.scrollIntoView({ 
+        behavior: 'smooth' 
+      });
+    }
+  }
+
+  getPageNumbers(): number[] {
+    if (!this.pagination) return [];
+    
+    const pages: number[] = [];
+    const current = this.pagination.currentPage;
+    const total = this.pagination.totalPages;
+    
+    // Показываем максимум 5 страниц
+    let start = Math.max(1, current - 2);
+    let end = Math.min(total, start + 4);
+    
+    if (end - start < 4) {
+      start = Math.max(1, end - 4);
+    }
+    
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+    
+    return pages;
+  }
+
+  trackByArticleId(index: number, article: BlogArticle): string {
+    return article.id;
+  }
+
+  formatDate(date: Date): string {
+    return new Intl.DateTimeFormat('ru-RU', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    }).format(date);
+  }
+} 

@@ -28,72 +28,62 @@ import { RouterLink } from '@angular/router';
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <!-- Professional Background Overlay -->
-      <div class="absolute inset-0 opacity-10">
-        <div class="absolute inset-0 bg-gradient-to-br from-brand-cream/20 via-white to-brand-sky/15 animate-professional-glow"></div>
-      </div>
+      <!-- Clean minimal background -->
+      <div class="absolute inset-0 bg-gradient-to-b from-white via-gray-50/50 to-white"></div>
+      
+      <!-- Subtle geometric accent -->
+      <div class="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-brand-sky/10 to-brand-coral/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-20 left-20 w-48 h-48 bg-gradient-to-tr from-brand-cream/20 to-brand-navy/10 rounded-full blur-2xl"></div>
       
       <!-- Hero Content -->
       <div class="container mx-auto px-6 text-center relative z-10">
-        <!-- Professional Badge -->
-        <div class="inline-flex items-center gap-3 glass px-8 py-4 rounded-full mb-8 animate-slide-up delay-100 border-brand-sky consulting-accent">
-          <div class="w-3 h-3 bg-brand-sky rounded-full animate-pulse"></div>
-          <span class="text-sm font-semibold text-gradient-accent">Лицензированный ЦОК с 2017 года</span>
+        <!-- Trust Badge -->
+        <div class="inline-flex items-center gap-2 bg-brand-sky/10 text-brand-navy px-6 py-2 rounded-full mb-8 border border-brand-sky/20">
+          <div class="w-2 h-2 bg-brand-coral rounded-full"></div>
+          <span class="text-sm font-medium">Лицензированный ЦОК с 2017 года</span>
         </div>
 
-        <!-- Main Title -->
-        <h1 class="text-responsive-xl font-black mb-6 text-gradient-primary animate-slide-up delay-200 professional-border">
-          Профессиональная подготовка
+        <!-- Main Heading -->
+        <h1 class="text-6xl md:text-7xl lg:text-8xl font-black text-brand-dark mb-8 leading-tight">
+          Профессиональная
           <br />
-          <span class="text-gradient-secondary">к аттестации НОК</span>
+          <span class="text-brand-navy font-black">подготовка к НОК</span>
         </h1>
 
         <!-- Subtitle -->
-        <p class="text-xl md:text-2xl text-brand-dark/80 mb-12 max-w-4xl mx-auto leading-relaxed animate-slide-up delay-300">
-          Гарантированная сдача независимой оценки квалификации для специалистов 
-          <span class="text-gradient-accent font-semibold">НОСТРОЙ</span> и 
-          <span class="text-gradient-accent font-semibold">НОПРИЗ</span>
+        <p class="text-xl md:text-2xl text-brand-dark/70 mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
+          Гарантированная сдача независимой оценки квалификации 
+          <br class="hidden md:block" />
+          для специалистов <strong class="text-brand-coral font-bold">НОСТРОЙ</strong> и <strong class="text-brand-coral font-bold">НОПРИЗ</strong>
         </p>
 
-        <!-- Professional Stats -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 animate-slide-up delay-400">
-          <div class="glass-dark rounded-2xl p-6 hover-lift card-sky professional-border">
-            <div class="text-3xl font-bold text-gradient-primary mb-2">98%</div>
-            <div class="text-brand-dark/70 text-sm">Успешная сдача</div>
+        <!-- Key Stats - Minimal -->
+        <div class="flex flex-wrap justify-center gap-8 mb-16">
+          <div class="text-center">
+            <div class="text-4xl font-bold text-brand-navy mb-1">98%</div>
+            <div class="text-sm text-brand-dark/60 uppercase tracking-wide font-medium">Успешная сдача</div>
           </div>
-          <div class="glass-dark rounded-2xl p-6 hover-lift card-coral consulting-accent">
-            <div class="text-3xl font-bold text-gradient-accent mb-2">3000+</div>
-            <div class="text-brand-dark/70 text-sm">Довольных клиентов</div>
+          <div class="text-center">
+            <div class="text-4xl font-bold text-brand-coral mb-1">3000+</div>
+            <div class="text-sm text-brand-dark/60 uppercase tracking-wide font-medium">Довольных клиентов</div>
           </div>
-          <div class="glass-dark rounded-2xl p-6 hover-lift card-navy professional-border">
-            <div class="text-3xl font-bold text-gradient-secondary mb-2">7</div>
-            <div class="text-brand-dark/70 text-sm">Лет опыта</div>
-          </div>
-          <div class="glass-dark rounded-2xl p-6 hover-lift card-sky consulting-accent">
-            <div class="text-3xl font-bold text-gradient-primary mb-2">24/7</div>
-            <div class="text-brand-dark/70 text-sm">Поддержка</div>
+          <div class="text-center">
+            <div class="text-4xl font-bold text-brand-navy mb-1">7</div>
+            <div class="text-sm text-brand-dark/60 uppercase tracking-wide font-medium">Лет опыта</div>
           </div>
         </div>
 
         <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up delay-500">
-          <button class="btn-modern px-8 py-4 text-lg hover-glow">
-            📋 Записаться на консультацию
+        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <button class="bg-brand-coral hover:bg-orange-600 text-white px-10 py-4 text-lg font-bold rounded-2xl transition-all duration-500 hover:shadow-xl hover:-translate-y-1 min-w-[250px]">
+            Записаться на консультацию
           </button>
-          <button class="glass px-8 py-4 rounded-full font-semibold text-brand-dark hover-lift border-brand-sky">
-            📞 Бесплатный звонок
+          <button class="text-brand-navy hover:text-brand-coral font-bold text-lg transition-colors duration-300 border-b-2 border-transparent hover:border-brand-coral pb-1">
+            Узнать больше →
           </button>
         </div>
 
-        <!-- Professional Scroll Indicator -->
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div class="flex flex-col items-center">
-            <div class="w-6 h-10 border-2 border-brand-sky rounded-full flex justify-center relative overflow-hidden">
-              <div class="w-1 h-3 bg-brand-navy rounded-full mt-2 animate-pulse"></div>
-            </div>
-            <div class="mt-2 text-xs text-brand-dark/50 font-medium">Подробнее</div>
-          </div>
-        </div>
+
       </div>
     </section>
 
@@ -102,10 +92,10 @@ import { RouterLink } from '@angular/router';
       <div class="container mx-auto px-6">
         <!-- Section Header -->
         <div class="text-center mb-16">
-          <h2 class="text-responsive-lg font-bold mb-6 text-gradient-primary consulting-accent">
+          <h2 class="text-5xl md:text-6xl font-bold mb-6 text-gradient-primary consulting-accent">
             Что такое НОК?
           </h2>
-          <p class="text-xl text-brand-dark/80 max-w-3xl mx-auto">
+          <p class="text-xl text-brand-dark/80 max-w-3xl mx-auto font-medium">
             Независимая оценка квалификации — обязательная процедура для специалистов строительной отрасли
           </p>
         </div>
@@ -115,8 +105,8 @@ import { RouterLink } from '@angular/router';
           <!-- Left: Information -->
           <div class="space-y-8">
             <div class="glass-dark rounded-3xl p-8 card-navy consulting-accent">
-              <h3 class="text-2xl font-bold text-brand-dark mb-4">Федеральный закон №238-ФЗ</h3>
-              <p class="text-brand-dark/80 leading-relaxed">
+              <h3 class="text-3xl font-bold text-brand-dark mb-4">Федеральный закон №238-ФЗ</h3>
+              <p class="text-brand-dark/80 leading-relaxed font-medium">
                 НОК — это процедура подтверждения соответствия квалификации специалиста 
                 профессиональным стандартам, проводимая согласно федеральному законодательству.
               </p>
@@ -124,12 +114,12 @@ import { RouterLink } from '@angular/router';
 
             <!-- Professional Feature Cards -->
             <div class="space-y-6">
-              <div class="card-modern hover-lift group card-sky">
+                              <div class="card-modern hover-lift group card-sky">
                 <div class="flex items-start gap-4">
                   <div class="w-16 h-16 neomorphic rounded-2xl flex items-center justify-center text-2xl">📋</div>
                   <div>
-                    <h4 class="text-xl font-semibold text-gradient-accent mb-2 professional-border">Обязательность</h4>
-                    <p class="text-brand-dark/80">Для всех специалистов НРС НОСТРОЙ/НОПРИЗ</p>
+                    <h4 class="text-2xl font-bold text-gradient-accent mb-2 professional-border">Обязательность</h4>
+                    <p class="text-brand-dark/80 font-medium">Для всех специалистов НРС НОСТРОЙ/НОПРИЗ</p>
                   </div>
                 </div>
               </div>
@@ -138,8 +128,8 @@ import { RouterLink } from '@angular/router';
                 <div class="flex items-start gap-4">
                   <div class="w-16 h-16 neomorphic rounded-2xl flex items-center justify-center text-2xl">⏰</div>
                   <div>
-                    <h4 class="text-xl font-semibold text-gradient-accent mb-2 professional-border">Периодичность</h4>
-                    <p class="text-brand-dark/80">Каждые 3-5 лет в зависимости от специализации</p>
+                    <h4 class="text-2xl font-bold text-gradient-accent mb-2 professional-border">Периодичность</h4>
+                    <p class="text-brand-dark/80 font-medium">Каждые 3-5 лет в зависимости от специализации</p>
                   </div>
                 </div>
               </div>
@@ -148,8 +138,8 @@ import { RouterLink } from '@angular/router';
                 <div class="flex items-start gap-4">
                   <div class="w-16 h-16 neomorphic rounded-2xl flex items-center justify-center text-2xl">🏛️</div>
                   <div>
-                    <h4 class="text-xl font-semibold text-gradient-accent mb-2 professional-border">Место проведения</h4>
-                    <p class="text-brand-dark/80">Только в аккредитованных ЦОК под видеонаблюдением</p>
+                    <h4 class="text-2xl font-bold text-gradient-accent mb-2 professional-border">Место проведения</h4>
+                    <p class="text-brand-dark/80 font-medium">Только в аккредитованных ЦОК под видеонаблюдением</p>
                   </div>
                 </div>
               </div>
@@ -159,15 +149,15 @@ import { RouterLink } from '@angular/router';
           <!-- Right: Process Flow -->
           <div class="relative">
             <div class="glass rounded-3xl p-8 card-sky consulting-accent">
-              <h3 class="text-2xl font-bold text-center text-gradient-secondary mb-8 professional-border">Процесс сдачи НОК</h3>
+              <h3 class="text-3xl font-bold text-center text-gradient-secondary mb-8 professional-border">Процесс сдачи НОК</h3>
               
               <div class="space-y-6">
                 <!-- Step 1 -->
                 <div class="flex items-center gap-4 p-4 neomorphic-inset rounded-2xl hover-lift">
                   <div class="w-12 h-12 bg-brand-navy rounded-full flex items-center justify-center text-white font-bold">1</div>
                   <div>
-                    <h4 class="font-semibold text-brand-dark">Подача документов</h4>
-                    <p class="text-brand-dark/70 text-sm">Полный пакет в ЦОК</p>
+                    <h4 class="font-bold text-brand-dark">Подача документов</h4>
+                    <p class="text-brand-dark/70 text-sm font-medium">Полный пакет в ЦОК</p>
                   </div>
                 </div>
 
@@ -179,8 +169,8 @@ import { RouterLink } from '@angular/router';
                 <div class="flex items-center gap-4 p-4 neomorphic-inset rounded-2xl hover-lift">
                   <div class="w-12 h-12 bg-brand-sky rounded-full flex items-center justify-center text-brand-dark font-bold">2</div>
                   <div>
-                    <h4 class="font-semibold text-brand-dark">Теоретический экзамен</h4>
-                    <p class="text-brand-dark/70 text-sm">50 вопросов за 60 минут</p>
+                    <h4 class="font-bold text-brand-dark">Теоретический экзамен</h4>
+                    <p class="text-brand-dark/70 text-sm font-medium">50 вопросов за 60 минут</p>
                   </div>
                 </div>
 
@@ -192,8 +182,8 @@ import { RouterLink } from '@angular/router';
                 <div class="flex items-center gap-4 p-4 neomorphic-inset rounded-2xl hover-lift">
                   <div class="w-12 h-12 bg-brand-coral rounded-full flex items-center justify-center text-white font-bold">3</div>
                   <div>
-                    <h4 class="font-semibold text-brand-dark">Практическая часть</h4>
-                    <p class="text-brand-dark/70 text-sm">Задачи или портфолио</p>
+                    <h4 class="font-bold text-brand-dark">Практическая часть</h4>
+                    <p class="text-brand-dark/70 text-sm font-medium">Задачи или портфолио</p>
                   </div>
                 </div>
 
@@ -205,8 +195,8 @@ import { RouterLink } from '@angular/router';
                 <div class="flex items-center gap-4 p-4 neomorphic-inset rounded-2xl hover-lift">
                   <div class="w-12 h-12 bg-brand-sky rounded-full flex items-center justify-center text-brand-dark font-bold">4</div>
                   <div>
-                    <h4 class="font-semibold text-brand-dark">Получение свидетельства</h4>
-                    <p class="text-brand-dark/70 text-sm">Оформление через 30 дней</p>
+                    <h4 class="font-bold text-brand-dark">Получение свидетельства</h4>
+                    <p class="text-brand-dark/70 text-sm font-medium">Оформление через 30 дней</p>
                   </div>
                 </div>
               </div>
@@ -226,7 +216,7 @@ import { RouterLink } from '@angular/router';
           <div class="space-y-8">
             <div class="text-center">
               <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-brand-coral/80 to-brand-coral rounded-full flex items-center justify-center text-4xl animate-professional-glow">⚠️</div>
-              <h3 class="text-3xl font-bold text-gradient-accent mb-4 professional-border">Риски провала</h3>
+              <h3 class="text-4xl font-bold text-gradient-accent mb-4 professional-border">Риски провала</h3>
             </div>
 
             <div class="space-y-4">
@@ -260,7 +250,7 @@ import { RouterLink } from '@angular/router';
           <div class="space-y-8">
             <div class="text-center">
               <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-brand-sky/80 to-brand-navy rounded-full flex items-center justify-center text-4xl animate-professional-glow">✨</div>
-              <h3 class="text-3xl font-bold text-gradient-success mb-4 professional-border">Преимущества НОК</h3>
+              <h3 class="text-4xl font-bold text-gradient-success mb-4 professional-border">Преимущества НОК</h3>
             </div>
 
             <div class="space-y-4">
@@ -297,10 +287,10 @@ import { RouterLink } from '@angular/router';
     <section class="py-24" id="services">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
-          <h2 class="text-responsive-lg font-bold mb-6 text-gradient-primary consulting-accent">
+          <h2 class="text-5xl md:text-6xl font-bold mb-6 text-gradient-primary consulting-accent">
             Наши услуги
           </h2>
-          <p class="text-xl text-brand-dark/80 max-w-3xl mx-auto">
+          <p class="text-xl text-brand-dark/80 max-w-3xl mx-auto font-medium">
             Профессиональная подготовка с гарантией результата
           </p>
         </div>

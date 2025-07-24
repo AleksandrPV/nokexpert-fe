@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { InfoService } from '../../../features/info/services/info.service';
+import { InfoCategory } from '../../../features/info/models/info-page.interface';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink],
+  imports: [CommonModule, RouterLink],
   template: `
     <header class="fixed top-0 left-0 right-0 z-50 glass backdrop-blur-2xl border-b border-brand-sky/30">
       <nav class="container mx-auto px-6 py-4">
         <div class="flex items-center justify-between">
           <!-- Logo -->
-          <div class="flex items-center gap-3 group cursor-pointer">
+          <div class="flex items-center gap-3 group cursor-pointer" routerLink="/">
             <div class="relative">
               <div class="w-12 h-12 neomorphic rounded-2xl flex items-center justify-center text-2xl group-hover:animate-pulse-glow transition-all duration-300">
                 🏗️
@@ -39,16 +42,93 @@ import { RouterLink } from '@angular/router';
               <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-brand-coral to-brand-sky group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
             </a>
 
+            <!-- НОК with Mega Menu -->
+            <div class="relative group"
+                 (mouseenter)="onMegaMenuEnter()"
+                 (mouseleave)="onMegaMenuLeave()">
+              <a routerLink="/info"
+                 class="relative px-4 py-2 rounded-xl transition-all duration-300 hover:glass flex items-center gap-2">
+                <span class="relative z-10 text-brand-dark group-hover:text-gradient-primary">НОК</span>
+                <svg class="w-4 h-4 text-brand-dark group-hover:text-brand-coral transition-all duration-300 transform group-hover:rotate-180" 
+                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-sky/20 to-brand-coral/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-brand-coral to-brand-sky group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
+              </a>
+
+              <!-- Mega Menu -->
+              <div 
+                *ngIf="showMegaMenu"
+                class="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-screen max-w-6xl bg-white/95 backdrop-blur-xl rounded-3xl border border-brand-sky/20 shadow-2xl p-8 z-50 animate-fade-in">
+                
+                <!-- Mega Menu Header -->
+                <div class="text-center mb-8">
+                  <h3 class="text-2xl font-bold text-brand-dark mb-2">Информация о НОК</h3>
+                  <p class="text-brand-dark/70 font-medium">Полная база знаний о независимой оценке квалификации</p>
+                </div>
+
+                <!-- Categories Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div 
+                    *ngFor="let category of menuCategories"
+                    class="group p-4 rounded-2xl hover:bg-white/70 transition-all duration-300 cursor-pointer border border-transparent hover:border-brand-sky/20">
+                    
+                    <!-- Category Header -->
+                    <div class="flex items-center gap-3 mb-4">
+                      <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl"
+                           [class]="category.color">
+                        <span class="text-white drop-shadow-sm">{{ category.icon }}</span>
+                      </div>
+                      <div>
+                        <h4 class="font-bold text-brand-dark text-sm leading-tight">{{ category.name }}</h4>
+                        <p class="text-xs text-brand-dark/60">{{ category.pages.length }} страниц</p>
+                      </div>
+                    </div>
+
+                    <!-- Top Pages -->
+                    <div class="space-y-2">
+                      <a 
+                        *ngFor="let page of category.pages.slice(0, 3)"
+                        [routerLink]="'/info/' + page.slug"
+                        class="block p-2 rounded-xl hover:bg-brand-sky/10 transition-colors duration-200 group">
+                        <div class="flex items-center gap-2">
+                          <span class="text-sm">{{ page.icon }}</span>
+                          <span class="text-sm font-medium text-brand-dark group-hover:text-brand-navy line-clamp-1">
+                            {{ page.title }}
+                          </span>
+                        </div>
+                      </a>
+                      
+                      <a 
+                        *ngIf="category.pages.length > 3"
+                        [routerLink]="'/info/' + category.slug"
+                        class="block p-2 rounded-xl hover:bg-brand-coral/10 transition-colors duration-200 text-center">
+                        <span class="text-xs font-medium text-brand-coral">
+                          + ещё {{ category.pages.length - 3 }} {{ category.pages.length - 3 === 1 ? 'страница' : 'страниц' }}
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="flex justify-center gap-4 mt-8 pt-6 border-t border-brand-sky/10">
+                  <a routerLink="/info" 
+                     class="bg-brand-navy text-white px-6 py-3 rounded-xl font-medium hover:bg-brand-dark transition-all duration-300 hover:shadow-lg">
+                    📚 Все материалы
+                  </a>
+                  <a routerLink="/info/online-trainer"
+                     class="bg-brand-coral text-white px-6 py-3 rounded-xl font-medium hover:bg-orange-600 transition-all duration-300 hover:shadow-lg">
+                    💻 Тренажер НОК
+                  </a>
+                </div>
+              </div>
+            </div>
+
             <a routerLink="/blog"
                class="relative group px-4 py-2 rounded-xl transition-all duration-300 hover:glass">
               <span class="relative z-10 text-brand-dark group-hover:text-gradient-primary">Блог</span>
-              <div class="absolute inset-0 bg-gradient-to-r from-brand-sky/20 to-brand-coral/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-              <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-brand-coral to-brand-sky group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
-            </a>
-
-            <a routerLink="/info"
-               class="relative group px-4 py-2 rounded-xl transition-all duration-300 hover:glass">
-              <span class="relative z-10 text-brand-dark group-hover:text-gradient-primary">Информация</span>
               <div class="absolute inset-0 bg-gradient-to-r from-brand-sky/20 to-brand-coral/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
               <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-brand-coral to-brand-sky group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
             </a>
@@ -73,7 +153,9 @@ import { RouterLink } from '@angular/router';
           </div>
 
           <!-- Mobile Menu Button -->
-          <button class="lg:hidden glass-dark p-3 rounded-xl hover-lift border-brand-sky" onclick="toggleMobileMenu()">
+          <button 
+            (click)="toggleMobileMenu()"
+            class="lg:hidden glass-dark p-3 rounded-xl hover-lift border-brand-sky">
             <svg class="w-6 h-6 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
@@ -81,25 +163,60 @@ import { RouterLink } from '@angular/router';
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="lg:hidden hidden mt-6 glass rounded-2xl p-6 animate-slide-up border-brand-sky">
+        <div 
+          [class.hidden]="!mobileMenuOpen"
+          class="lg:hidden mt-6 glass rounded-2xl p-6 animate-slide-up border-brand-sky">
           <div class="space-y-4">
             <a routerLink="/"
+               (click)="closeMobileMenu()"
                class="block p-3 rounded-xl hover:glass-dark transition-all duration-300 text-brand-dark">
               🏠 Главная
             </a>
             <a routerLink="/services"
+               (click)="closeMobileMenu()"
                class="block p-3 rounded-xl hover:glass-dark transition-all duration-300 text-brand-dark">
               🛠️ Услуги
             </a>
+            
+            <!-- Mobile НОК Submenu -->
+            <div class="space-y-2">
+              <button 
+                (click)="toggleNokSubmenu()"
+                class="w-full flex items-center justify-between p-3 rounded-xl hover:glass-dark transition-all duration-300 text-brand-dark">
+                <span>🏗️ НОК</span>
+                <svg 
+                  [class.rotate-180]="nokSubmenuOpen"
+                  class="w-4 h-4 transition-transform duration-300" 
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              
+              <div 
+                [class.hidden]="!nokSubmenuOpen"
+                class="pl-4 space-y-2 border-l-2 border-brand-sky/20">
+                <a routerLink="/info"
+                   (click)="closeMobileMenu()"
+                   class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark">
+                  📚 Все материалы
+                </a>
+                <a 
+                  *ngFor="let category of menuCategories.slice(0, 3)"
+                  [routerLink]="'/info/' + category.slug"
+                  (click)="closeMobileMenu()"
+                  class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark">
+                  {{ category.icon }} {{ category.name }}
+                </a>
+              </div>
+            </div>
+
             <a routerLink="/blog"
+               (click)="closeMobileMenu()"
                class="block p-3 rounded-xl hover:glass-dark transition-all duration-300 text-brand-dark">
               📝 Блог
             </a>
-            <a routerLink="/info"
-               class="block p-3 rounded-xl hover:glass-dark transition-all duration-300 text-brand-dark">
-              ℹ️ Информация
-            </a>
             <a routerLink="/contacts"
+               (click)="closeMobileMenu()"
                class="block p-3 rounded-xl hover:glass-dark transition-all duration-300 text-brand-dark">
               📞 Контакты
             </a>
@@ -120,16 +237,97 @@ import { RouterLink } from '@angular/router';
 
     <!-- Header Spacer -->
     <div class="h-20"></div>
-
-    <script>
-      function toggleMobileMenu() {
-        const menu = document.getElementById('mobileMenu');
-        if (menu) {
-          menu.classList.toggle('hidden');
-        }
-      }
-    </script>
   `,
-  styles: []
+  styles: [`
+    .line-clamp-1 {
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 0.2s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+  `],
+  animations: [
+    // Анимация для мега-меню
+  ]
 })
-export class HeaderComponent {} 
+export class HeaderComponent implements OnInit, OnDestroy {
+  showMegaMenu = false;
+  mobileMenuOpen = false;
+  nokSubmenuOpen = false;
+  menuCategories: InfoCategory[] = [];
+  megaMenuTimeout: any = null;
+
+  constructor(private infoService: InfoService) {}
+
+  ngOnInit(): void {
+    this.loadMenuCategories();
+  }
+
+  ngOnDestroy(): void {
+    if (this.megaMenuTimeout) {
+      clearTimeout(this.megaMenuTimeout);
+    }
+  }
+
+  loadMenuCategories(): void {
+    this.infoService.getMenuCategories().subscribe(categories => {
+      this.menuCategories = categories;
+    });
+  }
+
+  onMegaMenuEnter(): void {
+    this.showMegaMenu = true;
+    // Очищаем таймер скрытия, если он есть
+    if (this.megaMenuTimeout) {
+      clearTimeout(this.megaMenuTimeout);
+      this.megaMenuTimeout = null;
+    }
+  }
+
+  onMegaMenuLeave(): void {
+    // Устанавливаем небольшую задержку перед скрытием
+    this.megaMenuTimeout = setTimeout(() => {
+      this.showMegaMenu = false;
+    }, 150);
+  }
+
+  toggleMobileMenu(): void {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+    this.nokSubmenuOpen = false; // Закрываем подменю при переключении основного меню
+  }
+
+  closeMobileMenu(): void {
+    this.mobileMenuOpen = false;
+    this.nokSubmenuOpen = false;
+  }
+
+  toggleNokSubmenu(): void {
+    this.nokSubmenuOpen = !this.nokSubmenuOpen;
+  }
+} 
