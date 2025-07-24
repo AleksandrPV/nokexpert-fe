@@ -143,34 +143,18 @@ jobs:
     - name: Deploy to VPS
       run: |
         ssh -o ConnectTimeout=30 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/id_rsa deploy@${{ secrets.VPS_HOST }} << 'EOF'
-          # Подготовка среды
           echo "=== 🚀 Начинаем деплой ==="
           
-          # Создаем рабочую директорию если не существует
-          sudo mkdir -p /opt/nokexpert-fe
-          sudo chown deploy:deploy /opt/nokexpert-fe
-          cd /opt/nokexpert-fe
+          # Переходим в домашнюю директорию
+          cd ~
           
-          # Инициализируем git репозиторий если нужно
-          if [ ! -d ".git" ]; then
-            echo "Инициализируем git репозиторий..."
-            git init
-            git remote add origin https://github.com/AleksandrPV/nokexpert-fe.git
-          fi
+          # Создаем рабочую директорию
+          mkdir -p ~/nokexpert-fe
+          cd ~/nokexpert-fe
           
-          # Получаем последний код
-          echo "Обновляем код..."
-          git fetch origin main
-          git reset --hard origin/main
-          
-          # Проверяем Docker
-          echo "Проверяем Docker..."
-          if ! groups | grep -q docker; then
-            echo "Добавляем пользователя deploy в группу docker..."
-            sudo usermod -aG docker deploy
-            echo "Перезапускаем сессию для применения прав..."
-            exec sudo -u deploy bash << 'DOCKER_EOF'
-          fi
+          # Копируем docker-compose файл из репозитория (используем curl)
+          echo "Скачиваем docker-compose.yml..."
+          curl -o docker-compose.yml https://raw.githubusercontent.com/AleksandrPV/nokexpert-fe/main/docker-compose.yml
           
           # Останавливаем текущие контейнеры
           echo "Останавливаем контейнеры..."
@@ -194,7 +178,7 @@ jobs:
           
           # Проверяем статус
           echo "Проверяем статус..."
-          sleep 15
+          sleep 10
           docker ps
           
           echo "✅ Деплой завершен успешно!"
