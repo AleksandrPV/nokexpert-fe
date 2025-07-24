@@ -32,7 +32,7 @@ COPY --from=build /app/dist/nokexpert-fe/browser /usr/share/nginx/html
 RUN chmod -R 755 /usr/share/nginx/html
 
 # Открываем порт
-EXPOSE 8080
+EXPOSE 80
 
 # Запускаем nginx
 CMD ["nginx", "-g", "daemon off;"] 
