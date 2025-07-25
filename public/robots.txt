@@ -1,23 +1,51 @@
+# robots.txt для НОК Эксперт
+# https://нок-эксперт.рф/robots.txt
+
+# Основные правила для всех поисковых роботов
 User-agent: *
 Allow: /
 
-# Главные страницы
-Allow: /
+# Разрешаем индексацию основных страниц
 Allow: /services
 Allow: /info
 Allow: /blog
 Allow: /contacts
+Allow: /faq
+Allow: /qualifications
 
-# Запрещаем индексацию служебных страниц
+# Запрещаем индексацию служебных и технических страниц
 Disallow: /privacy-policy
 Disallow: /admin/
 Disallow: /api/
 Disallow: /assets/
+Disallow: /_next/
+Disallow: /static/
+Disallow: /temp/
+Disallow: /tmp/
+
+# Запрещаем индексацию файлов определенных типов
 Disallow: /*.json$
 Disallow: /*.js$
 Disallow: /*.css$
+Disallow: /*.map$
+Disallow: /*.xml$
+Disallow: /*.txt$
+Disallow: /*.pdf$
+Disallow: /*.zip$
+Disallow: /*.rar$
 
-# Запрещаем для плохих ботов
+# Запрещаем индексацию параметров URL
+Disallow: /*?*
+Disallow: /*&*
+Disallow: /*=*
+
+# Запрещаем индексацию дублирующихся страниц
+Disallow: /*?utm_
+Disallow: /*?fbclid
+Disallow: /*?gclid
+Disallow: /*?msclkid
+
+# Запрещаем для агрессивных ботов и скраперов
 User-agent: MJ12bot
 Disallow: /
 
@@ -27,9 +55,40 @@ Disallow: /
 User-agent: SemrushBot
 Disallow: /
 
-# Время задержки для поисковых роботов
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: Screaming Frog SEO Spider
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: Ezooms
+Disallow: /
+
+User-agent: Nutch
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: YandexBot
+Crawl-delay: 2
+
+User-agent: Googlebot
 Crawl-delay: 1
 
-# Ссылка на sitemap
+User-agent: Bingbot
+Crawl-delay: 1
+
+# Время задержки для остальных поисковых роботов
+Crawl-delay: 1
+
+# Ссылки на карты сайта
 Sitemap: https://нок-эксперт.рф/sitemap.xml
-Sitemap: https://нок-эксперт.рф/sitemap-blog.xml 
+Sitemap: https://нок-эксперт.рф/sitemap-blog.xml
+Sitemap: https://нок-эксперт.рф/sitemap-services.xml
+
+# Дополнительная информация
+# Host: https://нок-эксперт.рф 

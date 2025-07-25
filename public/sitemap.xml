@@ -12,7 +12,7 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Страница услуг -->
+  <!-- Основные страницы -->
   <url>
     <loc>https://нок-эксперт.рф/services</loc>
     <lastmod>2024-12-19</lastmod>
@@ -20,7 +20,6 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- Страница информации о НОК -->
   <url>
     <loc>https://нок-эксперт.рф/info</loc>
     <lastmod>2024-12-19</lastmod>
@@ -28,7 +27,6 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Блог и новости -->
   <url>
     <loc>https://нок-эксперт.рф/blog</loc>
     <lastmod>2024-12-19</lastmod>
@@ -36,12 +34,25 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Контакты -->
   <url>
     <loc>https://нок-эксперт.рф/contacts</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://нок-эксперт.рф/faq</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://нок-эксперт.рф/qualifications</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
   <!-- Подкатегории информации о НОК -->
@@ -85,6 +96,71 @@
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+
+  <!-- Детальные страницы информации -->
+  <url>
+    <loc>https://нок-эксперт.рф/info/chto-takoe-nok</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://нок-эксперт.рф/info/komu-obyazatelno-prohodit-nok</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://нок-эксперт.рф/info/kak-prohodit-protsedura-nok</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://нок-эксперт.рф/info/sroki-prohozhdeniya-nok</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://нок-эксперт.рф/info/stoimost-prohozhdeniya-nok</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Страницы услуг -->
+  <url>
+    <loc>https://нок-эксперт.рф/services/nok-nostroy</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://нок-эксперт.рф/services/nok-nopriz</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://нок-эксперт.рф/services/online-obuchenie</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://нок-эксперт.рф/services/individualnye-kursy</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
 </urlset> 
