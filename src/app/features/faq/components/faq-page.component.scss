@@ -1,5 +1,3 @@
-@import '../../../../styles.scss';
-
 .animate-fade-in {
   animation: fadeIn 0.3s ease;
 }
@@ -10,10 +8,10 @@
 }
 
 .text-brand-coral {
-  color: var(--brand-coral, #ff7043);
+  color: #ff7043;
 }
 
 button:focus {
-  outline: 2px solid var(--brand-coral, #ff7043);
+  outline: 2px solid #ff7043;
   outline-offset: 2px;
 } 
