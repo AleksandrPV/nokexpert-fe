@@ -10,6 +10,7 @@ import { FaqPageComponent } from './features/faq/components/faq-page.component';
 import { CenterPageComponent } from './features/center/components/center-page.component';
 import { QualificationsPageComponent } from './features/qualifications/components/qualifications-page.component';
 import { PrivacyPolicyPageComponent } from './features/privacy-policy/components/privacy-policy-page.component';
+import { BlogArticlePageComponent } from './features/blog/components/blog-article-page.component';
 
 export const routes: Routes = [
   {
@@ -21,6 +22,7 @@ export const routes: Routes = [
       { path: 'services/:id', component: ServiceDetailPageComponent },
       { path: 'contacts', component: ContactsPageComponent },
       { path: 'blog', component: BlogPageComponent },
+      { path: 'blog/nostroy-changes-2024', component: BlogArticlePageComponent },
       { path: 'info', component: InfoPageComponent },
       { path: 'faq', component: FaqPageComponent },
       { path: 'center', component: CenterPageComponent },

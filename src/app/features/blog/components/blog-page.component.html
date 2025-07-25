@@ -127,6 +127,53 @@
 
     <!-- Articles Grid -->
     <div *ngIf="!loading && articles.length > 0" class="grid lg:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      <!-- Вручную добавленная статья -->
+      <a routerLink="/blog/nostroy-changes-2024"
+         class="group bg-white/50 backdrop-blur-sm rounded-3xl overflow-hidden border border-brand-sky/10 hover:bg-white/70 hover:border-brand-sky/20 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl flex flex-col">
+        <div class="relative h-48 bg-gradient-to-br from-brand-sky/10 to-brand-navy/10 flex items-center justify-center overflow-hidden">
+          <div class="text-6xl group-hover:scale-110 transition-transform duration-500">🏗️</div>
+          <div class="absolute top-4 left-4 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full border border-brand-sky/20">
+            <span class="text-sm">#НОСТРОЙ</span>
+            <span class="text-xs font-medium text-brand-dark">Строительство</span>
+          </div>
+          <div class="absolute top-4 right-4 bg-brand-coral text-white px-3 py-1 rounded-full text-xs font-bold">⭐ Рекомендуем</div>
+        </div>
+        <div class="p-6 space-y-4 flex-1 flex flex-col">
+          <div class="flex items-center justify-between text-sm text-brand-dark/60">
+            <div class="flex items-center gap-3">
+              <span class="font-medium">15 января 2024 г.</span>
+              <span>•</span>
+              <span>8 мин</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span>👁️</span>
+              <span>1250</span>
+            </div>
+          </div>
+          <h2 class="text-xl font-bold text-brand-dark leading-tight group-hover:text-brand-navy transition-colors line-clamp-2">
+            Новые изменения в НОК НОСТРОЙ: что нужно знать в 2024 году
+          </h2>
+          <p class="text-brand-dark/80 leading-relaxed font-medium line-clamp-3">
+            Рассматриваем ключевые изменения в процедуре независимой оценки квалификации НОСТРОЙ, которые вступили в силу в начале 2024 года.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="inline-block bg-brand-sky/10 hover:bg-brand-sky/20 text-brand-navy px-2 py-1 rounded-full text-xs font-medium cursor-pointer transition-colors">#НОСТРОЙ</span>
+            <span class="inline-block bg-brand-sky/10 hover:bg-brand-sky/20 text-brand-navy px-2 py-1 rounded-full text-xs font-medium cursor-pointer transition-colors">#Строительство</span>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-brand-sky/10">
+            <div class="w-8 h-8 bg-gradient-to-br from-brand-sky/20 to-brand-navy/20 rounded-full flex items-center justify-center">
+              <span class="text-sm">👨‍🏗️</span>
+            </div>
+            <div>
+              <div class="text-sm font-medium text-brand-dark">Александр Петров</div>
+              <div class="text-xs text-brand-dark/60">Ведущий эксперт</div>
+            </div>
+          </div>
+        </div>
+        <div class="pt-4 px-6 pb-6">
+          <a routerLink="/blog/nostroy-changes-2024" class="inline-block bg-brand-coral text-white px-4 py-2 rounded-full font-semibold text-sm shadow hover:shadow-lg transition-all">Читать</a>
+        </div>
+      </a>
       <article 
         *ngFor="let article of articles; trackBy: trackByArticleId"
         class="group bg-white/50 backdrop-blur-sm rounded-3xl overflow-hidden border border-brand-sky/10 hover:bg-white/70 hover:border-brand-sky/20 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl">
