@@ -1,6 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { NgFor, NgIf, NgClass } from '@angular/common';
 import { SeoService } from '../../../shared/services/seo.service';
+import { FeedbackPopupService } from '../../../features/feedback-popup/services/feedback-popup.service';
+import { MainLayoutComponent } from '../../../shared/components/main-layout/main-layout.component';
 
 export interface FaqItem {
   question: string;
@@ -10,7 +12,7 @@ export interface FaqItem {
 @Component({
   selector: 'app-faq-page',
   standalone: true,
-  imports: [NgFor, NgIf, NgClass],
+  imports: [NgFor, NgIf, NgClass, MainLayoutComponent],
   templateUrl: './faq-page.component.html',
   styleUrls: ['./faq-page.component.scss']
 })
@@ -80,6 +82,11 @@ export class FaqPageComponent implements OnInit {
   ];
   openedIndex: number | null = null;
   private seo: SeoService = inject(SeoService);
+  private feedbackService: FeedbackPopupService = inject(FeedbackPopupService);
+
+  openConsultationPopup(): void {
+    this.feedbackService.openForConsultation();
+  }
 
   ngOnInit(): void {
     this.seo.setSeoData({

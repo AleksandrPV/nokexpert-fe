@@ -1,21 +1,87 @@
-<div class="max-w-2xl mx-auto py-8 px-4">
-  <h1 class="text-3xl md:text-4xl font-bold mb-8 text-center">Часто задаваемые вопросы (FAQ)</h1>
-  <div *ngFor="let faq of faqs; let i = index" class="mb-4 border-b border-gray-200">
-    <button type="button"
-      class="w-full flex justify-between items-center py-4 text-left focus:outline-none transition-colors duration-200 group"
-      [ngClass]="{'text-brand-coral': openedIndex === i, 'text-gray-900': openedIndex !== i}"
-      (click)="toggle(i)">
-      <span class="font-semibold text-lg">{{ faq.question }}</span>
-      <span class="ml-4 transition-transform duration-200"
-        [ngClass]="{'rotate-180': openedIndex === i}">
-        <!-- SVG иконка стрелки -->
-        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </span>
-    </button>
-    <div *ngIf="openedIndex === i" class="pb-4 text-gray-700 animate-fade-in">
-      <div class="pl-1 pr-2 text-base leading-relaxed">{{ faq.answer }}</div>
-    </div>
-  </div>
+<div class="container mx-auto py-8 px-4">
+  <!-- Введение -->
+  <section class="mb-8 text-center">
+    <h1 class="text-3xl md:text-4xl font-bold mb-2">Часто задаваемые вопросы (FAQ)</h1>
+    <p class="text-brand-dark/80 text-base md:text-lg max-w-xl mx-auto">Здесь вы найдёте ответы на самые популярные вопросы о независимой оценке квалификации (НОК), процедуре, документах, сроках и последствиях. Если не нашли ответа — воспользуйтесь формой ниже или обратитесь к нам напрямую.</p>
+  </section>
+
+    <!-- Быстрые ссылки -->
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-3">Быстрые ссылки по разделам</h2>
+      <div class="flex flex-wrap gap-2">
+        <a *ngFor="let faq of faqs; let i = index"
+           href="#faq-{{i}}"
+           class="px-3 py-1 rounded-full bg-brand-sky/10 text-brand-navy text-sm hover:bg-brand-coral/20 transition">
+          {{ faq.question }}
+        </a>
+      </div>
+    </section>
+
+    <!-- Актуальные изменения -->
+    <section class="mb-8 bg-brand-sky/10 rounded-2xl p-4 border-l-4 border-brand-coral">
+      <h2 class="text-xl font-semibold mb-2 flex items-center gap-2"><span>🆕</span> Актуальные изменения 2025</h2>
+      <ul class="list-disc pl-6 text-brand-dark/90 text-base space-y-1">
+        <li>С 27 февраля 2025 года срок действия свидетельств по ряду специальностей сокращён с 5 до 3 лет.</li>
+        <li>С 1 марта 2025 года НОК обязательна для специалистов по пожарной безопасности.</li>
+        <li>Пошлина за экзамен в НОСТРОЙ — 24 000 ₽, в НОПРИЗ ожидается повышение.</li>
+      </ul>
+    </section>
+
+    <!-- FAQ-аккордеон -->
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold mb-4">Вопросы и ответы</h2>
+      <div *ngFor="let faq of faqs; let i = index" class="mb-4 border-b border-gray-200" [attr.id]="'faq-' + i">
+        <button type="button"
+          class="w-full flex justify-between items-center py-4 text-left focus:outline-none transition-colors duration-200 group"
+          [ngClass]="{'text-brand-coral': openedIndex === i, 'text-gray-900': openedIndex !== i}"
+          (click)="toggle(i)">
+          <span class="font-semibold text-lg">{{ faq.question }}</span>
+          <span class="ml-4 transition-transform duration-200"
+            [ngClass]="{'rotate-180': openedIndex === i}">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+        <div *ngIf="openedIndex === i" class="pb-4 text-gray-700 animate-fade-in">
+          <div class="pl-1 pr-2 text-base leading-relaxed">{{ faq.answer }}</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA: Задать свой вопрос -->
+    <section class="mb-10 text-center">
+      <h2 class="text-xl font-semibold mb-2">Не нашли ответа?</h2>
+      <p class="mb-4 text-brand-dark/80">Задайте свой вопрос — мы ответим лично или добавим его в FAQ!</p>
+      <button (click)="openConsultationPopup()"
+              class="btn-coral px-8 py-3 rounded-full font-semibold text-lg shadow-md hover-glow">
+        ✉️ Задать вопрос
+      </button>
+    </section>
+
+    <!-- Полезные ресурсы -->
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-3">Полезные ресурсы</h2>
+      <ul class="space-y-2">
+        <li>
+          <a href="https://nark.ru" target="_blank" rel="noopener" class="text-brand-coral hover:underline font-medium">Национальное агентство развития квалификаций (НАРК)</a>
+        </li>
+        <li>
+          <a href="https://нок-нарк.рф" target="_blank" rel="noopener" class="text-brand-coral hover:underline font-medium">Реестр НОК</a>
+        </li>
+        <li>
+          <a href="https://profstandart.rosmintrud.ru" target="_blank" rel="noopener" class="text-brand-coral hover:underline font-medium">Реестр профессиональных стандартов</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Контакты для консультаций -->
+    <section class="mb-4 bg-brand-sky/10 rounded-2xl p-4 border-l-4 border-brand-navy">
+      <h2 class="text-xl font-semibold mb-2 flex items-center gap-2"><span>📞</span> Консультации и поддержка</h2>
+      <div class="text-brand-dark/90 text-base">
+        <div class="mb-1">Телефон: <a href="tel:+78001234567" class="text-brand-coral font-semibold hover:underline">8 (800) 123-45-67</a></div>
+        <div class="mb-1">Email: <a href="mailto:info@nokexpert.ru" class="text-brand-coral font-semibold hover:underline">info@nokexpert.ru</a></div>
+        <div>Онлайн-форма: <button (click)="openConsultationPopup()" class="underline text-brand-coral hover:text-brand-navy">Задать вопрос</button></div>
+      </div>
+    </section>
 </div> 
