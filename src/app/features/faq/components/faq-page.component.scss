@@ -1,0 +1,19 @@
+@import '../../../../styles.scss';
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.text-brand-coral {
+  color: var(--brand-coral, #ff7043);
+}
+
+button:focus {
+  outline: 2px solid var(--brand-coral, #ff7043);
+  outline-offset: 2px;
+} 

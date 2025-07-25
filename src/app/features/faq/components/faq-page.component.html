@@ -1,0 +1,21 @@
+<div class="max-w-2xl mx-auto py-8 px-4">
+  <h1 class="text-3xl md:text-4xl font-bold mb-8 text-center">Часто задаваемые вопросы (FAQ)</h1>
+  <div *ngFor="let faq of faqs; let i = index" class="mb-4 border-b border-gray-200">
+    <button type="button"
+      class="w-full flex justify-between items-center py-4 text-left focus:outline-none transition-colors duration-200 group"
+      [ngClass]="{'text-brand-coral': openedIndex === i, 'text-gray-900': openedIndex !== i}"
+      (click)="toggle(i)">
+      <span class="font-semibold text-lg">{{ faq.question }}</span>
+      <span class="ml-4 transition-transform duration-200"
+        [ngClass]="{'rotate-180': openedIndex === i}">
+        <!-- SVG иконка стрелки -->
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </button>
+    <div *ngIf="openedIndex === i" class="pb-4 text-gray-700 animate-fade-in">
+      <div class="pl-1 pr-2 text-base leading-relaxed">{{ faq.answer }}</div>
+    </div>
+  </div>
+</div> 
