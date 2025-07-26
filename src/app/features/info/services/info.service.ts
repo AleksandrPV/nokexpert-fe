@@ -206,40 +206,28 @@ export class InfoService {
     },
 
     // Справочные страницы
+
     {
       id: '12',
-      title: 'Центры оценки квалификации',
-      description: 'Реестр аккредитованных ЦОК. Карта расположения. Контакты и адреса.',
-      slug: 'assessment-centers',
-      icon: '🏢',
-      category: this.mockCategories[3],
-      priority: 1,
-      featured: true,
-      readTime: 10,
-      lastUpdated: new Date('2024-01-06'),
-      tags: ['ЦОК', 'реестр', 'адреса']
-    },
-    {
-      id: '13',
       title: 'Реестр специалистов НРС',
       description: 'Как проверить статус специалиста. Сроки действия свидетельств. Процедура продления.',
       slug: 'specialists-registry',
       icon: '📜',
       category: this.mockCategories[3],
-      priority: 2,
+      priority: 1,
       featured: false,
       readTime: 8,
       lastUpdated: new Date('2024-01-05'),
       tags: ['НРС', 'реестр', 'проверка']
     },
     {
-      id: '14',
+      id: '13',
       title: 'Законодательство НОК',
       description: 'Актуальные нормативные акты. Изменения в законодательстве. Разъяснения Минтруда.',
       slug: 'nok-legislation',
       icon: '⚖️',
       category: this.mockCategories[3],
-      priority: 3,
+      priority: 2,
       featured: false,
       readTime: 15,
       lastUpdated: new Date('2024-01-04'),

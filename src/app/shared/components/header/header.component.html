@@ -54,43 +54,19 @@
             <!-- Services List -->
             <div class="space-y-3">
               <a 
-                routerLink="/services/nok-nostroy"
+                *ngFor="let service of headerServices"
+                [routerLink]="service.route"
                 (click)="closeServicesSubmenu()"
                 class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-coral/10 transition-all duration-300 group">
-                <div class="w-10 h-10 bg-brand-coral/20 rounded-xl flex items-center justify-center">
-                  <span class="text-xl">🏗️</span>
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center"
+                     [class]="service.color">
+                  <span class="text-xl">{{ service.icon }}</span>
                 </div>
                 <div class="flex-1">
-                  <div class="font-semibold text-brand-dark group-hover:text-brand-coral transition-colors">НОК НОСТРОЙ</div>
-                  <div class="text-xs text-brand-dark/60">Строительные специальности</div>
+                  <div class="font-semibold text-brand-dark group-hover:text-brand-coral transition-colors">{{ service.title }}</div>
+                  <div class="text-xs text-brand-dark/60">{{ service.description }}</div>
                 </div>
-                <div class="bg-brand-coral text-white px-2 py-1 rounded-full text-xs font-bold">Популярно</div>
-              </a>
-
-              <a 
-                routerLink="/services/nok-nopriz"
-                (click)="closeServicesSubmenu()"
-                class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-sky/10 transition-all duration-300 group">
-                <div class="w-10 h-10 bg-brand-sky/20 rounded-xl flex items-center justify-center">
-                  <span class="text-xl">📐</span>
-                </div>
-                <div class="flex-1">
-                  <div class="font-semibold text-brand-dark group-hover:text-brand-sky transition-colors">НОК НОПРИЗ</div>
-                  <div class="text-xs text-brand-dark/60">Проектирование и изыскания</div>
-                </div>
-              </a>
-
-              <a 
-                routerLink="/services"
-                (click)="closeServicesSubmenu()"
-                class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-navy/10 transition-all duration-300 group">
-                <div class="w-10 h-10 bg-brand-navy/20 rounded-xl flex items-center justify-center">
-                  <span class="text-xl">👨‍🏫</span>
-                </div>
-                <div class="flex-1">
-                  <div class="font-semibold text-brand-dark group-hover:text-brand-navy transition-colors">Консультации</div>
-                  <div class="text-xs text-brand-dark/60">Индивидуальные консультации</div>
-                </div>
+                <div *ngIf="service.popular" class="bg-brand-coral text-white px-2 py-1 rounded-full text-xs font-bold">Популярно</div>
               </a>
             </div>
 

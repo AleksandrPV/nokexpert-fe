@@ -1,0 +1,199 @@
+<div class="min-h-screen bg-gradient-to-br from-brand-sky/5 to-brand-navy/5">
+  <!-- Breadcrumbs -->
+  <app-breadcrumbs [breadcrumbs]="pageData.breadcrumbs"></app-breadcrumbs>
+
+  <!-- Hero Section -->
+  <section class="relative py-16 sm:py-24">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-4xl mx-auto">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-brand-navy mb-6">
+          {{ pageData.title }}
+        </h1>
+        <p class="text-xl sm:text-2xl text-brand-dark/80 mb-8 leading-relaxed">
+          {{ pageData.subtitle }}
+        </p>
+        <p class="text-lg text-brand-dark/70 mb-12 max-w-3xl mx-auto">
+          {{ pageData.description }}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button 
+            (click)="openConsultationPopup()"
+            class="glass px-8 py-4 rounded-full font-semibold text-brand-dark hover-lift border-brand-sky consulting-accent">
+            📞 Получить консультацию
+          </button>
+          <button 
+            (click)="scrollToSection('faq')"
+            class="glass px-8 py-4 rounded-full font-semibold text-brand-dark hover-lift border-brand-coral">
+            ❓ Частые вопросы
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps Section -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-brand-navy text-center mb-12">
+        Пошаговая процедура НОК
+      </h2>
+      <div class="max-w-6xl mx-auto">
+        <div class="relative">
+          <!-- Timeline line -->
+          <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-brand-sky/30 hidden lg:block"></div>
+          
+          <div class="space-y-8">
+            <div 
+              *ngFor="let step of pageData.steps; let i = index"
+              class="relative flex flex-col lg:flex-row items-start gap-6">
+              <!-- Step number -->
+              <div class="relative z-10 w-16 h-16 bg-brand-sky rounded-full flex items-center justify-center text-white font-bold text-lg lg:flex-shrink-0">
+                {{ step.number }}
+              </div>
+              
+              <!-- Content -->
+              <div class="glass p-8 rounded-2xl flex-1 hover-lift transition-all duration-300">
+                <div class="flex items-start gap-4 mb-4">
+                  <div class="text-3xl">{{ step.icon }}</div>
+                  <div>
+                    <h3 class="text-xl font-bold text-brand-navy mb-2">
+                      {{ step.title }}
+                    </h3>
+                    <p class="text-brand-dark/80 mb-4">
+                      {{ step.description }}
+                    </p>
+                    <div class="flex flex-wrap gap-4 text-sm">
+                      <span class="px-3 py-1 bg-brand-sky/20 text-brand-navy rounded-full">
+                        ⏱️ {{ step.duration }}
+                      </span>
+                      <span class="px-3 py-1 bg-brand-coral/20 text-brand-coral rounded-full">
+                        💰 {{ step.cost }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="space-y-2">
+                  <h4 class="font-semibold text-brand-navy mb-3">Что включает:</h4>
+                  <ul class="space-y-2">
+                    <li 
+                      *ngFor="let detail of step.details"
+                      class="flex items-start gap-2 text-brand-dark/80">
+                      <span class="text-brand-sky text-lg mt-0.5">•</span>
+                      {{ detail }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Requirements Section -->
+  <section class="py-16 bg-white/50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-brand-navy text-center mb-12">
+        {{ pageData.requirements.title }}
+      </h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div 
+          *ngFor="let requirement of pageData.requirements.items"
+          class="glass p-8 rounded-2xl">
+          <h3 class="text-xl font-bold text-brand-navy mb-6">
+            {{ requirement.category }}
+          </h3>
+          <ul class="space-y-3">
+            <li 
+              *ngFor="let req of requirement.requirements"
+              class="flex items-start gap-3 text-brand-dark/80">
+              <span class="text-brand-sky text-lg mt-0.5">✓</span>
+              {{ req }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tips Section -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-brand-navy text-center mb-12">
+        Полезные советы
+      </h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div 
+          *ngFor="let tip of pageData.tips"
+          class="glass p-6 rounded-xl hover-lift transition-all duration-300">
+          <h3 class="text-lg font-bold text-brand-navy mb-3">
+            {{ tip.title }}
+          </h3>
+          <p class="text-brand-dark/80">
+            {{ tip.content }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-16 bg-white/50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-brand-navy text-center mb-12">
+        {{ pageData.faq.title }}
+      </h2>
+      <div class="max-w-4xl mx-auto space-y-4">
+        <div 
+          *ngFor="let item of pageData.faq.items"
+          class="glass rounded-xl overflow-hidden">
+          <button 
+            (click)="toggleFaq(item)"
+            class="w-full p-6 text-left flex justify-between items-center hover:bg-brand-sky/5 transition-colors duration-200">
+            <span class="font-semibold text-brand-navy">
+              {{ item.question }}
+            </span>
+            <span class="text-brand-coral text-xl transition-transform duration-200" 
+                  [class.rotate-180]="item.isOpen">
+              ▼
+            </span>
+          </button>
+          <div 
+            *ngIf="item.isOpen"
+            class="px-6 pb-6 text-brand-dark/80 leading-relaxed">
+            {{ item.answer }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-gradient-to-r from-brand-navy to-brand-sky text-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-6">
+        Готовы пройти НОК?
+      </h2>
+      <p class="text-xl mb-8 opacity-90">
+        Получите персональную консультацию и узнайте, как подготовиться к независимой оценке квалификации
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button 
+          (click)="openConsultationPopup()"
+          class="glass px-8 py-4 rounded-full font-semibold text-brand-dark hover-lift border-white bg-white/20 backdrop-blur-sm">
+          📞 Бесплатная консультация
+        </button>
+        <a 
+          href="tel:{{ organizationService.getPhoneHref() }}"
+          class="glass px-8 py-4 rounded-full font-semibold text-white hover-lift border-white/30">
+          📱 {{ organizationService.getPhoneDisplay() }}
+        </a>
+      </div>
+      <p class="text-sm opacity-75 mt-4">
+        Ответим в течение 15 минут • Консультация бесплатна
+      </p>
+    </div>
+  </section>
+</div> 

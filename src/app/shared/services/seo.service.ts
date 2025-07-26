@@ -315,6 +315,168 @@ export class SeoService {
     });
   }
 
+  setWhatIsNokPageSeo(): void {
+    this.setSeoData({
+      title: 'Что такое НОК - Независимая оценка квалификации | НОК Эксперт',
+      description: 'Что такое НОК? Подробная информация о независимой оценке квалификации в России. Законодательная база, процедура прохождения, преимущества.',
+      keywords: 'что такое НОК, независимая оценка квалификации, НОК определение, ФЗ-238, профессиональные стандарты',
+      canonical: `${this.baseUrl}/info/what-is-nok`,
+      ogTitle: 'Что такое НОК - Независимая оценка квалификации',
+      ogDescription: 'Подробная информация о независимой оценке квалификации в России. Законодательная база и процедура прохождения.',
+      ogUrl: `${this.baseUrl}/info/what-is-nok`,
+      structuredData: this.getWhatIsNokStructuredData()
+    });
+  }
+
+  setWhoMustPassNokPageSeo(): void {
+    this.setSeoData({
+      title: 'Кому обязательно проходить НОК - Требования и сроки | НОК Эксперт',
+      description: 'Узнайте, кто обязан пройти независимую оценку квалификации. Требования к специалистам НОСТРОЙ, НОПРИЗ и других отраслей. Сроки прохождения НОК.',
+      keywords: 'кому обязательно проходить НОК, требования НОК, НРС, НОСТРОЙ, НОПРИЗ, сроки НОК, обязательная НОК',
+      canonical: `${this.baseUrl}/info/who-must-pass-nok`,
+      ogTitle: 'Кому обязательно проходить НОК',
+      ogDescription: 'Требования к специалистам и сроки прохождения независимой оценки квалификации.',
+      ogUrl: `${this.baseUrl}/info/who-must-pass-nok`,
+      structuredData: this.getWhoMustPassNokStructuredData()
+    });
+  }
+
+  setNokProcedurePageSeo(): void {
+    this.setSeoData({
+      title: 'Процедура прохождения НОК - Пошаговая инструкция | НОК Эксперт',
+      description: 'Подробная инструкция по прохождению НОК: от подачи документов до получения свидетельства о квалификации. Пошаговое руководство.',
+      keywords: 'процедура НОК, как пройти НОК, пошаговая инструкция НОК, документы для НОК, экзамен НОК',
+      canonical: `${this.baseUrl}/info/nok-procedure`,
+      ogTitle: 'Процедура прохождения НОК',
+      ogDescription: 'Пошаговая инструкция по прохождению независимой оценки квалификации.',
+      ogUrl: `${this.baseUrl}/info/nok-procedure`,
+      structuredData: this.getNokProcedureStructuredData()
+    });
+  }
+
+  setNokOtherIndustriesPageSeo(): void {
+    this.setSeoData({
+      title: 'НОК для других отраслей - Лифты, Энергетика, Машиностроение | НОК Эксперт',
+      description: 'Узнайте о возможностях прохождения НОК в лифтовой отрасли, энергетике, машиностроении и других перспективных направлениях.',
+      keywords: 'НОК лифты, НОК энергетика, НОК машиностроение, НОК IT, НОК медицина, НОК ЧС, новые отрасли НОК',
+      canonical: `${this.baseUrl}/info/nok-other-industries`,
+      ogTitle: 'НОК для других отраслей',
+      ogDescription: 'Независимая оценка квалификации в различных сферах деятельности.',
+      ogUrl: `${this.baseUrl}/info/nok-other-industries`,
+      structuredData: this.getNokOtherIndustriesStructuredData()
+    });
+  }
+
+  setExamPreparationPageSeo(): void {
+    this.setSeoData({
+      title: 'Подготовка к экзамену НОК - Методики, литература, ошибки | НОК Эксперт',
+      description: 'Эффективные методики подготовки к НОК. Рекомендуемая литература, типичные ошибки и советы по успешной сдаче экзамена.',
+      keywords: 'подготовка к НОК, методики подготовки НОК, литература НОК, ошибки подготовки НОК, экзамен НОК',
+      canonical: `${this.baseUrl}/info/exam-preparation`,
+      ogTitle: 'Подготовка к экзамену НОК - Методики и советы',
+      ogDescription: 'Эффективные методики подготовки к НОК. Рекомендуемая литература и типичные ошибки.',
+      ogUrl: `${this.baseUrl}/info/exam-preparation`,
+      structuredData: this.getInfoPageStructuredData({
+        title: 'Подготовка к экзамену НОК',
+        description: 'Эффективные методики подготовки к НОК. Рекомендуемая литература, типичные ошибки и советы по успешной сдаче экзамена.',
+        slug: 'exam-preparation',
+        tags: []
+      })
+    });
+  }
+
+  setNokQaPageSeo(): void {
+    this.setSeoData({
+      title: 'Вопросы и ответы НОК - FAQ, разбор вопросов | НОК Эксперт',
+      description: 'Часто задаваемые вопросы о НОК. Разбор сложных вопросов, примеры заданий и ответы на популярные темы.',
+      keywords: 'вопросы НОК, ответы НОК, FAQ НОК, разбор вопросов НОК, примеры заданий НОК',
+      canonical: `${this.baseUrl}/info/nok-qa`,
+      ogTitle: 'Вопросы и ответы НОК - FAQ и разбор вопросов',
+      ogDescription: 'Часто задаваемые вопросы о НОК. Разбор сложных вопросов и примеры заданий.',
+      ogUrl: `${this.baseUrl}/info/nok-qa`,
+      structuredData: this.getInfoPageStructuredData({
+        title: 'Вопросы и ответы НОК',
+        description: 'Часто задаваемые вопросы о НОК. Разбор сложных вопросов, примеры заданий и ответы на популярные темы.',
+        slug: 'nok-qa',
+        tags: []
+      })
+    });
+  }
+
+  setPortfolioGuidePageSeo(): void {
+    this.setSeoData({
+      title: 'Составление портфолио для НОК - Требования, примеры | НОК Эксперт',
+      description: 'Как правильно составить портфолио для НОК. Требования к оформлению, примеры успешных портфолио, типичные ошибки.',
+      keywords: 'портфолио НОК, составление портфолио НОК, требования портфолио НОК, примеры портфолио НОК',
+      canonical: `${this.baseUrl}/info/portfolio-guide`,
+      ogTitle: 'Составление портфолио для НОК - Требования и примеры',
+      ogDescription: 'Как правильно составить портфолио для НОК. Требования к оформлению и примеры.',
+      ogUrl: `${this.baseUrl}/info/portfolio-guide`,
+      structuredData: this.getInfoPageStructuredData({
+        title: 'Составление портфолио для НОК',
+        description: 'Как правильно составить портфолио для НОК. Требования к оформлению, примеры успешных портфолио, типичные ошибки.',
+        slug: 'portfolio-guide',
+        tags: []
+      })
+    });
+  }
+
+  setOnlineTrainerPageSeo(): void {
+    this.setSeoData({
+      title: 'Тренажер НОК онлайн - Демо-версия, практика | НОК Эксперт',
+      description: 'Онлайн тренажер для подготовки к НОК. Демо-версия с вопросами, статистика прохождения, рейтинг сложности.',
+      keywords: 'тренажер НОК, онлайн тренажер НОК, демо НОК, практика НОК, тесты НОК',
+      canonical: `${this.baseUrl}/info/online-trainer`,
+      ogTitle: 'Тренажер НОК онлайн - Демо-версия и практика',
+      ogDescription: 'Онлайн тренажер для подготовки к НОК. Демо-версия с вопросами и статистика.',
+      ogUrl: `${this.baseUrl}/info/online-trainer`,
+      structuredData: this.getInfoPageStructuredData({
+        title: 'Тренажер НОК онлайн',
+        description: 'Онлайн тренажер для подготовки к НОК. Демо-версия с вопросами, статистика прохождения, рейтинг сложности.',
+        slug: 'online-trainer',
+        tags: []
+      })
+    });
+  }
+
+
+
+  setSpecialistsRegistryPageSeo(): void {
+    this.setSeoData({
+      title: 'Реестр специалистов НРС - Проверка статуса, сроки | НОК Эксперт',
+      description: 'Как проверить статус специалиста в НРС. Сроки действия свидетельств, процедура продления.',
+      keywords: 'реестр специалистов НРС, проверка НРС, статус специалиста НРС, сроки свидетельств НОК',
+      canonical: `${this.baseUrl}/info/specialists-registry`,
+      ogTitle: 'Реестр специалистов НРС - Проверка статуса',
+      ogDescription: 'Как проверить статус специалиста в НРС. Сроки действия свидетельств.',
+      ogUrl: `${this.baseUrl}/info/specialists-registry`,
+      structuredData: this.getInfoPageStructuredData({
+        title: 'Реестр специалистов НРС',
+        description: 'Как проверить статус специалиста в НРС. Сроки действия свидетельств, процедура продления.',
+        slug: 'specialists-registry',
+        tags: []
+      })
+    });
+  }
+
+  setNokLegislationPageSeo(): void {
+    this.setSeoData({
+      title: 'Законодательство НОК - ФЗ-238, нормативные акты | НОК Эксперт',
+      description: 'Актуальные нормативные акты НОК. ФЗ №238, изменения в законодательстве, разъяснения Минтруда.',
+      keywords: 'законодательство НОК, ФЗ-238, нормативные акты НОК, изменения НОК, Минтруд НОК',
+      canonical: `${this.baseUrl}/info/nok-legislation`,
+      ogTitle: 'Законодательство НОК - ФЗ-238 и нормативные акты',
+      ogDescription: 'Актуальные нормативные акты НОК. ФЗ №238 и изменения в законодательстве.',
+      ogUrl: `${this.baseUrl}/info/nok-legislation`,
+      structuredData: this.getInfoPageStructuredData({
+        title: 'Законодательство НОК',
+        description: 'Актуальные нормативные акты НОК. ФЗ №238, изменения в законодательстве, разъяснения Минтруда.',
+        slug: 'nok-legislation',
+        tags: []
+      })
+    });
+  }
+
   /**
    * Установить SEO для страницы информации о конкретной категории НОК
    */
@@ -891,6 +1053,114 @@ export class SeoService {
         "@type": "WebPage",
         "@id": `${this.baseUrl}/services/nok-opb`
       }
+    };
+  }
+
+  private getWhatIsNokStructuredData(): any {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Что такое НОК - Независимая оценка квалификации",
+      "description": "Подробная информация о независимой оценке квалификации в России. Законодательная база, процедура прохождения, преимущества.",
+      "author": {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "datePublished": "2024-01-01",
+      "dateModified": "2024-01-01",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `${this.baseUrl}/info/what-is-nok`
+      },
+      "articleSection": "Информация о НОК",
+      "keywords": "что такое НОК, независимая оценка квалификации, НОК определение, ФЗ-238, профессиональные стандарты"
+    };
+  }
+
+  private getWhoMustPassNokStructuredData(): any {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Кому обязательно проходить НОК - Требования и сроки",
+      "description": "Узнайте, кто обязан пройти независимую оценку квалификации. Требования к специалистам НОСТРОЙ, НОПРИЗ и других отраслей.",
+      "author": {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "datePublished": "2024-01-01",
+      "dateModified": "2024-01-01",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `${this.baseUrl}/info/who-must-pass-nok`
+      },
+      "articleSection": "Информация о НОК",
+      "keywords": "кому обязательно проходить НОК, требования НОК, НРС, НОСТРОЙ, НОПРИЗ, сроки НОК, обязательная НОК"
+    };
+  }
+
+  private getNokProcedureStructuredData(): any {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Процедура прохождения НОК - Пошаговая инструкция",
+      "description": "Подробная инструкция по прохождению НОК: от подачи документов до получения свидетельства о квалификации.",
+      "author": {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "datePublished": "2024-01-01",
+      "dateModified": "2024-01-01",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `${this.baseUrl}/info/nok-procedure`
+      },
+      "articleSection": "Информация о НОК",
+      "keywords": "процедура НОК, как пройти НОК, пошаговая инструкция НОК, документы для НОК, экзамен НОК"
+    };
+  }
+
+  private getNokOtherIndustriesStructuredData(): any {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "НОК для других отраслей - Лифты, Энергетика, Машиностроение",
+      "description": "Узнайте о возможностях прохождения НОК в лифтовой отрасли, энергетике, машиностроении и других перспективных направлениях.",
+      "author": {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "datePublished": "2024-01-01",
+      "dateModified": "2024-01-01",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `${this.baseUrl}/info/nok-other-industries`
+      },
+      "articleSection": "Информация о НОК",
+      "keywords": "НОК лифты, НОК энергетика, НОК машиностроение, НОК IT, НОК медицина, НОК ЧС, новые отрасли НОК"
     };
   }
 } 

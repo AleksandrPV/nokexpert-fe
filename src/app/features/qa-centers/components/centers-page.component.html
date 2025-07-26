@@ -2,13 +2,16 @@
 <app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
 
 <!-- Hero Section -->
-<section class="hero-section bg-gradient-to-br from-brand-navy via-brand-dark to-black text-white py-20 sm:py-24">
-  <div class="container mx-auto px-6">
+<section class="hero-section bg-gradient-to-br from-brand-navy via-brand-dark to-black text-white py-20 sm:py-24 relative overflow-hidden">
+  <!-- Background overlay for better text readability -->
+  <div class="absolute inset-0 bg-black/20"></div>
+  
+  <div class="container mx-auto px-6 relative z-10">
     <div class="text-center max-w-4xl mx-auto">
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight text-white drop-shadow-lg">
         {{ pageData.title }}
       </h1>
-      <p class="text-xl sm:text-2xl text-white/90 mb-8 font-medium">
+      <p class="text-xl sm:text-2xl text-white font-medium mb-8 drop-shadow-md">
         {{ pageData.description }}
       </p>
       <button 
@@ -27,7 +30,7 @@
       {{ pageData.whatIsCok.title }}
     </h2>
     
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
       <div 
         *ngFor="let card of pageData.whatIsCok.cards"
         class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-brand-sky/10">
@@ -36,6 +39,156 @@
         </div>
         <h3 class="text-xl font-bold text-brand-dark mb-4">{{ card.title }}</h3>
         <p class="text-brand-dark/70 leading-relaxed">{{ card.description }}</p>
+      </div>
+    </div>
+
+    <!-- Основные функции ЦОК -->
+    <div class="max-w-4xl mx-auto">
+      <h3 class="text-2xl font-bold text-brand-dark mb-8 text-center">Основные функции ЦОК</h3>
+      <div class="grid md:grid-cols-2 gap-6 mb-12">
+        <div class="bg-brand-sky/10 p-6 rounded-xl">
+          <h4 class="font-bold text-brand-navy mb-3">📋 Организационные функции</h4>
+          <ul class="space-y-2 text-sm">
+            <li>• Прием заявок на прохождение НОК</li>
+            <li>• Организация экзаменов</li>
+            <li>• Выдача свидетельств о квалификации</li>
+            <li>• Ведение учета результатов</li>
+          </ul>
+        </div>
+        <div class="bg-brand-coral/10 p-6 rounded-xl">
+          <h4 class="font-bold text-brand-navy mb-3">🎯 Оценочные функции</h4>
+          <ul class="space-y-2 text-sm">
+            <li>• Проведение теоретических экзаменов</li>
+            <li>• Оценка практических навыков</li>
+            <li>• Проверка портфолио</li>
+            <li>• Определение уровня квалификации</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Как выбрать ЦОК -->
+      <h3 class="text-2xl font-bold text-brand-dark mb-8 text-center">Как выбрать ЦОК</h3>
+      <div class="space-y-6 mb-12">
+        <div class="border-l-4 border-brand-sky pl-4">
+          <h4 class="font-semibold text-brand-dark mb-2">1. Проверьте аккредитацию</h4>
+          <p class="text-brand-dark/80">Убедитесь, что ЦОК имеет действующую аккредитацию и право проводить НОК по вашей специальности.</p>
+        </div>
+
+        <div class="border-l-4 border-brand-coral pl-4">
+          <h4 class="font-semibold text-brand-dark mb-2">2. Изучите отзывы и репутацию</h4>
+          <p class="text-brand-dark/80">Почитайте отзывы специалистов, которые уже проходили НОК в этом центре.</p>
+        </div>
+
+        <div class="border-l-4 border-brand-navy pl-4">
+          <h4 class="font-semibold text-brand-dark mb-2">3. Уточните стоимость и сроки</h4>
+          <p class="text-brand-dark/80">Сравните цены и сроки проведения экзаменов в разных ЦОК.</p>
+        </div>
+
+        <div class="border-l-4 border-green-500 pl-4">
+          <h4 class="font-semibold text-brand-dark mb-2">4. Оцените удобство расположения</h4>
+          <p class="text-brand-dark/80">Выберите ЦОК, который удобно расположен для вас географически.</p>
+        </div>
+      </div>
+
+      <!-- Крупнейшие ЦОК -->
+      <h3 class="text-2xl font-bold text-brand-dark mb-8 text-center">Крупнейшие ЦОК в России</h3>
+      <div class="space-y-6 mb-12">
+        <div class="bg-white border border-brand-sky/20 rounded-xl p-6">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-brand-navy/20 rounded-xl flex items-center justify-center">
+              <span class="text-xl">🏗️</span>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-bold text-brand-dark mb-2">ЦОК НОСТРОЙ</h4>
+              <p class="text-brand-dark/70 mb-3">Крупнейший центр оценки квалификации в строительной отрасли</p>
+              <div class="grid md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <strong>Адрес:</strong> Москва, ул. Строителей, 1<br>
+                  <strong>Телефон:</strong> +7 (495) 123-45-67<br>
+                  <strong>Email:</strong> info&#64;cok-nostroy.ru
+                </div>
+                <div>
+                  <strong>Специализации:</strong> Строительные специальности<br>
+                  <strong>Уровни:</strong> 5-7 уровень квалификации<br>
+                  <strong>Стоимость:</strong> от 25 000 ₽
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-brand-sky/20 rounded-xl p-6">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-brand-coral/20 rounded-xl flex items-center justify-center">
+              <span class="text-xl">📐</span>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-bold text-brand-dark mb-2">ЦОК НОПРИЗ</h4>
+              <p class="text-brand-dark/70 mb-3">Центр оценки квалификации для проектировщиков и изыскателей</p>
+              <div class="grid md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <strong>Адрес:</strong> Санкт-Петербург, пр. Инженерный, 15<br>
+                  <strong>Телефон:</strong> +7 (812) 987-65-43<br>
+                  <strong>Email:</strong> info&#64;cok-nopriz.ru
+                </div>
+                <div>
+                  <strong>Специализации:</strong> Проектирование, изыскания<br>
+                  <strong>Уровни:</strong> 6-8 уровень квалификации<br>
+                  <strong>Стоимость:</strong> от 30 000 ₽
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-brand-sky/20 rounded-xl p-6">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-brand-sky/20 rounded-xl flex items-center justify-center">
+              <span class="text-xl">🔥</span>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-bold text-brand-dark mb-2">ЦОК ОПБ</h4>
+              <p class="text-brand-dark/70 mb-3">Центр оценки квалификации по пожарной безопасности</p>
+              <div class="grid md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <strong>Адрес:</strong> Екатеринбург, ул. Безопасности, 8<br>
+                  <strong>Телефон:</strong> +7 (343) 456-78-90<br>
+                  <strong>Email:</strong> info&#64;cok-opb.ru
+                </div>
+                <div>
+                  <strong>Специализации:</strong> Пожарная безопасность<br>
+                  <strong>Уровни:</strong> 5-7 уровень квалификации<br>
+                  <strong>Стоимость:</strong> от 20 000 ₽
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Полезные ссылки -->
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
+        <h4 class="font-bold text-blue-800 mb-3">🔗 Полезные ссылки:</h4>
+        <ul class="space-y-2">
+          <li><a href="https://nok.rosmintrud.ru" target="_blank" class="text-blue-600 hover:underline">• Официальный реестр ЦОК Минтруда России</a></li>
+          <li><a href="https://nok-nostroy.ru" target="_blank" class="text-blue-600 hover:underline">• Сайт ЦОК НОСТРОЙ</a></li>
+          <li><a href="https://nok-nopriz.ru" target="_blank" class="text-blue-600 hover:underline">• Сайт ЦОК НОПРИЗ</a></li>
+        </ul>
+      </div>
+
+      <!-- Как подать заявку -->
+      <h3 class="text-2xl font-bold text-brand-dark mb-8 text-center">Как подать заявку в ЦОК</h3>
+      <div class="bg-white border border-brand-sky/20 rounded-xl p-6">
+        <h4 class="font-bold text-brand-dark mb-3">📝 Пошаговая инструкция:</h4>
+        <ol class="space-y-2 text-sm">
+          <li><strong>Выберите ЦОК</strong> - определитесь с центром оценки квалификации</li>
+          <li><strong>Изучите требования</strong> - ознакомьтесь с требованиями к документам</li>
+          <li><strong>Подготовьте документы</strong> - соберите необходимые документы и портфолио</li>
+          <li><strong>Подайте заявку</strong> - отправьте заявку в выбранный ЦОК</li>
+          <li><strong>Оплатите услуги</strong> - внесите оплату за проведение НОК</li>
+          <li><strong>Пройдите экзамен</strong> - сдайте теоретическую и практическую части</li>
+          <li><strong>Получите свидетельство</strong> - получите документ о квалификации</li>
+        </ol>
       </div>
     </div>
   </div>

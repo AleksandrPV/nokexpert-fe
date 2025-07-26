@@ -1,0 +1,123 @@
+// Анимации для появления элементов
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.glass {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+// Улучшенные стили для FAQ
+.faq-item {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Стили для кнопок
+button {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+// Адаптивность для мобильных устройств
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  // Timeline адаптация для мобильных
+  .relative {
+    .absolute {
+      left: 1rem;
+    }
+    
+    .flex {
+      padding-left: 3rem;
+    }
+  }
+}
+
+// Улучшенные стили для секций
+section {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+    pointer-events: none;
+  }
+}
+
+// Стили для иконок
+.text-4xl {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+// Улучшенные стили для CTA секции
+.bg-gradient-to-r {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Стили для timeline
+.timeline-dot {
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+// Стили для категорий
+.category-card {
+  border-left: 4px solid transparent;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-left-color: var(--brand-sky);
+  }
+} 

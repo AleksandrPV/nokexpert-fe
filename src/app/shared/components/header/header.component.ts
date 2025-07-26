@@ -5,6 +5,7 @@ import { InfoService } from '../../../features/info/services/info.service';
 import { InfoCategory } from '../../../features/info/models/info-page.interface';
 import { FeedbackPopupService } from '../../../features/feedback-popup/services/feedback-popup.service';
 import { OrganizationService } from '../../services/organization.service';
+import { ServicesService, HeaderService } from '../../../features/services/services/services.service';
 
 @Component({
   selector: 'app-header',
@@ -20,12 +21,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   nokSubmenuOpen = false;
   servicesSubmenuOpen = false;
   menuCategories: InfoCategory[] = [];
+  headerServices: HeaderService[] = [];
   megaMenuTimeout: any = null;
   servicesSubmenuTimeout: any = null;
 
   private infoService = inject(InfoService);
   private feedbackService = inject(FeedbackPopupService);
   private organizationService = inject(OrganizationService);
+  private servicesService = inject(ServicesService);
 
   // Геттеры для данных организации
   get organizationName(): string {
@@ -44,6 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadMenuCategories();
+    this.loadHeaderServices();
   }
 
   ngOnDestroy(): void {
@@ -58,6 +62,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   loadMenuCategories(): void {
     this.infoService.getMenuCategories().subscribe(categories => {
       this.menuCategories = categories;
+    });
+  }
+
+  loadHeaderServices(): void {
+    this.servicesService.getHeaderServices().subscribe(services => {
+      this.headerServices = services;
     });
   }
 

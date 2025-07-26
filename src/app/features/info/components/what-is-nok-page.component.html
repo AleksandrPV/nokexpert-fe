@@ -1,0 +1,134 @@
+<div class="min-h-screen bg-gradient-to-br from-brand-sky/5 to-brand-navy/5">
+  <!-- Breadcrumbs -->
+  <app-breadcrumbs [breadcrumbs]="pageData.breadcrumbs"></app-breadcrumbs>
+
+  <!-- Hero Section -->
+  <section class="relative py-16 sm:py-24">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-4xl mx-auto">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-brand-navy mb-6">
+          {{ pageData.title }}
+        </h1>
+        <p class="text-xl sm:text-2xl text-brand-dark/80 mb-8 leading-relaxed">
+          {{ pageData.subtitle }}
+        </p>
+        <p class="text-lg text-brand-dark/70 mb-12 max-w-3xl mx-auto">
+          {{ pageData.description }}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button 
+            (click)="openConsultationPopup()"
+            class="glass px-8 py-4 rounded-full font-semibold text-brand-dark hover-lift border-brand-sky consulting-accent">
+            📞 Получить консультацию
+          </button>
+          <button 
+            (click)="scrollToSection('faq')"
+            class="glass px-8 py-4 rounded-full font-semibold text-brand-dark hover-lift border-brand-coral">
+            ❓ Частые вопросы
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <!-- Sections Grid -->
+      <div class="grid md:grid-cols-2 gap-8 mb-16">
+        <div 
+          *ngFor="let section of pageData.sections" 
+          class="glass p-8 rounded-2xl hover-lift transition-all duration-300">
+          <div class="flex items-start gap-4">
+            <div class="text-3xl">{{ section.icon }}</div>
+            <div>
+              <h3 class="text-xl font-bold text-brand-navy mb-3">
+                {{ section.title }}
+              </h3>
+              <p class="text-brand-dark/80 leading-relaxed whitespace-pre-line">
+                {{ section.content }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benefits Section -->
+      <div class="mb-16">
+        <h2 class="text-3xl font-bold text-brand-navy text-center mb-12">
+          Преимущества НОК
+        </h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div 
+            *ngFor="let benefit of pageData.benefits"
+            class="glass p-6 rounded-xl text-center hover-lift transition-all duration-300">
+            <h3 class="text-lg font-semibold text-brand-navy mb-3">
+              {{ benefit.title }}
+            </h3>
+            <p class="text-brand-dark/70">
+              {{ benefit.description }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-16 bg-white/50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-brand-navy text-center mb-12">
+        {{ pageData.faq.title }}
+      </h2>
+      <div class="max-w-4xl mx-auto space-y-4">
+        <div 
+          *ngFor="let item of pageData.faq.items"
+          class="glass rounded-xl overflow-hidden">
+          <button 
+            (click)="toggleFaq(item)"
+            class="w-full p-6 text-left flex justify-between items-center hover:bg-brand-sky/5 transition-colors duration-200">
+            <span class="font-semibold text-brand-navy">
+              {{ item.question }}
+            </span>
+            <span class="text-brand-coral text-xl transition-transform duration-200" 
+                  [class.rotate-180]="item.isOpen">
+              ▼
+            </span>
+          </button>
+          <div 
+            *ngIf="item.isOpen"
+            class="px-6 pb-6 text-brand-dark/80 leading-relaxed">
+            {{ item.answer }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-gradient-to-r from-brand-navy to-brand-sky text-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-6">
+        Готовы узнать больше о НОК?
+      </h2>
+      <p class="text-xl mb-8 opacity-90">
+        Получите персональную консультацию и узнайте, как подготовиться к независимой оценке квалификации
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button 
+          (click)="openConsultationPopup()"
+          class="glass px-8 py-4 rounded-full font-semibold text-brand-dark hover-lift border-white bg-white/20 backdrop-blur-sm">
+          📞 Бесплатная консультация
+        </button>
+        <a 
+          href="tel:{{ organizationService.getPhoneHref() }}"
+          class="glass px-8 py-4 rounded-full font-semibold text-white hover-lift border-white/30">
+          📱 {{ organizationService.getPhoneDisplay() }}
+        </a>
+      </div>
+      <p class="text-sm opacity-75 mt-4">
+        Ответим в течение 15 минут • Консультация бесплатна
+      </p>
+    </div>
+  </section>
+</div> 
