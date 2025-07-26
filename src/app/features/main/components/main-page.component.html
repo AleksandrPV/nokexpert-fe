@@ -6,9 +6,9 @@
   <!-- Hero Content -->
   <div class="container mx-auto px-6 text-center relative z-10">
     <!-- Trust Badge -->
-    <div class="inline-flex items-center gap-2 bg-gray-50 text-brand-navy px-6 py-2 rounded-full mb-8 border border-gray-200">
+    <div *ngIf="hasLicense" class="inline-flex items-center gap-2 bg-gray-50 text-brand-navy px-6 py-2 rounded-full mb-8 border border-gray-200">
       <div class="w-2 h-2 bg-brand-coral rounded-full"></div>
-      <span class="text-sm font-medium">Лицензированный ЦОК с 2017 года</span>
+      <span class="text-sm font-medium">{{ licenseDescription }}</span>
     </div>
 
     <!-- Main Heading -->
@@ -378,11 +378,11 @@
       </p>
       
       <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-        <a href="tel:+78001234567" class="glass px-8 py-4 rounded-full font-semibold text-brand-dark hover-lift border-brand-sky professional-border">
-          📞 8 (800) 123-45-67
+                      <a [href]="'tel:' + phoneHref" class="glass px-8 py-4 rounded-full font-semibold text-brand-dark hover-lift border-brand-sky professional-border">
+                      📞 {{ phoneDisplay }}
         </a>
-        <a href="mailto:info&#64;nok-expert.ru" class="glass px-8 py-4 rounded-full font-semibold text-brand-dark hover-lift border-brand-sky consulting-accent">
-          ✉️ info&#64;nok-expert.ru
+        <a [href]="'mailto:' + email" class="glass px-8 py-4 rounded-full font-semibold text-brand-dark hover-lift border-brand-sky consulting-accent">
+          ✉️ {{ email }}
         </a>
         <button 
           (click)="openConsultationPopup()"

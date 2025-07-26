@@ -4,6 +4,7 @@ import { SeoService } from '../../../shared/services/seo.service';
 import { FeedbackPopupService } from '../../../features/feedback-popup/services/feedback-popup.service';
 import { MainLayoutComponent } from '../../../shared/components/main-layout/main-layout.component';
 import { BreadcrumbsComponent, BreadcrumbItem } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
+import { OrganizationService } from '../../../shared/services/organization.service';
 
 export interface FaqItem {
   question: string;
@@ -22,6 +23,24 @@ export class FaqPageComponent implements OnInit {
     { label: 'Главная', icon: '🏠', url: '/' },
     { label: 'FAQ', icon: '❓', active: true }
   ];
+
+  private seo: SeoService = inject(SeoService);
+  private feedbackService: FeedbackPopupService = inject(FeedbackPopupService);
+  private organizationService = inject(OrganizationService);
+
+  // Геттеры для данных организации
+  get phoneDisplay(): string {
+    return this.organizationService.getPhoneDisplay();
+  }
+
+  get phoneHref(): string {
+    return this.organizationService.getPhoneHref();
+  }
+
+  get email(): string {
+    return this.organizationService.getEmail();
+  }
+
   faqs: FaqItem[] = [
     {
       question: 'Кто обязан проходить НОК?',
@@ -146,8 +165,6 @@ export class FaqPageComponent implements OnInit {
     }
   ];
   openedIndex: number | null = null;
-  private seo: SeoService = inject(SeoService);
-  private feedbackService: FeedbackPopupService = inject(FeedbackPopupService);
 
   openConsultationPopup(): void {
     this.feedbackService.openForConsultation();

@@ -11,6 +11,8 @@ import { CenterPageComponent } from './features/center/components/center-page.co
 import { QualificationsPageComponent } from './features/qualifications/components/qualifications-page.component';
 import { PrivacyPolicyPageComponent } from './features/privacy-policy/components/privacy-policy-page.component';
 import { BlogArticlePageComponent } from './features/blog/components/blog-article-page.component';
+import { PublicOfferPageComponent } from './features/public-offer/components/public-offer-page.component';
+import { UserAgreementPageComponent } from './features/user-agreement/components/user-agreement-page.component';
 
 export const routes: Routes = [
   {
@@ -28,6 +30,8 @@ export const routes: Routes = [
       { path: 'center', component: CenterPageComponent },
       { path: 'qualifications', component: QualificationsPageComponent },
       { path: 'privacy-policy', component: PrivacyPolicyPageComponent },
+      { path: 'public-offer', component: PublicOfferPageComponent },
+      { path: 'user-agreement', component: UserAgreementPageComponent },
     ]
   },
   { path: '**', redirectTo: '' }

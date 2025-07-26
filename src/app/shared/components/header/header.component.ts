@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { InfoService } from '../../../features/info/services/info.service';
 import { InfoCategory } from '../../../features/info/models/info-page.interface';
 import { FeedbackPopupService } from '../../../features/feedback-popup/services/feedback-popup.service';
+import { OrganizationService } from '../../services/organization.service';
 
 @Component({
   selector: 'app-header',
@@ -19,10 +20,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
   menuCategories: InfoCategory[] = [];
   megaMenuTimeout: any = null;
 
-  constructor(
-    private infoService: InfoService,
-    private feedbackService: FeedbackPopupService
-  ) {}
+  private infoService = inject(InfoService);
+  private feedbackService = inject(FeedbackPopupService);
+  private organizationService = inject(OrganizationService);
+
+  // Геттеры для данных организации
+  get organizationName(): string {
+    return this.organizationService.getName();
+  }
+
+  get phoneDisplay(): string {
+    return this.organizationService.getPhoneDisplay();
+  }
+
+  get phoneHref(): string {
+    return this.organizationService.getPhoneHref();
+  }
+
+  constructor() {}
 
   ngOnInit(): void {
     this.loadMenuCategories();

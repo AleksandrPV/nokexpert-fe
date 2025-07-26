@@ -34,10 +34,10 @@ import { RouterLink } from '@angular/router';
                 <span class="text-brand-navy">📘</span>
               </a>
               <a href="#" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky">
-                <span class="text-brand-sky">📱</span>
+                <span class="text-brand-coral">💬</span>
               </a>
               <a href="#" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky">
-                <span class="text-brand-sky">💬</span>
+                <span class="text-brand-coral">💬</span>
               </a>
               <a href="#" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky">
                 <span class="text-brand-coral">📺</span>
@@ -127,16 +127,16 @@ import { RouterLink } from '@angular/router';
         <!-- Bottom Section -->
         <div class="flex flex-col md:flex-row justify-between items-center gap-6 pt-12 border-t border-brand-sky/30">
           <div class="text-center md:text-left">
-            <p class="text-brand-dark/70 text-sm">© 2024 НОК Эксперт. Все права защищены.</p>
+            <p class="text-brand-dark/70 text-sm">© 2021 НОК Эксперт. Все права защищены.</p>
             <p class="text-brand-dark/60 text-xs mt-1">
-              Лицензия на образовательную деятельность № Л035-01234-77/00123456
+              Сертифицированный центр подготовки к НОК
             </p>
           </div>
 
           <div class="flex flex-wrap gap-6 text-sm">
-            <a href="#" class="text-brand-dark/70 hover:text-brand-dark transition-colors">Политика конфиденциальности</a>
-            <a href="#" class="text-brand-dark/70 hover:text-brand-dark transition-colors">Пользовательское соглашение</a>
-            <a href="#" class="text-brand-dark/70 hover:text-brand-dark transition-colors">Публичная оферта</a>
+            <a routerLink="/privacy-policy" class="text-brand-dark/70 hover:text-brand-dark transition-colors">Политика конфиденциальности</a>
+            <a routerLink="/user-agreement" class="text-brand-dark/70 hover:text-brand-dark transition-colors">Пользовательское соглашение</a>
+            <a routerLink="/public-offer" class="text-brand-dark/70 hover:text-brand-dark transition-colors">Публичная оферта</a>
           </div>
         </div>
       </div>
