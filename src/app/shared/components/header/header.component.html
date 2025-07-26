@@ -185,6 +185,11 @@
                  class="bg-brand-navy text-white px-6 py-3 rounded-xl font-medium hover:bg-brand-dark transition-all duration-300 hover:shadow-lg">
                 📚 Все материалы
               </a>
+              <a routerLink="/qa-centers"
+                 (click)="closeMegaMenu()"
+                 class="bg-brand-sky text-white px-6 py-3 rounded-xl font-medium hover:bg-blue-600 transition-all duration-300 hover:shadow-lg">
+                🏢 Центры ЦОК
+              </a>
               <a routerLink="/info/online-trainer"
                  (click)="closeMegaMenu()"
                  class="bg-brand-coral text-white px-6 py-3 rounded-xl font-medium hover:bg-orange-600 transition-all duration-300 hover:shadow-lg">
@@ -310,6 +315,11 @@
                (click)="closeMobileMenu()"
                class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark">
               📚 Все материалы
+            </a>
+            <a routerLink="/qa-centers"
+               (click)="closeMobileMenu()"
+               class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark">
+              🏢 Центры ЦОК
             </a>
             <a 
               *ngFor="let category of menuCategories.slice(0, 3)"

@@ -281,6 +281,23 @@ export class SeoService {
     });
   }
 
+  setQaCentersPageSeo(): void {
+    this.setSeoData({
+      title: 'Центры независимой оценки квалификации (ЦОК) - Официальные центры НОК | НОК Эксперт',
+      description: 'Полная информация о центрах оценки квалификации (ЦОК): официальные центры НОК НОСТРОЙ, НОПРИЗ, пожарной безопасности. Как выбрать ЦОК, процесс прохождения экзамена, список центров.',
+      keywords: 'ЦОК, центры оценки квалификации, НОК НОСТРОЙ, НОК НОПРИЗ, центры НОК, официальные ЦОК, экзамен НОК, независимая оценка квалификации',
+      canonical: `${this.baseUrl}/qa-centers`,
+      ogTitle: 'Центры независимой оценки квалификации (ЦОК)',
+      ogDescription: 'Официальные центры для прохождения НОК в строительстве, проектировании, изысканиях и пожарной безопасности.',
+      ogImage: '/assets/images/centers-og.jpg',
+      ogUrl: `${this.baseUrl}/qa-centers`,
+      twitterTitle: 'Центры оценки квалификации (ЦОК)',
+      twitterDescription: 'Официальные центры НОК для строительных специалистов и проектировщиков.',
+      twitterImage: '/assets/images/centers-og.jpg',
+      structuredData: this.getQaCentersStructuredData()
+    });
+  }
+
   /**
    * Установить SEO для страницы информации о конкретной категории НОК
    */
@@ -780,6 +797,36 @@ export class SeoService {
       },
       "articleSection": "Информация о НОК",
       "keywords": "НОК НОСТРОЙ, вступление в реестр НОСТРОЙ, Национальный реестр специалистов, НРС, строительные специальности"
+    };
+  }
+
+  /**
+   * Structured Data для страницы центров оценки квалификации
+   */
+  private getQaCentersStructuredData(): any {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Центры независимой оценки квалификации (ЦОК)",
+      "description": "Официальные центры для прохождения НОК в строительстве, проектировании, изысканиях и пожарной безопасности.",
+      "author": {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "datePublished": "2024-01-01",
+      "dateModified": "2024-01-01",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `${this.baseUrl}/qa-centers`
+      },
+      "articleSection": "Центры оценки квалификации",
+      "keywords": "ЦОК, центры оценки квалификации, НОК НОСТРОЙ, НОК НОПРИЗ, центры НОК, официальные ЦОК"
     };
   }
 } 

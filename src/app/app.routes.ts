@@ -16,6 +16,7 @@ import { UserAgreementPageComponent } from './features/user-agreement/components
 import { NokNostroyPageComponent } from './features/services/nok-nostroy/nok-nostroy-page.component';
 import { NokNoprizPageComponent } from './features/services/nok-nopriz/nok-nopriz-page.component';
 import { NokNostroyInfoPageComponent } from './features/info/components/nok-nostroy-info-page.component';
+import { QaCentersPageComponent } from './features/qa-centers/components/centers-page.component';
 
 export const routes: Routes = [
   {
@@ -32,6 +33,7 @@ export const routes: Routes = [
       { path: 'blog/nostroy-changes-2024', component: BlogArticlePageComponent },
                         { path: 'info', component: InfoPageComponent },
                   { path: 'info/nok-nostroy', component: NokNostroyInfoPageComponent },
+      { path: 'qa-centers', component: QaCentersPageComponent },
       { path: 'faq', component: FaqPageComponent },
       { path: 'center', component: CenterPageComponent },
       { path: 'qualifications', component: QualificationsPageComponent },

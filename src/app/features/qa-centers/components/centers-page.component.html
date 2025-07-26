@@ -1,0 +1,238 @@
+<!-- Breadcrumbs -->
+<app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
+
+<!-- Hero Section -->
+<section class="hero-section bg-gradient-to-br from-brand-navy via-brand-dark to-black text-white py-20 sm:py-24">
+  <div class="container mx-auto px-6">
+    <div class="text-center max-w-4xl mx-auto">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
+        {{ pageData.title }}
+      </h1>
+      <p class="text-xl sm:text-2xl text-white/90 mb-8 font-medium">
+        {{ pageData.description }}
+      </p>
+      <button 
+        (click)="scrollToSection('centers')"
+        class="bg-brand-coral hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 shadow-lg">
+        🏢 Найти ЦОК
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Что такое ЦОК -->
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-dark mb-16">
+      {{ pageData.whatIsCok.title }}
+    </h2>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div 
+        *ngFor="let card of pageData.whatIsCok.cards"
+        class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-brand-sky/10">
+        <div class="w-16 h-16 bg-gradient-to-br from-brand-sky to-brand-coral rounded-2xl flex items-center justify-center text-2xl mb-6">
+          {{ card.icon }}
+        </div>
+        <h3 class="text-xl font-bold text-brand-dark mb-4">{{ card.title }}</h3>
+        <p class="text-brand-dark/70 leading-relaxed">{{ card.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Процесс прохождения НОК -->
+<section class="py-20 bg-gradient-to-br from-brand-sky/5 to-brand-coral/5">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-dark mb-16">
+      {{ pageData.process.title }}
+    </h2>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+      <div 
+        *ngFor="let step of pageData.process.steps"
+        class="text-center">
+        <div class="w-16 h-16 bg-gradient-to-br from-brand-coral to-orange-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-6 shadow-lg">
+          {{ step.number }}
+        </div>
+        <h3 class="text-lg font-bold text-brand-dark mb-3">{{ step.title }}</h3>
+        <p class="text-brand-dark/70 text-sm">{{ step.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Направления НОК -->
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-dark mb-16">
+      {{ pageData.directions.title }}
+    </h2>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+      <div 
+        *ngFor="let card of pageData.directions.cards"
+        class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-brand-sky/10">
+        <div class="w-16 h-16 bg-gradient-to-br from-brand-sky to-brand-coral rounded-2xl flex items-center justify-center text-2xl mb-6">
+          {{ card.icon }}
+        </div>
+        <h3 class="text-xl font-bold text-brand-dark mb-4">{{ card.title }}</h3>
+        <p class="text-brand-coral font-bold mb-4">{{ card.organization }}</p>
+        <ul class="space-y-2 mb-6">
+          <li 
+            *ngFor="let spec of card.specializations"
+            class="text-brand-dark/70 text-sm flex items-start">
+            <span class="text-brand-coral mr-2">•</span>
+            {{ spec }}
+          </li>
+        </ul>
+        <p class="text-brand-dark font-semibold">
+          <span class="text-brand-coral">Срок действия свидетельства:</span> {{ card.validity }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Важная информация -->
+    <div class="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-2xl p-8 mb-8">
+      <h4 class="text-xl font-bold text-yellow-800 mb-4">❗ Важная информация о НОК в строительстве</h4>
+      <p class="text-yellow-800">
+        С 1 сентября 2022 года независимая оценка квалификации стала <strong>обязательной</strong> для всех специалистов, включенных в Национальный реестр специалистов (НРС) НОСТРОЙ и НОПРИЗ. С 27 февраля 2025 года срок действия свидетельств НОК для строителей сокращен до 3 лет.
+      </p>
+    </div>
+
+    <div class="bg-gradient-to-r from-red-50 to-pink-50 border border-red-200 rounded-2xl p-8">
+      <h4 class="text-xl font-bold text-red-800 mb-4">🔥 Актуальная информация по пожарной безопасности</h4>
+      <p class="text-red-800">
+        По состоянию на 2025 год <strong>НОК по пожарной безопасности НЕ является обязательной</strong>. МЧС России в письмах от августа и сентября 2024 года подтвердило добровольный характер независимой оценки квалификации в области пожарной безопасности. Решение о направлении сотрудников на НОК принимает работодатель.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Ведущие ЦОК -->
+<section id="centers" class="py-20 bg-gradient-to-br from-brand-sky/5 to-brand-coral/5">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-dark mb-16">
+      {{ pageData.centers.title }}
+    </h2>
+    
+    <div class="space-y-12">
+      <div 
+        *ngFor="let region of pageData.centers.regions"
+        class="space-y-6">
+        <h3 class="text-2xl font-bold text-brand-dark border-b-2 border-brand-coral pb-2">
+          {{ region.name }}
+        </h3>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <div 
+            *ngFor="let center of region.centers"
+            class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-brand-sky">
+            <h4 class="text-lg font-bold text-brand-dark mb-3">{{ center.name }}</h4>
+            <div class="space-y-2 mb-4 text-sm text-brand-dark/70">
+              <p *ngIf="center.address"><strong>Адрес:</strong> {{ center.address }}</p>
+              <p *ngIf="center.phone"><strong>Телефон:</strong> {{ center.phone }}</p>
+              <p *ngIf="center.website"><strong>Сайт:</strong> {{ center.website }}</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span 
+                *ngFor="let spec of center.specializations"
+                class="bg-brand-sky/10 text-brand-navy px-3 py-1 rounded-full text-xs font-medium">
+                {{ spec }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-12">
+      <p class="text-brand-dark/70 mb-6">Полный список аккредитованных ЦОК доступен на официальном сайте:</p>
+      <a 
+        href="https://nok-nark.ru/cok/list/" 
+        target="_blank"
+        class="bg-brand-navy hover:bg-brand-dark text-white px-8 py-4 rounded-xl font-bold transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 shadow-lg">
+        📋 Реестр всех ЦОК
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Преимущества НОК -->
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-dark mb-16">
+      {{ pageData.benefits.title }}
+    </h2>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      <div 
+        *ngFor="let item of pageData.benefits.items"
+        class="flex items-start p-6 bg-gradient-to-br from-brand-sky/5 to-brand-coral/5 rounded-2xl">
+        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4 flex-shrink-0">
+          {{ item.icon }}
+        </div>
+        <div>
+          <h4 class="text-lg font-bold text-brand-dark mb-2">{{ item.title }}</h4>
+          <p class="text-brand-dark/70">{{ item.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20 bg-gradient-to-br from-brand-sky/5 to-brand-coral/5">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-dark mb-16">
+      {{ pageData.faq.title }}
+    </h2>
+    
+    <div class="max-w-4xl mx-auto space-y-4">
+      <div 
+        *ngFor="let item of pageData.faq.items; let i = index"
+        class="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <button 
+          (click)="toggleFaq(item)"
+          class="w-full p-6 text-left bg-gradient-to-r from-brand-sky/10 to-brand-coral/10 hover:from-brand-sky/20 hover:to-brand-coral/20 transition-all duration-300 font-semibold text-brand-dark flex items-center justify-between">
+          <span>{{ item.question }}</span>
+          <span class="text-brand-coral text-xl transition-transform duration-300" [class.rotate-180]="item.isOpen">▼</span>
+        </button>
+        <div 
+          *ngIf="item.isOpen"
+          class="p-6 border-t border-brand-sky/20 animate-fade-in">
+          <p class="text-brand-dark/70 leading-relaxed">{{ item.answer }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 bg-gradient-to-br from-brand-navy via-brand-dark to-black text-white">
+  <div class="container mx-auto px-6">
+    <div class="text-center max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Нужна помощь в подготовке к НОК?</h2>
+      <p class="text-xl text-white/90 mb-8 font-medium">
+        Наши эксперты помогут выбрать подходящий ЦОК и успешно подготовиться к экзамену
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button 
+          (click)="openConsultationPopup()"
+          class="bg-brand-coral hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 shadow-lg">
+          📞 Получить консультацию
+        </button>
+        <a 
+          [href]="'tel:' + organizationService.getPhoneHref()"
+          class="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-bold border border-white/30 hover:bg-white/20 transition-all duration-300 shadow-lg">
+          📱 {{ organizationService.getPhoneDisplay() }}
+        </a>
+      </div>
+      
+      <div class="mt-8 text-white/70 font-medium">
+        <p>Ответим в течение 15 минут • Консультация бесплатна</p>
+      </div>
+    </div>
+  </div>
+</section> 
