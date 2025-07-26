@@ -45,6 +45,7 @@ export class SitemapService {
 
   /**
    * Генерировать sitemap на основе данных приложения
+   * ВРЕМЕННО ОТКЛЮЧЕНО - сайт закрыт для индексации
    */
   generateSitemap(): Observable<SitemapData> {
     const today = new Date().toISOString().split('T')[0];

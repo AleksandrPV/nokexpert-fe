@@ -1,51 +1,30 @@
 # robots.txt для НОК Эксперт
 # https://нок-эксперт.рф/robots.txt
+# ВРЕМЕННО ЗАПРЕЩЕНА ИНДЕКСАЦИЯ - САЙТ В РАЗРАБОТКЕ
 
-# Основные правила для всех поисковых роботов
+# Запрещаем индексацию ВСЕМ поисковым роботам
 User-agent: *
-Allow: /
+Disallow: /
 
-# Разрешаем индексацию основных страниц
-Allow: /services
-Allow: /info
-Allow: /blog
-Allow: /contacts
-Allow: /faq
-Allow: /qualifications
+# Запрещаем индексацию для всех известных ботов
+User-agent: Googlebot
+Disallow: /
 
-# Запрещаем индексацию служебных и технических страниц
-Disallow: /privacy-policy
-Disallow: /admin/
-Disallow: /api/
-Disallow: /assets/
-Disallow: /_next/
-Disallow: /static/
-Disallow: /temp/
-Disallow: /tmp/
+User-agent: Bingbot
+Disallow: /
 
-# Запрещаем индексацию файлов определенных типов
-Disallow: /*.json$
-Disallow: /*.js$
-Disallow: /*.css$
-Disallow: /*.map$
-Disallow: /*.xml$
-Disallow: /*.txt$
-Disallow: /*.pdf$
-Disallow: /*.zip$
-Disallow: /*.rar$
+User-agent: YandexBot
+Disallow: /
 
-# Запрещаем индексацию параметров URL
-Disallow: /*?*
-Disallow: /*&*
-Disallow: /*=*
+User-agent: Baiduspider
+Disallow: /
 
-# Запрещаем индексацию дублирующихся страниц
-Disallow: /*?utm_
-Disallow: /*?fbclid
-Disallow: /*?gclid
-Disallow: /*?msclkid
+User-agent: DuckDuckBot
+Disallow: /
 
-# Запрещаем для агрессивных ботов и скраперов
+User-agent: Slurp
+Disallow: /
+
 User-agent: MJ12bot
 Disallow: /
 
@@ -70,25 +49,14 @@ Disallow: /
 User-agent: Nutch
 Disallow: /
 
-User-agent: Baiduspider
-Disallow: /
-
-User-agent: YandexBot
-Crawl-delay: 2
-
-User-agent: Googlebot
-Crawl-delay: 1
-
-User-agent: Bingbot
-Crawl-delay: 1
-
-# Время задержки для остальных поисковых роботов
-Crawl-delay: 1
-
-# Ссылки на карты сайта
-Sitemap: https://нок-эксперт.рф/sitemap.xml
-Sitemap: https://нок-эксперт.рф/sitemap-blog.xml
-Sitemap: https://нок-эксперт.рф/sitemap-services.xml
+# Временно отключаем карты сайта
+# Sitemap: https://нок-эксперт.рф/sitemap.xml
+# Sitemap: https://нок-эксперт.рф/sitemap-blog.xml
+# Sitemap: https://нок-эксперт.рф/sitemap-services.xml
 
 # Дополнительная информация
-# Host: https://нок-эксперт.рф 
+# Host: https://нок-эксперт.рф
+# 
+# ВНИМАНИЕ: Сайт временно закрыт для индексации
+# Дата: 2025-01-27
+# Причина: Разработка и тестирование 
