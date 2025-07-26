@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
-import { MainPageComponent } from './features/main/components/main-page.component';
+import { MainPageComponent } from './features/main/main-page.component';
 import { ServicesPageComponent } from './features/services/components/services-page.component';
 import { ServiceDetailPageComponent } from './features/service-detail/components/service-detail-page.component';
 import { ContactsPageComponent } from './features/contacts/components/contacts-page.component';

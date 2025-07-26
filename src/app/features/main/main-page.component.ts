@@ -1,9 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { FeedbackPopupService } from '../../feedback-popup/services/feedback-popup.service';
-import { SeoService } from '../../../shared/services/seo.service';
-import { OrganizationService } from '../../../shared/services/organization.service';
+import { FeedbackPopupService } from '../feedback-popup/services/feedback-popup.service';
+import { SeoService } from '../../shared/services/seo.service';
+import { OrganizationService } from '../../shared/services/organization.service';
 
 /**
  * Компонент главной страницы

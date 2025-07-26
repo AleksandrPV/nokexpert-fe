@@ -1,0 +1,283 @@
+// Main Page Component Styles
+// Компонентные стили могут быть добавлены здесь при необходимости
+
+// Дополнительные адаптивные стили для главной страницы
+@media (max-width: 480px) {
+  // Оптимизация для очень маленьких экранов
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  // Уменьшение отступов для экономии места
+  section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  // Оптимизация заголовков
+  h1 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  h2 {
+    font-size: 1.75rem !important;
+  }
+  
+  // Уменьшение размеров иконок
+  .neomorphic {
+    width: 3rem !important;
+    height: 3rem !important;
+    font-size: 1.5rem !important;
+  }
+  
+  // Оптимизация кнопок
+  .btn-modern, .btn-coral, .btn-cream {
+    padding: 0.75rem 1.5rem !important;
+    font-size: 0.875rem !important;
+    min-width: 180px !important;
+  }
+  
+  // Улучшение читаемости текста
+  p {
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  // Оптимизация карточек услуг
+  .card-modern {
+    padding: 1.5rem !important;
+  }
+  
+  // Уменьшение отступов в статистике
+  .flex.flex-wrap {
+    gap: 1rem !important;
+  }
+  
+  .flex.flex-wrap > div {
+    min-width: 80px !important;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  // Оптимизация для планшетов в портретной ориентации
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  // Улучшение grid-системы для планшетов
+  .grid.md\\:grid-cols-2 {
+    gap: 1.5rem;
+  }
+  
+  // Оптимизация карточек услуг на планшетах
+  .card-modern {
+    padding: 2rem;
+  }
+  
+  // Улучшение отступов для лучшей читаемости
+  section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  // Оптимизация CTA блока для планшетов
+  .flex.flex-col.lg\\:flex-row {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  
+  .flex.flex-col.sm\\:flex-row {
+    flex-direction: row !important;
+    gap: 1rem !important;
+  }
+  
+  // Уменьшение отступов кнопок на планшетах
+  .glass, .btn-modern {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  // Оптимизация для планшетов в ландшафтной ориентации
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  // Улучшение grid-системы для больших планшетов
+  .grid.lg\\:grid-cols-2 {
+    gap: 2rem;
+  }
+  
+  .grid.lg\\:grid-cols-3 {
+    gap: 1.5rem;
+  }
+  
+  // Оптимизация CTA блока для ландшафтных планшетов
+  .flex.flex-col.lg\\:flex-row {
+    flex-direction: row !important;
+    gap: 1.5rem !important;
+  }
+  
+  .flex.flex-col.sm\\:flex-row {
+    flex-direction: row !important;
+    gap: 1rem !important;
+  }
+  
+  // Оптимизация размеров кнопок для ландшафтных планшетов
+  .glass, .btn-modern {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    font-size: 0.875rem !important;
+  }
+  
+  // Уменьшение отступов в CTA секции
+  .py-16.sm\\:py-20.lg\\:py-24 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  // Оптимизация заголовков для ландшафтных планшетов
+  .text-2xl.sm\\:text-3xl.md\\:text-4xl.lg\\:text-5xl {
+    font-size: 2.5rem !important;
+  }
+  
+  // Оптимизация описания
+  .text-lg.sm\\:text-xl {
+    font-size: 1rem !important;
+  }
+}
+
+// Улучшение доступности для фокуса
+button:focus,
+a:focus {
+  outline: 2px solid var(--brand-sky);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+// Оптимизация hover-эффектов для touch-устройств
+@media (hover: none) {
+  .hover-lift:hover {
+    transform: none;
+  }
+  
+  .hover-glow:hover {
+    box-shadow: none;
+  }
+  
+  // Альтернативные эффекты для touch-устройств
+  .hover-lift:active {
+    transform: scale(0.98);
+  }
+  
+  .hover-glow:active {
+    box-shadow: var(--glow-accent);
+  }
+}
+
+// Улучшение производительности анимаций
+.card-modern,
+.btn-modern,
+.btn-coral,
+.btn-cream,
+.glass,
+.glass-dark {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+// Оптимизация для устройств с высоким DPI
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .glass,
+  .glass-dark {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+// Улучшение контрастности для доступности
+.text-brand-dark\/70 {
+  color: rgba(36, 48, 94, 0.8) !important;
+}
+
+.text-brand-dark\/80 {
+  color: rgba(36, 48, 94, 0.85) !important;
+}
+
+// Оптимизация для устройств с ограниченной цветопередачей
+@media (prefers-contrast: high) {
+  .text-brand-dark\/70 {
+    color: var(--brand-dark) !important;
+  }
+  
+  .text-brand-dark\/80 {
+    color: var(--brand-dark) !important;
+  }
+  
+  .glass {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--brand-sky);
+  }
+  
+  .glass-dark {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--brand-navy);
+  }
+}
+
+// Улучшение для устройств с уменьшенным движением
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .hover-lift:hover {
+    transform: none;
+  }
+  
+  .animate-professional-glow {
+    animation: none;
+  }
+}
+
+// Оптимизация для темной темы (если будет добавлена в будущем)
+@media (prefers-color-scheme: dark) {
+  // Здесь можно добавить стили для темной темы
+}
+
+// Улучшение для устройств с большими экранами
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1320px;
+  }
+  
+  // Увеличение отступов для лучшего восприятия на больших экранах
+  section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  // Увеличение размеров шрифтов для больших экранов
+  h1 {
+    font-size: 4.5rem !important;
+  }
+  
+  h2 {
+    font-size: 3.5rem !important;
+  }
+  
+  // Увеличение отступов в карточках
+  .card-modern {
+    padding: 3rem;
+  }
+} 

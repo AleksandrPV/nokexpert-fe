@@ -7,5 +7,13 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  // Оптимизация для production
+  corePlugins: {
+    preflight: true,
+  },
+  // Отключаем неиспользуемые плагины
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
 }
 

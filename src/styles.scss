@@ -88,35 +88,7 @@ body {
     inset -8px -8px 16px #ffffff;
 }
 
-/* Consulting animations */
-
-@keyframes elegantFade {
-  0%, 100% { 
-    opacity: 0.1;
-    transform: scale(1);
-  }
-  50% { 
-    opacity: 0.3;
-    transform: scale(1.02);
-  }
-}
-
-@keyframes consultingLine {
-  0% { 
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  20% { 
-    opacity: 0.3;
-  }
-  80% { 
-    opacity: 0.3;
-  }
-  100% { 
-    transform: translateX(100%);
-    opacity: 0;
-  }
-}
+/* Consulting animations - только используемые */
 
 @keyframes professionalGlow {
   0%, 100% { 
@@ -127,86 +99,9 @@ body {
   }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { 
-    box-shadow: var(--glow-primary);
-    transform: scale(1);
-  }
-  50% { 
-    box-shadow: var(--glow-accent);
-    transform: scale(1.05);
-  }
-}
-
-@keyframes slide-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-in-left {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slide-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-/* Consulting utility animation classes */
-.animate-elegant-fade {
-  animation: elegantFade 8s ease-in-out infinite;
-}
-
-.animate-consulting-line {
-  animation: consultingLine 20s ease-in-out infinite;
-}
-
+/* Consulting utility animation classes - только используемые */
 .animate-professional-glow {
   animation: professionalGlow 6s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
-}
-
-.animate-slide-up {
-  animation: slide-in-up 0.8s ease-out forwards;
-}
-
-.animate-slide-left {
-  animation: slide-in-left 0.8s ease-out forwards;
-}
-
-.animate-slide-right {
-  animation: slide-in-right 0.8s ease-out forwards;
 }
 
 /* Professional decorative elements */
