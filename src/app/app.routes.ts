@@ -29,6 +29,7 @@ import { OnlineTrainerPageComponent } from './features/info/components/online-tr
 
 import { SpecialistsRegistryPageComponent } from './features/info/components/specialists-registry-page.component';
 import { NokLegislationPageComponent } from './features/info/components/nok-legislation-page.component';
+import { ReviewsPageComponent } from './features/reviews/reviews-page.component';
 
 export const routes: Routes = [
   {
@@ -64,6 +65,7 @@ export const routes: Routes = [
       { path: 'privacy-policy', component: PrivacyPolicyPageComponent },
       { path: 'public-offer', component: PublicOfferPageComponent },
       { path: 'user-agreement', component: UserAgreementPageComponent },
+      { path: 'reviews', component: ReviewsPageComponent },
     ]
   },
   { path: '**', redirectTo: '' }

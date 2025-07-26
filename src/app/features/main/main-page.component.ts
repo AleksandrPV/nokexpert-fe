@@ -4,6 +4,9 @@ import { RouterLink } from '@angular/router';
 import { FeedbackPopupService } from '../feedback-popup/services/feedback-popup.service';
 import { SeoService } from '../../shared/services/seo.service';
 import { OrganizationService } from '../../shared/services/organization.service';
+import { RelatedMaterialsComponent } from '../../shared/components/related-materials/related-materials.component';
+import { NavigationLinksComponent } from '../../shared/components/navigation-links/navigation-links.component';
+import { CustomerReviewsComponent } from '../../shared/components/customer-reviews/customer-reviews.component';
 
 /**
  * Компонент главной страницы
@@ -12,7 +15,7 @@ import { OrganizationService } from '../../shared/services/organization.service'
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RelatedMaterialsComponent, NavigationLinksComponent, CustomerReviewsComponent],
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss']
 })

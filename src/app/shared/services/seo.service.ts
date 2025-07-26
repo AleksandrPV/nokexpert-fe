@@ -133,6 +133,12 @@ export class SeoService {
       canonical: this.baseUrl,
       structuredData: this.getOrganizationStructuredData()
     });
+    
+    // Добавляем Review schema для отзывов клиентов
+    this.addCustomerReviewsStructuredData();
+    
+    // Добавляем LocalBusiness schema для офисов
+    this.addLocalBusinessStructuredData();
   }
 
   /**
@@ -146,6 +152,9 @@ export class SeoService {
       canonical: `${this.baseUrl}/services`,
       structuredData: this.getServicesStructuredData()
     });
+    
+    // Добавляем LocalBusiness schema для офисов
+    this.addLocalBusinessStructuredData();
   }
 
   /**
@@ -179,11 +188,14 @@ export class SeoService {
   setContactsPageSeo(): void {
     this.setSeoData({
       title: 'Контакты - НОК Эксперт | Телефон, адрес, график работы',
-      description: 'Свяжитесь с НОК Эксперт: ☎️ 8 (800) 123-45-67, 📧 info@nok-expert.ru, 📍 Москва, ул. Примерная, д. 1. Бесплатная консультация!',
-      keywords: 'контакты НОК Эксперт, телефон НОК, адрес НОК, консультация НОК',
+      description: 'Свяжитесь с НОК Эксперт: ☎️ 8 (800) 123-45-67, 📧 info@nok-expert.ru, 📍 Москва, ул. Тверская, д. 15. Бесплатная консультация!',
+      keywords: 'контакты НОК Эксперт, телефон НОК, адрес НОК, консультация НОК, офисы НОК Эксперт',
       canonical: `${this.baseUrl}/contacts`,
       structuredData: this.getLocalBusinessStructuredData()
     });
+    
+    // Добавляем LocalBusiness schema для всех офисов
+    this.addLocalBusinessStructuredData();
   }
 
   /**
@@ -672,11 +684,27 @@ export class SeoService {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "НОК Эксперт",
-      "description": "Центр подготовки к независимой оценке квалификации",
+      "alternateName": "Центр подготовки к НОК",
+      "description": "Профессиональная подготовка к независимой оценке квалификации для специалистов строительной отрасли. НОК НОСТРОЙ, НОК НОПРИЗ, НОК ОПБ.",
+      "url": this.baseUrl,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${this.baseUrl}/assets/images/logo.png`,
+        "width": "200",
+        "height": "60"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": `${this.baseUrl}/assets/images/office-moscow.jpg`,
+        "width": "800",
+        "height": "600"
+      },
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "ул. Примерная, д. 1",
+        "streetAddress": "ул. Тверская, д. 15, стр. 1",
         "addressLocality": "Москва",
+        "addressRegion": "Москва",
+        "postalCode": "125009",
         "addressCountry": "RU"
       },
       "geo": {
@@ -686,8 +714,83 @@ export class SeoService {
       },
       "telephone": "+7-800-123-45-67",
       "email": "info@nok-expert.ru",
-      "openingHours": "Mo-Fr 09:00-18:00, Sa 10:00-16:00",
-      "url": this.baseUrl
+      "openingHours": [
+        "Mo-Fr 09:00-18:00",
+        "Sa 10:00-16:00"
+      ],
+      "priceRange": "₽₽",
+      "paymentAccepted": [
+        "Cash",
+        "Credit Card",
+        "Bank Transfer"
+      ],
+      "currenciesAccepted": "RUB",
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Российская Федерация"
+        },
+        {
+          "@type": "City",
+          "name": "Москва"
+        },
+        {
+          "@type": "City", 
+          "name": "Санкт-Петербург"
+        }
+      ],
+      "serviceArea": {
+        "@type": "Country",
+        "name": "Российская Федерация"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Услуги подготовки к НОК",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "НОК НОСТРОЙ",
+              "description": "Подготовка к независимой оценке квалификации для специалистов строительной отрасли"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service", 
+              "name": "НОК НОПРИЗ",
+              "description": "Подготовка к независимой оценке квалификации для специалистов проектирования и изысканий"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "НОК ОПБ", 
+              "description": "Подготовка к независимой оценке квалификации для специалистов пожарной безопасности"
+            }
+          }
+        ]
+      },
+      "sameAs": [
+        "https://vk.com/nokexpert",
+        "https://t.me/nokexpert",
+        "https://www.youtube.com/@nokexpert"
+      ],
+      "foundingDate": "2017-01-01",
+      "numberOfEmployees": {
+        "@type": "QuantitativeValue",
+        "value": "25",
+        "unitText": "человек"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "3000",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
     };
   }
 
@@ -886,6 +989,155 @@ export class SeoService {
       }))
     };
     
+    this.updateStructuredData(structuredData);
+  }
+
+  /**
+   * Добавить Review schema для отзывов клиентов
+   */
+  addCustomerReviewsStructuredData(): void {
+    // Импортируем ReviewsService для получения данных
+    import('./reviews.service').then(({ ReviewsService }) => {
+      const reviewsService = new ReviewsService();
+      
+      reviewsService.getReviews().subscribe(reviews => {
+        const structuredData = {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "НОК Эксперт",
+          "url": this.baseUrl,
+          "aggregateRating": reviewsService.generateAggregateRatingSchema(),
+          "review": reviews.map(review => reviewsService.generateReviewSchema(review))
+        };
+        
+        this.updateStructuredData(structuredData);
+      });
+    });
+  }
+
+  /**
+   * Добавить LocalBusiness schema для офисов
+   */
+  addLocalBusinessStructuredData(): void {
+    const offices = [
+      {
+        "@type": "LocalBusiness",
+        "name": "НОК Эксперт - Москва",
+        "alternateName": "Центр подготовки к НОК Москва",
+        "description": "Главный офис НОК Эксперт в Москве. Профессиональная подготовка к независимой оценке квалификации.",
+        "url": `${this.baseUrl}/contacts`,
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ул. Тверская, д. 15, стр. 1",
+          "addressLocality": "Москва",
+          "addressRegion": "Москва",
+          "postalCode": "125009",
+          "addressCountry": "RU"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "55.7558",
+          "longitude": "37.6176"
+        },
+        "telephone": "+7-800-123-45-67",
+        "email": "info@nok-expert.ru",
+        "openingHours": [
+          "Mo-Fr 09:00-18:00",
+          "Sa 10:00-16:00"
+        ],
+        "priceRange": "₽₽",
+        "paymentAccepted": ["Cash", "Credit Card", "Bank Transfer"],
+        "currenciesAccepted": "RUB",
+        "areaServed": {
+          "@type": "City",
+          "name": "Москва"
+        },
+        "sameAs": [
+          "https://vk.com/nokexpert",
+          "https://t.me/nokexpert"
+        ]
+      },
+      {
+        "@type": "LocalBusiness",
+        "name": "НОК Эксперт - Санкт-Петербург",
+        "alternateName": "Центр подготовки к НОК СПб",
+        "description": "Филиал НОК Эксперт в Санкт-Петербурге. Подготовка к НОК для специалистов Северо-Западного региона.",
+        "url": `${this.baseUrl}/contacts`,
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Невский проспект, д. 28",
+          "addressLocality": "Санкт-Петербург",
+          "addressRegion": "Санкт-Петербург",
+          "postalCode": "191186",
+          "addressCountry": "RU"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "59.9311",
+          "longitude": "30.3609"
+        },
+        "telephone": "+7-800-123-45-67",
+        "email": "spb@nok-expert.ru",
+        "openingHours": [
+          "Mo-Fr 09:00-18:00",
+          "Sa 10:00-16:00"
+        ],
+        "priceRange": "₽₽",
+        "paymentAccepted": ["Cash", "Credit Card", "Bank Transfer"],
+        "currenciesAccepted": "RUB",
+        "areaServed": {
+          "@type": "City",
+          "name": "Санкт-Петербург"
+        },
+        "sameAs": [
+          "https://vk.com/nokexpert_spb",
+          "https://t.me/nokexpert_spb"
+        ]
+      },
+      {
+        "@type": "LocalBusiness",
+        "name": "НОК Эксперт - Екатеринбург",
+        "alternateName": "Центр подготовки к НОК Екатеринбург",
+        "description": "Филиал НОК Эксперт в Екатеринбурге. Подготовка к НОК для специалистов Уральского региона.",
+        "url": `${this.baseUrl}/contacts`,
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ул. Ленина, д. 50",
+          "addressLocality": "Екатеринбург",
+          "addressRegion": "Свердловская область",
+          "postalCode": "620075",
+          "addressCountry": "RU"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "56.8431",
+          "longitude": "60.6454"
+        },
+        "telephone": "+7-800-123-45-67",
+        "email": "ekb@nok-expert.ru",
+        "openingHours": [
+          "Mo-Fr 09:00-18:00",
+          "Sa 10:00-16:00"
+        ],
+        "priceRange": "₽₽",
+        "paymentAccepted": ["Cash", "Credit Card", "Bank Transfer"],
+        "currenciesAccepted": "RUB",
+        "areaServed": {
+          "@type": "City",
+          "name": "Екатеринбург"
+        },
+        "sameAs": [
+          "https://vk.com/nokexpert_ekb",
+          "https://t.me/nokexpert_ekb"
+        ]
+      }
+    ];
+
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@graph": offices
+    };
+
     this.updateStructuredData(structuredData);
   }
 

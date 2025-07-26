@@ -507,6 +507,23 @@
   </div>
 </section>
 
+<!-- Customer Reviews Section -->
+<app-customer-reviews [maxReviews]="6"></app-customer-reviews>
+
+<!-- Related Materials Section -->
+<section class="py-16 sm:py-20 lg:py-24 relative bg-gray-50">
+  <div class="container mx-auto px-4 sm:px-6">
+    <app-related-materials 
+      currentPageId="home" 
+      currentCategory="" 
+      [maxItems]="6">
+    </app-related-materials>
+  </div>
+</section>
+
+<!-- Navigation Links Section -->
+<app-navigation-links currentPage="home"></app-navigation-links>
+
 <!-- Professional CTA Section -->
 <section class="py-16 sm:py-20 lg:py-24 relative overflow-hidden bg-white rounded-2xl sm:rounded-3xl border border-gray-200 mx-4 sm:mx-6">
   

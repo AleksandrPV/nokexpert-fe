@@ -295,6 +295,192 @@
   </div>
 </section>
 
+<!-- Offices Section -->
+<section class="py-20 bg-gradient-to-br from-brand-sky/5 to-brand-navy/5">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-brand-dark mb-4">Наши офисы</h2>
+      <p class="text-brand-dark/70">Приходите к нам в гости в любом из наших офисов</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <!-- Moscow Office -->
+      <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-brand-sky/20">
+        <div class="text-center mb-6">
+          <div class="w-16 h-16 bg-gradient-to-br from-brand-sky to-brand-navy rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
+            М
+          </div>
+          <h3 class="text-xl font-bold text-brand-dark mb-2">Москва</h3>
+          <p class="text-brand-dark/60 text-sm">Главный офис</p>
+        </div>
+        
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <span class="text-brand-coral text-lg">📍</span>
+            <div>
+              <p class="text-brand-dark font-medium">ул. Тверская, д. 15, стр. 1</p>
+              <p class="text-brand-dark/60 text-sm">125009, Москва</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-3">
+            <span class="text-brand-navy text-lg">📞</span>
+            <div>
+              <a [href]="'tel:' + phoneHref" class="text-brand-dark font-medium hover:text-brand-coral transition-colors">
+                {{ phoneDisplay }}
+              </a>
+              <p class="text-brand-dark/60 text-sm">Бесплатные звонки</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-3">
+            <span class="text-brand-coral text-lg">✉️</span>
+            <div>
+              <a [href]="'mailto:' + email" class="text-brand-dark font-medium hover:text-brand-coral transition-colors">
+                {{ email }}
+              </a>
+              <p class="text-brand-dark/60 text-sm">Ответим в течение часа</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-3">
+            <span class="text-brand-navy text-lg">🕒</span>
+            <div>
+              <p class="text-brand-dark font-medium">Пн-Пт: 9:00-18:00</p>
+              <p class="text-brand-dark/60 text-sm">Сб: 10:00-16:00</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-6 pt-4 border-t border-brand-sky/20">
+          <a 
+            href="https://yandex.ru/maps/-/CCUQ4X~h"
+            target="_blank"
+            class="w-full bg-brand-navy text-white py-2 px-4 rounded-lg font-medium hover:bg-brand-navy/90 transition-colors text-center block">
+            🗺️ Открыть на карте
+          </a>
+        </div>
+      </div>
+
+      <!-- St. Petersburg Office -->
+      <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-brand-sky/20">
+        <div class="text-center mb-6">
+          <div class="w-16 h-16 bg-gradient-to-br from-brand-coral to-brand-navy rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
+            СПб
+          </div>
+          <h3 class="text-xl font-bold text-brand-dark mb-2">Санкт-Петербург</h3>
+          <p class="text-brand-dark/60 text-sm">Северо-Западный филиал</p>
+        </div>
+        
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <span class="text-brand-coral text-lg">📍</span>
+            <div>
+              <p class="text-brand-dark font-medium">Невский проспект, д. 28</p>
+              <p class="text-brand-dark/60 text-sm">191186, Санкт-Петербург</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-3">
+            <span class="text-brand-navy text-lg">📞</span>
+            <div>
+              <a href="tel:+7-800-123-45-67" class="text-brand-dark font-medium hover:text-brand-coral transition-colors">
+                8 (800) 123-45-67
+              </a>
+              <p class="text-brand-dark/60 text-sm">Бесплатные звонки</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-3">
+            <span class="text-brand-coral text-lg">✉️</span>
+            <div>
+              <a href="mailto:spb&#64;nok-expert.ru" class="text-brand-dark font-medium hover:text-brand-coral transition-colors">
+                spb&#64;nok-expert.ru
+              </a>
+              <p class="text-brand-dark/60 text-sm">Ответим в течение часа</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-3">
+            <span class="text-brand-navy text-lg">🕒</span>
+            <div>
+              <p class="text-brand-dark font-medium">Пн-Пт: 9:00-18:00</p>
+              <p class="text-brand-dark/60 text-sm">Сб: 10:00-16:00</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-6 pt-4 border-t border-brand-sky/20">
+          <a 
+            href="https://yandex.ru/maps/-/CCUQ4X~h"
+            target="_blank"
+            class="w-full bg-brand-navy text-white py-2 px-4 rounded-lg font-medium hover:bg-brand-navy/90 transition-colors text-center block">
+            🗺️ Открыть на карте
+          </a>
+        </div>
+      </div>
+
+      <!-- Ekaterinburg Office -->
+      <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-brand-sky/20">
+        <div class="text-center mb-6">
+          <div class="w-16 h-16 bg-gradient-to-br from-brand-cream to-brand-coral rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
+            Е
+          </div>
+          <h3 class="text-xl font-bold text-brand-dark mb-2">Екатеринбург</h3>
+          <p class="text-brand-dark/60 text-sm">Уральский филиал</p>
+        </div>
+        
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <span class="text-brand-coral text-lg">📍</span>
+            <div>
+              <p class="text-brand-dark font-medium">ул. Ленина, д. 50</p>
+              <p class="text-brand-dark/60 text-sm">620075, Екатеринбург</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-3">
+            <span class="text-brand-navy text-lg">📞</span>
+            <div>
+              <a href="tel:+7-800-123-45-67" class="text-brand-dark font-medium hover:text-brand-coral transition-colors">
+                8 (800) 123-45-67
+              </a>
+              <p class="text-brand-dark/60 text-sm">Бесплатные звонки</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-3">
+            <span class="text-brand-coral text-lg">✉️</span>
+            <div>
+              <a href="mailto:ekb&#64;nok-expert.ru" class="text-brand-dark font-medium hover:text-brand-coral transition-colors">
+                ekb&#64;nok-expert.ru
+              </a>
+              <p class="text-brand-dark/60 text-sm">Ответим в течение часа</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-3">
+            <span class="text-brand-navy text-lg">🕒</span>
+            <div>
+              <p class="text-brand-dark font-medium">Пн-Пт: 9:00-18:00</p>
+              <p class="text-brand-dark/60 text-sm">Сб: 10:00-16:00</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-6 pt-4 border-t border-brand-sky/20">
+          <a 
+            href="https://yandex.ru/maps/-/CCUQ4X~h"
+            target="_blank"
+            class="w-full bg-brand-navy text-white py-2 px-4 rounded-lg font-medium hover:bg-brand-navy/90 transition-colors text-center block">
+            🗺️ Открыть на карте
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ Quick Section -->
 <section class="py-20">
   <div class="container mx-auto px-6">

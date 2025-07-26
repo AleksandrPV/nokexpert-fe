@@ -5,11 +5,12 @@ import { SeoService } from '../../../shared/services/seo.service';
 import { FeedbackPopupService } from '../../feedback-popup/services/feedback-popup.service';
 import { OrganizationService } from '../../../shared/services/organization.service';
 import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
+import { CustomerReviewsComponent } from '../../../shared/components/customer-reviews/customer-reviews.component';
 
 @Component({
   selector: 'app-nok-nostroy-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, BreadcrumbsComponent],
+  imports: [CommonModule, RouterLink, BreadcrumbsComponent, CustomerReviewsComponent],
   templateUrl: './nok-nostroy-page.component.html',
   styleUrls: ['./nok-nostroy-page.component.scss']
 })

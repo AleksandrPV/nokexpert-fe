@@ -53,4 +53,29 @@ export interface OrganizationData {
   // Координаты (опционально)
   latitude?: number;
   longitude?: number;
+  
+  // Офисы (опционально)
+  offices?: OfficeData[];
+}
+
+export interface OfficeData {
+  name: string;
+  type: string;
+  address: {
+    full: string;
+    city: string;
+    street: string;
+    building: string;
+    postalCode: string;
+  };
+  coordinates: {
+    latitude: number;
+    longitude: number;
+  };
+  phone: string;
+  email: string;
+  workingHours: {
+    weekdays: string;
+    saturday: string;
+  };
 } 
