@@ -1,21 +1,18 @@
-<app-breadcrumbs 
-  [breadcrumbs]="[
-    { label: 'FAQ', url: '/faq', active: true, icon: '❓' }
-  ]">
-</app-breadcrumbs>
+<app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
 
-<!-- Hero Section (как в блоге) -->
+<!-- Hero Section -->
 <section class="relative py-20 overflow-hidden">
-  <div class="absolute inset-0 bg-white"></div>
+  <div class="absolute inset-0 bg-gradient-to-br from-brand-sky/10 to-brand-coral/5"></div>
   <div class="container mx-auto px-6 relative z-10">
     <div class="max-w-4xl mx-auto text-center">
       <!-- Badge -->
-      <div class="inline-flex items-center gap-3 bg-gray-50 px-6 py-3 rounded-full mb-6 border border-gray-200">
+      <div class="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full mb-6 border border-gray-200 shadow-sm">
         <div class="w-2 h-2 bg-brand-coral rounded-full animate-pulse"></div>
-        <span class="text-sm font-medium text-brand-dark/80">Вопросы и ответы</span>
+        <span class="text-sm font-medium text-brand-dark/80">База знаний НОК</span>
       </div>
+      
       <h1 class="text-5xl md:text-6xl font-bold text-brand-dark mb-6">
-        Сдесь собрана актуальная информация по интересующим вас вопросам
+        Часто задаваемые вопросы по НОК
       </h1>
       <p class="text-xl text-brand-dark/70 leading-relaxed max-w-2xl mx-auto font-medium">
         Ответы на самые популярные вопросы о независимой оценке квалификации и процедуре НОК
@@ -24,25 +21,165 @@
   </div>
 </section>
 
-<!-- FAQ-аккордеон -->
+<!-- Filters Section -->
 <section class="mb-12">
-  <h2 class="text-xl font-semibold mb-4 text-center">Частозадоваемые вопросы и ответы (FAQ)</h2>
-  <div class="mx-auto max-w-2xl">
-    <div *ngFor="let faq of faqs; let i = index" class="mb-4 border-b border-gray-200" [attr.id]="'faq-' + i">
-      <button type="button"
-        class="w-full flex justify-between items-center py-4 text-left focus:outline-none transition-colors duration-200 group"
-        [ngClass]="{'text-brand-coral': openedIndex === i, 'text-gray-900': openedIndex !== i}"
-        (click)="toggle(i)">
-        <span class="font-semibold text-lg">{{ faq.question }}</span>
-        <span class="ml-4 transition-transform duration-200"
-          [ngClass]="{'rotate-180': openedIndex === i}">
-          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+  <div class="container mx-auto px-6">
+    <div class="max-w-6xl mx-auto">
+      <!-- Search Bar -->
+      <div class="mb-8">
+        <div class="relative max-w-2xl mx-auto">
+          <input type="text" 
+                 [value]="searchQuery"
+                 (input)="onSearchChange($any($event.target).value)"
+                 placeholder="Поиск по вопросам..."
+                 class="w-full px-6 py-4 pl-12 bg-white border border-gray-200 rounded-full shadow-sm focus:ring-2 focus:ring-brand-coral focus:border-transparent text-lg">
+          <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
-        </span>
-      </button>
-      <div *ngIf="openedIndex === i" class="pb-4 text-gray-700 animate-fade-in">
-        <div class="pl-1 pr-2 text-base leading-relaxed">{{ faq.answer }}</div>
+        </div>
+      </div>
+
+      <!-- Category Filters -->
+      <div class="mb-8">
+        <h3 class="text-lg font-semibold text-brand-dark mb-4 text-center">Категории вопросов</h3>
+        <div class="flex flex-wrap justify-center gap-3">
+          <button *ngFor="let category of categoryStats"
+                  (click)="onCategoryChange(category.id)"
+                  [ngClass]="[
+                    'px-4 py-2 rounded-full text-sm font-medium transition-all duration-200',
+                    selectedCategory === category.id 
+                      ? category.color + ' shadow-md' 
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ]">
+            <span class="mr-2">{{ category.icon }}</span>
+            {{ category.name }}
+            <span class="ml-2 bg-white/20 px-2 py-0.5 rounded-full text-xs">
+              {{ category.count }}
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Additional Filters -->
+      <div class="flex flex-wrap justify-center gap-4 mb-6">
+        <button (click)="onPopularToggle()"
+                [ngClass]="[
+                  'px-4 py-2 rounded-full text-sm font-medium transition-all duration-200',
+                  showOnlyPopular 
+                    ? 'bg-brand-coral text-white shadow-md' 
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ]">
+          <span class="mr-2">⭐</span>
+          Только популярные
+        </button>
+
+        <button *ngIf="hasActiveFilters"
+                (click)="clearFilters()"
+                class="px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 transition-all duration-200">
+          <span class="mr-2">🗑️</span>
+          Очистить фильтры
+        </button>
+      </div>
+
+      <!-- Results Count -->
+      <div class="text-center mb-6">
+        <p class="text-gray-600">
+          Найдено вопросов: <span class="font-semibold text-brand-dark">{{ filteredQuestions.length }}</span>
+          <span *ngIf="selectedCategoryData" class="ml-2">
+            в категории "{{ selectedCategoryData.name }}"
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Content -->
+<section class="mb-12" *ngIf="!isLoading">
+  <div class="container mx-auto px-6">
+    <div class="max-w-4xl mx-auto">
+      <!-- Loading State -->
+      <div *ngIf="isLoading" class="text-center py-12">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-coral mx-auto mb-4"></div>
+        <p class="text-gray-600">Загрузка вопросов...</p>
+      </div>
+
+      <!-- No Results -->
+      <div *ngIf="!isLoading && filteredQuestions.length === 0" class="text-center py-12">
+        <div class="text-6xl mb-4">🔍</div>
+        <h3 class="text-xl font-semibold text-brand-dark mb-2">Вопросы не найдены</h3>
+        <p class="text-gray-600 mb-6">Попробуйте изменить параметры поиска или обратитесь к нам</p>
+        <button (click)="clearFilters()" 
+                class="px-6 py-3 bg-brand-coral text-white rounded-full font-medium hover:bg-brand-coral/90 transition-colors">
+          Очистить фильтры
+        </button>
+      </div>
+
+      <!-- FAQ List -->
+      <div *ngIf="!isLoading && filteredQuestions.length > 0" class="space-y-4">
+        <div *ngFor="let question of filteredQuestions; let i = index" 
+             class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
+             [attr.id]="'faq-' + question.id">
+          
+          <button type="button"
+                  class="w-full flex justify-between items-start p-6 text-left focus:outline-none transition-colors duration-200 group hover:bg-gray-50"
+                  [ngClass]="{'bg-gray-50': openedIndex === i}"
+                  (click)="toggle(i)">
+            
+            <div class="flex-1 mr-4">
+              <div class="flex items-center gap-3 mb-2">
+                <span *ngIf="question.isPopular" class="text-yellow-500 text-lg">⭐</span>
+                                 <span class="px-2 py-1 rounded-full text-xs font-medium"
+                       [ngClass]="getCategoryColor(question.category)">
+                   {{ getCategoryName(question.category) }}
+                 </span>
+              </div>
+              
+              <h3 class="font-semibold text-lg text-brand-dark group-hover:text-brand-coral transition-colors">
+                {{ question.question }}
+              </h3>
+              
+              <div class="flex flex-wrap gap-1 mt-2">
+                <span *ngFor="let tag of question.tags.slice(0, 3)" 
+                      class="px-2 py-1 bg-brand-coral/10 text-brand-coral rounded-full text-xs">
+                  #{{ tag }}
+                </span>
+                <span *ngIf="question.tags.length > 3" class="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">
+                  +{{ question.tags.length - 3 }}
+                </span>
+              </div>
+            </div>
+            
+            <span class="flex-shrink-0 transition-transform duration-200"
+                  [ngClass]="{'rotate-180': openedIndex === i}">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </button>
+          
+          <div *ngIf="openedIndex === i" class="px-6 pb-6 animate-fade-in">
+            <div class="border-t border-gray-100 pt-4">
+              <div class="text-gray-700 leading-relaxed mb-4">
+                {{ question.shortAnswer }}
+              </div>
+              
+              <div class="flex items-center justify-between">
+                <a [routerLink]="['/faq', question.slug]" 
+                   class="inline-flex items-center gap-2 text-brand-coral font-medium hover:underline">
+                  Читать подробнее
+                  <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+                
+                <div class="text-xs text-gray-500">
+                  Обновлено: {{ question.updatedAt | date:'dd.MM.yyyy' }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

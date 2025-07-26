@@ -7,6 +7,7 @@ import { ContactsPageComponent } from './features/contacts/components/contacts-p
 import { BlogPageComponent } from './features/blog/components/blog-page.component';
 import { InfoPageComponent } from './features/info/components/info-page.component';
 import { FaqPageComponent } from './features/faq/components/faq-page.component';
+import { FaqDetailPageComponent } from './features/faq/components/faq-detail-page.component';
 import { CenterPageComponent } from './features/center/components/center-page.component';
 import { QualificationsPageComponent } from './features/qualifications/components/qualifications-page.component';
 import { PrivacyPolicyPageComponent } from './features/privacy-policy/components/privacy-policy-page.component';
@@ -60,6 +61,7 @@ export const routes: Routes = [
                   { path: 'info/nok-legislation', component: NokLegislationPageComponent },
       { path: 'qa-centers', component: QaCentersPageComponent },
       { path: 'faq', component: FaqPageComponent },
+      { path: 'faq/:slug', component: FaqDetailPageComponent },
       { path: 'center', component: CenterPageComponent },
       { path: 'qualifications', component: QualificationsPageComponent },
       { path: 'privacy-policy', component: PrivacyPolicyPageComponent },

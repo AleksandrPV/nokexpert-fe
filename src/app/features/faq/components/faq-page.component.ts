@@ -1,20 +1,19 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { NgFor, NgIf, NgClass } from '@angular/common';
+import { NgFor, NgIf, NgClass, DatePipe } from '@angular/common';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { SeoService } from '../../../shared/services/seo.service';
 import { FeedbackPopupService } from '../../../features/feedback-popup/services/feedback-popup.service';
 import { MainLayoutComponent } from '../../../shared/components/main-layout/main-layout.component';
 import { BreadcrumbsComponent, BreadcrumbItem } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 import { OrganizationService } from '../../../shared/services/organization.service';
-
-export interface FaqItem {
-  question: string;
-  answer: string;
-}
+import { FaqService } from '../services/faq.service';
+import { FaqQuestion, FaqCategory, FaqFilter } from '../models/faq.interface';
+import { combineLatest, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-faq-page',
   standalone: true,
-  imports: [NgFor, NgIf, NgClass, BreadcrumbsComponent],
+  imports: [NgFor, NgIf, NgClass, DatePipe, RouterModule, BreadcrumbsComponent],
   templateUrl: './faq-page.component.html',
   styleUrls: ['./faq-page.component.scss']
 })
@@ -27,6 +26,23 @@ export class FaqPageComponent implements OnInit {
   private seo: SeoService = inject(SeoService);
   private feedbackService: FeedbackPopupService = inject(FeedbackPopupService);
   private organizationService = inject(OrganizationService);
+  private faqService = inject(FaqService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+
+  // Данные
+  questions: FaqQuestion[] = [];
+  categories: FaqCategory[] = [];
+  categoryStats: Array<FaqCategory & { count: number }> = [];
+  
+  // Фильтры
+  selectedCategory: string = '';
+  searchQuery: string = '';
+  showOnlyPopular: boolean = false;
+  
+  // Состояние
+  openedIndex: number | null = null;
+  isLoading: boolean = true;
 
   // Геттеры для данных организации
   get phoneDisplay(): string {
@@ -41,146 +57,140 @@ export class FaqPageComponent implements OnInit {
     return this.organizationService.getEmail();
   }
 
-  faqs: FaqItem[] = [
-    {
-      question: 'Кто обязан проходить НОК?',
-      answer: 'Специалисты, включенные в Национальный реестр специалистов (НРС) следующих областей: строительство, архитектурно-строительное проектирование, инженерные изыскания, пожарная безопасность (с 1 марта 2025 года).'
-    },
-    {
-      question: 'Как часто нужно проходить НОК?',
-      answer: 'Общее правило — не реже 1 раза в 5 лет. С 27.02.2025 для некоторых специальностей строительной отрасли — не реже 1 раза в 3 года.'
-    },
-    {
-      question: 'Что будет, если не пройти НОК в срок?',
-      answer: 'Сведения о специалисте будут исключены из НРС. Повторное включение возможно только через 2 года после исключения.'
-    },
-    {
-      question: 'Сколько попыток дается на сдачу экзамена?',
-      answer: 'Только 1 попытка на каждую оплаченную сессию. При неудачной сдаче необходимо заново оплачивать пошлину и пересдавать весь экзамен.'
-    },
-    {
-      question: 'Можно ли пересдать только практическую часть, если теория сдана?',
-      answer: 'Нет. При новой попытке необходимо заново сдавать и теорию, и практику.'
-    },
-    {
-      question: 'Какие проходные баллы для экзамена?',
-      answer: 'Теоретическая часть: 36 из 50 (72%) или 30 из 40 (75%). Практическая часть: 70-80 баллов.'
-    },
-    {
-      question: 'Где можно пройти НОК?',
-      answer: 'В аккредитованных Центрах оценки квалификаций (ЦОК) — более 200 площадок по всей России. Список на сайте НАРК.'
-    },
-    {
-      question: 'Можно ли пройти НОК дистанционно?',
-      answer: 'Подача документов и регистрация — онлайн, экзамен проводится очно в ЦОК.'
-    },
-    {
-      question: 'Как долго действует свидетельство о квалификации?',
-      answer: 'До 27.02.2025 — 5 лет, с 27.02.2025 — 3 года для отдельных специальностей, 5 лет для остальных.'
-    },
-    {
-      question: 'Что делать, если потерял свидетельство?',
-      answer: 'Обратиться в ЦОК, который выдавал свидетельство, с заявлением о выдаче дубликата.'
-    },
-    // Дополнительные вопросы
-    {
-      question: 'Какие документы нужны для прохождения НОК?',
-      answer: 'Паспорт, документы об образовании, подтверждение опыта работы, заявление, иные документы по требованию.'
-    },
-    {
-      question: 'Сколько стоит прохождение НОК?',
-      answer: 'В 2025 году: строительные специальности — 24 000 ₽, проектные — 22 000 ₽ и выше. Актуальные цены уточняйте в ЦОК.'
-    },
-    {
-      question: 'Какие последствия для работодателя, если специалист не прошёл НОК?',
-      answer: 'Административные штрафы, ограничения на участие в закупках, приостановление лицензий, репутационные риски.'
-    },
-    {
-      question: 'Где найти официальный список ЦОК?',
-      answer: 'На сайте НАРК (https://nark.ru) и в реестре НОК (https://нок-нарк.рф).' 
-    },
-    {
-      question: 'Можно ли подготовиться к экзамену заранее?',
-      answer: 'Да, существуют подготовительные курсы и консультации. Рекомендуется заранее изучить профессиональные стандарты.'
-    },
-    {
-      question: 'Как подать апелляцию на результаты экзамена НОК?',
-      answer: 'В случае несогласия с результатами НОК соискатель имеет право подать письменную жалобу в апелляционную комиссию в течение 30 календарных дней с даты получения результатов экзамена. Апелляция подается в совет по профессиональным квалификациям в порядке, установленном положением об апелляционной комиссии.'
-    },
-    {
-      question: 'Что включать в портфолио для НОК?',
-      answer: 'Портфолио должно содержать: титульный лист, оглавление, автобиографическую справку, документы об образовании и сертификаты, примеры выполненных работ, отзывы и рекомендательные письма, дополнительные материалы. Оформляется в формате А4, допускается использование А3 и А2 для схем.'
-    },
-    {
-      question: 'Можно ли работать без НОК до исключения из НРС?',
-      answer: 'Да, специалист может продолжать работать до момента официального исключения из Национального реестра специалистов. Однако работодатель несет риски административной ответственности за привлечение специалистов с просроченной квалификацией.'
-    },
-    {
-      question: 'Есть ли льготы для инвалидов, пенсионеров и ветеранов при прохождении НОК?',
-      answer: 'В открытых источниках информация о специальных льготах для данных категорий граждан при прохождении НОК не найдена. Для получения точной информации рекомендуется обращаться непосредственно в ЦОК или НАРК.'
-    },
-    {
-      question: 'Что делать, если ЦОК нарушил процедуру проведения экзамена?',
-      answer: 'При выявлении нарушений процедуры необходимо: зафиксировать нарушения документально, подать жалобу в апелляционную комиссию, обратиться в НАРК с заявлением о проверке деятельности ЦОК, при необходимости обратиться в суд.'
-    },
-    {
-      question: 'Можно ли пройти НОК по нескольким специальностям одновременно?',
-      answer: 'Нет, НОК проводится по одной квалификации за раз. Для получения свидетельств по нескольким специальностям необходимо проходить отдельные экзамены по каждой квалификации.'
-    },
-    {
-      question: 'Как влияет смена места работы на действие свидетельства НОК?',
-      answer: 'Свидетельство о квалификации НОК является документом, подтверждающим квалификацию конкретного специалиста, и не зависит от места работы.'
-    },
-    {
-      question: 'Можно ли досрочно пройти НОК до истечения срока действия текущего свидетельства?',
-      answer: 'Да, специалист может досрочно пройти НОК для подтверждения или повышения своей квалификации. Новое свидетельство будет выдано на полный срок.'
-    },
-    {
-      question: 'Что такое АИС НОК и АИС ОК?',
-      answer: 'АИС НОК (НОСТРОЙ) — автоматизированная информационная система для специалистов строительной отрасли. АИС ОК (НОПРИЗ) — система для проектировщиков и изыскателей. Через эти системы осуществляется подача заявок, регистрация на экзамены и получение результатов.'
-    },
-    {
-      question: 'Какие документы нужны для восстановления в НРС после исключения?',
-      answer: 'Для повторного включения в НРС через 2 года после исключения необходимо: успешно пройти НОК, предоставить документы об образовании, подтвердить опыт работы за период исключения, предоставить справки о повышении квалификации, оплатить все необходимые пошлины.'
-    },
-    {
-      question: 'Можно ли оспорить исключение из НРС в суде?',
-      answer: 'Да, решение об исключении из Национального реестра специалистов можно оспорить в судебном порядке, если есть основания полагать, что решение было принято незаконно или с нарушением установленной процедуры.'
-    },
-    {
-      question: 'Как проверить подлинность свидетельства о квалификации НОК?',
-      answer: 'Подлинность свидетельства можно проверить на официальном сайте НАРК в реестре квалификаций, в базе данных соответствующего ЦОК, по уникальному номеру свидетельства или обратившись в выдавший центр.'
-    },
-    {
-      question: 'Что происходит с НОК при реорганизации или ликвидации ЦОК?',
-      answer: 'При реорганизации или ликвидации ЦОК: выданные свидетельства остаются действительными, функции переходят к правопреемнику или другому аккредитованному ЦОК, информация сохраняется в централизованных реестрах.'
-    },
-    {
-      question: 'Можно ли получить свидетельство НОК на основе предыдущих аттестаций или сертификатов?',
-      answer: 'Нет, НОК является независимой процедурой оценки квалификации. Ранее полученные аттестаты, сертификаты или дипломы могут учитываться только как подтверждающие документы, но не освобождают от прохождения экзамена.'
-    },
-    {
-      question: 'Как часто обновляются вопросы в банке заданий для НОК?',
-      answer: 'Банки вопросов для НОК периодически обновляются с учетом изменений в законодательстве, обновлений профессиональных стандартов, развития технологий и анализа результатов экзаменов.'
-    }
-  ];
-  openedIndex: number | null = null;
-
-  openConsultationPopup(): void {
-    this.feedbackService.openForConsultation();
+  ngOnInit(): void {
+    this.setupSEO();
+    this.loadData();
+    this.setupQueryParams();
   }
 
-  ngOnInit(): void {
+  private setupSEO(): void {
     this.seo.setSeoData({
       title: 'FAQ по независимой оценке квалификации (НОК) — Часто задаваемые вопросы',
       description: 'Ответы на самые частые вопросы о независимой оценке квалификации (НОК): сроки, стоимость, документы, последствия, подготовка и многое другое.',
       keywords: 'НОК, FAQ, часто задаваемые вопросы, независимая оценка квалификации, экзамен, документы, стоимость, последствия, подготовка',
       ogImage: '/assets/images/og-default.jpg'
     });
-    this.seo.addFaqStructuredData(this.faqs);
   }
 
-  toggle(index: number) {
+  private loadData(): void {
+    combineLatest([
+      this.faqService.getAllQuestions(),
+      this.faqService.getAllCategories(),
+      this.faqService.getCategoryStats()
+    ]).subscribe(([questions, categories, stats]) => {
+      this.questions = questions;
+      this.categories = categories;
+      this.categoryStats = stats;
+      this.isLoading = false;
+    });
+  }
+
+  private setupQueryParams(): void {
+    this.route.queryParams.subscribe(params => {
+      if (params['category']) {
+        this.selectedCategory = params['category'];
+      }
+      if (params['search']) {
+        this.searchQuery = params['search'];
+      }
+      if (params['popular']) {
+        this.showOnlyPopular = params['popular'] === 'true';
+      }
+    });
+  }
+
+  toggle(index: number): void {
     this.openedIndex = this.openedIndex === index ? null : index;
+  }
+
+  onCategoryChange(categoryId: string): void {
+    this.selectedCategory = this.selectedCategory === categoryId ? '' : categoryId;
+    this.updateQueryParams();
+  }
+
+  onSearchChange(query: string): void {
+    this.searchQuery = query;
+    this.updateQueryParams();
+  }
+
+  onPopularToggle(): void {
+    this.showOnlyPopular = !this.showOnlyPopular;
+    this.updateQueryParams();
+  }
+
+  private updateQueryParams(): void {
+    const params: any = {};
+    
+    if (this.selectedCategory) {
+      params.category = this.selectedCategory;
+    }
+    if (this.searchQuery) {
+      params.search = this.searchQuery;
+    }
+    if (this.showOnlyPopular) {
+      params.popular = 'true';
+    }
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: params,
+      queryParamsHandling: 'merge'
+    });
+  }
+
+  get filteredQuestions(): FaqQuestion[] {
+    let filtered = this.questions;
+
+    // Фильтр по категории
+    if (this.selectedCategory) {
+      filtered = filtered.filter(q => q.category === this.selectedCategory);
+    }
+
+    // Фильтр по популярности
+    if (this.showOnlyPopular) {
+      filtered = filtered.filter(q => q.isPopular);
+    }
+
+    // Поиск по тексту
+    if (this.searchQuery) {
+      const query = this.searchQuery.toLowerCase();
+      filtered = filtered.filter(q => 
+        q.question.toLowerCase().includes(query) ||
+        q.shortAnswer.toLowerCase().includes(query) ||
+        q.fullAnswer.toLowerCase().includes(query) ||
+        q.tags.some(tag => tag.toLowerCase().includes(query))
+      );
+    }
+
+    return filtered;
+  }
+
+  get selectedCategoryData(): FaqCategory | null {
+    return this.categories.find(c => c.id === this.selectedCategory) || null;
+  }
+
+  openConsultationPopup(): void {
+    this.feedbackService.openForConsultation();
+  }
+
+  clearFilters(): void {
+    this.selectedCategory = '';
+    this.searchQuery = '';
+    this.showOnlyPopular = false;
+    this.updateQueryParams();
+  }
+
+  get hasActiveFilters(): boolean {
+    return !!this.selectedCategory || !!this.searchQuery || this.showOnlyPopular;
+  }
+
+  getCategoryColor(categoryId: string): string {
+    const category = this.categories.find(c => c.id === categoryId);
+    return category?.color || 'bg-gray-100 text-gray-800';
+  }
+
+  getCategoryName(categoryId: string): string {
+    const category = this.categories.find(c => c.id === categoryId);
+    return category?.name || 'FAQ';
   }
 } 

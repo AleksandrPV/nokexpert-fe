@@ -7,11 +7,12 @@ import { OrganizationService } from '../../../shared/services/organization.servi
 import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 import { CustomerReviewsComponent } from '../../../shared/components/customer-reviews/customer-reviews.component';
 import { CtaSectionComponent, CtaSectionConfig } from '../../../shared/components/cta-section/cta-section.component';
+import { FaqWidgetComponent } from '../../faq/components/faq-widget.component';
 
 @Component({
   selector: 'app-nok-nostroy-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, BreadcrumbsComponent, CustomerReviewsComponent, CtaSectionComponent],
+  imports: [CommonModule, RouterLink, BreadcrumbsComponent, CustomerReviewsComponent, CtaSectionComponent, FaqWidgetComponent],
   templateUrl: './nok-nostroy-page.component.html',
   styleUrls: ['./nok-nostroy-page.component.scss']
 })
