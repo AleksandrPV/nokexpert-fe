@@ -33,9 +33,12 @@ export const ORGANIZATION_CONFIG: OrganizationData = {
   
   // Социальные сети
   social: {
-    telegram: '@nok_expert',
+    vk: 'nok_expert',
+    telegram: 'nok_expert',
     whatsapp: '+78001234567',
-    vk: 'nok_expert'
+    youtube: '@nokexpert',
+    instagram: 'nok_expert',
+    linkedin: 'nok-expert'
   },
   
   // Рабочее время

@@ -24,12 +24,81 @@
           <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-brand-coral to-brand-sky group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
         </a>
 
-        <a routerLink="/services"
-           class="relative group px-4 py-2 rounded-xl transition-all duration-300 hover:glass">
-          <span class="relative z-10 text-brand-dark group-hover:text-gradient-primary">Услуги</span>
-          <div class="absolute inset-0 bg-gradient-to-r from-brand-sky/20 to-brand-coral/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-          <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-brand-coral to-brand-sky group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
-        </a>
+        <!-- Услуги with Submenu -->
+        <div class="relative group"
+             (mouseenter)="onServicesSubmenuEnter()"
+             (mouseleave)="onServicesSubmenuLeave()">
+          <a routerLink="/services"
+             class="relative px-4 py-2 rounded-xl transition-all duration-300 hover:glass flex items-center gap-2">
+            <span class="relative z-10 text-brand-dark group-hover:text-gradient-primary">Услуги</span>
+            <svg class="w-4 h-4 text-brand-dark group-hover:text-brand-coral transition-all duration-300 transform group-hover:rotate-180" 
+                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-sky/20 to-brand-coral/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+            <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-brand-coral to-brand-sky group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
+          </a>
+
+          <!-- Services Submenu -->
+          <div 
+            *ngIf="showServicesSubmenu"
+            class="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-80 bg-white/95 backdrop-blur-xl rounded-2xl border border-brand-sky/20 shadow-2xl p-6 z-50 animate-fade-in">
+            
+            <!-- Submenu Header -->
+            <div class="text-center mb-6">
+              <h3 class="text-lg font-bold text-brand-dark mb-2">Наши услуги</h3>
+              <p class="text-brand-dark/70 text-sm">Профессиональная подготовка к НОК</p>
+            </div>
+
+            <!-- Services List -->
+            <div class="space-y-3">
+              <a 
+                routerLink="/services/nok-nostroy"
+                class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-coral/10 transition-all duration-300 group">
+                <div class="w-10 h-10 bg-brand-coral/20 rounded-xl flex items-center justify-center">
+                  <span class="text-xl">🏗️</span>
+                </div>
+                <div class="flex-1">
+                  <div class="font-semibold text-brand-dark group-hover:text-brand-coral transition-colors">НОК НОСТРОЙ</div>
+                  <div class="text-xs text-brand-dark/60">Строительные специальности</div>
+                </div>
+                <div class="bg-brand-coral text-white px-2 py-1 rounded-full text-xs font-bold">Популярно</div>
+              </a>
+
+              <a 
+                routerLink="/services/nok-nopriz"
+                class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-sky/10 transition-all duration-300 group">
+                <div class="w-10 h-10 bg-brand-sky/20 rounded-xl flex items-center justify-center">
+                  <span class="text-xl">📐</span>
+                </div>
+                <div class="flex-1">
+                  <div class="font-semibold text-brand-dark group-hover:text-brand-sky transition-colors">НОК НОПРИЗ</div>
+                  <div class="text-xs text-brand-dark/60">Проектирование и изыскания</div>
+                </div>
+              </a>
+
+              <a 
+                routerLink="/services"
+                class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-navy/10 transition-all duration-300 group">
+                <div class="w-10 h-10 bg-brand-navy/20 rounded-xl flex items-center justify-center">
+                  <span class="text-xl">👨‍🏫</span>
+                </div>
+                <div class="flex-1">
+                  <div class="font-semibold text-brand-dark group-hover:text-brand-navy transition-colors">Консультации</div>
+                  <div class="text-xs text-brand-dark/60">Индивидуальные консультации</div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Quick Action -->
+            <div class="mt-6 pt-4 border-t border-brand-sky/10">
+              <a routerLink="/services" 
+                 class="block w-full bg-brand-navy text-white px-4 py-3 rounded-xl font-medium hover:bg-brand-dark transition-all duration-300 text-center">
+                📋 Все услуги
+              </a>
+            </div>
+          </div>
+        </div>
 
         <!-- НОК with Mega Menu -->
         <div class="relative group"
@@ -170,11 +239,45 @@
            class="block p-3 rounded-xl hover:glass-dark transition-all duration-300 text-brand-dark">
           🏠 Главная
         </a>
-        <a routerLink="/services"
-           (click)="closeMobileMenu()"
-           class="block p-3 rounded-xl hover:glass-dark transition-all duration-300 text-brand-dark">
-          🛠️ Услуги
-        </a>
+        <!-- Mobile Услуги Submenu -->
+        <div class="space-y-2">
+          <button 
+            (click)="toggleServicesSubmenu()"
+            class="w-full flex items-center justify-between p-3 rounded-xl hover:glass-dark transition-all duration-300 text-brand-dark">
+            <span>🛠️ Услуги</span>
+            <svg 
+              [class.rotate-180]="servicesSubmenuOpen"
+              class="w-4 h-4 transition-transform duration-300" 
+              fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          
+          <div 
+            [class.hidden]="!servicesSubmenuOpen"
+            class="pl-4 space-y-2 border-l-2 border-brand-sky/20">
+            <a routerLink="/services/nok-nostroy"
+               (click)="closeMobileMenu()"
+               class="block p-2 rounded-lg hover:bg-brand-coral/10 transition-colors text-sm text-brand-dark">
+              🏗️ НОК НОСТРОЙ
+            </a>
+            <a routerLink="/services/nok-nopriz"
+               (click)="closeMobileMenu()"
+               class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark">
+              📐 НОК НОПРИЗ
+            </a>
+            <a routerLink="/services"
+               (click)="closeMobileMenu()"
+               class="block p-2 rounded-lg hover:bg-brand-navy/10 transition-colors text-sm text-brand-dark">
+              👨‍🏫 Консультации
+            </a>
+            <a routerLink="/services"
+               (click)="closeMobileMenu()"
+               class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark">
+              📋 Все услуги
+            </a>
+          </div>
+        </div>
         
         <!-- Mobile НОК Submenu -->
         <div class="space-y-2">

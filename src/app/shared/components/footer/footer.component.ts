@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ORGANIZATION_CONFIG } from '../../../../environments/organization.config';
 
 @Component({
   selector: 'app-footer',
@@ -29,18 +30,35 @@ import { RouterLink } from '@angular/router';
               Профессиональная подготовка к независимой оценке квалификации для специалистов строительной отрасли.
             </p>
 
-            <div class="flex gap-4">
-              <a href="#" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky">
-                <span class="text-brand-navy">📘</span>
+            <div class="flex gap-3 sm:gap-4 flex-wrap">
+              <!-- ВКонтакте -->
+              <a [href]="'https://vk.com/' + ORGANIZATION_CONFIG.social?.vk" target="_blank" rel="noopener noreferrer" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky group" title="ВКонтакте">
+                <span class="text-blue-600 group-hover:scale-110 transition-transform text-lg">🔵</span>
               </a>
-              <a href="#" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky">
-                <span class="text-brand-coral">💬</span>
+              
+              <!-- Telegram -->
+              <a [href]="'https://t.me/' + ORGANIZATION_CONFIG.social?.telegram" target="_blank" rel="noopener noreferrer" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky group" title="Telegram">
+                <span class="text-blue-500 group-hover:scale-110 transition-transform text-lg">✈️</span>
               </a>
-              <a href="#" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky">
-                <span class="text-brand-coral">💬</span>
+              
+              <!-- WhatsApp -->
+              <a [href]="'https://wa.me/' + ORGANIZATION_CONFIG.social?.whatsapp" target="_blank" rel="noopener noreferrer" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky group" title="WhatsApp">
+                <span class="text-green-500 group-hover:scale-110 transition-transform text-lg">📱</span>
               </a>
-              <a href="#" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky">
-                <span class="text-brand-coral">📺</span>
+              
+              <!-- YouTube -->
+              <a [href]="'https://www.youtube.com/' + ORGANIZATION_CONFIG.social?.youtube" target="_blank" rel="noopener noreferrer" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky group" title="YouTube">
+                <span class="text-red-500 group-hover:scale-110 transition-transform text-lg">🎥</span>
+              </a>
+              
+              <!-- Instagram -->
+              <a [href]="'https://instagram.com/' + ORGANIZATION_CONFIG.social?.instagram" target="_blank" rel="noopener noreferrer" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky group" title="Instagram">
+                <span class="text-pink-500 group-hover:scale-110 transition-transform text-lg">📸</span>
+              </a>
+              
+              <!-- LinkedIn -->
+              <a [href]="'https://linkedin.com/company/' + ORGANIZATION_CONFIG.social?.linkedin" target="_blank" rel="noopener noreferrer" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky group" title="LinkedIn">
+                <span class="text-blue-700 group-hover:scale-110 transition-transform text-lg">💼</span>
               </a>
             </div>
           </div>
@@ -96,8 +114,8 @@ import { RouterLink } from '@angular/router';
                 <div class="w-8 h-8 bg-brand-sky rounded-xl flex items-center justify-center">📞</div>
                 <h5 class="font-semibold text-brand-dark">Телефон</h5>
               </div>
-              <a href="tel:+78001234567" class="text-brand-dark/80 hover:text-brand-sky transition-colors">
-                8 (800) 123-45-67
+              <a [href]="'tel:' + ORGANIZATION_CONFIG.phone.href" class="text-brand-dark/80 hover:text-brand-sky transition-colors">
+                {{ ORGANIZATION_CONFIG.phone.display }}
               </a>
               <p class="text-brand-dark/60 text-xs">Звонок бесплатный</p>
             </div>
@@ -107,8 +125,8 @@ import { RouterLink } from '@angular/router';
                 <div class="w-8 h-8 bg-brand-navy rounded-xl flex items-center justify-center">✉️</div>
                 <h5 class="font-semibold text-brand-dark">Email</h5>
               </div>
-              <a href="mailto:info&#64;nok-expert.ru" class="text-brand-dark/80 hover:text-brand-navy transition-colors">
-                info&#64;nok-expert.ru
+              <a [href]="'mailto:' + ORGANIZATION_CONFIG.email" class="text-brand-dark/80 hover:text-brand-navy transition-colors">
+                {{ ORGANIZATION_CONFIG.email }}
               </a>
               <p class="text-brand-dark/60 text-xs">Ответим в течение часа</p>
             </div>
@@ -118,8 +136,8 @@ import { RouterLink } from '@angular/router';
                 <div class="w-8 h-8 bg-brand-coral rounded-xl flex items-center justify-center">📍</div>
                 <h5 class="font-semibold text-brand-dark">Офис</h5>
               </div>
-              <p class="text-brand-dark/80">Москва, ул. Примерная, д. 1</p>
-              <p class="text-brand-dark/60 text-xs">Ежедневно 9:00-21:00</p>
+              <p class="text-brand-dark/80">{{ ORGANIZATION_CONFIG.address.full }}</p>
+              <p class="text-brand-dark/60 text-xs">{{ ORGANIZATION_CONFIG.workingHours?.weekdays || 'Пн-Пт: 9:00-18:00' }}</p>
             </div>
           </div>
         </div>
@@ -144,4 +162,6 @@ import { RouterLink } from '@angular/router';
   `,
   styles: []
 })
-export class FooterComponent {} 
+export class FooterComponent {
+  ORGANIZATION_CONFIG = ORGANIZATION_CONFIG;
+} 

@@ -15,10 +15,13 @@ import { OrganizationService } from '../../services/organization.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   showMegaMenu = false;
+  showServicesSubmenu = false;
   mobileMenuOpen = false;
   nokSubmenuOpen = false;
+  servicesSubmenuOpen = false;
   menuCategories: InfoCategory[] = [];
   megaMenuTimeout: any = null;
+  servicesSubmenuTimeout: any = null;
 
   private infoService = inject(InfoService);
   private feedbackService = inject(FeedbackPopupService);
@@ -47,6 +50,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (this.megaMenuTimeout) {
       clearTimeout(this.megaMenuTimeout);
     }
+    if (this.servicesSubmenuTimeout) {
+      clearTimeout(this.servicesSubmenuTimeout);
+    }
   }
 
   loadMenuCategories(): void {
@@ -71,18 +77,40 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }, 150);
   }
 
+  onServicesSubmenuEnter(): void {
+    this.showServicesSubmenu = true;
+    // Очищаем таймер скрытия, если он есть
+    if (this.servicesSubmenuTimeout) {
+      clearTimeout(this.servicesSubmenuTimeout);
+      this.servicesSubmenuTimeout = null;
+    }
+  }
+
+  onServicesSubmenuLeave(): void {
+    // Устанавливаем небольшую задержку перед скрытием
+    this.servicesSubmenuTimeout = setTimeout(() => {
+      this.showServicesSubmenu = false;
+    }, 150);
+  }
+
   toggleMobileMenu(): void {
     this.mobileMenuOpen = !this.mobileMenuOpen;
     this.nokSubmenuOpen = false; // Закрываем подменю при переключении основного меню
+    this.servicesSubmenuOpen = false;
   }
 
   closeMobileMenu(): void {
     this.mobileMenuOpen = false;
     this.nokSubmenuOpen = false;
+    this.servicesSubmenuOpen = false;
   }
 
   toggleNokSubmenu(): void {
     this.nokSubmenuOpen = !this.nokSubmenuOpen;
+  }
+
+  toggleServicesSubmenu(): void {
+    this.servicesSubmenuOpen = !this.servicesSubmenuOpen;
   }
 
   /**

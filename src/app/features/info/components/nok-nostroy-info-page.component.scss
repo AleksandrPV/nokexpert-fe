@@ -1,0 +1,256 @@
+// Адаптивные стили для информационной страницы НОК НОСТРОЙ
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  h1 {
+    font-size: 2.5rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  h2 {
+    font-size: 2rem !important;
+  }
+  
+  .text-xl {
+    font-size: 1.125rem !important;
+  }
+  
+  .py-20 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  
+  .gap-12 {
+    gap: 2rem !important;
+  }
+  
+  .p-8 {
+    padding: 1.5rem !important;
+  }
+  
+  .flex-wrap {
+    flex-direction: column !important;
+  }
+  
+  .flex-wrap > * {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .grid-cols-3 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .text-6xl {
+    font-size: 2.5rem !important;
+  }
+  
+  .text-5xl {
+    font-size: 2rem !important;
+  }
+  
+  .text-4xl {
+    font-size: 1.75rem !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  .gap-12 {
+    gap: 3rem !important;
+  }
+  
+  .text-6xl {
+    font-size: 3.5rem !important;
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1400px;
+  }
+  
+  .max-w-4xl {
+    max-width: 56rem;
+  }
+  
+  .max-w-6xl {
+    max-width: 72rem;
+  }
+  
+  .py-20 {
+    padding-top: 6rem !important;
+    padding-bottom: 6rem !important;
+  }
+}
+
+// Анимации для интерактивных элементов
+.hover\:shadow-lg:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.hover\:shadow-xl:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.hover\:-translate-y-1:hover {
+  transform: translateY(-0.25rem);
+}
+
+// Стили для хлебных крошек
+app-breadcrumbs {
+  margin-bottom: 2rem;
+}
+
+// Стили для кнопок
+button, a {
+  &:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+}
+
+// Улучшенные стили для градиентов
+.bg-gradient-to-br {
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+// Стили для иконок
+.text-3xl {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+// Стили для карточек
+.rounded-2xl {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Стили для текста
+.text-brand-dark\/70 {
+  line-height: 1.6;
+}
+
+// Стили для мобильной навигации
+@media (max-width: 768px) {
+  .flex-col {
+    gap: 1rem !important;
+  }
+  
+  .text-center {
+    text-align: center !important;
+  }
+  
+  .space-y-6 > * + * {
+    margin-top: 1.5rem !important;
+  }
+}
+
+// Стили для доступности
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// Стили для темной темы (если понадобится в будущем)
+@media (prefers-color-scheme: dark) {
+  // Здесь можно добавить стили для темной темы
+}
+
+// Стили для печати
+@media print {
+  .bg-gradient-to-br,
+  .bg-gradient-to-r {
+    background: white !important;
+  }
+  
+  .text-white {
+    color: black !important;
+  }
+  
+  .drop-shadow-xl {
+    filter: none !important;
+  }
+}
+
+// Дополнительные стили для улучшения читаемости
+.leading-relaxed {
+  line-height: 1.7;
+}
+
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+.space-y-6 > * + * {
+  margin-top: 1.5rem;
+}
+
+.space-y-8 > * + * {
+  margin-top: 2rem;
+}
+
+// Стили для улучшения контрастности
+.text-brand-dark\/60 {
+  color: rgba(17, 24, 39, 0.6);
+}
+
+.text-brand-dark\/70 {
+  color: rgba(17, 24, 39, 0.7);
+}
+
+.text-brand-dark\/80 {
+  color: rgba(17, 24, 39, 0.8);
+}
+
+// Стили для улучшения hover эффектов
+.hover\:bg-orange-600:hover {
+  background-color: #ea580c;
+}
+
+.hover\:bg-blue-600:hover {
+  background-color: #2563eb;
+}
+
+.hover\:bg-blue-800:hover {
+  background-color: #1e40af;
+}
+
+// Стили для улучшения фокуса
+.focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.focus\:ring-4:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+} 

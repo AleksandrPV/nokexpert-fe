@@ -1,7 +1,7 @@
 import { Component, computed, signal, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router, NavigationStart } from '@angular/router';
 import { FeedbackPopupService } from '../services/feedback-popup.service';
 import { 
   FeedbackFormData, 
@@ -29,6 +29,7 @@ export class FeedbackPopupComponent implements OnInit, OnDestroy {
 
   private _isSubmitting = signal(false);
   private _submitResult = signal<FeedbackSubmitResult | null>(null);
+  private routerSubscription?: any;
 
   // Вычисляемые свойства
   readonly formData = this._formData.asReadonly();
@@ -38,7 +39,7 @@ export class FeedbackPopupComponent implements OnInit, OnDestroy {
   readonly subjectOptions: any;
   readonly isVisible: any;
 
-  constructor(private feedbackService: FeedbackPopupService) {
+  constructor(private feedbackService: FeedbackPopupService, private router: Router) {
     this.config = this.feedbackService.config;
     this.subjectOptions = this.feedbackService.subjectOptions;
     this.isVisible = computed(() => this.config().isVisible);
@@ -47,11 +48,20 @@ export class FeedbackPopupComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // Сброс формы при открытии popup
     this.resetForm();
+    // Подписка на события роутера для автозакрытия попапа
+    this.routerSubscription = this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.close();
+      }
+    });
   }
 
   ngOnDestroy(): void {
     // Очистка при уничтожении компонента
     this.feedbackService.close();
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
   }
 
   /**

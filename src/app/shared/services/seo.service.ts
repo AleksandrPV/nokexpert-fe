@@ -230,6 +230,57 @@ export class SeoService {
     });
   }
 
+  setNokNostroyPageSeo(): void {
+    this.setSeoData({
+      title: 'НОК НОСТРОЙ - Подготовка к независимой оценке квалификации | НОК Эксперт',
+      description: 'Профессиональная подготовка к НОК НОСТРОЙ для специалистов строительной отрасли. 600+ вопросов, симулятор экзамена, гарантия сдачи. Стоимость от 35 000 ₽.',
+      keywords: 'НОК НОСТРОЙ, независимая оценка квалификации, строительство, подготовка к НОК, НРС, строительные специальности, квалификация строителя',
+      canonical: `${this.baseUrl}/services/nok-nostroy`,
+      ogTitle: 'НОК НОСТРОЙ - Подготовка к независимой оценке квалификации',
+      ogDescription: 'Профессиональная подготовка к НОК НОСТРОЙ. Гарантированный успех, опытные преподаватели, индивидуальный подход.',
+      ogImage: '/assets/images/nok-nostroy-og.jpg',
+      ogUrl: `${this.baseUrl}/services/nok-nostroy`,
+      twitterTitle: 'НОК НОСТРОЙ - Подготовка к НОК',
+      twitterDescription: 'Профессиональная подготовка к НОК НОСТРОЙ для строительных специалистов.',
+      twitterImage: '/assets/images/nok-nostroy-og.jpg',
+      structuredData: this.getNokNostroyStructuredData()
+    });
+  }
+
+  setNokNoprizPageSeo(): void {
+    this.setSeoData({
+      title: 'НОК НОПРИЗ - Подготовка к независимой оценке квалификации | НОК Эксперт',
+      description: 'Профессиональная подготовка к НОК НОПРИЗ для специалистов проектирования и изысканий. 800+ вопросов, помощь с портфолио, гарантия сдачи. Стоимость от 40 000 ₽.',
+      keywords: 'НОК НОПРИЗ, независимая оценка квалификации, проектирование, изыскания, подготовка к НОК, НРС, проектировщики, квалификация проектировщика',
+      canonical: `${this.baseUrl}/services/nok-nopriz`,
+      ogTitle: 'НОК НОПРИЗ - Подготовка к независимой оценке квалификации',
+      ogDescription: 'Профессиональная подготовка к НОК НОПРИЗ. Помощь с портфолио, гарантированный успех, опытные эксперты.',
+      ogImage: '/assets/images/nok-nopriz-og.jpg',
+      ogUrl: `${this.baseUrl}/services/nok-nopriz`,
+      twitterTitle: 'НОК НОПРИЗ - Подготовка к НОК',
+      twitterDescription: 'Профессиональная подготовка к НОК НОПРИЗ для специалистов проектирования и изысканий.',
+      twitterImage: '/assets/images/nok-nopriz-og.jpg',
+      structuredData: this.getNokNoprizStructuredData()
+    });
+  }
+
+  setNokNostroyInfoPageSeo(): void {
+    this.setSeoData({
+      title: 'НОК НОСТРОЙ - Информация о вступлении в реестр НОСТРОЙ | НОК Эксперт',
+      description: 'Полная информация о НОК НОСТРОЙ: как вступить в реестр НОСТРОЙ, требования к кандидатам, документы, стоимость и сроки. Независимая оценка квалификации для строительных специалистов.',
+      keywords: 'НОК НОСТРОЙ, вступление в реестр НОСТРОЙ, Национальный реестр специалистов, НРС, строительные специальности, квалификация строителя, документы для НОК, требования НОСТРОЙ',
+      canonical: `${this.baseUrl}/info/nok-nostroy`,
+      ogTitle: 'НОК НОСТРОЙ - Информация о вступлении в реестр НОСТРОЙ',
+      ogDescription: 'Полная информация о НОК НОСТРОЙ и процессе вступления в Национальный реестр специалистов.',
+      ogImage: '/assets/images/nok-nostroy-info-og.jpg',
+      ogUrl: `${this.baseUrl}/info/nok-nostroy`,
+      twitterTitle: 'НОК НОСТРОЙ - Информация',
+      twitterDescription: 'Информация о НОК НОСТРОЙ и вступлении в реестр НОСТРОЙ для строительных специалистов.',
+      twitterImage: '/assets/images/nok-nostroy-info-og.jpg',
+      structuredData: this.getNokNostroyInfoStructuredData()
+    });
+  }
+
   /**
    * Установить SEO для страницы информации о конкретной категории НОК
    */
@@ -640,5 +691,95 @@ export class SeoService {
     };
     
     this.updateStructuredData(structuredData);
+  }
+
+  /**
+   * Structured Data для страницы НОК НОСТРОЙ
+   */
+  private getNokNostroyStructuredData(): any {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "НОК НОСТРОЙ - Подготовка к независимой оценке квалификации",
+      "description": "Профессиональная подготовка к НОК НОСТРОЙ для специалистов строительной отрасли. 600+ вопросов, симулятор экзамена, гарантия сдачи.",
+      "provider": {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "serviceType": "Подготовка к НОК",
+      "category": "Образование",
+      "areaServed": "Российская Федерация",
+      "offers": {
+        "@type": "Offer",
+        "price": "35000",
+        "priceCurrency": "RUB",
+        "description": "Подготовка к НОК НОСТРОЙ с гарантией сдачи"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `${this.baseUrl}/services/nok-nostroy`
+      }
+    };
+  }
+
+  /**
+   * Structured Data для страницы НОК НОПРИЗ
+   */
+  private getNokNoprizStructuredData(): any {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "НОК НОПРИЗ - Подготовка к независимой оценке квалификации",
+      "description": "Профессиональная подготовка к НОК НОПРИЗ для специалистов проектирования и изысканий. 800+ вопросов, помощь с портфолио, гарантия сдачи.",
+      "provider": {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "serviceType": "Подготовка к НОК",
+      "category": "Образование",
+      "areaServed": "Российская Федерация",
+      "offers": {
+        "@type": "Offer",
+        "price": "40000",
+        "priceCurrency": "RUB",
+        "description": "Подготовка к НОК НОПРИЗ с гарантией сдачи"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `${this.baseUrl}/services/nok-nopriz`
+      }
+    };
+  }
+
+  /**
+   * Structured Data для информационной страницы НОК НОСТРОЙ
+   */
+  private getNokNostroyInfoStructuredData(): any {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "НОК НОСТРОЙ - Информация о вступлении в реестр НОСТРОЙ",
+      "description": "Полная информация о НОК НОСТРОЙ: как вступить в реестр НОСТРОЙ, требования к кандидатам, документы, стоимость и сроки.",
+      "author": {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "datePublished": "2024-01-01",
+      "dateModified": "2024-01-01",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `${this.baseUrl}/info/nok-nostroy`
+      },
+      "articleSection": "Информация о НОК",
+      "keywords": "НОК НОСТРОЙ, вступление в реестр НОСТРОЙ, Национальный реестр специалистов, НРС, строительные специальности"
+    };
   }
 } 

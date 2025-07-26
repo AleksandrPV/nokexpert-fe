@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { SeoService } from '../../../shared/services/seo.service';
 import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 import { Service, ServiceCategory } from '../models/service.interface';
@@ -11,7 +12,7 @@ import { Service, ServiceCategory } from '../models/service.interface';
 @Component({
   selector: 'app-services-page',
   standalone: true,
-  imports: [CommonModule, BreadcrumbsComponent],
+  imports: [CommonModule, RouterLink, BreadcrumbsComponent],
   templateUrl: './services-page.component.html',
   styleUrls: ['./services-page.component.scss']
 })

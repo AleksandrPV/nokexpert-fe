@@ -1,0 +1,263 @@
+// Адаптивные стили для страницы НОК НОСТРОЙ
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  h1 {
+    font-size: 2.5rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  h2 {
+    font-size: 2rem !important;
+  }
+  
+  .text-xl {
+    font-size: 1.125rem !important;
+  }
+  
+  .py-20 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  
+  .gap-12 {
+    gap: 2rem !important;
+  }
+  
+  .p-8 {
+    padding: 1.5rem !important;
+  }
+}
+
+// Анимации для карточек
+.card-hover {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Стили для бейджа "ПОПУЛЯРНО"
+.badge-popular {
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+// Стили для иконки услуги
+.service-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+// Стили для кнопок
+.btn-primary {
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+  }
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+  }
+}
+
+// Стили для секций
+.section-gradient {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(30, 58, 138, 0.05));
+}
+
+// Стили для карточек уровней
+.level-card {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Стили для процесса
+.process-step {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -2rem;
+    width: 2rem;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #1e40af);
+    transform: translateY(-50%);
+  }
+  
+  &:first-child::before {
+    display: none;
+  }
+}
+
+// Стили для преимуществ и рисков
+.benefit-card {
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border: 1px solid #bbf7d0;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(34, 197, 94, 0.1);
+  }
+}
+
+.risk-card {
+  background: linear-gradient(135deg, #fef2f2, #fecaca);
+  border: 1px solid #fca5a5;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(239, 68, 68, 0.1);
+  }
+}
+
+// Стили для CTA секции
+.cta-section {
+  background: linear-gradient(135deg, #1e40af, #1e293b);
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.1;
+  }
+}
+
+
+
+// Стили для хлебных крошек
+.breadcrumbs {
+  margin-bottom: 2rem;
+}
+
+// Стили для мобильной адаптации
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .flex-wrap {
+    flex-direction: column;
+  }
+  
+  .text-center {
+    text-align: center !important;
+  }
+  
+  .space-y-8 > * + * {
+    margin-top: 2rem !important;
+  }
+  
+  .space-y-6 > * + * {
+    margin-top: 1.5rem !important;
+  }
+  
+  .space-y-4 > * + * {
+    margin-top: 1rem !important;
+  }
+}
+
+// Стили для планшетов
+@media (min-width: 641px) and (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  .lg\\:grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+// Стили для больших экранов
+@media (min-width: 1025px) {
+  .container {
+    max-width: 1200px;
+  }
+  
+  .max-w-6xl {
+    max-width: 72rem;
+  }
+  
+  .max-w-5xl {
+    max-width: 64rem;
+  }
+  
+  .max-w-4xl {
+    max-width: 56rem;
+  }
+}
+
+// Стили для доступности
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// Стили для фокуса
+button:focus,
+a:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+// Стили для печати
+@media print {
+  .btn-primary,
+  .btn-secondary,
+  button {
+    display: none !important;
+  }
+  
+  .cta-section {
+    background: white !important;
+    color: black !important;
+  }
+} 

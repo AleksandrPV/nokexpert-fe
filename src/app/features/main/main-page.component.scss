@@ -1,6 +1,34 @@
 // Main Page Component Styles
 // Компонентные стили могут быть добавлены здесь при необходимости
 
+// Оптимизация херо-секции для уменьшения расстояния от хедера
+section.relative {
+  &.min-h-\[80vh\] {
+    min-height: 80vh;
+    
+    @media (max-width: 768px) {
+      min-height: 70vh;
+      padding-top: 4rem;
+    }
+    
+    @media (max-width: 480px) {
+      min-height: 65vh;
+      padding-top: 3rem;
+    }
+  }
+}
+
+// Уменьшение отступов в херо-секции
+section.relative .container {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  
+  @media (max-width: 768px) {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
 // Дополнительные адаптивные стили для главной страницы
 @media (max-width: 480px) {
   // Оптимизация для очень маленьких экранов
@@ -280,4 +308,100 @@ a:focus {
   .card-modern {
     padding: 3rem;
   }
+}
+
+// Дополнительные стили для улучшенного блока рисков и преимуществ
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+// Улучшенные hover-эффекты для карточек
+.group:hover .group-hover\\:scale-110 {
+  transform: scale(1.1);
+}
+
+// Градиентные фоны для декоративных элементов
+.bg-gradient-to-br {
+  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+}
+
+.bg-gradient-to-tl {
+  background-image: linear-gradient(to top left, var(--tw-gradient-stops));
+}
+
+// Улучшенные тени для карточек
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+// Анимация для кнопки призыва к действию
+.hover\\:-translate-y-1:hover {
+  transform: translateY(-0.25rem);
+}
+
+// Улучшенные стили для кнопки призыва к действию
+.hover\\:-translate-y-2:hover {
+  transform: translateY(-0.5rem);
+}
+
+.hover\\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+// Комбинированные эффекты для кнопки
+.hover\\:-translate-y-2.hover\\:scale-105:hover {
+  transform: translateY(-0.5rem) scale(1.05);
+}
+
+// Улучшенные тени
+.shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+// Анимация для иконки в кнопке
+.animate-professional-glow {
+  animation: professional-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes professional-glow {
+  from {
+    box-shadow: 0 0 20px rgba(251, 146, 60, 0.4);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(251, 146, 60, 0.6), 0 0 40px rgba(251, 146, 60, 0.3);
+  }
+}
+
+// Улучшенные стили для кнопки призыва к действию
+button {
+  &.bg-gradient-to-r {
+    .text-white {
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+    
+    span:first-child,
+    span:last-child {
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+    }
+    
+    &:hover {
+      .text-white {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+}
+
+// Улучшенная видимость текста под кнопкой
+.font-medium {
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 } 

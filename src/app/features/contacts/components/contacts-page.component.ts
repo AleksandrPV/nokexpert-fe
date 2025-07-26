@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { YandexMapComponent } from '../../../shared/components/yandex-map/yandex-map.component';
 import { MapMarker } from '../../../core/services/yandex-maps.service';
 import { SeoService } from '../../../shared/services/seo.service';
@@ -14,7 +15,7 @@ import { OrganizationService } from '../../../shared/services/organization.servi
 @Component({
   selector: 'app-contacts-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, YandexMapComponent, BreadcrumbsComponent],
+  imports: [CommonModule, FormsModule, RouterLink, YandexMapComponent, BreadcrumbsComponent],
   templateUrl: './contacts-page.component.html',
   styleUrls: ['./contacts-page.component.scss']
 })

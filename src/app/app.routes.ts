@@ -13,6 +13,9 @@ import { PrivacyPolicyPageComponent } from './features/privacy-policy/components
 import { BlogArticlePageComponent } from './features/blog/components/blog-article-page.component';
 import { PublicOfferPageComponent } from './features/public-offer/components/public-offer-page.component';
 import { UserAgreementPageComponent } from './features/user-agreement/components/user-agreement-page.component';
+import { NokNostroyPageComponent } from './features/services/nok-nostroy/nok-nostroy-page.component';
+import { NokNoprizPageComponent } from './features/services/nok-nopriz/nok-nopriz-page.component';
+import { NokNostroyInfoPageComponent } from './features/info/components/nok-nostroy-info-page.component';
 
 export const routes: Routes = [
   {
@@ -21,11 +24,14 @@ export const routes: Routes = [
     children: [
       { path: '', component: MainPageComponent },
       { path: 'services', component: ServicesPageComponent },
+                        { path: 'services/nok-nostroy', component: NokNostroyPageComponent },
+                  { path: 'services/nok-nopriz', component: NokNoprizPageComponent },
       { path: 'services/:id', component: ServiceDetailPageComponent },
       { path: 'contacts', component: ContactsPageComponent },
       { path: 'blog', component: BlogPageComponent },
       { path: 'blog/nostroy-changes-2024', component: BlogArticlePageComponent },
-      { path: 'info', component: InfoPageComponent },
+                        { path: 'info', component: InfoPageComponent },
+                  { path: 'info/nok-nostroy', component: NokNostroyInfoPageComponent },
       { path: 'faq', component: FaqPageComponent },
       { path: 'center', component: CenterPageComponent },
       { path: 'qualifications', component: QualificationsPageComponent },

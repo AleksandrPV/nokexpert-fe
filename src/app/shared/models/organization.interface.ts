@@ -33,9 +33,12 @@ export interface OrganizationData {
   
   // Социальные сети (опционально)
   social?: {
+    vk?: string;
     telegram?: string;
     whatsapp?: string;
-    vk?: string;
+    youtube?: string;
+    instagram?: string;
+    linkedin?: string;
   };
   
   // Рабочее время (опционально)
