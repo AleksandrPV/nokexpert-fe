@@ -44,6 +44,13 @@ export class SitemapService {
   }
 
   /**
+   * Получить sitemap FAQ
+   */
+  getFaqSitemap(): Observable<SitemapData> {
+    return this.http.get<SitemapData>(`${this.baseUrl}/sitemap-faq.xml`);
+  }
+
+  /**
    * Генерировать sitemap на основе данных приложения
    * ВРЕМЕННО ОТКЛЮЧЕНО - сайт закрыт для индексации
    */
@@ -179,5 +186,34 @@ export class SitemapService {
         lastUpdated: new Date().toISOString()
       }))
     );
+  }
+
+  /**
+   * Генерировать sitemap FAQ страниц
+   */
+  generateFaqSitemap(faqQuestions: any[]): Observable<SitemapData> {
+    const today = new Date().toISOString().split('T')[0];
+    
+    const urls: SitemapUrl[] = [
+      // Главная страница FAQ
+      {
+        loc: `${this.baseUrl}/faq`,
+        lastmod: today,
+        changefreq: 'monthly',
+        priority: 0.8
+      }
+    ];
+
+    // Добавляем отдельные FAQ страницы
+    faqQuestions.forEach(question => {
+      urls.push({
+        loc: `${this.baseUrl}/faq/${question.slug}`,
+        lastmod: question.updatedAt ? new Date(question.updatedAt).toISOString().split('T')[0] : today,
+        changefreq: 'monthly',
+        priority: 0.6
+      });
+    });
+
+    return of({ urls });
   }
 } 

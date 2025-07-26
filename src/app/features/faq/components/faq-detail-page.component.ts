@@ -218,12 +218,13 @@ export class FaqDetailPageComponent implements OnInit {
         
         this.question = question;
         this.setupBreadcrumbs();
-        this.setupSEO();
         
         // Загружаем категорию и связанные вопросы
         return this.faqService.getCategoryById(question.category).pipe(
           switchMap(category => {
             this.category = category;
+            // Настраиваем SEO после загрузки категории
+            this.setupSEO();
             return this.faqService.getRelatedQuestions(question.id);
           })
         );
@@ -252,11 +253,28 @@ export class FaqDetailPageComponent implements OnInit {
   private setupSEO(): void {
     if (!this.question) return;
 
+    // Формируем SEO-оптимизированный заголовок
+    const seoTitle = `${this.question.question} — FAQ по НОК | ${this.organizationService.getName()}`;
+    
+    // Формируем SEO-оптимизированное описание
+    const seoDescription = this.question.shortAnswer.length > 160 
+      ? this.question.shortAnswer.substring(0, 157) + '...'
+      : this.question.shortAnswer;
+    
+    // Формируем ключевые слова
+    const categoryKeywords = this.category ? `${this.category.name}, ` : '';
+    const tagKeywords = this.question.tags.join(', ');
+    const seoKeywords = `НОК, независимая оценка квалификации, FAQ, ${categoryKeywords}${tagKeywords}, ${this.question.question}`;
+
+    // Устанавливаем SEO-метаданные
     this.seo.setSeoData({
-      title: `${this.question.question} — FAQ по НОК`,
-      description: this.question.shortAnswer,
-      keywords: `НОК, FAQ, ${this.question.tags.join(', ')}, ${this.question.question}`,
-      ogImage: '/assets/images/og-default.jpg'
+      title: seoTitle,
+      description: seoDescription,
+      keywords: seoKeywords,
+      ogImage: '/assets/images/og-default.jpg',
+      ogTitle: seoTitle,
+      ogDescription: seoDescription,
+      canonical: `${window.location.origin}/faq/${this.question.slug}`
     });
 
     // Добавляем структурированные данные для FAQ
@@ -264,6 +282,13 @@ export class FaqDetailPageComponent implements OnInit {
       question: this.question.question,
       answer: this.question.fullAnswer
     }]);
+
+    // Добавляем breadcrumb структурированные данные
+    this.seo.addBreadcrumbsStructuredData([
+      { name: 'Главная', url: window.location.origin },
+      { name: 'FAQ', url: `${window.location.origin}/faq` },
+      { name: this.question.question, url: `${window.location.origin}/faq/${this.question.slug}` }
+    ]);
   }
 
   openConsultationPopup(): void {
