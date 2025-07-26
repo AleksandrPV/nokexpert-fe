@@ -577,28 +577,6 @@
 </section>
 
 <!-- Call to Action -->
-<section class="py-20 bg-gradient-to-br from-brand-navy via-brand-dark to-black text-white">
-  <div class="container mx-auto px-6">
-    <div class="text-center max-w-4xl mx-auto">
-      <h2 class="text-4xl font-bold mb-6">Нужна помощь в подготовке к НОК?</h2>
-      <p class="text-xl text-white/90 mb-8 font-medium">
-        Наши эксперты помогут выбрать подходящий ЦОК и успешно подготовиться к экзамену
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button 
-          (click)="openConsultationPopup()"
-          class="bg-brand-coral hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-          📞 Получить консультацию
-        </button>
-                  <a 
-            [href]="'tel:' + organizationService.getPhoneHref()"
-            class="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-bold border border-white/30 hover:bg-white/20 transition-all duration-300 shadow-lg">
-            📱 {{ organizationService.getPhoneDisplay() }}
-          </a>
-      </div>
-      <div class="mt-8 text-white/70 font-medium">
-        <p>Ответим в течение 15 минут • Консультация бесплатна</p>
-      </div>
-    </div>
-  </div>
-</section> 
+<app-cta-section 
+  [config]="qaCentersCtaConfig">
+</app-cta-section> 

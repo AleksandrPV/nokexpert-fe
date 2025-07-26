@@ -272,32 +272,6 @@
 <app-customer-reviews serviceType="НОК НОСТРОЙ" [maxReviews]="3"></app-customer-reviews>
 
 <!-- CTA Section -->
-<section class="py-20 bg-gradient-to-br from-slate-900 via-brand-navy to-black text-white relative">
-  <div class="container mx-auto px-6">
-    <div class="text-center max-w-4xl mx-auto relative">
-      <h2 class="text-3xl md:text-4xl font-bold mb-6 drop-shadow-xl relative">
-        Готовы начать подготовку к НОК НОСТРОЙ?
-      </h2>
-      <p class="text-xl text-white font-bold mb-8 drop-shadow-xl relative">
-        Получите персональный план подготовки и гарантированно сдайте экзамен с первого раза
-      </p>
-      
-      <div class="flex flex-col sm:flex-row gap-4 justify-center relative">
-        <button 
-          (click)="openConsultationPopup()"
-          class="bg-brand-coral hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 drop-shadow-xl">
-          📞 Бесплатная консультация
-        </button>
-        <a 
-          [href]="'tel:' + phoneHref"
-          class="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-bold border border-white/20 hover:bg-white/20 transition-all duration-300 drop-shadow-xl">
-          📱 {{ phoneDisplay }}
-        </a>
-      </div>
-
-      <div class="mt-8 text-white font-bold text-base drop-shadow-xl relative">
-        <p>Ответим в течение 15 минут • Консультация бесплатна</p>
-      </div>
-    </div>
-  </div>
-</section> 
+<app-cta-section 
+  [config]="nokNostroyCtaConfig">
+</app-cta-section> 

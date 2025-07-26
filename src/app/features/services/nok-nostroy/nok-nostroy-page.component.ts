@@ -6,11 +6,12 @@ import { FeedbackPopupService } from '../../feedback-popup/services/feedback-pop
 import { OrganizationService } from '../../../shared/services/organization.service';
 import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 import { CustomerReviewsComponent } from '../../../shared/components/customer-reviews/customer-reviews.component';
+import { CtaSectionComponent, CtaSectionConfig } from '../../../shared/components/cta-section/cta-section.component';
 
 @Component({
   selector: 'app-nok-nostroy-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, BreadcrumbsComponent, CustomerReviewsComponent],
+  imports: [CommonModule, RouterLink, BreadcrumbsComponent, CustomerReviewsComponent, CtaSectionComponent],
   templateUrl: './nok-nostroy-page.component.html',
   styleUrls: ['./nok-nostroy-page.component.scss']
 })
@@ -31,6 +32,29 @@ export class NokNostroyPageComponent implements OnInit {
   get email(): string {
     return this.organizationService.getEmail();
   }
+
+  // Конфигурация CTA для НОК НОСТРОЙ
+  nokNostroyCtaConfig: CtaSectionConfig = {
+    title: 'Готовы начать подготовку к НОК НОСТРОЙ?',
+    subtitle: 'Получите персональный план подготовки и гарантированно сдайте экзамен с первого раза',
+    background: 'dark',
+    padding: 'medium',
+    showAdditionalInfo: true,
+    buttons: [
+      {
+        text: 'Бесплатная консультация',
+        icon: '📞',
+        action: 'consultation',
+        variant: 'primary'
+      },
+      {
+        text: 'Позвонить',
+        icon: '📱',
+        action: 'phone',
+        variant: 'secondary'
+      }
+    ]
+  };
 
   // Данные услуги
   serviceData = {

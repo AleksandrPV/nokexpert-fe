@@ -5,11 +5,12 @@ import { SeoService } from '../../../shared/services/seo.service';
 import { FeedbackPopupService } from '../../feedback-popup/services/feedback-popup.service';
 import { OrganizationService } from '../../../shared/services/organization.service';
 import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
+import { CtaSectionComponent, CtaSectionConfig } from '../../../shared/components/cta-section/cta-section.component';
 
 @Component({
   selector: 'app-nok-nopriz-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, BreadcrumbsComponent],
+  imports: [CommonModule, RouterLink, BreadcrumbsComponent, CtaSectionComponent],
   templateUrl: './nok-nopriz-page.component.html',
   styleUrls: ['./nok-nopriz-page.component.scss']
 })
@@ -30,6 +31,29 @@ export class NokNoprizPageComponent implements OnInit {
   get email(): string {
     return this.organizationService.getEmail();
   }
+
+  // Конфигурация CTA для НОК НОПРИЗ
+  nokNoprizCtaConfig: CtaSectionConfig = {
+    title: 'Готовы начать подготовку к НОК НОПРИЗ?',
+    subtitle: 'Получите персональный план подготовки и гарантированно сдайте экзамен с первого раза',
+    background: 'dark',
+    padding: 'medium',
+    showAdditionalInfo: true,
+    buttons: [
+      {
+        text: 'Бесплатная консультация',
+        icon: '📞',
+        action: 'consultation',
+        variant: 'primary'
+      },
+      {
+        text: 'Позвонить',
+        icon: '📱',
+        action: 'phone',
+        variant: 'secondary'
+      }
+    ]
+  };
 
   // Данные услуги
   serviceData = {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
+import { CtaSectionComponent, CtaSectionConfig } from '../../../shared/components/cta-section/cta-section.component';
 import { SeoService } from '../../../shared/services/seo.service';
 import { FeedbackPopupService } from '../../feedback-popup/services/feedback-popup.service';
 import { OrganizationService } from '../../../shared/services/organization.service';
@@ -8,7 +9,7 @@ import { OrganizationService } from '../../../shared/services/organization.servi
 @Component({
   selector: 'app-qa-centers-page',
   standalone: true,
-  imports: [CommonModule, BreadcrumbsComponent],
+  imports: [CommonModule, BreadcrumbsComponent, CtaSectionComponent],
   templateUrl: './centers-page.component.html',
   styleUrls: ['./centers-page.component.scss']
 })
@@ -227,6 +228,29 @@ export class QaCentersPageComponent implements OnInit {
     { label: 'Главная', url: '/' },
     { label: 'Центры оценки квалификации', url: '/qa-centers' }
   ];
+
+  // Конфигурация CTA для центров оценки квалификации
+  qaCentersCtaConfig: CtaSectionConfig = {
+    title: 'Нужна помощь в подготовке к НОК?',
+    subtitle: 'Наши эксперты помогут выбрать подходящий ЦОК и успешно подготовиться к экзамену',
+    background: 'dark',
+    padding: 'medium',
+    showAdditionalInfo: true,
+    buttons: [
+      {
+        text: 'Получить консультацию',
+        icon: '📞',
+        action: 'consultation',
+        variant: 'primary'
+      },
+      {
+        text: 'Позвонить',
+        icon: '📱',
+        action: 'phone',
+        variant: 'secondary'
+      }
+    ]
+  };
 
   constructor(
     private seoService: SeoService,

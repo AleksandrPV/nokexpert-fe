@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
+import { CtaSectionComponent, CtaSectionConfig } from '../../../shared/components/cta-section/cta-section.component';
 import { SeoService } from '../../../shared/services/seo.service';
 import { FeedbackPopupService } from '../../../features/feedback-popup/services/feedback-popup.service';
 import { OrganizationService } from '../../../shared/services/organization.service';
@@ -9,7 +10,7 @@ import { OrganizationService } from '../../../shared/services/organization.servi
 @Component({
   selector: 'app-nok-opb-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, BreadcrumbsComponent],
+  imports: [CommonModule, RouterLink, BreadcrumbsComponent, CtaSectionComponent],
   templateUrl: './nok-opb-page.component.html',
   styleUrls: ['./nok-opb-page.component.scss']
 })
@@ -22,6 +23,29 @@ export class NokOpbPageComponent implements OnInit {
 
   phoneDisplay = '';
   phoneHref = '';
+
+  // Конфигурация CTA для НОК ОПБ
+  nokOpbCtaConfig: CtaSectionConfig = {
+    title: 'Готовы начать подготовку к НОК ОПБ?',
+    subtitle: 'Получите персональный план подготовки и гарантированно сдайте экзамен с первого раза',
+    background: 'dark',
+    padding: 'medium',
+    showAdditionalInfo: true,
+    buttons: [
+      {
+        text: 'Бесплатная консультация',
+        icon: '📞',
+        action: 'consultation',
+        variant: 'primary'
+      },
+      {
+        text: 'Позвонить',
+        icon: '📱',
+        action: 'phone',
+        variant: 'secondary'
+      }
+    ]
+  };
 
   serviceData = {
     title: 'НОК для ответственных по пожарной безопасности',

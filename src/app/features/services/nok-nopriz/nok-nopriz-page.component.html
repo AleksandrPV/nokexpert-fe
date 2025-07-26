@@ -267,32 +267,6 @@
 </section>
 
 <!-- CTA Section -->
-<section class="py-20 bg-gradient-to-r from-brand-sky/20 via-brand-coral/15 to-white text-brand-dark relative">
-  <div class="container mx-auto px-6">
-    <div class="text-center max-w-4xl mx-auto relative">
-      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-brand-dark relative">
-        Готовы начать подготовку к НОК НОПРИЗ?
-      </h2>
-      <p class="text-xl text-brand-dark/80 font-bold mb-8 relative">
-        Получите персональный план подготовки и гарантированно сдайте экзамен с первого раза
-      </p>
-      
-      <div class="flex flex-col sm:flex-row gap-4 justify-center relative">
-        <button 
-          (click)="openConsultationPopup()"
-          class="bg-brand-coral hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 shadow-lg">
-          📞 Бесплатная консультация
-        </button>
-        <a 
-          [href]="'tel:' + phoneHref"
-          class="bg-white/80 backdrop-blur-sm text-brand-dark px-8 py-4 rounded-xl font-bold border border-brand-sky/30 hover:bg-white transition-all duration-300 shadow-lg">
-          📱 {{ phoneDisplay }}
-        </a>
-      </div>
-
-      <div class="mt-8 text-brand-dark/70 font-bold text-base relative">
-        <p>Ответим в течение 15 минут • Консультация бесплатна</p>
-      </div>
-    </div>
-  </div>
-</section> 
+<app-cta-section 
+  [config]="nokNoprizCtaConfig">
+</app-cta-section> 

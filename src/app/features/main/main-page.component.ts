@@ -7,6 +7,7 @@ import { OrganizationService } from '../../shared/services/organization.service'
 import { RelatedMaterialsComponent } from '../../shared/components/related-materials/related-materials.component';
 import { NavigationLinksComponent } from '../../shared/components/navigation-links/navigation-links.component';
 import { CustomerReviewsComponent } from '../../shared/components/customer-reviews/customer-reviews.component';
+import { CtaSectionComponent, CtaSectionConfig } from '../../shared/components/cta-section/cta-section.component';
 
 /**
  * Компонент главной страницы
@@ -15,7 +16,7 @@ import { CustomerReviewsComponent } from '../../shared/components/customer-revie
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [CommonModule, RelatedMaterialsComponent, NavigationLinksComponent, CustomerReviewsComponent],
+  imports: [CommonModule, RelatedMaterialsComponent, NavigationLinksComponent, CustomerReviewsComponent, CtaSectionComponent],
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss']
 })
@@ -48,6 +49,24 @@ export class MainPageComponent implements OnInit {
   get hasLicense(): boolean {
     return this.organizationService.hasLicense();
   }
+
+  // Конфигурация для главного CTA
+  mainCtaConfig: CtaSectionConfig = {
+    title: 'Готовы к успешной аттестации?',
+    description: 'Получите профессиональную консультацию и выберите оптимальную программу подготовки',
+    background: 'white',
+    padding: 'large',
+    showPhone: true,
+    showEmail: true,
+    buttons: [
+      {
+        text: 'Записаться на консультацию',
+        icon: '💼',
+        action: 'consultation',
+        variant: 'primary'
+      }
+    ]
+  };
 
   ngOnInit(): void {
     // Устанавливаем SEO данные для главной страницы
