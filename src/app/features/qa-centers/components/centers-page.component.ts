@@ -249,7 +249,38 @@ export class QaCentersPageComponent implements OnInit {
     }
   }
 
-  toggleFaq(faqItem: any): void {
-    faqItem.isOpen = !faqItem.isOpen;
+  toggleFaq(event: Event): void {
+    const button = event.target as HTMLElement;
+    const faqItem = button.closest('.bg-white');
+    const answer = faqItem?.querySelector('.faq-answer');
+    const icon = button.querySelector('span');
+    
+    if (answer && icon) {
+      const isOpen = answer.classList.contains('block');
+      
+      // Закрыть все остальные FAQ
+      document.querySelectorAll('.faq-answer').forEach(item => {
+        item.classList.remove('block');
+        item.classList.add('hidden');
+      });
+      document.querySelectorAll('.faq-answer').forEach((item, index) => {
+        const parent = item.closest('.bg-white');
+        const parentIcon = parent?.querySelector('span');
+        if (parentIcon) {
+          parentIcon.style.transform = 'rotate(0deg)';
+        }
+      });
+      
+      // Переключить текущий FAQ
+      if (isOpen) {
+        answer.classList.remove('block');
+        answer.classList.add('hidden');
+        icon.style.transform = 'rotate(0deg)';
+      } else {
+        answer.classList.remove('hidden');
+        answer.classList.add('block');
+        icon.style.transform = 'rotate(180deg)';
+      }
+    }
   }
 } 
