@@ -4,6 +4,7 @@ export interface FaqCategory {
   description: string;
   icon: string;
   color: string;
+  count?: number;
 }
 
 export interface FaqQuestion {
