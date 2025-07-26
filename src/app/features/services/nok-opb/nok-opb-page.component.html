@@ -1,0 +1,441 @@
+<!-- Breadcrumbs -->
+<app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
+
+<!-- Hero Section -->
+<section class="bg-gradient-to-br from-red-600 via-red-700 to-red-800 text-white py-20 relative overflow-hidden">
+  <div class="absolute inset-0 bg-black/20"></div>
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="text-center max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">
+        🔥 {{ serviceData.title }}
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 opacity-90">
+        {{ serviceData.subtitle }}: актуальная информация, требования, процедура
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button 
+          (click)="openConsultationPopup()"
+          class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 shadow-lg">
+          📞 Бесплатная консультация
+        </button>
+        <a 
+          [href]="'tel:' + phoneHref"
+          class="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-bold border border-white/30 hover:bg-white/30 transition-all duration-300 shadow-lg">
+          📱 {{ phoneDisplay }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Актуальная правовая ситуация -->
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-brand-dark">
+      ⚖️ Актуальная правовая ситуация
+    </h2>
+    
+    <div class="max-w-4xl mx-auto space-y-6">
+      <!-- Важное предупреждение -->
+      <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-xl">
+        <div class="flex items-start">
+          <div class="text-yellow-600 text-2xl mr-4">⚠️</div>
+          <div>
+            <h3 class="text-lg font-bold text-yellow-800 mb-2">Важная информация об обязательности НОК</h3>
+            <p class="text-yellow-700">
+              <strong>По состоянию на 2025 год НОК по пожарной безопасности НЕ является обязательной.</strong> 
+              Несмотря на принятие ФЗ №370 от 24.09.2022, МЧС России в официальных письмах подтвердило добровольный характер независимой оценки квалификации в области пожарной безопасности.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Рекомендации -->
+      <div class="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-xl">
+        <div class="flex items-start">
+          <div class="text-blue-600 text-2xl mr-4">ℹ️</div>
+          <div>
+            <h3 class="text-lg font-bold text-blue-800 mb-2">Рекомендации для работодателей</h3>
+            <p class="text-blue-700">
+              Решение о направлении сотрудников на НОК принимает работодатель самостоятельно. 
+              Специалисты, прошедшие обучение по программам повышения квалификации в рамках приказа МЧС №806, 
+              могут продолжать работать в качестве ответственных за пожарную безопасность.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ответственность -->
+      <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded-r-xl">
+        <div class="flex items-start">
+          <div class="text-red-600 text-2xl mr-4">🔥</div>
+          <div>
+            <h3 class="text-lg font-bold text-red-800 mb-2">Ответственность за нарушения пожарной безопасности</h3>
+            <p class="text-red-700">
+              Независимо от наличия НОК, нарушение требований пожарной безопасности влечет серьезную ответственность: 
+              штрафы до 400 000 рублей для организаций (ст. 20.4 КоАП РФ), а при тяжких последствиях — уголовную ответственность (ст. 219 УК РФ).
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Что такое НОК по пожарной безопасности -->
+<section class="py-16">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-brand-dark">
+      🔥 Что такое НОК по пожарной безопасности?
+    </h2>
+    
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white text-2xl mb-6 mx-auto">
+          🔥
+        </div>
+        <h3 class="text-xl font-bold mb-4 text-center">Независимая оценка квалификации</h3>
+        <p class="text-gray-600 text-center">
+          НОК — это процедура подтверждения соответствия квалификации специалиста требованиям профессиональных стандартов в области пожарной безопасности, проводимая в аккредитованных центрах оценки квалификации.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white text-2xl mb-6 mx-auto">
+          📋
+        </div>
+        <h3 class="text-xl font-bold mb-4 text-center">Профессиональный экзамен</h3>
+        <p class="text-gray-600 text-center">
+          Экзамен состоит из теоретической части (тестирование на компьютере) и практической части (решение ситуационных задач или защита портфолио). Проводится только в очном формате.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white text-2xl mb-6 mx-auto">
+          🎓
+        </div>
+        <h3 class="text-xl font-bold mb-4 text-center">Свидетельство о квалификации</h3>
+        <p class="text-gray-600 text-center">
+          При успешной сдаче экзамена выдается свидетельство о квалификации, действующее 5 лет. Документ подтверждает профессиональную компетентность специалиста.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Профессиональные квалификации -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-brand-dark">
+      🎯 Профессиональные квалификации
+    </h2>
+    
+    <div class="max-w-4xl mx-auto space-y-8">
+      <div 
+        *ngFor="let level of serviceData.levels"
+        class="bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-red-500 rounded-r-xl p-8">
+        <div class="flex items-center mb-4">
+          <span class="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-bold mr-4">
+            {{ level.level }}
+          </span>
+          <h3 class="text-xl font-bold text-brand-dark">{{ level.title }}</h3>
+        </div>
+        <p class="text-brand-dark/70 mb-4"><strong>Основные функции:</strong></p>
+        <ul class="space-y-2">
+          <li 
+            *ngFor="let function of level.functions"
+            class="flex items-start">
+            <span class="text-red-500 mr-3 mt-1">•</span>
+            <span class="text-brand-dark">{{ function }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-xl">
+        <div class="flex items-start">
+          <div class="text-blue-600 text-2xl mr-4">ℹ️</div>
+          <div>
+            <h4 class="text-lg font-bold text-blue-800 mb-2">СПК ЧС</h4>
+            <p class="text-blue-700">
+              Независимая оценка квалификации в области пожарной безопасности проводится под эгидой 
+              <strong>Совета по профессиональным квалификациям в области обеспечения безопасности в чрезвычайных ситуациях (СПК ЧС)</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Процедура прохождения НОК -->
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-brand-dark">
+      📋 Процедура прохождения НОК
+    </h2>
+    
+    <div class="max-w-4xl mx-auto">
+      <div class="relative">
+        <!-- Timeline line -->
+        <div class="absolute left-8 top-0 bottom-0 w-1 bg-red-500 hidden md:block"></div>
+        
+        <div class="space-y-8">
+          <div 
+            *ngFor="let step of serviceData.process"
+            class="relative flex items-start">
+            <!-- Step number -->
+            <div class="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center font-bold text-xl mr-6 flex-shrink-0 z-10">
+              {{ step.step }}
+            </div>
+            
+            <!-- Content -->
+            <div class="bg-white rounded-xl shadow-lg p-6 flex-1">
+              <h3 class="text-xl font-bold mb-3 text-brand-dark">{{ step.title }}</h3>
+              <p class="text-brand-dark/70">{{ step.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Стоимость и сроки -->
+<section class="py-16">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-brand-dark">
+      💰 Стоимость и сроки
+    </h2>
+    
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition-all duration-300">
+        <h3 class="text-xl font-bold mb-4">Базовая стоимость</h3>
+        <div class="text-3xl font-bold text-red-600 mb-4">13 900 ₽</div>
+        <p class="text-gray-600">Стандартная стоимость прохождения НОК по пожарной безопасности в большинстве ЦОК</p>
+      </div>
+      
+      <div class="bg-gradient-to-br from-red-600 to-red-700 text-white rounded-2xl shadow-xl p-8 text-center transform scale-105">
+        <h3 class="text-xl font-bold mb-4">Расширенная подготовка</h3>
+        <div class="text-3xl font-bold mb-4">от 15 000 ₽</div>
+        <p class="opacity-90">Включает подготовку к экзамену, консультации и сопровождение документооборота</p>
+      </div>
+      
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition-all duration-300">
+        <h3 class="text-xl font-bold mb-4">Премиум центры</h3>
+        <div class="text-3xl font-bold text-red-600 mb-4">до 24 000 ₽</div>
+        <p class="text-gray-600">В премиальных ЦОК с дополнительными услугами и ускоренным рассмотрением</p>
+      </div>
+    </div>
+
+    <!-- Таблица характеристик -->
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <table class="w-full">
+          <thead class="bg-red-600 text-white">
+            <tr>
+              <th class="px-6 py-4 text-left font-semibold">Параметр</th>
+              <th class="px-6 py-4 text-left font-semibold">Значение</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-200">
+              <td class="px-6 py-4 font-semibold">Срок действия свидетельства</td>
+              <td class="px-6 py-4">5 лет</td>
+            </tr>
+            <tr class="border-b border-gray-200 bg-gray-50">
+              <td class="px-6 py-4 font-semibold">Рассмотрение документов</td>
+              <td class="px-6 py-4">До 10 календарных дней</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="px-6 py-4 font-semibold">Выдача свидетельства</td>
+              <td class="px-6 py-4">До 30 дней после экзамена</td>
+            </tr>
+            <tr class="border-b border-gray-200 bg-gray-50">
+              <td class="px-6 py-4 font-semibold">Формат экзамена</td>
+              <td class="px-6 py-4">Только очный</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 font-semibold">Возможность пересдачи</td>
+              <td class="px-6 py-4">Да, после подачи новых документов</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Необходимые документы -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-brand-dark">
+      📄 Необходимые документы
+    </h2>
+    
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-2xl p-8">
+        <h3 class="text-xl font-bold mb-6 text-brand-dark">Базовый пакет документов:</h3>
+        <ul class="space-y-3">
+          <li 
+            *ngFor="let doc of serviceData.documents"
+            class="flex items-start">
+            <span class="text-red-500 mr-4 text-xl">📄</span>
+            <span class="text-brand-dark">{{ doc }}</span>
+          </li>
+        </ul>
+        
+        <div class="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-xl mt-8">
+          <div class="flex items-start">
+            <div class="text-blue-600 text-2xl mr-4">💡</div>
+            <div>
+              <h4 class="text-lg font-bold text-blue-800 mb-2">Важное уточнение</h4>
+              <p class="text-blue-700">
+                НОК обязательна только для специалистов <strong>без профильного образования</strong> в области пожарной безопасности. 
+                Лица с высшим или средним образованием по специальности "Пожарная безопасность" могут быть освобождены от данного требования.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ответственность -->
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-brand-dark">
+      ⚖️ Ответственность за нарушения пожарной безопасности
+    </h2>
+    
+    <div class="max-w-4xl mx-auto space-y-6">
+      <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded-r-xl">
+        <h4 class="text-lg font-bold text-red-800 mb-4">⚖️ Административная ответственность</h4>
+        <ul class="space-y-2 text-red-700">
+          <li class="flex items-start">
+            <span class="mr-3 mt-1">•</span>
+            <span><strong>Для должностных лиц:</strong> штраф от 6 000 до 15 000 рублей (ст. 20.4 КоАП РФ)</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-3 mt-1">•</span>
+            <span><strong>Для организаций:</strong> штраф от 150 000 до 400 000 рублей или приостановление деятельности до 90 суток</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-3 mt-1">•</span>
+            <span><strong>При повторных нарушениях:</strong> дисквалификация должностных лиц до 3 лет</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded-r-xl">
+        <h4 class="text-lg font-bold text-red-800 mb-4">⚖️ Уголовная ответственность</h4>
+        <p class="text-red-700">
+          При наступлении тяжких последствий (пожар с человеческими жертвами) предусмотрена уголовная ответственность по статье 219 УК РФ: 
+          лишение свободы до 7 лет с лишением права занимать определенные должности.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-brand-dark">
+      ❓ Часто задаваемые вопросы
+    </h2>
+    
+    <div class="max-w-4xl mx-auto space-y-4">
+      <div 
+        *ngFor="let item of serviceData.faq"
+        class="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <button 
+          (click)="toggleFaq(item)"
+          class="w-full p-6 text-left bg-gradient-to-r from-red-50 to-orange-50 hover:from-red-100 hover:to-orange-100 transition-all duration-300 font-semibold text-brand-dark flex items-center justify-between">
+          <span>{{ item.question }}</span>
+          <span class="text-red-600 text-xl transition-transform duration-300" [class.rotate-180]="item.isOpen">▼</span>
+        </button>
+        <div 
+          *ngIf="item.isOpen"
+          class="p-6 border-t border-red-100 animate-fade-in">
+          <p class="text-brand-dark/70 leading-relaxed">{{ item.answer }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Центры оценки квалификации -->
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-brand-dark">
+      🏢 Где пройти НОК по пожарной безопасности
+    </h2>
+    
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300">
+        <h3 class="text-xl font-bold mb-4 text-center">ЦОК-1 (Москва)</h3>
+        <p class="text-gray-600 text-center mb-4">
+          <strong>Телефон:</strong> +7 (495) 445-01-60<br>
+          <strong>Сайт:</strong> cok-1.ru<br>
+          <strong>Специализация:</strong> Все уровни квалификации по пожарной безопасности
+        </p>
+      </div>
+      
+      <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300">
+        <h3 class="text-xl font-bold mb-4 text-center">МЦОК "ТехноПрогресс"</h3>
+        <p class="text-gray-600 text-center mb-4">
+          <strong>Адрес:</strong> Москва, Проектируемый проезд 4062, д. 6, стр. 16<br>
+          <strong>Сайт:</strong> mcoktp.ru<br>
+          <strong>Специализация:</strong> Комплексная оценка квалификации
+        </p>
+      </div>
+      
+      <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300">
+        <h3 class="text-xl font-bold mb-4 text-center">Региональные ЦОК</h3>
+        <p class="text-gray-600 text-center mb-4">
+          Аккредитованные центры оценки квалификации работают в большинстве регионов России. 
+          Полный список доступен на сайте НОК-НАРК.
+        </p>
+        <a 
+          href="https://nok-nark.ru/cok/list/" 
+          target="_blank" 
+          class="block w-full bg-red-600 hover:bg-red-700 text-white text-center py-3 rounded-xl font-semibold transition-all duration-300">
+          Найти ЦОК
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 bg-gradient-to-br from-red-600 via-red-700 to-red-800 text-white relative">
+  <div class="container mx-auto px-6">
+    <div class="text-center max-w-4xl mx-auto relative">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white relative">
+        Готовы начать подготовку к НОК ОПБ?
+      </h2>
+      <p class="text-xl text-white/90 font-bold mb-8 relative">
+        Получите персональный план подготовки и гарантированно сдайте экзамен с первого раза
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center relative">
+        <button 
+          (click)="openConsultationPopup()"
+          class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 shadow-lg">
+          📞 Бесплатная консультация
+        </button>
+        <a 
+          [href]="'tel:' + phoneHref"
+          class="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-bold border border-white/30 hover:bg-white/30 transition-all duration-300 shadow-lg">
+          📱 {{ phoneDisplay }}
+        </a>
+      </div>
+
+      <div class="mt-8 text-white/80 font-bold text-base relative">
+        <p>Ответим в течение 15 минут • Консультация бесплатна</p>
+      </div>
+    </div>
+  </div>
+</section> 

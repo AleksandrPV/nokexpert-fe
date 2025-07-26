@@ -15,6 +15,7 @@ import { PublicOfferPageComponent } from './features/public-offer/components/pub
 import { UserAgreementPageComponent } from './features/user-agreement/components/user-agreement-page.component';
 import { NokNostroyPageComponent } from './features/services/nok-nostroy/nok-nostroy-page.component';
 import { NokNoprizPageComponent } from './features/services/nok-nopriz/nok-nopriz-page.component';
+import { NokOpbPageComponent } from './features/services/nok-opb/nok-opb-page.component';
 import { NokNostroyInfoPageComponent } from './features/info/components/nok-nostroy-info-page.component';
 import { QaCentersPageComponent } from './features/qa-centers/components/centers-page.component';
 
@@ -27,6 +28,7 @@ export const routes: Routes = [
       { path: 'services', component: ServicesPageComponent },
                         { path: 'services/nok-nostroy', component: NokNostroyPageComponent },
                   { path: 'services/nok-nopriz', component: NokNoprizPageComponent },
+                  { path: 'services/nok-opb', component: NokOpbPageComponent },
       { path: 'services/:id', component: ServiceDetailPageComponent },
       { path: 'contacts', component: ContactsPageComponent },
       { path: 'blog', component: BlogPageComponent },

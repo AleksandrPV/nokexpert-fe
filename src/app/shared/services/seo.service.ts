@@ -298,6 +298,23 @@ export class SeoService {
     });
   }
 
+  setNokOpbPageSeo(): void {
+    this.setSeoData({
+      title: 'НОК для ответственных по пожарной безопасности - Независимая оценка квалификации ОПБ | НОК Эксперт',
+      description: 'Независимая оценка квалификации для ответственных по пожарной безопасности: актуальная информация, требования, процедура прохождения НОК ОПБ. Добровольный характер НОК в 2025 году.',
+      keywords: 'НОК ОПБ, пожарная безопасность, ответственный по пожарной безопасности, независимая оценка квалификации, НОК пожарная безопасность, СПК ЧС',
+      canonical: `${this.baseUrl}/services/nok-opb`,
+      ogTitle: 'НОК для ответственных по пожарной безопасности',
+      ogDescription: 'Независимая оценка квалификации специалистов по пожарной безопасности: актуальная информация, требования, процедура.',
+      ogImage: '/assets/images/nok-opb-og.jpg',
+      ogUrl: `${this.baseUrl}/services/nok-opb`,
+      twitterTitle: 'НОК ОПБ - Пожарная безопасность',
+      twitterDescription: 'Независимая оценка квалификации для специалистов по пожарной безопасности.',
+      twitterImage: '/assets/images/nok-opb-og.jpg',
+      structuredData: this.getNokOpbStructuredData()
+    });
+  }
+
   /**
    * Установить SEO для страницы информации о конкретной категории НОК
    */
@@ -827,6 +844,53 @@ export class SeoService {
       },
       "articleSection": "Центры оценки квалификации",
       "keywords": "ЦОК, центры оценки квалификации, НОК НОСТРОЙ, НОК НОПРИЗ, центры НОК, официальные ЦОК"
+    };
+  }
+
+  private getNokOpbStructuredData(): any {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "НОК для ответственных по пожарной безопасности",
+      "description": "Независимая оценка квалификации специалистов по пожарной безопасности",
+      "provider": {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "serviceType": "Независимая оценка квалификации",
+      "areaServed": "Российская Федерация",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Услуги НОК по пожарной безопасности",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "НОК 5 уровень - Ответственный за пожарную безопасность"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "НОК 6 уровень - Специалист по противопожарной защите"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "НОК 7 уровень - Руководитель службы пожарной безопасности"
+            }
+          }
+        ]
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `${this.baseUrl}/services/nok-opb`
+      }
     };
   }
 } 

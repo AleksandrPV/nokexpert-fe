@@ -151,9 +151,9 @@
                 </div>
 
                 <!-- Top Pages -->
-                <div class="space-y-2">
+                <div class="space-y-0">
                   <a 
-                    *ngFor="let page of category.pages.slice(0, 3)"
+                    *ngFor="let page of category.pages.slice(0, 4)"
                     [routerLink]="'/info/' + page.slug"
                     (click)="closeMegaMenu()"
                     class="block p-2 rounded-xl hover:bg-brand-sky/10 transition-colors duration-200 group">
@@ -163,16 +163,6 @@
                         {{ page.title }}
                       </span>
                     </div>
-                  </a>
-                  
-                  <a 
-                    *ngIf="category.pages.length > 3"
-                    [routerLink]="'/info/' + category.slug"
-                    (click)="closeMegaMenu()"
-                    class="block p-2 rounded-xl hover:bg-brand-coral/10 transition-colors duration-200 text-center">
-                    <span class="text-xs font-medium text-brand-coral">
-                      + ещё {{ category.pages.length - 3 }} {{ category.pages.length - 3 === 1 ? 'страница' : 'страниц' }}
-                    </span>
                   </a>
                 </div>
               </div>

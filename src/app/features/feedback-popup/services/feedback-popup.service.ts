@@ -109,6 +109,13 @@ export class FeedbackPopupService {
     });
   }
 
+  openForNokOpb(): void {
+    this.open({
+      title: 'НОК ОПБ',
+      subtitle: 'Независимая оценка квалификации для ответственных по пожарной безопасности'
+    });
+  }
+
   openForConsultation(): void {
     this.open({
       title: 'Бесплатная консультация',
