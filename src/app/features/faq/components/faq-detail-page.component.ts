@@ -26,7 +26,6 @@ import { switchMap, catchError, of } from 'rxjs';
             <!-- Category Badge -->
             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
                  [ngClass]="category?.color || 'bg-gray-100 text-gray-800'">
-              <span class="text-lg">{{ category?.icon || '❓' }}</span>
               <span class="text-sm font-medium">{{ category?.name || 'FAQ' }}</span>
             </div>
 

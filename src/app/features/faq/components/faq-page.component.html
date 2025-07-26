@@ -51,7 +51,6 @@
                       ? category.color + ' shadow-md' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   ]">
-            <span class="mr-2">{{ category.icon }}</span>
             {{ category.name }}
             <span class="ml-2 bg-white/20 px-2 py-0.5 rounded-full text-xs">
               {{ category.count }}
@@ -95,7 +94,7 @@
 </section>
 
 <!-- FAQ Content -->
-<section class="mb-12" *ngIf="!isLoading">
+<section class="mb-12" *ngIf="!isLoading" #searchResults>
   <div class="container mx-auto px-6">
     <div class="max-w-4xl mx-auto">
       <!-- Loading State -->

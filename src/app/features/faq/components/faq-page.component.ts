@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ViewChild, ElementRef } from '@angular/core';
 import { NgFor, NgIf, NgClass, DatePipe } from '@angular/common';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { SeoService } from '../../../shared/services/seo.service';
@@ -8,7 +8,7 @@ import { BreadcrumbsComponent, BreadcrumbItem } from '../../../shared/components
 import { OrganizationService } from '../../../shared/services/organization.service';
 import { FaqService } from '../services/faq.service';
 import { FaqQuestion, FaqCategory, FaqFilter } from '../models/faq.interface';
-import { combineLatest, switchMap } from 'rxjs';
+import { combineLatest, switchMap, debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-faq-page',
@@ -18,6 +18,8 @@ import { combineLatest, switchMap } from 'rxjs';
   styleUrls: ['./faq-page.component.scss']
 })
 export class FaqPageComponent implements OnInit {
+  @ViewChild('searchResults', { static: false }) searchResults!: ElementRef;
+  
   breadcrumbs: BreadcrumbItem[] = [
     { label: 'Главная', icon: '🏠', url: '/' },
     { label: 'FAQ', icon: '❓', active: true }
@@ -129,16 +131,46 @@ export class FaqPageComponent implements OnInit {
   onCategoryChange(categoryId: string): void {
     this.selectedCategory = this.selectedCategory === categoryId ? '' : categoryId;
     this.updateQueryParams();
+    
+    // Прокручиваем к результатам при изменении категории
+    setTimeout(() => {
+      this.scrollToSearchResults();
+    }, 100);
   }
 
   onSearchChange(query: string): void {
     this.searchQuery = query;
     this.updateQueryParams();
+    
+    // Прокручиваем к результатам поиска, если есть запрос
+    if (query.trim()) {
+      setTimeout(() => {
+        this.scrollToSearchResults();
+      }, 100);
+    }
+  }
+
+  private scrollToSearchResults(): void {
+    if (this.searchResults) {
+      const element = this.searchResults.nativeElement;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - 450; // Отступ 100px сверху
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   }
 
   onPopularToggle(): void {
     this.showOnlyPopular = !this.showOnlyPopular;
     this.updateQueryParams();
+    
+    // Прокручиваем к результатам при изменении фильтра популярности
+    setTimeout(() => {
+      this.scrollToSearchResults();
+    }, 100);
   }
 
   private updateQueryParams(): void {
@@ -201,6 +233,11 @@ export class FaqPageComponent implements OnInit {
     this.searchQuery = '';
     this.showOnlyPopular = false;
     this.updateQueryParams();
+    
+    // Прокручиваем к результатам при очистке фильтров
+    setTimeout(() => {
+      this.scrollToSearchResults();
+    }, 100);
   }
 
   get hasActiveFilters(): boolean {
