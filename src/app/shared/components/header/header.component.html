@@ -29,6 +29,7 @@
              (mouseenter)="onServicesSubmenuEnter()"
              (mouseleave)="onServicesSubmenuLeave()">
           <a routerLink="/services"
+             (click)="closeServicesSubmenu()"
              class="relative px-4 py-2 rounded-xl transition-all duration-300 hover:glass flex items-center gap-2">
             <span class="relative z-10 text-brand-dark group-hover:text-gradient-primary">Услуги</span>
             <svg class="w-4 h-4 text-brand-dark group-hover:text-brand-coral transition-all duration-300 transform group-hover:rotate-180" 
@@ -54,6 +55,7 @@
             <div class="space-y-3">
               <a 
                 routerLink="/services/nok-nostroy"
+                (click)="closeServicesSubmenu()"
                 class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-coral/10 transition-all duration-300 group">
                 <div class="w-10 h-10 bg-brand-coral/20 rounded-xl flex items-center justify-center">
                   <span class="text-xl">🏗️</span>
@@ -67,6 +69,7 @@
 
               <a 
                 routerLink="/services/nok-nopriz"
+                (click)="closeServicesSubmenu()"
                 class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-sky/10 transition-all duration-300 group">
                 <div class="w-10 h-10 bg-brand-sky/20 rounded-xl flex items-center justify-center">
                   <span class="text-xl">📐</span>
@@ -79,6 +82,7 @@
 
               <a 
                 routerLink="/services"
+                (click)="closeServicesSubmenu()"
                 class="flex items-center gap-3 p-3 rounded-xl hover:bg-brand-navy/10 transition-all duration-300 group">
                 <div class="w-10 h-10 bg-brand-navy/20 rounded-xl flex items-center justify-center">
                   <span class="text-xl">👨‍🏫</span>
@@ -93,6 +97,7 @@
             <!-- Quick Action -->
             <div class="mt-6 pt-4 border-t border-brand-sky/10">
               <a routerLink="/services" 
+                 (click)="closeServicesSubmenu()"
                  class="block w-full bg-brand-navy text-white px-4 py-3 rounded-xl font-medium hover:bg-brand-dark transition-all duration-300 text-center">
                 📋 Все услуги
               </a>
@@ -105,6 +110,7 @@
              (mouseenter)="onMegaMenuEnter()"
              (mouseleave)="onMegaMenuLeave()">
           <a routerLink="/info"
+             (click)="closeMegaMenu()"
              class="relative px-4 py-2 rounded-xl transition-all duration-300 hover:glass flex items-center gap-2">
             <span class="relative z-10 text-brand-dark group-hover:text-gradient-primary">НОК</span>
             <svg class="w-4 h-4 text-brand-dark group-hover:text-brand-coral transition-all duration-300 transform group-hover:rotate-180" 
@@ -149,6 +155,7 @@
                   <a 
                     *ngFor="let page of category.pages.slice(0, 3)"
                     [routerLink]="'/info/' + page.slug"
+                    (click)="closeMegaMenu()"
                     class="block p-2 rounded-xl hover:bg-brand-sky/10 transition-colors duration-200 group">
                     <div class="flex items-center gap-2">
                       <span class="text-sm">{{ page.icon }}</span>
@@ -161,6 +168,7 @@
                   <a 
                     *ngIf="category.pages.length > 3"
                     [routerLink]="'/info/' + category.slug"
+                    (click)="closeMegaMenu()"
                     class="block p-2 rounded-xl hover:bg-brand-coral/10 transition-colors duration-200 text-center">
                     <span class="text-xs font-medium text-brand-coral">
                       + ещё {{ category.pages.length - 3 }} {{ category.pages.length - 3 === 1 ? 'страница' : 'страниц' }}
@@ -173,10 +181,12 @@
             <!-- Quick Actions -->
             <div class="flex justify-center gap-4 mt-8 pt-6 border-t border-brand-sky/10">
               <a routerLink="/info" 
+                 (click)="closeMegaMenu()"
                  class="bg-brand-navy text-white px-6 py-3 rounded-xl font-medium hover:bg-brand-dark transition-all duration-300 hover:shadow-lg">
                 📚 Все материалы
               </a>
               <a routerLink="/info/online-trainer"
+                 (click)="closeMegaMenu()"
                  class="bg-brand-coral text-white px-6 py-3 rounded-xl font-medium hover:bg-orange-600 transition-all duration-300 hover:shadow-lg">
                 💻 Тренажер НОК
               </a>

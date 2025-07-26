@@ -114,6 +114,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Закрыть мега-меню НОК при клике на ссылку
+   */
+  closeMegaMenu(): void {
+    this.showMegaMenu = false;
+  }
+
+  /**
+   * Закрыть подменю услуг при клике на ссылку
+   */
+  closeServicesSubmenu(): void {
+    this.showServicesSubmenu = false;
+  }
+
+  /**
    * Открыть popup для консультации
    */
   openConsultationPopup(): void {
