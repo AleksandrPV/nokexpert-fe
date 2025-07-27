@@ -51,7 +51,7 @@
           <div class="flex flex-col sm:flex-row gap-4">
             <button 
               (click)="openConsultationPopup()"
-              class="bg-brand-coral hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+              class="bg-brand-coral-dark hover:bg-brand-coral text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
               📞 Бесплатная консультация
             </button>
             <a 
@@ -160,7 +160,7 @@
           class="relative">
           <div class="bg-gradient-to-br from-brand-sky/10 to-brand-coral/10 rounded-2xl p-6 border border-brand-sky/20">
             <div class="flex items-center gap-4 mb-4">
-              <div class="w-12 h-12 bg-brand-coral text-white rounded-full flex items-center justify-center font-bold text-lg">
+              <div class="w-12 h-12 bg-brand-coral-dark text-white rounded-full flex items-center justify-center font-bold text-lg">
                 {{ step.step }}
               </div>
               <div class="text-3xl">{{ step.icon }}</div>
@@ -186,7 +186,7 @@
           <div 
             *ngFor="let requirement of serviceData.requirements"
             class="flex items-start gap-3">
-            <div class="w-6 h-6 bg-brand-coral rounded-full flex items-center justify-center text-white text-sm font-bold mt-0.5">📋</div>
+            <div class="w-6 h-6 bg-brand-coral-dark rounded-full flex items-center justify-center text-white text-sm font-bold mt-0.5">📋</div>
             <span class="text-brand-dark/80">{{ requirement }}</span>
           </div>
         </div>
@@ -199,7 +199,7 @@
           <div 
             *ngFor="let document of serviceData.documents"
             class="flex items-start gap-3">
-            <div class="w-6 h-6 bg-brand-coral rounded-full flex items-center justify-center text-white text-sm font-bold mt-0.5">📄</div>
+            <div class="w-6 h-6 bg-brand-coral-dark rounded-full flex items-center justify-center text-white text-sm font-bold mt-0.5">📄</div>
             <span class="text-brand-dark/80">{{ document }}</span>
           </div>
         </div>

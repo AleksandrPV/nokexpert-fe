@@ -6,7 +6,9 @@
 :root {
   /* Brand Colors */
   --brand-cream: #F8E9A1;
-  --brand-coral: #ff5f24;
+  --brand-coral: #e63900;
+  --brand-coral-light: #ff5f24;
+  --brand-coral-dark: #cc3300;
   --brand-sky: #A8D0E6;
   --brand-navy: #374785;
   --brand-dark: #24305E;
@@ -250,12 +252,16 @@ html {
 .text-brand-dark { color: var(--brand-dark); }
 .text-brand-sky { color: var(--brand-sky); }
 .text-brand-coral { color: var(--brand-coral); }
+.text-brand-coral-light { color: var(--brand-coral-light); }
+.text-brand-coral-dark { color: var(--brand-coral-dark); }
 .text-brand-cream { color: var(--brand-cream); }
 
 .bg-brand-navy { background-color: var(--brand-navy); }
 .bg-brand-dark { background-color: var(--brand-dark); }
 .bg-brand-sky { background-color: var(--brand-sky); }
 .bg-brand-coral { background-color: var(--brand-coral); }
+.bg-brand-coral-light { background-color: var(--brand-coral-light); }
+.bg-brand-coral-dark { background-color: var(--brand-coral-dark); }
 .bg-brand-cream { background-color: var(--brand-cream); }
 
 .border-brand-navy { border-color: var(--brand-navy); }

@@ -65,7 +65,7 @@
             <div class="w-48 h-48 bg-gradient-to-br from-brand-sky/20 to-brand-navy/20 rounded-3xl flex items-center justify-center text-8xl animate-pulse">
               {{ serviceData.icon }}
             </div>
-            <div class="absolute -top-4 -right-4 bg-brand-coral text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+            <div class="absolute -top-4 -right-4 bg-brand-coral-dark text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
               НОСТРОЙ
             </div>
           </div>
@@ -156,7 +156,7 @@
           *ngFor="let step of serviceData.process"
           class="relative">
           <!-- Step Number -->
-          <div class="absolute -top-4 -left-4 w-12 h-12 bg-brand-coral text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
+          <div class="absolute -top-4 -left-4 w-12 h-12 bg-brand-coral-dark text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
             {{ step.step }}
           </div>
           
@@ -201,7 +201,7 @@
           <div 
             *ngFor="let document of serviceData.documents"
             class="flex items-start gap-3">
-            <div class="w-6 h-6 bg-brand-coral rounded-full flex items-center justify-center text-white text-sm font-bold mt-0.5">📄</div>
+            <div class="w-6 h-6 bg-brand-coral-dark rounded-full flex items-center justify-center text-white text-sm font-bold mt-0.5">📄</div>
             <span class="text-brand-dark/80">{{ document }}</span>
           </div>
         </div>
