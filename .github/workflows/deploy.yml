@@ -156,62 +156,64 @@ jobs:
         ssh -o ConnectTimeout=30 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/id_rsa deploy@${{ secrets.VPS_HOST }} << 'EOF'
         echo "=== 🚀 Начинаем деплой ==="
         
-        # Проверяем что занимает порт 80
-        echo "Проверяем порт 80..."
-        netstat -tlnp | grep :80 || echo "Порт 80 свободен"
+        # Переходим в директорию проекта
+        cd /opt/nokexpert-fe
         
-        # Останавливаем старые контейнеры
+        # Останавливаем текущие контейнеры
         echo "Останавливаем старые контейнеры..."
-        docker stop $(docker ps -aq) 2>/dev/null || true
-        docker rm $(docker ps -aq) 2>/dev/null || true
+        docker-compose down || true
+        
+        # Создаем директорию для SSL сертификатов если её нет
+        mkdir -p letsencrypt
         
         # Логинимся в GitHub Registry (неинтерактивно)
         echo "Логинимся в GitHub Registry..."
         echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
         
-        # Скачиваем новый образ
-        echo "Скачиваем новый образ..."
-        docker pull ghcr.io/aleksandrpv/nokexpert-fe:latest
+        # Загружаем новый образ
+        echo "Загружаем новый образ..."
+        docker-compose pull
         
-        # Если порт 80 занят - используем 8080
-        if netstat -tlnp | grep :80 >/dev/null 2>&1; then
-          echo "Порт 80 занят, запускаем на порту 8080..."
-          docker run -d --name nokexpert-fe --restart unless-stopped -p 8080:80 \
-            -e NODE_ENV=production \
-            ghcr.io/aleksandrpv/nokexpert-fe:latest
-          echo "🌐 Приложение доступно по адресу: http://${{ secrets.VPS_HOST }}:8080"
-        else
-          echo "Запускаем контейнер на порту 80..."
-          docker run -d --name nokexpert-fe --restart unless-stopped -p 80:80 \
-            -e NODE_ENV=production \
-            ghcr.io/aleksandrpv/nokexpert-fe:latest
-          echo "🌐 Приложение доступно по адресу: http://${{ secrets.VPS_HOST }}"
-        fi
+        # Запускаем обновленные контейнеры
+        echo "Запускаем контейнеры..."
+        docker-compose up -d
         
         # Ждем запуска
-        echo "Ждем запуска контейнера..."
-        sleep 10
+        echo "Ждем запуска контейнеров..."
+        sleep 30
+        
+        # Проверяем статус контейнеров
+        echo "Проверяем статус контейнеров..."
+        docker-compose ps
+        
+        # Проверяем логи
+        echo "Логи Traefik:"
+        docker-compose logs --tail=10 traefik
+        
+        echo "Логи приложения:"
+        docker-compose logs --tail=10 nokexpert-fe
+        
+        # Проверяем здоровье приложения
+        echo "Проверяем здоровье приложения..."
+        if curl -f http://localhost:80/health; then
+            echo "✅ Приложение успешно развернуто"
+        else
+            echo "❌ Ошибка при проверке здоровья приложения"
+            echo "Логи контейнеров:"
+            docker-compose logs --tail=50
+            exit 1
+        fi
         
         # Очищаем старые образы
         echo "Очищаем старые образы..."
         docker system prune -f
         
-        # Проверяем статус
-        echo "Проверяем статус..."
-        docker ps
-        echo "Логи контейнера:"
-        docker logs nokexpert-fe --tail 5 2>/dev/null || echo "Контейнер еще запускается..."
-        
-        # Тестируем доступность
-        if netstat -tlnp | grep :80 >/dev/null 2>&1 && ! docker ps | grep nokexpert-fe | grep :80 >/dev/null; then
-          echo "Тестируем на порту 8080:"
-          curl -I http://localhost:8080 2>/dev/null | head -3 || echo "Приложение еще запускается..."
-        else
-          echo "Тестируем на порту 80:"
-          curl -I http://localhost 2>/dev/null | head -3 || echo "Приложение еще запускается..."
-        fi
+        # Проверяем порты
+        echo "Проверяем порты..."
+        netstat -tlnp | grep -E ":(80|443|8080)"
         
         echo "✅ Деплой завершен успешно!"
+        echo "🌐 Сайт доступен по адресу: https://nokexpert.ru"
         EOF
 
   # Уведомления

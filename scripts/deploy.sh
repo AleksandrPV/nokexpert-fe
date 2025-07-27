@@ -9,7 +9,7 @@ set -e
 ENVIRONMENT="${1:-production}"
 PROJECT_NAME="nokexpert-fe"
 DOCKER_IMAGE="ghcr.io/aleksandrpv/${PROJECT_NAME}"
-VPS_USER="${VPS_USERNAME:-root}"
+VPS_USER="${VPS_USERNAME:-deploy}"
 VPS_HOST="${VPS_HOST:-your-vps-ip}"
 VPS_PORT="${VPS_PORT:-22}"
 DEPLOY_PATH="/opt/${PROJECT_NAME}"
@@ -90,17 +90,17 @@ deploy_to_vps() {
     log_info "Деплой на VPS сервер..."
     
     # Создаем временный скрипт для выполнения на сервере
-    cat > /tmp/deploy_commands.sh << EOF
+    cat > /tmp/deploy_commands.sh << 'EOF'
 #!/bin/bash
 set -e
 
-cd ${DEPLOY_PATH}
+cd /opt/nokexpert-fe
 
 # Останавливаем текущие контейнеры
 docker-compose down || true
 
-# Обновляем код
-git pull origin main
+# Создаем директорию для SSL сертификатов если её нет
+mkdir -p letsencrypt
 
 # Загружаем новый образ
 docker-compose pull
@@ -109,13 +109,15 @@ docker-compose pull
 docker-compose up -d
 
 # Ждем запуска
-sleep 15
+sleep 30
 
-# Проверяем здоровье приложения
-if curl -f http://localhost:8080/health; then
+        # Проверяем здоровье приложения
+        echo "Проверяем здоровье приложения..."
+        if curl -f http://localhost:80/health; then
     echo "✅ Приложение успешно развернуто"
 else
     echo "❌ Ошибка при проверке здоровья приложения"
+    echo "Логи контейнеров:"
     docker-compose logs --tail=50
     exit 1
 fi
@@ -142,13 +144,19 @@ check_status() {
     
     ssh -p "${VPS_PORT}" "${VPS_USER}@${VPS_HOST}" << 'EOF'
         echo "=== Статус контейнеров ==="
-        docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+        docker-compose ps
         
-        echo -e "\n=== Использование ресурсов ==="
-        docker stats --no-stream --format "table {{.Container}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.NetIO}}"
+        echo -e "\n=== Логи Traefik ==="
+        docker-compose logs --tail=10 traefik
+        
+        echo -e "\n=== Логи приложения ==="
+        docker-compose logs --tail=10 nokexpert-fe
         
         echo -e "\n=== Проверка доступности ==="
-        curl -s -o /dev/null -w "HTTP Status: %{http_code}\nResponse Time: %{time_total}s\n" http://localhost:8080/health
+        curl -s -o /dev/null -w "HTTP Status: %{http_code}\nResponse Time: %{time_total}s\n" http://localhost:80/health
+        
+        echo -e "\n=== Проверка портов ==="
+        netstat -tlnp | grep -E ":(80|443|8080)"
 EOF
     
     log_success "Проверка статуса завершена"
@@ -158,6 +166,7 @@ EOF
 main() {
     log_info "🚀 Начало деплоя приложения НОК Эксперт"
     log_info "Среда: ${ENVIRONMENT}"
+    log_info "Сервер: ${VPS_HOST}"
     
     check_dependencies
     
