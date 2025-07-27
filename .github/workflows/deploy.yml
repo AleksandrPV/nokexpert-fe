@@ -204,6 +204,18 @@ jobs:
             exit 1
         fi
         
+        # Ждем получения SSL сертификатов
+        echo "Ждем получения SSL сертификатов..."
+        sleep 60
+        
+        # Проверяем HTTPS
+        echo "Проверяем HTTPS..."
+        if curl -f https://nokexpert.ru 2>/dev/null; then
+            echo "✅ HTTPS работает"
+        else
+            echo "⚠️ HTTPS еще не готов, но HTTP работает"
+        fi
+        
         # Очищаем старые образы
         echo "Очищаем старые образы..."
         docker system prune -f

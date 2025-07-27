@@ -16,12 +16,22 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+    volumes:
+      - acme-challenge:/var/www/certbot
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.nokexpert-fe.rule=Host(`nokexpert.ru`) || Host(`www.nokexpert.ru`)"
-      - "traefik.http.routers.nokexpert-fe.entrypoints=websecure"
-      - "traefik.http.routers.nokexpert-fe.tls.certresolver=letsencrypt"
+      # HTTP редирект на HTTPS
+      - "traefik.http.routers.nokexpert-fe-http.rule=Host(`nokexpert.ru`) || Host(`www.nokexpert.ru`)"
+      - "traefik.http.routers.nokexpert-fe-http.entrypoints=web"
+      - "traefik.http.routers.nokexpert-fe-http.middlewares=redirect-to-https"
+      # HTTPS маршрут
+      - "traefik.http.routers.nokexpert-fe-https.rule=Host(`nokexpert.ru`) || Host(`www.nokexpert.ru`)"
+      - "traefik.http.routers.nokexpert-fe-https.entrypoints=websecure"
+      - "traefik.http.routers.nokexpert-fe-https.tls.certresolver=letsencrypt"
       - "traefik.http.services.nokexpert-fe.loadbalancer.server.port=80"
+      # Middleware для редиректа
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
 
   # Reverse Proxy (Traefik)
   traefik:
@@ -34,11 +44,13 @@ services:
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
-      - "--certificatesresolvers.letsencrypt.acme.tlschallenge=true"
+      - "--certificatesresolvers.letsencrypt.acme.httpchallenge=true"
+      - "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web"
       - "--certificatesresolvers.letsencrypt.acme.email=admin@nokexpert.ru"
       - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
       - "--global.checkNewVersion=false"
       - "--global.sendAnonymousUsage=false"
+      - "--log.level=INFO"
     ports:
       - "80:80"
       - "443:443"
@@ -46,16 +58,9 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./letsencrypt:/letsencrypt
+      - acme-challenge:/var/www/certbot
     networks:
       - nokexpert-network
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.traefik.rule=Host(`traefik.nokexpert.ru`)"
-      - "traefik.http.routers.traefik.entrypoints=websecure"
-      - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.traefik.service=api@internal"
-      - "traefik.http.routers.traefik.middlewares=auth"
-      - "traefik.http.middlewares.auth.basicauth.users=admin:$$2y$$10$$YOUR_HASH_HERE"
 
   # Мониторинг (Watchtower для автообновления)
   watchtower:
@@ -77,4 +82,6 @@ networks:
 
 volumes:
   letsencrypt:
+    driver: local
+  acme-challenge:
     driver: local 

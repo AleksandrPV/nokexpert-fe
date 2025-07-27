@@ -22,6 +22,9 @@ FROM nginx:alpine AS production
 # Удаляем дефолтную конфигурацию nginx
 RUN rm /etc/nginx/conf.d/default.conf
 
+# Создаем директорию для ACME challenge
+RUN mkdir -p /var/www/certbot
+
 # Копируем конфигурацию nginx
 COPY nginx.conf /etc/nginx/nginx.conf
 
@@ -29,7 +32,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/dist/nokexpert-fe/browser /usr/share/nginx/html
 
 # Устанавливаем права для приложения
-RUN chmod -R 755 /usr/share/nginx/html
+RUN chmod -R 755 /usr/share/nginx/html /var/www/certbot
 
 # Открываем порт
 EXPOSE 80

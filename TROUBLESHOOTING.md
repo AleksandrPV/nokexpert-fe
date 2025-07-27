@@ -112,6 +112,21 @@ docker-compose ps
 docker-compose logs --tail=20
 ```
 
+### Включение HTTPS
+
+Если сайт работает только на HTTP, но нужен HTTPS:
+
+```bash
+# Используйте скрипт для перезапуска с HTTPS
+./scripts/restart-https.sh
+
+# Или вручную на сервере:
+cd /opt/nokexpert-fe
+docker-compose down
+docker-compose up -d
+# Подождите 1-2 минуты для получения SSL сертификатов
+```
+
 ### Проверка работоспособности
 
 ```bash
