@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, inject, OnDestroy } from '@angular/core';
 import { NgFor, NgIf, NgClass, DatePipe } from '@angular/common';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { SeoService } from '../../../shared/services/seo.service';
@@ -8,7 +8,7 @@ import { BreadcrumbsComponent, BreadcrumbItem } from '../../../shared/components
 import { OrganizationService } from '../../../shared/services/organization.service';
 import { FaqService } from '../services/faq.service';
 import { FaqQuestion, FaqCategory, FaqFilter } from '../models/faq.interface';
-import { combineLatest, switchMap, debounceTime, distinctUntilChanged } from 'rxjs';
+import { combineLatest, switchMap, debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-faq-page',
@@ -17,13 +17,14 @@ import { combineLatest, switchMap, debounceTime, distinctUntilChanged } from 'rx
   templateUrl: './faq-page.component.html',
   styleUrls: ['./faq-page.component.scss']
 })
-export class FaqPageComponent implements OnInit {
-  @ViewChild('searchResults', { static: false }) searchResults!: ElementRef;
-  
+export class FaqPageComponent implements OnInit, OnDestroy {
   breadcrumbs: BreadcrumbItem[] = [
     { label: 'Главная', icon: '🏠', url: '/' },
     { label: 'FAQ', icon: '❓', active: true }
   ];
+
+  private destroy$ = new Subject<void>();
+  private searchSubject = new Subject<string>();
 
   private seo: SeoService = inject(SeoService);
   private feedbackService: FeedbackPopupService = inject(FeedbackPopupService);
@@ -63,6 +64,12 @@ export class FaqPageComponent implements OnInit {
     this.setupSEO();
     this.loadData();
     this.setupQueryParams();
+    this.setupSearchDebounce();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   private setupSEO(): void {
@@ -115,9 +122,7 @@ export class FaqPageComponent implements OnInit {
       if (params['category']) {
         this.selectedCategory = params['category'];
       }
-      if (params['search']) {
-        this.searchQuery = params['search'];
-      }
+      // Убираем обработку search параметра - поиск работает только локально
       if (params['popular']) {
         this.showOnlyPopular = params['popular'] === 'true';
       }
@@ -131,46 +136,23 @@ export class FaqPageComponent implements OnInit {
   onCategoryChange(categoryId: string): void {
     this.selectedCategory = this.selectedCategory === categoryId ? '' : categoryId;
     this.updateQueryParams();
-    
-    // Прокручиваем к результатам при изменении категории
-    setTimeout(() => {
-      this.scrollToSearchResults();
-    }, 100);
   }
 
   onSearchChange(query: string): void {
     this.searchQuery = query;
-    this.updateQueryParams();
-    
-    // Прокручиваем к результатам поиска, если есть запрос
-    if (query.trim()) {
-      setTimeout(() => {
-        this.scrollToSearchResults();
-      }, 100);
-    }
+    this.searchSubject.next(query);
   }
 
-  private scrollToSearchResults(): void {
-    if (this.searchResults) {
-      const element = this.searchResults.nativeElement;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - 450; // Отступ 100px сверху
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
+  private setupSearchDebounce(): void {
+    // Убираем обновление URL для поиска полностью
+    // Поиск работает только локально, без изменения URL
   }
+
+
 
   onPopularToggle(): void {
     this.showOnlyPopular = !this.showOnlyPopular;
     this.updateQueryParams();
-    
-    // Прокручиваем к результатам при изменении фильтра популярности
-    setTimeout(() => {
-      this.scrollToSearchResults();
-    }, 100);
   }
 
   private updateQueryParams(): void {
@@ -179,9 +161,7 @@ export class FaqPageComponent implements OnInit {
     if (this.selectedCategory) {
       params.category = this.selectedCategory;
     }
-    if (this.searchQuery) {
-      params.search = this.searchQuery;
-    }
+    // Убираем searchQuery из URL - поиск работает только локально
     if (this.showOnlyPopular) {
       params.popular = 'true';
     }
@@ -233,11 +213,6 @@ export class FaqPageComponent implements OnInit {
     this.searchQuery = '';
     this.showOnlyPopular = false;
     this.updateQueryParams();
-    
-    // Прокручиваем к результатам при очистке фильтров
-    setTimeout(() => {
-      this.scrollToSearchResults();
-    }, 100);
   }
 
   get hasActiveFilters(): boolean {
