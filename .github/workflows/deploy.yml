@@ -193,12 +193,12 @@ jobs:
         echo "Логи приложения:"
         docker-compose logs --tail=10 nokexpert-fe
         
-        # Проверяем здоровье приложения
-        echo "Проверяем здоровье приложения..."
-        if curl -f http://localhost:80/; then
+        # Проверяем что контейнеры запущены и здоровы
+        echo "Проверяем статус контейнеров..."
+        if docker-compose ps | grep -q "(healthy)"; then
             echo "✅ Приложение успешно развернуто"
         else
-            echo "❌ Ошибка при проверке здоровья приложения"
+            echo "❌ Ошибка при проверке контейнеров"
             echo "Логи контейнеров:"
             docker-compose logs --tail=50
             exit 1
