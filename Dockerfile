@@ -19,6 +19,9 @@ RUN npm run build
 # Этап 2: Production сервер
 FROM nginx:alpine AS production
 
+# Устанавливаем Node.js для SSR сервера
+RUN apk add --no-cache nodejs npm
+
 # Удаляем дефолтную конфигурацию nginx
 RUN rm /etc/nginx/conf.d/default.conf
 
