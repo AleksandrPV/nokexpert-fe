@@ -1,8 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { BreadcrumbsComponent } from '../../shared/components/breadcrumbs/breadcrumbs.component';
-import { CustomerReviewsComponent } from '../../shared/components/customer-reviews/customer-reviews.component';
 import { SeoService } from '../../shared/services/seo.service';
 import { ReviewsService, CustomerReview } from '../../shared/services/reviews.service';
 import { OrganizationService } from '../../shared/services/organization.service';
@@ -10,7 +8,7 @@ import { OrganizationService } from '../../shared/services/organization.service'
 @Component({
   selector: 'app-reviews-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, BreadcrumbsComponent, CustomerReviewsComponent],
+  imports: [CommonModule, BreadcrumbsComponent],
   template: `
     <div class="min-h-screen bg-gradient-to-br from-brand-sky/5 to-brand-navy/5">
       <!-- Breadcrumbs -->

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 import { SeoService } from '../../../shared/services/seo.service';
 import { FeedbackPopupService } from '../../feedback-popup/services/feedback-popup.service';
@@ -9,7 +8,7 @@ import { OrganizationService } from '../../../shared/services/organization.servi
 @Component({
   selector: 'app-nok-other-industries-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, BreadcrumbsComponent],
+  imports: [CommonModule, BreadcrumbsComponent],
   templateUrl: './nok-other-industries-page.component.html',
   styleUrls: ['./nok-other-industries-page.component.scss']
 })

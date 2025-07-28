@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 import { CtaSectionComponent, CtaSectionConfig } from '../../../shared/components/cta-section/cta-section.component';
 import { SeoService } from '../../../shared/services/seo.service';
-import { FeedbackPopupService } from '../../../features/feedback-popup/services/feedback-popup.service';
+import { FeedbackPopupService } from '../../feedback-popup/services/feedback-popup.service';
 import { OrganizationService } from '../../../shared/services/organization.service';
 
 @Component({
   selector: 'app-nok-opb-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, BreadcrumbsComponent, CtaSectionComponent],
+  imports: [CommonModule, BreadcrumbsComponent, CtaSectionComponent],
   templateUrl: './nok-opb-page.component.html',
   styleUrls: ['./nok-opb-page.component.scss']
 })
