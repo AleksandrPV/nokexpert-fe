@@ -4,7 +4,6 @@ import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/bre
 import { RelatedMaterialsComponent } from '../../../shared/components/related-materials/related-materials.component';
 import { ContextualLinksComponent } from '../../../shared/components/contextual-links/contextual-links.component';
 import { CustomerReviewsComponent } from '../../../shared/components/customer-reviews/customer-reviews.component';
-import { CtaSectionComponent } from '../../../shared/components/cta-section/cta-section.component';
 import { SeoService } from '../../../shared/services/seo.service';
 import { FeedbackPopupService } from '../../feedback-popup/services/feedback-popup.service';
 import { OrganizationService } from '../../../shared/services/organization.service';
@@ -17,8 +16,7 @@ import { OrganizationService } from '../../../shared/services/organization.servi
     BreadcrumbsComponent, 
     RelatedMaterialsComponent, 
     ContextualLinksComponent, 
-    CustomerReviewsComponent, 
-    CtaSectionComponent
+    CustomerReviewsComponent
   ],
   templateUrl: './what-is-nok-page.component.html',
   styleUrls: ['./what-is-nok-page.component.scss']
