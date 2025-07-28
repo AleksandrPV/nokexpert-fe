@@ -63,7 +63,7 @@ export class SeoService {
     this.updateMetaTag('description', this.defaultSeoData.description || '');
     this.updateMetaTag('keywords', this.defaultSeoData.keywords || '');
     this.updateMetaTag('author', 'НОК Эксперт');
-    this.updateMetaTag('robots', 'index, follow'); // Разрешаем индексацию
+    this.updateMetaTag('robots', 'noindex, nofollow'); // Временно запрещаем индексацию (сайт в разработке)
     
     // Open Graph
     this.updateMetaProperty('og:type', 'website');
@@ -101,7 +101,7 @@ export class SeoService {
     // Basic Meta Tags
     this.updateMetaTag('description', data.description!);
     this.updateMetaTag('keywords', data.keywords!);
-    this.updateMetaTag('robots', data.noIndex ? 'noindex, nofollow' : 'index, follow'); // По умолчанию index
+    this.updateMetaTag('robots', data.noIndex !== true ? 'noindex, nofollow' : 'noindex, nofollow'); // По умолчанию noindex (сайт в разработке)
     
     // Open Graph
     this.updateMetaProperty('og:title', data.ogTitle || data.title!);

@@ -3,18 +3,18 @@
 
 # Основные правила для всех роботов
 User-agent: *
-Allow: /
+Disallow: /
 
-# Разрешаем индексацию основных страниц
-Allow: /$
-Allow: /services
-Allow: /info
-Allow: /blog
-Allow: /contacts
-Allow: /faq
-Allow: /qualifications
-Allow: /qa-centers
-Allow: /reviews
+# Временно запрещаем индексацию (сайт в разработке)
+# Allow: /$
+# Allow: /services
+# Allow: /info
+# Allow: /blog
+# Allow: /contacts
+# Allow: /faq
+# Allow: /qualifications
+# Allow: /qa-centers
+# Allow: /reviews
 
 # Запрещаем служебные страницы
 Disallow: /privacy-policy
@@ -42,18 +42,18 @@ Disallow: /*?utm_
 Disallow: /*?fbclid
 Disallow: /*?gclid
 
-# Настройки задержки для основных ботов
+# Временно запрещаем индексацию для основных ботов (сайт в разработке)
 User-agent: Googlebot
-Crawl-delay: 1
+Disallow: /
 
 User-agent: Bingbot
-Crawl-delay: 1
+Disallow: /
 
 User-agent: YandexBot
-Crawl-delay: 2
+Disallow: /
 
 User-agent: Baiduspider
-Crawl-delay: 1
+Disallow: /
 
 # Запрещаем агрессивные боты
 User-agent: MJ12bot
@@ -92,4 +92,4 @@ Host: https://nok-expert.ru
 # Дополнительная информация
 # Сайт: НОК Эксперт - Подготовка к независимой оценке квалификации
 # Дата обновления: 2025-01-27
-# Статус: Активная индексация разрешена 
+# Статус: ВРЕМЕННО ЗАКРЫТ ДЛЯ ИНДЕКСАЦИИ (сайт в разработке) 
