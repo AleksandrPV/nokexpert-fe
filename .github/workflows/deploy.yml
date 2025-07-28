@@ -153,6 +153,11 @@ jobs:
         
     - name: Deploy to VPS
       run: |
+        # Копируем обновленные конфигурационные файлы на сервер
+        echo "📁 Копируем конфигурационные файлы на сервер..."
+        scp -o ConnectTimeout=30 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/id_rsa docker-compose.yml deploy@${{ secrets.VPS_HOST }}:/opt/nokexpert-fe/
+        scp -o ConnectTimeout=30 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/id_rsa nginx.conf deploy@${{ secrets.VPS_HOST }}:/opt/nokexpert-fe/
+        
         ssh -o ConnectTimeout=30 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/id_rsa deploy@${{ secrets.VPS_HOST }} << 'EOF'
         echo "=== 🚀 Начинаем деплой ==="
         
