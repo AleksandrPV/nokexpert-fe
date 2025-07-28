@@ -1,30 +1,61 @@
 # robots.txt для НОК Эксперт
-# https://нок-эксперт.рф/robots.txt
-# ВРЕМЕННО ЗАПРЕЩЕНА ИНДЕКСАЦИЯ - САЙТ В РАЗРАБОТКЕ
+# https://nok-expert.ru/robots.txt
 
-# Запрещаем индексацию ВСЕМ поисковым роботам
+# Основные правила для всех роботов
 User-agent: *
-Disallow: /
+Allow: /
 
-# Запрещаем индексацию для всех известных ботов
+# Разрешаем индексацию основных страниц
+Allow: /$
+Allow: /services
+Allow: /info
+Allow: /blog
+Allow: /contacts
+Allow: /faq
+Allow: /qualifications
+Allow: /qa-centers
+Allow: /reviews
+
+# Запрещаем служебные страницы
+Disallow: /privacy-policy
+Disallow: /user-agreement
+Disallow: /public-offer
+Disallow: /admin/
+Disallow: /api/
+
+# Запрещаем статические файлы
+Disallow: /assets/
+Disallow: /_next/
+Disallow: /static/
+Disallow: /*.json
+Disallow: /*.js
+Disallow: /*.css
+Disallow: /*.map
+
+# Запрещаем URL с параметрами
+Disallow: /*?*
+Disallow: /*&*
+Disallow: /*=*
+
+# Запрещаем UTM и рекламные параметры
+Disallow: /*?utm_
+Disallow: /*?fbclid
+Disallow: /*?gclid
+
+# Настройки задержки для основных ботов
 User-agent: Googlebot
-Disallow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
-Disallow: /
+Crawl-delay: 1
 
 User-agent: YandexBot
-Disallow: /
+Crawl-delay: 2
 
 User-agent: Baiduspider
-Disallow: /
+Crawl-delay: 1
 
-User-agent: DuckDuckBot
-Disallow: /
-
-User-agent: Slurp
-Disallow: /
-
+# Запрещаем агрессивные боты
 User-agent: MJ12bot
 Disallow: /
 
@@ -49,14 +80,16 @@ Disallow: /
 User-agent: Nutch
 Disallow: /
 
-# Временно отключаем карты сайта
-# Sitemap: https://нок-эксперт.рф/sitemap.xml
-# Sitemap: https://нок-эксперт.рф/sitemap-blog.xml
-# Sitemap: https://нок-эксперт.рф/sitemap-services.xml
+# Карты сайта
+Sitemap: https://nok-expert.ru/sitemap.xml
+Sitemap: https://nok-expert.ru/sitemap-blog.xml
+Sitemap: https://nok-expert.ru/sitemap-services.xml
+Sitemap: https://nok-expert.ru/sitemap-faq.xml
+
+# Основной хост
+Host: https://nok-expert.ru
 
 # Дополнительная информация
-# Host: https://нок-эксперт.рф
-# 
-# ВНИМАНИЕ: Сайт временно закрыт для индексации
-# Дата: 2025-01-27
-# Причина: Разработка и тестирование 
+# Сайт: НОК Эксперт - Подготовка к независимой оценке квалификации
+# Дата обновления: 2025-01-27
+# Статус: Активная индексация разрешена 

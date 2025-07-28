@@ -24,7 +24,7 @@ export interface SeoData {
   providedIn: 'root'
 })
 export class SeoService {
-  private readonly baseUrl = 'https://нок-эксперт.рф';
+  private readonly baseUrl = 'https://nok-expert.ru';
   private readonly defaultImage = '/assets/images/og-default.jpg';
   
   private readonly defaultSeoData: SeoData = {
@@ -63,7 +63,7 @@ export class SeoService {
     this.updateMetaTag('description', this.defaultSeoData.description || '');
     this.updateMetaTag('keywords', this.defaultSeoData.keywords || '');
     this.updateMetaTag('author', 'НОК Эксперт');
-    this.updateMetaTag('robots', 'noindex, nofollow'); // Временно запрещаем индексацию
+    this.updateMetaTag('robots', 'index, follow'); // Разрешаем индексацию
     
     // Open Graph
     this.updateMetaProperty('og:type', 'website');
@@ -101,7 +101,7 @@ export class SeoService {
     // Basic Meta Tags
     this.updateMetaTag('description', data.description!);
     this.updateMetaTag('keywords', data.keywords!);
-    this.updateMetaTag('robots', data.noIndex !== false ? 'noindex, nofollow' : 'index, follow'); // По умолчанию noindex
+    this.updateMetaTag('robots', data.noIndex ? 'noindex, nofollow' : 'index, follow'); // По умолчанию index
     
     // Open Graph
     this.updateMetaProperty('og:title', data.ogTitle || data.title!);

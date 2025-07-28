@@ -154,11 +154,12 @@ import { ORGANIZATION_CONFIG } from '../../../../environments/organization.confi
             </p>
           </div>
 
-          <div class="flex flex-wrap gap-6 text-sm">
-            <a routerLink="/privacy-policy" class="text-brand-dark/70 hover:text-brand-dark transition-colors">Политика конфиденциальности</a>
-            <a routerLink="/user-agreement" class="text-brand-dark/70 hover:text-brand-dark transition-colors">Пользовательское соглашение</a>
-            <a routerLink="/public-offer" class="text-brand-dark/70 hover:text-brand-dark transition-colors">Публичная оферта</a>
-          </div>
+                      <div class="flex flex-wrap gap-6 text-sm">
+              <a routerLink="/privacy-policy" class="text-brand-dark/70 hover:text-brand-dark transition-colors">Политика конфиденциальности</a>
+              <a routerLink="/user-agreement" class="text-brand-dark/70 hover:text-brand-dark transition-colors">Пользовательское соглашение</a>
+              <a routerLink="/public-offer" class="text-brand-dark/70 hover:text-brand-dark transition-colors">Публичная оферта</a>
+              <a routerLink="/sitemap" class="text-brand-dark/70 hover:text-brand-dark transition-colors">Карта сайта</a>
+            </div>
         </div>
       </div>
     </footer>
