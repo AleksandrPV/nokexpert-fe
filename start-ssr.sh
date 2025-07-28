@@ -7,6 +7,6 @@ echo "Starting SSR server..."
 cd /usr/share/nginx/server
 
 # Запускаем SSR сервер
-node main.server.mjs
+node server.mjs
 
 echo "SSR server started on port 4000" 
