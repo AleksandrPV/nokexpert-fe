@@ -46,4 +46,4 @@ RUN chmod +x /usr/local/bin/start-ssr.sh
 EXPOSE 80 4000
 
 # Запускаем nginx и SSR сервер
-CMD ["sh", "-c", "start-ssr.sh & nginx -g 'daemon off;'"] 
+CMD ["sh", "-c", "/usr/local/bin/start-ssr.sh & nginx -g 'daemon off;'"] 

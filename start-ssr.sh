@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Запуск SSR сервера
 echo "Starting SSR server..."
