@@ -41,7 +41,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "1MB",
+                  "maximumWarning": "1.6MB",
                   "maximumError": "2MB"
                 },
                 {
@@ -60,12 +60,7 @@
                 "fonts": true
               },
               "extractLicenses": true,
-              "sourceMap": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractCss": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
+              "sourceMap": false
             },
             "development": {
               "optimization": false,
