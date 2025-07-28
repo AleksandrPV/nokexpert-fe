@@ -210,7 +210,7 @@ jobs:
         
         # Проверяем HTTPS
         echo "Проверяем HTTPS..."
-        if curl -f https://nokexpert.ru 2>/dev/null; then
+        if curl -f https://nok-expert.ru 2>/dev/null; then
             echo "✅ HTTPS работает"
         else
             echo "⚠️ HTTPS еще не готов, но HTTP работает"
@@ -225,7 +225,7 @@ jobs:
         netstat -tlnp | grep -E ":(80|443|8080)"
         
         echo "✅ Деплой завершен успешно!"
-        echo "🌐 Сайт доступен по адресу: https://nokexpert.ru"
+        echo "🌐 Сайт доступен по адресу: https://nok-expert.ru"
         EOF
 
   # Уведомления
@@ -239,7 +239,7 @@ jobs:
       if: needs.deploy.result == 'success'
       run: |
         echo "✅ Деплой прошёл успешно!"
-        echo "🌐 Сайт доступен по адресу: https://nokexpert.ru"
+        echo "🌐 Сайт доступен по адресу: https://nok-expert.ru"
         
     - name: Notify deployment failure
       if: needs.deploy.result == 'failure'

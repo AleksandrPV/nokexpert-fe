@@ -21,11 +21,11 @@ services:
     labels:
       - "traefik.enable=true"
       # HTTP редирект на HTTPS
-      - "traefik.http.routers.nokexpert-fe-http.rule=Host(`nokexpert.ru`) || Host(`www.nokexpert.ru`)"
+      - "traefik.http.routers.nokexpert-fe-http.rule=Host(`nok-expert.ru`) || Host(`www.nok-expert.ru`)"
       - "traefik.http.routers.nokexpert-fe-http.entrypoints=web"
       - "traefik.http.routers.nokexpert-fe-http.middlewares=redirect-to-https"
       # HTTPS маршрут
-      - "traefik.http.routers.nokexpert-fe-https.rule=Host(`nokexpert.ru`) || Host(`www.nokexpert.ru`)"
+      - "traefik.http.routers.nokexpert-fe-https.rule=Host(`nok-expert.ru`) || Host(`www.nok-expert.ru`)"
       - "traefik.http.routers.nokexpert-fe-https.entrypoints=websecure"
       - "traefik.http.routers.nokexpert-fe-https.tls.certresolver=letsencrypt"
       - "traefik.http.services.nokexpert-fe.loadbalancer.server.port=80"
@@ -46,7 +46,7 @@ services:
       - "--entrypoints.websecure.address=:443"
       - "--certificatesresolvers.letsencrypt.acme.httpchallenge=true"
       - "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web"
-      - "--certificatesresolvers.letsencrypt.acme.email=admin@nokexpert.ru"
+      - "--certificatesresolvers.letsencrypt.acme.email=admin@nok-expert.ru"
       - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
       - "--global.checkNewVersion=false"
       - "--global.sendAnonymousUsage=false"
