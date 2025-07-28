@@ -1,0 +1,41 @@
+.propiska-nok-page {
+  .prose {
+    h2 {
+      @apply text-2xl font-bold text-gray-900 mt-8 mb-4;
+    }
+
+    h3 {
+      @apply text-xl font-semibold text-gray-800 mt-6 mb-3;
+    }
+
+    ul, ol {
+      @apply mb-4;
+    }
+
+    li {
+      @apply mb-2;
+    }
+
+    strong {
+      @apply font-semibold text-gray-900;
+    }
+  }
+
+  .bg-blue-50 {
+    .text-blue-900 {
+      @apply font-semibold;
+    }
+  }
+
+  .bg-green-50 {
+    ul {
+      @apply list-disc list-inside;
+    }
+  }
+
+  .bg-yellow-50 {
+    ul {
+      @apply list-disc list-inside;
+    }
+  }
+} 

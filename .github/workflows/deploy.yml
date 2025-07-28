@@ -195,7 +195,7 @@ jobs:
         
         # Проверяем здоровье приложения
         echo "Проверяем здоровье приложения..."
-        if curl -f http://localhost:80/; then
+        if curl -f http://localhost:80/health; then
             echo "✅ Приложение успешно развернуто"
         else
             echo "❌ Ошибка при проверке здоровья приложения"
