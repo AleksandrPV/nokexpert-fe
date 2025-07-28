@@ -156,17 +156,19 @@ jobs:
         # Копируем обновленные конфигурационные файлы на сервер
         echo "📁 Копируем конфигурационные файлы на сервер..."
         
-        # Сначала подключаемся и исправляем права доступа
+        # Копируем файлы через SSH команды
         ssh -o ConnectTimeout=30 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/id_rsa deploy@${{ secrets.VPS_HOST }} << 'EOF'
-        echo "🔧 Исправляем права доступа..."
-        sudo chown -R deploy:deploy /opt/nokexpert-fe/
-        sudo chmod -R 755 /opt/nokexpert-fe/
-        echo "✅ Права доступа исправлены"
+        echo "🔧 Подготавливаем директорию..."
+        mkdir -p /opt/nokexpert-fe
+        cd /opt/nokexpert-fe
+        echo "✅ Директория готова"
         EOF
         
-        # Теперь копируем файлы
-        scp -o ConnectTimeout=30 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/id_rsa docker-compose.yml deploy@${{ secrets.VPS_HOST }}:/opt/nokexpert-fe/
-        scp -o ConnectTimeout=30 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/id_rsa nginx.conf deploy@${{ secrets.VPS_HOST }}:/opt/nokexpert-fe/
+        # Копируем docker-compose.yml
+        cat docker-compose.yml | ssh -o ConnectTimeout=30 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/id_rsa deploy@${{ secrets.VPS_HOST }} "cat > /opt/nokexpert-fe/docker-compose.yml"
+        
+        # Копируем nginx.conf
+        cat nginx.conf | ssh -o ConnectTimeout=30 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/id_rsa deploy@${{ secrets.VPS_HOST }} "cat > /opt/nokexpert-fe/nginx.conf"
         
         ssh -o ConnectTimeout=30 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/id_rsa deploy@${{ secrets.VPS_HOST }} << 'EOF'
         echo "=== 🚀 Начинаем деплой ==="
