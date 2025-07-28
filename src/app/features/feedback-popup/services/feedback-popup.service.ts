@@ -1,4 +1,5 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { 
   FeedbackFormData, 
   FeedbackSubject, 
@@ -11,6 +12,9 @@ import {
   providedIn: 'root'
 })
 export class FeedbackPopupService {
+  private platformId = inject(PLATFORM_ID);
+  private isBrowser = isPlatformBrowser(this.platformId);
+  
   // Состояние popup
   private _config = signal<PopupConfig>({
     isVisible: false,
@@ -68,11 +72,13 @@ export class FeedbackPopupService {
     }));
 
     // Блокируем прокрутку страницы
-    document.body.style.overflow = 'hidden';
+    if (this.isBrowser) {
+      document.body.style.overflow = 'hidden';
 
-    // Обработчик ESC
-    if (this._config().closeOnEsc) {
-      document.addEventListener('keydown', this.handleEscKey);
+      // Обработчик ESC
+      if (this._config().closeOnEsc) {
+        document.addEventListener('keydown', this.handleEscKey);
+      }
     }
   }
 
@@ -86,10 +92,12 @@ export class FeedbackPopupService {
     }));
 
     // Восстанавливаем прокрутку страницы
-    document.body.style.overflow = '';
+    if (this.isBrowser) {
+      document.body.style.overflow = '';
 
-    // Убираем обработчик ESC
-    document.removeEventListener('keydown', this.handleEscKey);
+      // Убираем обработчик ESC
+      document.removeEventListener('keydown', this.handleEscKey);
+    }
   }
 
   /**

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit, inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FeedbackPopupService } from '../../../features/feedback-popup/services/feedback-popup.service';
 import { OrganizationService } from '../../services/organization.service';
@@ -166,9 +166,11 @@ export interface CtaSectionConfig {
 })
 export class CtaSectionComponent implements OnInit {
   @Input() config!: CtaSectionConfig;
-  
+
   private feedbackService = inject(FeedbackPopupService);
   private organizationService = inject(OrganizationService);
+  private platformId = inject(PLATFORM_ID);
+  private isBrowser = isPlatformBrowser(this.platformId);
   
   // Геттеры для данных организации
   get phoneDisplay(): string {
@@ -186,15 +188,18 @@ export class CtaSectionComponent implements OnInit {
   ngOnInit(): void {
     // Устанавливаем значения по умолчанию
     this.config = {
-      variant: 'default',
-      background: 'white',
-      padding: 'medium',
-      showPhone: false,
-      showEmail: false,
-      showConsultationButton: false,
-      showAdditionalInfo: false,
-      ...this.config,
-      buttons: this.config.buttons || []
+      title: this.config?.title || '',
+      buttons: this.config?.buttons || [],
+      variant: this.config?.variant || 'default',
+      background: this.config?.background || 'white',
+      padding: this.config?.padding || 'medium',
+      showPhone: this.config?.showPhone || false,
+      showEmail: this.config?.showEmail || false,
+      showConsultationButton: this.config?.showConsultationButton || false,
+      showAdditionalInfo: this.config?.showAdditionalInfo || false,
+      subtitle: this.config?.subtitle,
+      description: this.config?.description,
+      additionalInfo: this.config?.additionalInfo
     };
   }
   
@@ -209,11 +214,11 @@ export class CtaSectionComponent implements OnInit {
    * Прокрутить к секции
    */
   scrollToSection(sectionId: string): void {
-    if (sectionId) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+    if (!this.isBrowser || !sectionId) return;
+    
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
   

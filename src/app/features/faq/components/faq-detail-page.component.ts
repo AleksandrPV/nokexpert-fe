@@ -1,5 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { NgFor, NgIf, NgClass, DatePipe } from '@angular/common';
+import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
+import { NgFor, NgIf, NgClass, DatePipe, isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SeoService } from '../../../shared/services/seo.service';
 import { FeedbackPopupService } from '../../../features/feedback-popup/services/feedback-popup.service';
@@ -191,6 +191,9 @@ import { switchMap, catchError, of } from 'rxjs';
   `]
 })
 export class FaqDetailPageComponent implements OnInit {
+  private platformId = inject(PLATFORM_ID);
+  private isBrowser = isPlatformBrowser(this.platformId);
+  
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private seo = inject(SeoService);
@@ -273,7 +276,7 @@ export class FaqDetailPageComponent implements OnInit {
       ogImage: '/assets/images/og-default.jpg',
       ogTitle: seoTitle,
       ogDescription: seoDescription,
-      canonical: `${window.location.origin}/faq/${this.question.slug}`
+      canonical: this.isBrowser ? `${window.location.origin}/faq/${this.question.slug}` : `/faq/${this.question.slug}`
     });
 
     // Добавляем структурированные данные для FAQ
@@ -283,11 +286,13 @@ export class FaqDetailPageComponent implements OnInit {
     }]);
 
     // Добавляем breadcrumb структурированные данные
-    this.seo.addBreadcrumbsStructuredData([
-      { name: 'Главная', url: window.location.origin },
-      { name: 'FAQ', url: `${window.location.origin}/faq` },
-      { name: this.question.question, url: `${window.location.origin}/faq/${this.question.slug}` }
-    ]);
+    if (this.isBrowser) {
+      this.seo.addBreadcrumbsStructuredData([
+        { name: 'Главная', url: window.location.origin },
+        { name: 'FAQ', url: `${window.location.origin}/faq` },
+        { name: this.question.question, url: `${window.location.origin}/faq/${this.question.slug}` }
+      ]);
+    }
   }
 
   openConsultationPopup(): void {

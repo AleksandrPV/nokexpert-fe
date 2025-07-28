@@ -1,5 +1,5 @@
-import { Component, OnInit, inject, OnDestroy } from '@angular/core';
-import { NgFor, NgIf, NgClass, DatePipe } from '@angular/common';
+import { Component, OnInit, inject, OnDestroy, PLATFORM_ID } from '@angular/core';
+import { NgFor, NgIf, NgClass, DatePipe, isPlatformBrowser } from '@angular/common';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { SeoService } from '../../../shared/services/seo.service';
 import { FeedbackPopupService } from '../../../features/feedback-popup/services/feedback-popup.service';
@@ -18,6 +18,9 @@ import { combineLatest, switchMap, debounceTime, distinctUntilChanged, Subject, 
   styleUrls: ['./faq-page.component.scss']
 })
 export class FaqPageComponent implements OnInit, OnDestroy {
+  private platformId = inject(PLATFORM_ID);
+  private isBrowser = isPlatformBrowser(this.platformId);
+  
   breadcrumbs: BreadcrumbItem[] = [
     { label: 'Главная', icon: '🏠', url: '/' },
     { label: 'FAQ', icon: '❓', active: true }
@@ -78,7 +81,7 @@ export class FaqPageComponent implements OnInit, OnDestroy {
       description: 'Полные ответы на 80+ вопросов о НОК: сроки, стоимость, документы, подготовка, НОСТРОЙ, НОПРИЗ, пожарная безопасность. Экспертные консультации.',
       keywords: 'НОК, FAQ, часто задаваемые вопросы, независимая оценка квалификации, НОСТРОЙ, НОПРИЗ, пожарная безопасность, экзамен, документы, стоимость, подготовка',
       ogImage: '/assets/images/og-default.jpg',
-      canonical: `${window.location.origin}/faq`
+      canonical: this.isBrowser ? `${window.location.origin}/faq` : '/faq'
     });
 
     // Добавляем структурированные данные для FAQ страницы
@@ -98,10 +101,12 @@ export class FaqPageComponent implements OnInit, OnDestroy {
     ]);
 
     // Добавляем breadcrumb структурированные данные
-    this.seo.addBreadcrumbsStructuredData([
-      { name: 'Главная', url: window.location.origin },
-      { name: 'FAQ', url: `${window.location.origin}/faq` }
-    ]);
+    if (this.isBrowser) {
+      this.seo.addBreadcrumbsStructuredData([
+        { name: 'Главная', url: window.location.origin },
+        { name: 'FAQ', url: `${window.location.origin}/faq` }
+      ]);
+    }
   }
 
   private loadData(): void {

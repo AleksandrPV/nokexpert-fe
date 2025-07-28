@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 /**
  * Интерфейс для конфигурации карты
@@ -31,6 +32,11 @@ export class YandexMapsService {
   private apiLoaded$ = new BehaviorSubject<boolean>(false);
   private readonly apiKey = ''; // Здесь будет API ключ из environment
   private ymaps: any = null;
+  private isBrowser: boolean;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   /**
    * Observable для отслеживания состояния загрузки API
@@ -50,6 +56,10 @@ export class YandexMapsService {
    * Загружает API Яндекс.Карт
    */
   async loadApi(): Promise<void> {
+    if (!this.isBrowser) {
+      return Promise.resolve();
+    }
+
     return new Promise((resolve, reject) => {
       // Проверяем, загружен ли уже API
       if (window.ymaps) {
@@ -89,6 +99,10 @@ export class YandexMapsService {
    * @returns Promise с экземпляром карты
    */
   async createMap(containerId: string, config: MapConfig): Promise<any> {
+    if (!this.isBrowser) {
+      return Promise.resolve(null);
+    }
+
     if (!this.isApiLoaded) {
       await this.loadApi();
     }
@@ -109,6 +123,10 @@ export class YandexMapsService {
    * @returns Экземпляр созданного маркера
    */
   addMarker(map: any, marker: MapMarker): any {
+    if (!this.isBrowser || !map) {
+      return null;
+    }
+
     const placemark = new this.ymaps.Placemark(
       marker.coordinates,
       {
@@ -137,6 +155,9 @@ export class YandexMapsService {
    * @param zoom Уровень масштабирования
    */
   setCenter(map: any, coordinates: [number, number], zoom?: number): void {
+    if (!this.isBrowser || !map) {
+      return;
+    }
     map.setCenter(coordinates, zoom);
   }
 
@@ -146,6 +167,9 @@ export class YandexMapsService {
    * @param title Название места
    */
   openRoute(coordinates: [number, number], title: string): void {
+    if (!this.isBrowser) {
+      return;
+    }
     const url = `https://yandex.ru/maps/?text=${coordinates[0]},${coordinates[1]}&z=16&l=map`;
     window.open(url, '_blank');
   }
@@ -156,6 +180,10 @@ export class YandexMapsService {
    * @returns Promise с адресом
    */
   async getAddressByCoordinates(coordinates: [number, number]): Promise<string> {
+    if (!this.isBrowser) {
+      return Promise.reject(new Error('Геокодирование недоступно на сервере'));
+    }
+
     if (!this.isApiLoaded) {
       await this.loadApi();
     }

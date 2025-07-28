@@ -1,6 +1,7 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, PLATFORM_ID } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { isPlatformBrowser } from '@angular/common';
 
 // Глобальные типы для аналитики
 declare global {
@@ -9,9 +10,6 @@ declare global {
     ym: (id: string, action: string, target: string, params?: any) => void;
   }
 }
-
-const gtag = typeof window !== 'undefined' ? window.gtag : undefined;
-const ym = typeof window !== 'undefined' ? window.ym : undefined;
 
 export interface AnalyticsEvent {
   action: string;
@@ -31,27 +29,33 @@ export interface PageView {
 })
 export class AnalyticsService {
   private router = inject(Router);
+  private platformId = inject(PLATFORM_ID);
+  private isBrowser = isPlatformBrowser(this.platformId);
 
   constructor() {
-    // Отслеживаем навигацию по страницам
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        this.trackPageView({
-          page: event.url,
-          title: document.title,
-          url: event.url
+    if (this.isBrowser) {
+      // Отслеживаем навигацию по страницам
+      this.router.events
+        .pipe(filter(event => event instanceof NavigationEnd))
+        .subscribe((event: NavigationEnd) => {
+          this.trackPageView({
+            page: event.url,
+            title: this.isBrowser ? document.title : '',
+            url: event.url
+          });
         });
-      });
+    }
   }
 
   /**
    * Отслеживание просмотра страницы
    */
   trackPageView(pageView: PageView): void {
+    if (!this.isBrowser) return;
+
     // Google Analytics 4
-    if (gtag) {
-      gtag('config', 'GA_MEASUREMENT_ID', {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('config', 'GA_MEASUREMENT_ID', {
         page_title: pageView.title,
         page_location: window.location.href,
         page_path: pageView.url
@@ -59,8 +63,8 @@ export class AnalyticsService {
     }
 
     // Yandex Metrika
-    if (ym) {
-      ym('YM_ID', 'hit', pageView.url, {
+    if (typeof window !== 'undefined' && window.ym) {
+      window.ym('YM_ID', 'hit', pageView.url, {
         title: pageView.title
       });
     }
@@ -72,9 +76,11 @@ export class AnalyticsService {
    * Отслеживание события
    */
   trackEvent(event: AnalyticsEvent): void {
+    if (!this.isBrowser) return;
+
     // Google Analytics 4
-    if (gtag) {
-      gtag('event', event.action, {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', event.action, {
         event_category: event.category,
         event_label: event.label,
         value: event.value
@@ -82,8 +88,8 @@ export class AnalyticsService {
     }
 
     // Yandex Metrika
-    if (ym) {
-      ym('YM_ID', 'reachGoal', event.action, {
+    if (typeof window !== 'undefined' && window.ym) {
+      window.ym('YM_ID', 'reachGoal', event.action, {
         category: event.category,
         label: event.label,
         value: event.value
@@ -100,7 +106,7 @@ export class AnalyticsService {
     this.trackEvent({
       action: 'button_click',
       category: 'engagement',
-      label: `${buttonName} - ${page || window.location.pathname}`
+      label: `${buttonName} - ${page || (this.isBrowser ? window.location.pathname : '')}`
     });
   }
 
@@ -111,7 +117,7 @@ export class AnalyticsService {
     this.trackEvent({
       action: 'form_submit',
       category: 'lead_generation',
-      label: `${formName} - ${page || window.location.pathname}`
+      label: `${formName} - ${page || (this.isBrowser ? window.location.pathname : '')}`
     });
   }
 
@@ -191,7 +197,7 @@ export class AnalyticsService {
     this.trackEvent({
       action: 'error',
       category: 'error',
-      label: `${error} - ${page || window.location.pathname}`
+      label: `${error} - ${page || (this.isBrowser ? window.location.pathname : '')}`
     });
   }
 

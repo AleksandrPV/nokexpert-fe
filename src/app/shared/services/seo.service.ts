@@ -1,6 +1,6 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
@@ -39,17 +39,20 @@ export class SeoService {
     private meta: Meta,
     private title: Title,
     private router: Router,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // Устанавливаем базовые SEO теги при инициализации
     this.setDefaultSeoData();
     
-    // Автоматическое обновление canonical URL при навигации
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        this.updateCanonicalUrl(this.baseUrl + event.url);
-      });
+    // Автоматическое обновление canonical URL при навигации только в браузере
+    if (isPlatformBrowser(this.platformId)) {
+      this.router.events
+        .pipe(filter(event => event instanceof NavigationEnd))
+        .subscribe((event: NavigationEnd) => {
+          this.updateCanonicalUrl(this.baseUrl + event.url);
+        });
+    }
   }
 
   /**
@@ -569,6 +572,11 @@ export class SeoService {
    * Обновить canonical URL
    */
   private updateCanonicalUrl(url: string): void {
+    // Проверяем, что мы в браузере
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+    
     let canonical = this.document.querySelector('link[rel="canonical"]');
     if (!canonical) {
       canonical = this.document.createElement('link');
@@ -582,6 +590,11 @@ export class SeoService {
    * Обновить структурированные данные
    */
   private updateStructuredData(data: any): void {
+    // Проверяем, что мы в браузере
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+    
     // Удаляем существующие structured data скрипты с нашим ID
     const existingScript = this.document.getElementById('structured-data');
     if (existingScript) {
@@ -607,7 +620,10 @@ export class SeoService {
    * Получить текущий URL
    */
   private getCurrentUrl(): string {
-    return `${this.baseUrl}${this.router.url}`;
+    if (isPlatformBrowser(this.platformId)) {
+      return `${this.baseUrl}${this.router.url}`;
+    }
+    return this.baseUrl;
   }
 
   /**
