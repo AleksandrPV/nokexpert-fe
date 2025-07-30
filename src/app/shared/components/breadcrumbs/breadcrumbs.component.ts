@@ -79,7 +79,7 @@ export interface BreadcrumbItem {
       @apply text-blue-900 font-medium;
     }
   `]
-})
+}) 
 export class BreadcrumbsComponent implements OnInit {
   @Input() breadcrumbs: BreadcrumbItem[] = [];
   
