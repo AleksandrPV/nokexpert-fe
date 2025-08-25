@@ -3,7 +3,7 @@
 ## Шаг 1: Установка зависимостей
 
 ```bash
-npm install @angular/platform-server @angular/ssr express
+npm install @angular/platform-server@20.2.1 @angular/ssr@20.2.0 express
 npm install --save-dev @types/express @types/node
 ```
 

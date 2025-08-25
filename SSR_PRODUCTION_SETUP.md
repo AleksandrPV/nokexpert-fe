@@ -12,28 +12,30 @@
 
 ## 1. Зависимости и конфигурация
 
+**Важно:** Данная конфигурация протестирована с Angular 20.2.1. Для корректной работы SSR рекомендуется использовать Angular 20+.
+
 ### 1.1 package.json - обязательные зависимости
 
 ```json
 {
   "dependencies": {
-    "@angular/common": "^20.1.0",
-    "@angular/compiler": "^20.1.0",
-    "@angular/core": "^20.1.0",
-    "@angular/forms": "^20.1.0",
-    "@angular/platform-browser": "^20.1.0",
-    "@angular/platform-server": "^20.1.0",
-    "@angular/router": "^20.1.0",
-    "@angular/ssr": "^20.1.2",
+    "@angular/common": "^20.2.1",
+    "@angular/compiler": "^20.2.1",
+    "@angular/core": "^20.2.1",
+    "@angular/forms": "^20.2.1",
+    "@angular/platform-browser": "^20.2.1",
+    "@angular/platform-server": "^20.2.1",
+    "@angular/router": "^20.2.1",
+    "@angular/ssr": "^20.2.0",
     "express": "^5.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular/build": "^20.1.2",
-    "@angular/cli": "^20.1.2",
-    "@angular/compiler-cli": "^20.1.0",
+    "@angular/build": "^20.2.0",
+    "@angular/cli": "^20.2.0",
+    "@angular/compiler-cli": "^20.2.1",
     "@types/express": "^5.0.1",
     "@types/node": "^20.17.19"
   }
