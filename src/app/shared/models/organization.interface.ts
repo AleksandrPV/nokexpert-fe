@@ -17,6 +17,7 @@ export interface OrganizationData {
     city: string;
     street: string;
     building: string;
+    postalCode?: string;
   };
   
   // Лицензия и сертификация (опционально)

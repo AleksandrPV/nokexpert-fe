@@ -354,12 +354,227 @@ import { SeoService } from '../../../shared/services/seo.service';
                   <h3 class="font-bold text-brand-dark mb-2">Технолог</h3>
                   <p class="text-sm text-brand-dark/70">Разработка технологических процессов</p>
                   <div class="text-xs text-brand-dark/50 mt-2">Уровень: 4-6</div>
-                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How to Get Qualification Section -->
+      <div class="max-w-6xl mx-auto mb-16">
+        <h2 class="text-3xl font-bold text-brand-navy mb-8 text-center">
+          Как получить профессиональную квалификацию
+        </h2>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+          <!-- Step 1 -->
+          <div class="glass p-6 rounded-2xl hover-lift">
+            <div class="text-center mb-6">
+              <div class="w-16 h-16 bg-brand-coral/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-3xl font-bold text-brand-coral">📝</span>
+              </div>
+              <h3 class="text-xl font-bold text-brand-navy">Подготовка</h3>
+            </div>
+
+            <div class="space-y-3 text-sm text-brand-dark/80">
+              <div class="flex items-start gap-3">
+                <span class="text-brand-coral font-bold mt-1">•</span>
+                <span>Изучение требований к квалификации</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-brand-coral font-bold mt-1">•</span>
+                <span>Оценка текущего уровня компетенций</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-brand-coral font-bold mt-1">•</span>
+                <span>Планирование обучения и подготовки</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-brand-coral font-bold mt-1">•</span>
+                <span>Сбор необходимых документов</span>
               </div>
             </div>
           </div>
 
-          <!-- Contact Section -->
+          <!-- Step 2 -->
+          <div class="glass p-6 rounded-2xl hover-lift">
+            <div class="text-center mb-6">
+              <div class="w-16 h-16 bg-brand-sky/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-3xl font-bold text-brand-sky">🎓</span>
+              </div>
+              <h3 class="text-xl font-bold text-brand-navy">Обучение</h3>
+            </div>
+
+            <div class="space-y-3 text-sm text-brand-dark/80">
+              <div class="flex items-start gap-3">
+                <span class="text-brand-sky font-bold mt-1">•</span>
+                <span>Теоретическая подготовка по стандартам</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-brand-sky font-bold mt-1">•</span>
+                <span>Практические занятия и тренинги</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-brand-sky font-bold mt-1">•</span>
+                <span>Изучение нормативной документации</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-brand-sky font-bold mt-1">•</span>
+                <span>Подготовка портфолио работ</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="glass p-6 rounded-2xl hover-lift">
+            <div class="text-center mb-6">
+              <div class="w-16 h-16 bg-brand-navy/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-3xl font-bold text-brand-navy">✅</span>
+              </div>
+              <h3 class="text-xl font-bold text-brand-navy">Подтверждение</h3>
+            </div>
+
+            <div class="space-y-3 text-sm text-brand-dark/80">
+              <div class="flex items-start gap-3">
+                <span class="text-brand-navy font-bold mt-1">•</span>
+                <span>Прохождение независимой оценки квалификации</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-brand-navy font-bold mt-1">•</span>
+                <span>Получение свидетельства о квалификации</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-brand-navy font-bold mt-1">•</span>
+                <span>Внесение в Национальный реестр специалистов</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-brand-navy font-bold mt-1">•</span>
+                <span>Использование квалификации в работе</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Qualification Renewal Section -->
+      <div class="max-w-6xl mx-auto mb-16">
+        <h2 class="text-3xl font-bold text-brand-navy mb-8 text-center">
+          Продление квалификации
+        </h2>
+
+        <div class="glass p-6 sm:p-8 rounded-3xl">
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-xl font-bold text-brand-navy mb-4 flex items-center gap-3">
+                <span class="text-2xl">⏰</span>
+                Сроки действия квалификации
+              </h3>
+              <div class="space-y-3 text-brand-dark/80">
+                <p>
+                  Свидетельство о квалификации действует <strong class="text-brand-coral">5 лет</strong>
+                  с момента получения. По истечении этого срока необходимо пройти процедуру подтверждения квалификации.
+                </p>
+                <p>
+                  Подтверждение квалификации проводится в упрощенном порядке и включает оценку опыта работы
+                  и профессиональной деятельности специалиста за прошедший период.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-brand-navy mb-4 flex items-center gap-3">
+                <span class="text-2xl">🔄</span>
+                Процедура подтверждения
+              </h3>
+              <div class="space-y-3 text-brand-dark/80">
+                <div class="flex items-start gap-3">
+                  <span class="text-brand-sky font-bold mt-1">1.</span>
+                  <span>Подготовка отчета о профессиональной деятельности</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="text-brand-sky font-bold mt-1">2.</span>
+                  <span>Предоставление подтверждающих документов</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="text-brand-sky font-bold mt-1">3.</span>
+                  <span>Рассмотрение в центре оценки квалификации</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="text-brand-sky font-bold mt-1">4.</span>
+                  <span>Получение нового свидетельства</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Professional Standards Section -->
+      <div class="max-w-6xl mx-auto mb-16">
+        <h2 class="text-3xl font-bold text-brand-navy mb-8 text-center">
+          Профессиональные стандарты
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="glass p-6 rounded-2xl">
+            <h3 class="text-xl font-bold text-brand-navy mb-4 flex items-center gap-3">
+              <span class="text-2xl">📊</span>
+              Что такое профессиональный стандарт?
+            </h3>
+            <p class="text-brand-dark/80 leading-relaxed">
+              Профессиональный стандарт — это документ, который устанавливает требования к образованию,
+              опыту работы, знаниям и умениям работника. Он определяет уровень квалификации,
+              необходимый для выполнения трудовых функций в определенной профессиональной области.
+            </p>
+          </div>
+
+          <div class="glass p-6 rounded-2xl">
+            <h3 class="text-xl font-bold text-brand-navy mb-4 flex items-center gap-3">
+              <span class="text-2xl">🎯</span>
+              Связь с квалификацией
+            </h3>
+            <p class="text-brand-dark/80 leading-relaxed">
+              Независимая оценка квалификации проводится на соответствие требованиям профессиональных стандартов.
+              Успешное прохождение НОК подтверждает, что специалист обладает компетенциями,
+              необходимыми для выполнения трудовых функций на соответствующем уровне квалификации.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="max-w-6xl mx-auto mb-16">
+        <h2 class="text-3xl font-bold text-brand-navy mb-8 text-center">
+          Часто задаваемые вопросы о квалификации
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="space-y-4">
+            <div class="glass p-4 rounded-xl">
+              <h4 class="font-semibold text-brand-dark mb-2">Какая квалификация нужна для моей профессии?</h4>
+              <p class="text-sm text-brand-dark/70">Уровень квалификации зависит от сложности выполняемых задач. Для руководителей обычно требуется 5-6 уровень, для специалистов - 4-5 уровень.</p>
+            </div>
+
+            <div class="glass p-4 rounded-xl">
+              <h4 class="font-semibold text-brand-dark mb-2">Можно ли получить квалификацию без высшего образования?</h4>
+              <p class="text-sm text-brand-dark/70">Да, для многих специальностей достаточно среднего профессионального образования или опыта работы. Требования указаны в профессиональных стандартах.</p>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <div class="glass p-4 rounded-xl">
+              <h4 class="font-semibold text-brand-dark mb-2">Что делать, если у меня нет опыта работы?</h4>
+              <p class="text-sm text-brand-dark/70">Для получения начальной квалификации (уровень 1-2) достаточно образования. Для более высоких уровней потребуется опыт работы или дополнительное обучение.</p>
+            </div>
+
+            <div class="glass p-4 rounded-xl">
+              <h4 class="font-semibold text-brand-dark mb-2">Можно ли получить несколько квалификаций?</h4>
+              <p class="text-sm text-brand-dark/70">Да, специалист может иметь несколько квалификаций по разным направлениям. Каждая квалификация подтверждается отдельным свидетельством.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Section -->
           <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-3xl font-bold text-brand-navy mb-6">
               Нужна консультация по квалификации?
