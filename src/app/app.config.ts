@@ -16,13 +16,11 @@ export const appConfig: ApplicationConfig = {
     // Оптимизация роутера
     provideRouter(
       routes,
-      withEnabledBlockingInitialNavigation(),
       withInMemoryScrolling({
         scrollPositionRestoration: 'top',
         anchorScrolling: 'enabled'
       })
     ),
-    provideClientHydration(withEventReplay()),
     // Service Worker для кэширования
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),

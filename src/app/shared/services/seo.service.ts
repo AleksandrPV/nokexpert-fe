@@ -861,7 +861,7 @@ export class SeoService {
             "@type": "SpeakableSpecification",
             "cssSelector": [".article-content h1", ".article-content h2", ".article-content p"]
           },
-          "about": article.tags?.map(tag => ({
+          "about": article.tags?.map((tag: string) => ({
             "@type": "Thing",
             "name": tag
           })) || [],
@@ -1155,7 +1155,6 @@ export class SeoService {
         "@type": "OfferCatalog",
         "name": "Каталог услуг НОК",
         "itemListElement": offers.map((offer, index) => ({
-          "@type": "Offer",
           "position": index + 1,
           ...offer
         }))
@@ -1175,13 +1174,15 @@ export class SeoService {
     email: string;
     address: { full: string };
     website: { url: string; domain: string };
-    social: {
+    social?: {
       vk?: string;
       telegram?: string;
       whatsapp?: string;
       youtube?: string;
+      instagram?: string;
+      linkedin?: string;
     };
-    offices: Array<{
+    offices?: Array<{
       name: string;
       address: { full: string; city: string; street: string };
       coordinates?: { latitude: number; longitude: number };
@@ -1189,15 +1190,15 @@ export class SeoService {
       email: string;
       workingHours: { weekdays: string; saturday?: string };
     }>;
-    workingHours: { weekdays: string };
-    foundedYear: number;
-    description: string;
+    workingHours?: { weekdays: string };
+    foundedYear?: number;
+    description?: string;
   }): void {
-    const offices = organizationData.offices.map(office => ({
+    const offices = (organizationData.offices || []).map(office => ({
       "@type": "LocalBusiness",
       "@id": `${this.baseUrl}#office-${office.name.toLowerCase().replace(/\s+/g, '-')}`,
       "name": `${organizationData.name} - ${office.name}`,
-      "description": `${organizationData.description} - ${office.name}`,
+      "description": `${organizationData.description || organizationData.name} - ${office.name}`,
       "url": `${this.baseUrl}/contacts#${office.name.toLowerCase().replace(/\s+/g, '-')}`,
       "address": {
         "@type": "PostalAddress",
@@ -1223,7 +1224,9 @@ export class SeoService {
       "sameAs": [
         organizationData.social?.vk ? `https://vk.com/${organizationData.social.vk}` : null,
         organizationData.social?.telegram ? `https://t.me/${organizationData.social.telegram}` : null,
-        organizationData.social?.youtube ? `https://youtube.com/@${organizationData.social.youtube}` : null
+        organizationData.social?.youtube ? `https://youtube.com/@${organizationData.social.youtube}` : null,
+        organizationData.social?.instagram ? `https://instagram.com/${organizationData.social.instagram}` : null,
+        organizationData.social?.linkedin ? `https://linkedin.com/company/${organizationData.social.linkedin}` : null
       ].filter(Boolean)
     }));
 
@@ -1236,7 +1239,7 @@ export class SeoService {
           "name": organizationData.name,
           "legalName": organizationData.fullName,
           "alternateName": organizationData.name,
-          "description": organizationData.description,
+          "description": organizationData.description || organizationData.name,
           "url": this.baseUrl,
           "logo": `${this.baseUrl}/assets/images/logo.png`,
           "image": `${this.baseUrl}/assets/images/og-default.jpg`,
@@ -1248,14 +1251,14 @@ export class SeoService {
             "streetAddress": organizationData.address.full,
             "addressCountry": "RU"
           },
-          "foundingDate": `${organizationData.foundedYear}-01-01`,
+          "foundingDate": organizationData.foundedYear ? `${organizationData.foundedYear}-01-01` : undefined,
           "contactPoint": [
             {
               "@type": "ContactPoint",
               "telephone": organizationData.phone.href,
               "contactType": "customer service",
               "availableLanguage": "Russian",
-              "hoursAvailable": organizationData.workingHours.weekdays,
+              "hoursAvailable": organizationData.workingHours?.weekdays,
               "contactOption": "TollFree"
             },
             {
@@ -1263,14 +1266,16 @@ export class SeoService {
               "email": organizationData.email,
               "contactType": "customer service",
               "availableLanguage": "Russian",
-              "hoursAvailable": organizationData.workingHours.weekdays
+              "hoursAvailable": organizationData.workingHours?.weekdays
             }
           ],
           "sameAs": [
             organizationData.social?.vk ? `https://vk.com/${organizationData.social.vk}` : null,
             organizationData.social?.telegram ? `https://t.me/${organizationData.social.telegram}` : null,
             organizationData.social?.whatsapp ? `https://wa.me/${organizationData.social.whatsapp}` : null,
-            organizationData.social?.youtube ? `https://youtube.com/@${organizationData.social.youtube}` : null
+            organizationData.social?.youtube ? `https://youtube.com/@${organizationData.social.youtube}` : null,
+            organizationData.social?.instagram ? `https://instagram.com/${organizationData.social.instagram}` : null,
+            organizationData.social?.linkedin ? `https://linkedin.com/company/${organizationData.social.linkedin}` : null
           ].filter(Boolean),
           "hasOfferCatalog": {
             "@type": "OfferCatalog",

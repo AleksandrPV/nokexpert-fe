@@ -6,6 +6,7 @@ import { CtaSectionComponent, CtaSectionConfig } from '../../../shared/component
 import { SeoService } from '../../../shared/services/seo.service';
 import { FeedbackPopupService } from '../../feedback-popup/services/feedback-popup.service';
 import { OrganizationService } from '../../../shared/services/organization.service';
+import { ServicesService } from '../services/services.service';
 import { FaqWidgetComponent } from '../../faq/components/faq-widget.component';
 
 @Component({
@@ -19,6 +20,7 @@ export class NokNostroyPageComponent implements OnInit {
   private seoService = inject(SeoService);
   private feedbackService = inject(FeedbackPopupService);
   private organizationService = inject(OrganizationService);
+  private servicesService = inject(ServicesService);
 
   // Данные организации
   get phoneDisplay(): string {
@@ -191,13 +193,10 @@ export class NokNostroyPageComponent implements OnInit {
     this.seoService.setNokNostroyPageSeo();
 
     // Добавляем structured data для услуги НОК НОСТРОЙ
-    import('../../services/services.service').then(({ ServicesService }) => {
-      const servicesService = new ServicesService();
-      servicesService.getServiceById('nok-construction').subscribe(service => {
-        if (service) {
-          this.seoService.addServicesPricingStructuredData([service]);
-        }
-      });
+    this.servicesService.getServiceById('nok-construction').subscribe((service: any) => {
+      if (service) {
+        this.seoService.addServicesPricingStructuredData([service]);
+      }
     });
   }
 

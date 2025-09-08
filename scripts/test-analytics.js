@@ -30,6 +30,20 @@ const checks = [
     }
   },
   {
+    name: 'Яндекс.Вебмастер верификация',
+    check: () => {
+      const indexPath = path.join(__dirname, '../src/index.html');
+      if (!fs.existsSync(indexPath)) return false;
+      const content = fs.readFileSync(indexPath, 'utf-8');
+
+      return {
+        metaTag: content.includes('yandex-verification'),
+        content: content.includes('fc3cb51d6001bcbc'),
+        placement: content.includes('<!-- Yandex Webmaster Verification -->')
+      };
+    }
+  },
+  {
     name: 'Google Analytics (будущий)',
     check: () => {
       const indexPath = path.join(__dirname, '../src/index.html');
@@ -93,7 +107,7 @@ checks.forEach(({ name, check }) => {
   }
 });
 
-console.log(`📊 Результат тестирования аналитики: ${passedChecks}/${totalChecks} проверок пройдено`);
+console.log(`📊 Результат тестирования аналитики: ${passedChecks}/${totalChecks} проверок пройдено (включая верификацию)`);
 
 if (passedChecks === totalChecks) {
   console.log('🎉 Отлично! Все компоненты аналитики внедрены!');

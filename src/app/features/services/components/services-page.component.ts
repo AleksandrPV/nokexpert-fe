@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../../../shared/services/seo.service';
 import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
+import { ServicesService } from '../services/services.service';
 import { Service, ServiceCategory } from '../models/service.interface';
 
 /**
@@ -18,6 +19,7 @@ import { Service, ServiceCategory } from '../models/service.interface';
 })
 export class ServicesPageComponent implements OnInit {
   private seoService = inject(SeoService);
+  private servicesService = inject(ServicesService);
 
   selectedCategory: string = 'all';
   
@@ -143,11 +145,12 @@ export class ServicesPageComponent implements OnInit {
     // Устанавливаем SEO данные для страницы услуг
     this.seoService.setServicesPageSeo();
 
-    // Добавляем structured data для цен услуг
-    this.servicesService.getAllServices().subscribe(services => {
+    // Загружаем услуги и добавляем structured data для цен
+    this.servicesService.getAllServices().subscribe((services: Service[]) => {
+      this.services = services;
+      this.filteredServices = services;
       this.seoService.addServicesPricingStructuredData(services);
     });
-    this.filteredServices = this.services;
   }
 
   selectCategory(category: string) {

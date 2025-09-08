@@ -101,11 +101,14 @@ export class BreadcrumbsComponent implements OnInit {
 
   private setAriaLabels(): void {
     // Устанавливаем aria-current для активного элемента
-    setTimeout(() => {
-      const currentElement = document.querySelector('[aria-current="page"]');
-      if (currentElement) {
-        currentElement.setAttribute('aria-current', 'page');
-      }
-    });
+    // Только в браузерной среде
+    if (typeof document !== 'undefined') {
+      setTimeout(() => {
+        const currentElement = document.querySelector('[aria-current="page"]');
+        if (currentElement) {
+          currentElement.setAttribute('aria-current', 'page');
+        }
+      });
+    }
   }
 } 

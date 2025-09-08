@@ -54,44 +54,6 @@ export class ServicesService {
   ];
 
   private allServices: Service[] = [
-
-  /**
-   * Получить все услуги для structured data
-   */
-  getAllServices(): Observable<Service[]> {
-    return of(this.allServices);
-  }
-
-  /**
-   * Получить услугу по ID
-   */
-  getServiceById(id: string): Observable<Service | undefined> {
-    const service = this.allServices.find(s => s.id === id);
-    return of(service);
-  }
-
-  /**
-   * Получить услуги по категории
-   */
-  getServicesByCategory(category: ServiceCategory): Observable<Service[]> {
-    const services = this.allServices.filter(s => s.category === category);
-    return of(services);
-  }
-
-  /**
-   * Получить популярные услуги
-   */
-  getPopularServices(): Observable<Service[]> {
-    const services = this.allServices.filter(s => s.popular);
-    return of(services);
-  }
-
-  /**
-   * Получить услуги для header
-   */
-  getHeaderServices(): Observable<HeaderService[]> {
-    return of(this.headerServices);
-  }
     {
       id: 'nok-construction',
       title: 'НОК по строительству',
@@ -225,6 +187,14 @@ export class ServicesService {
    */
   getServicesByCategory(category: ServiceCategory): Observable<Service[]> {
     const services = this.allServices.filter(s => s.category === category);
+    return of(services);
+  }
+
+  /**
+   * Получить популярные услуги
+   */
+  getPopularServices(): Observable<Service[]> {
+    const services = this.allServices.filter(s => s.popular);
     return of(services);
   }
 } 
