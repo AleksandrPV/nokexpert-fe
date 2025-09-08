@@ -20,7 +20,6 @@
 ### ✅ Готовые методы для страниц
 - `setHomePageSeo()` - главная страница
 - `setServicesPageSeo()` - страница услуг
-- `setBlogPageSeo()` - блог
 - `setContactsPageSeo()` - контакты
 - `setInfoPageSeo()` - информация о НОК
 - `setPrivacyPageSeo()` - политика конфиденциальности

@@ -45,7 +45,7 @@ describe('SeoService', () => {
     
     expect(metaService.updateTag).toHaveBeenCalledWith({
       name: 'description',
-      content: jasmine.stringContaining('Центр подготовки к НОК с гарантированным результатом')
+      content: jasmine.stringContaining('Лидирующий центр подготовки к НОК в России')
     });
   });
 
@@ -58,22 +58,10 @@ describe('SeoService', () => {
     
     expect(metaService.updateTag).toHaveBeenCalledWith({
       name: 'description',
-      content: jasmine.stringContaining('Полный спектр услуг по подготовке к независимой оценке квалификации')
+      content: jasmine.stringContaining('Все виды подготовки к НОК')
     });
   });
 
-  it('should set blog page SEO', () => {
-    service.setBlogPageSeo();
-    
-    expect(titleService.setTitle).toHaveBeenCalledWith(
-      'Блог и новости о НОК | НОК Эксперт'
-    );
-    
-    expect(metaService.updateTag).toHaveBeenCalledWith({
-      name: 'description',
-      content: jasmine.stringContaining('Актуальные новости и статьи о независимой оценке квалификации')
-    });
-  });
 
   it('should set contacts page SEO', () => {
     service.setContactsPageSeo();
@@ -84,7 +72,7 @@ describe('SeoService', () => {
     
     expect(metaService.updateTag).toHaveBeenCalledWith({
       name: 'description',
-      content: jasmine.stringContaining('Свяжитесь с НОК Эксперт')
+      content: jasmine.stringContaining('Контакты НОК Эксперт')
     });
   });
 
@@ -97,7 +85,7 @@ describe('SeoService', () => {
     
     expect(metaService.updateTag).toHaveBeenCalledWith({
       name: 'description',
-      content: jasmine.stringContaining('Полная информация о независимой оценке квалификации')
+      content: jasmine.stringContaining('Вся информация о НОК в одном месте')
     });
   });
 
