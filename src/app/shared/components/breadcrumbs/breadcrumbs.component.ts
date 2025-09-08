@@ -94,5 +94,18 @@ export class BreadcrumbsComponent implements OnInit {
       }));
       this.seoService.addBreadcrumbsStructuredData(structuredBreadcrumbs);
     }
+
+    // Устанавливаем ARIA метки для accessibility
+    this.setAriaLabels();
+  }
+
+  private setAriaLabels(): void {
+    // Устанавливаем aria-current для активного элемента
+    setTimeout(() => {
+      const currentElement = document.querySelector('[aria-current="page"]');
+      if (currentElement) {
+        currentElement.setAttribute('aria-current', 'page');
+      }
+    });
   }
 } 

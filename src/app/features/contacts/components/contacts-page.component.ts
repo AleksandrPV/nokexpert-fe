@@ -47,6 +47,9 @@ export class ContactsPageComponent implements OnInit {
   ngOnInit(): void {
     // Устанавливаем SEO данные для страницы контактов
     this.seoService.setContactsPageSeo();
+
+    // Добавляем расширенную structured data для контактов и организации
+    this.seoService.addContactStructuredData(this.organizationService.getData());
   }
 
   formData = {

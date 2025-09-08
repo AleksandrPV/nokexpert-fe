@@ -84,21 +84,11 @@ export class FaqPageComponent implements OnInit, OnDestroy {
       canonical: this.isBrowser ? `${window.location.origin}/faq` : '/faq'
     });
 
-    // Добавляем структурированные данные для FAQ страницы
-    this.seo.addFaqStructuredData([
-      {
-        question: 'Что такое НОК?',
-        answer: 'Независимая оценка квалификации - это процедура подтверждения соответствия квалификации соискателя положениям профессионального стандарта.'
-      },
-      {
-        question: 'Когда стала обязательной НОК для строителей?',
-        answer: 'С 1 сентября 2022 г. для специалистов строительной отрасли.'
-      },
-      {
-        question: 'Сколько стоит НОК для строителей в 2025 году?',
-        answer: 'Экзамен: 18000 рублей, с 1 марта 2025 года - 24000 рублей.'
-      }
-    ]);
+    // Добавляем полную структурированные данные для FAQ
+    // Импортируем все вопросы FAQ для structured data
+    import('../data/faq-questions').then(({ FAQ_QUESTIONS }) => {
+      this.seo.addCompleteFaqStructuredData(FAQ_QUESTIONS);
+    });
 
     // Добавляем breadcrumb структурированные данные
     if (this.isBrowser) {

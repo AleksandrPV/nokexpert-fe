@@ -189,6 +189,16 @@ export class NokNostroyPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.seoService.setNokNostroyPageSeo();
+
+    // Добавляем structured data для услуги НОК НОСТРОЙ
+    import('../../services/services.service').then(({ ServicesService }) => {
+      const servicesService = new ServicesService();
+      servicesService.getServiceById('nok-construction').subscribe(service => {
+        if (service) {
+          this.seoService.addServicesPricingStructuredData([service]);
+        }
+      });
+    });
   }
 
   openConsultationPopup(): void {

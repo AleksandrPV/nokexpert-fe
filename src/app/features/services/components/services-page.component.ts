@@ -142,6 +142,11 @@ export class ServicesPageComponent implements OnInit {
   ngOnInit(): void {
     // Устанавливаем SEO данные для страницы услуг
     this.seoService.setServicesPageSeo();
+
+    // Добавляем structured data для цен услуг
+    this.servicesService.getAllServices().subscribe(services => {
+      this.seoService.addServicesPricingStructuredData(services);
+    });
     this.filteredServices = this.services;
   }
 

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Примеры технических SEO оптимизаций для НОК Эксперт -->
+
+<!-- 1. XML Sitemap с image namespace -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://nok-expert.ru/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://nok-expert.ru/assets/images/og-default.jpg</image:loc>
+      <image:title>НОК Эксперт - Подготовка к независимой оценке квалификации</image:title>
+      <image:caption>Профессиональная подготовка к НОК для строителей, проектировщиков и специалистов пожарной безопасности</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://nok-expert.ru/services</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://nok-expert.ru/services/nok-nostroy</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
+
+<!-- 2. Sitemap Index -->
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://nok-expert.ru/sitemap.xml</loc>
+    <lastmod>2025-01-27</lastmod>
+  </sitemap>
+
+  <sitemap>
+    <loc>https://nok-expert.ru/sitemap-blog.xml</loc>
+    <lastmod>2025-01-27</lastmod>
+  </sitemap>
+
+  <sitemap>
+    <loc>https://nok-expert.ru/sitemap-services.xml</loc>
+    <lastmod>2025-01-27</lastmod>
+  </sitemap>
+
+  <sitemap>
+    <loc>https://nok-expert.ru/sitemap-faq.xml</loc>
+    <lastmod>2025-01-27</lastmod>
+  </sitemap>
+</sitemapindex>
+
+<!-- 3. OpenSearch Description -->
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+                       xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+  <ShortName>НОК Эксперт</ShortName>
+  <Description>Поиск по сайту НОК Эксперт - подготовка к независимой оценке квалификации</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Image width="16" height="16" type="image/x-icon">https://nok-expert.ru/favicon.ico</Image>
+
+  <Url type="text/html" method="GET" template="https://nok-expert.ru/search?q={searchTerms}"/>
+
+  <Url type="application/opensearchdescription+xml" rel="self" template="https://nok-expert.ru/opensearch.xml"/>
+
+  <Query role="example" searchTerms="НОК НОСТРОЙ"/>
+
+  <Developer>НОК Эксперт</Developer>
+  <Contact>info@nok-expert.ru</Contact>
+  <Attribution>© 2025 НОК Эксперт. Поиск предоставлен сайтом nok-expert.ru</Attribution>
+
+  <Language>ru-RU</Language>
+  <OutputEncoding>UTF-8</OutputEncoding>
+
+  <moz:SearchForm>https://nok-expert.ru/search</moz:SearchForm>
+</OpenSearchDescription>
+
+<!-- 4. HTML с hreflang и OpenSearch -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>НОК Эксперт - Подготовка к независимой оценке квалификации</title>
+
+  <!-- hreflang для языковой оптимизации -->
+  <link rel="alternate" hreflang="ru" href="https://nok-expert.ru">
+  <link rel="alternate" hreflang="ru-RU" href="https://nok-expert.ru">
+  <link rel="alternate" hreflang="x-default" href="https://nok-expert.ru">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://nok-expert.ru">
+
+  <!-- OpenSearch для поиска по сайту -->
+  <link rel="search" type="application/opensearchdescription+xml" title="НОК Эксперт" href="/opensearch.xml">
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Профессиональная подготовка к НОК для строителей, проектировщиков и специалистов пожарной безопасности">
+  <meta name="keywords" content="НОК, независимая оценка квалификации, НОСТРОЙ, НОПРИЗ, подготовка">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+  <!-- Technical SEO -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="preload" href="/assets/images/logo.png" as="image" type="image/png">
+</head>
+<body>
+  <!-- Structured Data будет добавлен через JavaScript -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://nok-expert.ru#organization",
+        "name": "НОК Эксперт",
+        "legalName": "НОК Эксперт - Центр профессиональной подготовки к НОК",
+        "description": "Профессиональная подготовка к независимой оценке квалификации",
+        "url": "https://nok-expert.ru",
+        "telephone": "+79111113396",
+        "email": "info@nok-expert.ru",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Санкт-Петербург, наб. Черной речки, д. 15",
+          "addressCountry": "RU"
+        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+79111113396",
+            "contactType": "customer service",
+            "availableLanguage": "Russian",
+            "hoursAvailable": "Пн-Пт: 9:00-18:00",
+            "contactOption": "TollFree"
+          }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "3000",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "sameAs": [
+          "https://vk.com/nokexpert",
+          "https://t.me/nokexpert"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Каталог услуг по подготовке к НОК",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "НОК НОСТРОЙ",
+                "description": "Подготовка к НОК для строителей"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
+</body>
+</html>
+
+<!-- 5. Robots.txt с правильной индексацией -->
+User-agent: *
+Allow: /
+Allow: /services
+Allow: /info
+Allow: /blog
+Allow: /contacts
+Allow: /faq
+Allow: /qualifications
+Allow: /qa-centers
+Allow: /reviews
+
+# Запрещаем служебные страницы
+Disallow: /privacy-policy
+Disallow: /user-agreement
+Disallow: /public-offer
+Disallow: /admin/
+Disallow: /api/
+Disallow: /sitemap
+
+# Специальные правила для ботов
+User-agent: Googlebot
+Crawl-delay: 1
+
+User-agent: YandexBot
+Crawl-delay: 1
+
+# Карты сайта
+Sitemap: https://nok-expert.ru/sitemap.xml
+Sitemap: https://nok-expert.ru/sitemap-blog.xml
+Sitemap: https://nok-expert.ru/sitemap-services.xml
+Sitemap: https://nok-expert.ru/sitemap-faq.xml
+
+# Основной хост
+Host: https://nok-expert.ru

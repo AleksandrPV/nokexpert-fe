@@ -1,20 +1,17 @@
 # robots.txt для НОК Эксперт
 # https://nok-expert.ru/robots.txt
 
-# Основные правила для всех роботов
+# Разрешаем индексацию основного контента
 User-agent: *
-Disallow: /
-
-# Временно запрещаем индексацию (сайт в разработке)
-# Allow: /$
-# Allow: /services
-# Allow: /info
-# Allow: /blog
-# Allow: /contacts
-# Allow: /faq
-# Allow: /qualifications
-# Allow: /qa-centers
-# Allow: /reviews
+Allow: /
+Allow: /services
+Allow: /info
+Allow: /blog
+Allow: /contacts
+Allow: /faq
+Allow: /qualifications
+Allow: /qa-centers
+Allow: /reviews
 
 # Запрещаем служебные страницы
 Disallow: /privacy-policy
@@ -22,8 +19,9 @@ Disallow: /user-agreement
 Disallow: /public-offer
 Disallow: /admin/
 Disallow: /api/
+Disallow: /sitemap
 
-# Запрещаем статические файлы
+# Запрещаем статические файлы от индексации
 Disallow: /assets/
 Disallow: /_next/
 Disallow: /static/
@@ -31,26 +29,17 @@ Disallow: /*.json
 Disallow: /*.js
 Disallow: /*.css
 Disallow: /*.map
+Disallow: /*.scss
 
-# Запрещаем URL с параметрами
-Disallow: /*?*
-Disallow: /*&*
-Disallow: /*=*
-
-# Запрещаем UTM и рекламные параметры
-Disallow: /*?utm_
-Disallow: /*?fbclid
-Disallow: /*?gclid
-
-# Временно запрещаем индексацию для основных ботов (сайт в разработке)
+# Специальные правила для ботов
 User-agent: Googlebot
-Disallow: /
-
-User-agent: Bingbot
-Disallow: /
+Crawl-delay: 1
 
 User-agent: YandexBot
-Disallow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Crawl-delay: 1
 
 User-agent: Baiduspider
 Disallow: /

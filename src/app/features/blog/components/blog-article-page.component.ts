@@ -1,5 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, OnDestroy } from '@angular/core';
 import { SeoService } from '../../../shared/services/seo.service';
+import { HeadingsService } from '../../../shared/services/headings.service';
 import { BreadcrumbsComponent, BreadcrumbItem } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 import { NgIf, NgFor } from '@angular/common';
 
@@ -35,8 +36,10 @@ export class BlogArticlePageComponent implements OnInit {
   };
 
   private seo = inject(SeoService);
+  private headingsService = inject(HeadingsService);
 
   ngOnInit(): void {
+    // Устанавливаем SEO данные
     this.seo.setBlogArticleSeo({
       title: this.article.title,
       description: this.article.subtitle,
@@ -48,6 +51,15 @@ export class BlogArticlePageComponent implements OnInit {
       author: this.article.author.name,
       featuredImage: '/assets/images/og-default.jpg'
     });
+
+    // Оптимизируем заголовки для SEO
+    setTimeout(() => {
+      this.headingsService.optimizeHeadings();
+
+      // Генерируем оглавление
+      this.headingsService.generateTableOfContents('.toc-container');
+    }, 100);
+
     this.seo.addBreadcrumbsStructuredData(this.breadcrumbs.map(b => ({ name: b.label, url: b.url || '' })));
   }
 } 

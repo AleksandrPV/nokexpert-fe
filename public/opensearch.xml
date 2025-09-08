@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+                       xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+  <ShortName>НОК Эксперт</ShortName>
+  <Description>Поиск по сайту НОК Эксперт - подготовка к независимой оценке квалификации</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Image width="16" height="16" type="image/x-icon">https://nok-expert.ru/favicon.ico</Image>
+
+  <Url type="text/html" method="GET" template="https://nok-expert.ru/search?q={searchTerms}"/>
+
+  <Url type="application/opensearchdescription+xml" rel="self" template="https://nok-expert.ru/opensearch.xml"/>
+
+  <Query role="example" searchTerms="НОК НОСТРОЙ"/>
+
+  <Developer>НОК Эксперт</Developer>
+  <Contact>info@nok-expert.ru</Contact>
+  <Attribution>
+    © 2025 НОК Эксперт. Поиск предоставлен сайтом nok-expert.ru
+  </Attribution>
+
+  <Language>ru-RU</Language>
+  <OutputEncoding>UTF-8</OutputEncoding>
+
+  <moz:SearchForm>https://nok-expert.ru/search</moz:SearchForm>
+</OpenSearchDescription>

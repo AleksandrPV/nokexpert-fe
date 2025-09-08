@@ -1,28 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  <!-- Основной sitemap -->
+
   <sitemap>
     <loc>https://nok-expert.ru/sitemap.xml</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2025-09-08</lastmod>
   </sitemap>
-  
-  <!-- Sitemap блога -->
   <sitemap>
     <loc>https://nok-expert.ru/sitemap-blog.xml</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2025-09-08</lastmod>
   </sitemap>
-  
-  <!-- Sitemap услуг -->
   <sitemap>
     <loc>https://nok-expert.ru/sitemap-services.xml</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2025-09-08</lastmod>
   </sitemap>
-  
-  <!-- Sitemap FAQ -->
   <sitemap>
     <loc>https://nok-expert.ru/sitemap-faq.xml</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2025-09-08</lastmod>
   </sitemap>
-  
-</sitemapindex> 
+
+</sitemapindex>

@@ -2,25 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../../../shared/services/seo.service';
+import { BreadcrumbsComponent, BreadcrumbItem } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 import { InfoService } from '../services/info.service';
 import { InfoPage } from '../models/info-page.interface';
 
 @Component({
   selector: 'app-exam-preparation-page',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, BreadcrumbsComponent],
   template: `
     <div class="container mx-auto px-6 py-8">
       <!-- Breadcrumbs -->
-      <nav class="mb-8">
-        <ol class="flex items-center space-x-2 text-sm text-brand-dark/70">
-          <li><a routerLink="/" class="hover:text-brand-coral transition-colors">Главная</a></li>
-          <li><span class="mx-2">/</span></li>
-          <li><a routerLink="/info" class="hover:text-brand-coral transition-colors">Информация о НОК</a></li>
-          <li><span class="mx-2">/</span></li>
-          <li class="text-brand-dark font-medium">Подготовка к экзамену НОК</li>
-        </ol>
-      </nav>
+      <app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
 
       <!-- Page Header -->
       <div class="text-center mb-12">
@@ -137,6 +130,11 @@ import { InfoPage } from '../models/info-page.interface';
   `]
 })
 export class ExamPreparationPageComponent implements OnInit {
+  breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Главная', url: '/', icon: '🏠' },
+    { label: 'Информация о НОК', url: '/info', icon: 'ℹ️' },
+    { label: 'Подготовка к экзамену НОК', active: true, icon: '📖' }
+  ];
   pageData: InfoPage | null = null;
 
   constructor(

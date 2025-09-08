@@ -63,7 +63,7 @@ export class SeoService {
     this.updateMetaTag('description', this.defaultSeoData.description || '');
     this.updateMetaTag('keywords', this.defaultSeoData.keywords || '');
     this.updateMetaTag('author', 'НОК Эксперт');
-    this.updateMetaTag('robots', 'noindex, nofollow'); // Временно запрещаем индексацию (сайт в разработке)
+    this.updateMetaTag('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
     
     // Open Graph
     this.updateMetaProperty('og:type', 'website');
@@ -101,7 +101,7 @@ export class SeoService {
     // Basic Meta Tags
     this.updateMetaTag('description', data.description!);
     this.updateMetaTag('keywords', data.keywords!);
-    this.updateMetaTag('robots', data.noIndex !== true ? 'noindex, nofollow' : 'noindex, nofollow'); // По умолчанию noindex (сайт в разработке)
+    this.updateMetaTag('robots', data.noIndex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
     
     // Open Graph
     this.updateMetaProperty('og:title', data.ogTitle || data.title!);
@@ -811,35 +811,115 @@ export class SeoService {
   }
 
   /**
-   * Structured Data для статьи блога
+   * Расширенная Structured Data для статьи блога
    */
   private getArticleStructuredData(article: any): any {
     return {
       "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": article.title,
-      "description": article.excerpt || article.description,
-      "image": this.getAbsoluteUrl(article.featuredImage || this.defaultImage),
-      "author": {
-        "@type": "Organization",
-        "name": "НОК Эксперт"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "НОК Эксперт",
-        "logo": {
-          "@type": "ImageObject",
-          "url": `${this.baseUrl}/assets/images/logo.png`
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "@id": `${this.baseUrl}/blog/${article.slug}#article`,
+          "headline": article.title,
+          "description": article.excerpt || article.description,
+          "articleSection": article.category || "Блог НОК Эксперт",
+          "wordCount": article.content ? this.countWords(article.content) : 0,
+          "timeRequired": article.readTime ? `PT${article.readTime}M` : "PT5M",
+          "image": {
+            "@type": "ImageObject",
+            "url": this.getAbsoluteUrl(article.featuredImage || this.defaultImage),
+            "width": 1200,
+            "height": 630,
+            "caption": article.title
+          },
+          "author": {
+            "@type": "Person",
+            "name": article.author?.name || "НОК Эксперт",
+            "jobTitle": article.author?.role || "Эксперт по НОК",
+            "image": article.author?.avatar ? this.getAbsoluteUrl(article.author.avatar) : undefined
+          },
+          "publisher": {
+            "@type": "Organization",
+            "@id": `${this.baseUrl}#organization`,
+            "name": "НОК Эксперт",
+            "logo": {
+              "@type": "ImageObject",
+              "url": `${this.baseUrl}/assets/images/logo.png`,
+              "width": 200,
+              "height": 60
+            }
+          },
+          "datePublished": article.publishedAt || new Date().toISOString(),
+          "dateModified": article.updatedAt || article.publishedAt || new Date().toISOString(),
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `${this.baseUrl}/blog/${article.slug}`
+          },
+          "keywords": article.tags?.join(', ') || "НОК, независимая оценка квалификации",
+          "articleBody": article.content || article.excerpt,
+          "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": [".article-content h1", ".article-content h2", ".article-content p"]
+          },
+          "about": article.tags?.map(tag => ({
+            "@type": "Thing",
+            "name": tag
+          })) || [],
+          "mentions": [
+            {
+              "@type": "Thing",
+              "name": "Независимая оценка квалификации"
+            },
+            {
+              "@type": "Thing",
+              "name": "НОК НОСТРОЙ"
+            },
+            {
+              "@type": "Thing",
+              "name": "НОК НОПРИЗ"
+            }
+          ],
+          "isAccessibleForFree": true,
+          "isPartOf": {
+            "@type": "Blog",
+            "@id": `${this.baseUrl}#blog`,
+            "name": "Блог НОК Эксперт",
+            "url": `${this.baseUrl}/blog`
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Главная",
+              "item": this.baseUrl
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Блог",
+              "item": `${this.baseUrl}/blog`
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": article.title,
+              "item": `${this.baseUrl}/blog/${article.slug}`
+            }
+          ]
         }
-      },
-      "datePublished": article.publishedAt,
-      "dateModified": article.updatedAt || article.publishedAt,
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": `${this.baseUrl}/blog/${article.slug}`
-      },
-      "keywords": article.tags?.join(', ') || "НОК, независимая оценка квалификации"
+      ]
     };
+  }
+
+  /**
+   * Подсчет слов в тексте
+   */
+  private countWords(text: string): number {
+    if (!text) return 0;
+    return text.trim().split(/\s+/).length;
   }
 
   /**
@@ -969,7 +1049,293 @@ export class SeoService {
         }
       }))
     };
-    
+
+    this.updateStructuredData(structuredData);
+  }
+
+  /**
+   * Добавить полную FAQ Structured Data с сортировкой по популярности
+   */
+  addCompleteFaqStructuredData(faqQuestions: Array<{
+    question: string;
+    shortAnswer: string;
+    fullAnswer: string;
+    priority?: number;
+    isPopular?: boolean;
+    category?: string;
+  }>): void {
+    // Сортируем вопросы по популярности и приоритету
+    const sortedQuestions = faqQuestions
+      .filter(q => q.isPopular || q.priority && q.priority <= 10) // Берем популярные и высокоприоритетные
+      .sort((a, b) => {
+        // Сначала популярные
+        if (a.isPopular && !b.isPopular) return -1;
+        if (!a.isPopular && b.isPopular) return 1;
+        // Затем по приоритету
+        const priorityA = a.priority || 999;
+        const priorityB = b.priority || 999;
+        return priorityA - priorityB;
+      })
+      .slice(0, 20); // Ограничиваем 20 вопросами для производительности
+
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "name": "Часто задаваемые вопросы о НОК",
+      "description": "Полные ответы на вопросы о независимой оценке квалификации",
+      "mainEntity": sortedQuestions.map(item => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.fullAnswer || item.shortAnswer
+        }
+      }))
+    };
+
+    this.updateStructuredData(structuredData);
+  }
+
+  /**
+   * Добавить Structured Data для услуг с ценами
+   */
+  addServicesPricingStructuredData(services: Array<{
+    id: string;
+    title: string;
+    description: string;
+    price: string;
+    duration: string;
+    features: string[];
+    category: string;
+    popular?: boolean;
+  }>): void {
+    const offers = services.map(service => {
+      // Парсим цену из строки
+      const priceMatch = service.price.match(/(\d[\d\s]*)/);
+      const priceValue = priceMatch ? parseInt(priceMatch[1].replace(/\s/g, '')) : 0;
+
+      return {
+        "@type": "Offer",
+        "name": service.title,
+        "description": service.description,
+        "price": priceValue.toString(),
+        "priceCurrency": "RUB",
+        "priceRange": service.price.includes('от') ? service.price : null,
+        "availability": "https://schema.org/InStock",
+        "validFrom": new Date().toISOString(),
+        "seller": {
+          "@type": "Organization",
+          "name": "НОК Эксперт"
+        },
+        "category": service.category,
+        "additionalProperty": service.features.map(feature => ({
+          "@type": "PropertyValue",
+          "name": "Особенность",
+          "value": feature
+        }))
+      };
+    });
+
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Услуги подготовки к НОК",
+      "description": "Профессиональная подготовка к независимой оценке квалификации",
+      "provider": {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Россия"
+      },
+      "offers": offers,
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Каталог услуг НОК",
+        "itemListElement": offers.map((offer, index) => ({
+          "@type": "Offer",
+          "position": index + 1,
+          ...offer
+        }))
+      }
+    };
+
+    this.updateStructuredData(structuredData);
+  }
+
+  /**
+   * Добавить расширенную Structured Data для контактов и организации
+   */
+  addContactStructuredData(organizationData: {
+    name: string;
+    fullName: string;
+    phone: { display: string; href: string };
+    email: string;
+    address: { full: string };
+    website: { url: string; domain: string };
+    social: {
+      vk?: string;
+      telegram?: string;
+      whatsapp?: string;
+      youtube?: string;
+    };
+    offices: Array<{
+      name: string;
+      address: { full: string; city: string; street: string };
+      coordinates?: { latitude: number; longitude: number };
+      phone: string;
+      email: string;
+      workingHours: { weekdays: string; saturday?: string };
+    }>;
+    workingHours: { weekdays: string };
+    foundedYear: number;
+    description: string;
+  }): void {
+    const offices = organizationData.offices.map(office => ({
+      "@type": "LocalBusiness",
+      "@id": `${this.baseUrl}#office-${office.name.toLowerCase().replace(/\s+/g, '-')}`,
+      "name": `${organizationData.name} - ${office.name}`,
+      "description": `${organizationData.description} - ${office.name}`,
+      "url": `${this.baseUrl}/contacts#${office.name.toLowerCase().replace(/\s+/g, '-')}`,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": office.address.full,
+        "addressLocality": office.address.city,
+        "addressRegion": office.address.city,
+        "addressCountry": "RU"
+      },
+      "geo": office.coordinates ? {
+        "@type": "GeoCoordinates",
+        "latitude": office.coordinates.latitude,
+        "longitude": office.coordinates.longitude
+      } : undefined,
+      "telephone": office.phone,
+      "email": office.email,
+      "openingHours": [
+        office.workingHours.weekdays,
+        office.workingHours.saturday ? office.workingHours.saturday : null
+      ].filter(Boolean),
+      "priceRange": "₽₽",
+      "paymentAccepted": ["Cash", "Credit Card", "Bank Transfer"],
+      "currenciesAccepted": "RUB",
+      "sameAs": [
+        organizationData.social?.vk ? `https://vk.com/${organizationData.social.vk}` : null,
+        organizationData.social?.telegram ? `https://t.me/${organizationData.social.telegram}` : null,
+        organizationData.social?.youtube ? `https://youtube.com/@${organizationData.social.youtube}` : null
+      ].filter(Boolean)
+    }));
+
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": `${this.baseUrl}#organization`,
+          "name": organizationData.name,
+          "legalName": organizationData.fullName,
+          "alternateName": organizationData.name,
+          "description": organizationData.description,
+          "url": this.baseUrl,
+          "logo": `${this.baseUrl}/assets/images/logo.png`,
+          "image": `${this.baseUrl}/assets/images/og-default.jpg`,
+          "telephone": organizationData.phone.href,
+          "email": organizationData.email,
+          "faxNumber": organizationData.phone.href,
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": organizationData.address.full,
+            "addressCountry": "RU"
+          },
+          "foundingDate": `${organizationData.foundedYear}-01-01`,
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": organizationData.phone.href,
+              "contactType": "customer service",
+              "availableLanguage": "Russian",
+              "hoursAvailable": organizationData.workingHours.weekdays,
+              "contactOption": "TollFree"
+            },
+            {
+              "@type": "ContactPoint",
+              "email": organizationData.email,
+              "contactType": "customer service",
+              "availableLanguage": "Russian",
+              "hoursAvailable": organizationData.workingHours.weekdays
+            }
+          ],
+          "sameAs": [
+            organizationData.social?.vk ? `https://vk.com/${organizationData.social.vk}` : null,
+            organizationData.social?.telegram ? `https://t.me/${organizationData.social.telegram}` : null,
+            organizationData.social?.whatsapp ? `https://wa.me/${organizationData.social.whatsapp}` : null,
+            organizationData.social?.youtube ? `https://youtube.com/@${organizationData.social.youtube}` : null
+          ].filter(Boolean),
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Каталог услуг по подготовке к НОК",
+            "description": "Полный спектр услуг по подготовке к независимой оценке квалификации",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "@id": `${this.baseUrl}#nok-nostroy`,
+                  "name": "НОК НОСТРОЙ",
+                  "description": "Подготовка к независимой оценке квалификации для специалистов строительной отрасли",
+                  "category": "Образовательные услуги",
+                  "areaServed": "Россия"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "@id": `${this.baseUrl}#nok-nopriz`,
+                  "name": "НОК НОПРИЗ",
+                  "description": "Подготовка к независимой оценке квалификации для специалистов проектирования и изысканий",
+                  "category": "Образовательные услуги",
+                  "areaServed": "Россия"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "@id": `${this.baseUrl}#nok-opb`,
+                  "name": "НОК ОПБ",
+                  "description": "Подготовка к независимой оценке квалификации для специалистов пожарной безопасности",
+                  "category": "Образовательные услуги",
+                  "areaServed": "Россия"
+                }
+              }
+            ]
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "3000",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "Россия"
+          },
+          "knowsAbout": [
+            "Независимая оценка квалификации",
+            "НОК НОСТРОЙ",
+            "НОК НОПРИЗ",
+            "НОК ОПБ",
+            "Профессиональные стандарты",
+            "Сертификация специалистов"
+          ]
+        },
+        ...offices
+      ]
+    };
+
     this.updateStructuredData(structuredData);
   }
 

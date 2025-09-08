@@ -12,10 +12,8 @@
   <meta name="description" content="Профессиональная подготовка к независимой оценке квалификации (НОК) для специалистов строительной отрасли. НОК НОСТРОЙ, НОК НОПРИЗ, консультации экспертов.">
   <meta name="keywords" content="НОК, независимая оценка квалификации, НОСТРОЙ, НОПРИЗ, строительные специальности, аттестация, сертификация">
   <meta name="author" content="НОК Эксперт">
-  <!-- Временно запрещаем индексацию (сайт в разработке) -->
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="googlebot" content="noindex, nofollow">
-  <meta name="yandex" content="noindex, nofollow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   
   <!-- Open Graph -->
   <meta property="og:title" content="НОК Эксперт - Подготовка к независимой оценке квалификации">
@@ -42,12 +40,32 @@
   
   <!-- Preconnect to external domains -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link rel="preconnect" href="https://api-maps.yandex.ru">
-  
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//api-maps.yandex.ru">
+
+  <!-- Preload critical fonts -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+
+  <!-- Preload critical assets -->
+  <link rel="preload" href="/assets/icons/favicon-32x32.png" as="image" type="image/png">
+  <link rel="preload" href="/assets/images/logo.png" as="image" type="image/png">
+
   <!-- Canonical URL -->
   <link rel="canonical" href="https://nok-expert.ru">
+
+  <!-- hreflang для основной языковой версии -->
+  <link rel="alternate" hreflang="ru" href="https://nok-expert.ru">
+  <link rel="alternate" hreflang="ru-RU" href="https://nok-expert.ru">
+  <link rel="alternate" hreflang="x-default" href="https://nok-expert.ru">
+
+  <!-- OpenSearch для поиска по сайту -->
+  <link rel="search" type="application/opensearchdescription+xml" title="НОК Эксперт" href="/opensearch.xml">
   
   <!-- SEO теги будут управляться через SeoService -->
+  <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body>
   <app-root></app-root>

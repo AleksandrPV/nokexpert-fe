@@ -6,16 +6,17 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <img 
-      [src]="src" 
+    <img
+      [src]="src"
       [alt]="alt"
       [width]="width"
       [height]="height"
       [class]="cssClass"
-      loading="lazy"
+      [attr.loading]="priority ? 'eager' : 'lazy'"
       decoding="async"
       [attr.sizes]="sizes"
       [attr.srcset]="srcset"
+      [attr.fetchpriority]="priority ? 'high' : null"
       (load)="onImageLoad()"
       (error)="onImageError()"
       [class.opacity-0]="!loaded"
@@ -39,6 +40,7 @@ export class OptimizedImageComponent implements OnInit {
   @Input() srcset?: string;
   @Input() ariaLabel?: string;
   @Input() placeholder: string = '/assets/images/placeholder.jpg';
+  @Input() priority: boolean = false; // Для above-the-fold изображений
   
   loaded = false;
   error = false;

@@ -46,13 +46,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "1.6MB",
-                  "maximumError": "2MB"
+                  "maximumWarning": "1MB",
+                  "maximumError": "1.5MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kB",
-                  "maximumError": "12kB"
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
                 }
               ],
               "outputHashing": "all",
@@ -60,12 +60,17 @@
                 "scripts": true,
                 "styles": {
                   "minify": true,
-                  "inlineCritical": false
+                  "inlineCritical": true
                 },
                 "fonts": true
               },
               "extractLicenses": true,
-              "sourceMap": false
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "buildOptimizer": true,
+              "vendorChunk": true,
+              "serviceWorker": "ngsw-config.json"
             },
             "development": {
               "optimization": false,

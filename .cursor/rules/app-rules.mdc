@@ -1,3 +1,220 @@
+---
+alwaysApply: true
+---
+
+# Правила разработки Angular проекта nokexpert-fe
+
+## Технические требования
+
+### Angular и TypeScript
+- Используй **Angular 20.2.1+** с strict type checking для всех файлов
+- Создавай standalone Angular компоненты по умолчанию, используя `standalone: true`
+- Используй Angular signals для реактивного управления состоянием
+- Следуй Angular naming conventions: суффикс `.component.ts`, `.component.html`, `.component.scss` для файлов компонентов
+- Используй PascalCase для имен классов компонентов и kebab-case для селекторов (например, `app-user-list`)
+- Генерируй JSDoc комментарии для всех публичных методов и свойств в компонентах
+
+### Стилизация
+- Используй **Tailwind CSS 3.4.15+** utility классы в шаблонах компонентов
+- Избегай inline стилей, если это не требуется явно
+- Убедись, что Tailwind классы уважают Angular ViewEncapsulation (по умолчанию: Emulated)
+- Организуй Tailwind классы по категориям для читаемости: layout → spacing → typography → colors → borders → effects
+- Используй `@apply` в `.component.scss` файлах только для переиспользуемых стилей
+
+### HTTP и сервисы
+- При создании HTTP сервисов используй Angular HttpClient с типизированными ответами и обработкой ошибок
+- Используй Angular dependency injection и RxJS для HTTP запросов
+- Всегда обрабатывай ошибки с помощью `catchError` оператора
+
+## Архитектура проекта
+
+### Feature-based архитектура с DDD принципами
+- Каждый бизнес-модуль (feature/domain) размещай в отдельной папке внутри `src/app/features/`
+- Внутри feature-домена храни компоненты, сервисы, модели, относящиеся только к этому домену
+- Общие компоненты, утилиты, пайпы и директивы размещай в `src/app/shared/`
+- Инфраструктурные сервисы, guards, interceptors — в `src/app/core/`
+- Соблюдай строгие границы между доменами, не смешивай бизнес-логику разных областей
+- Все новые фичи и изменения реализуй в рамках соответствующего feature/domain
+
+### Структура features/domains (текущая)
+```
+src/app/features/
+├── main/           # Главная страница
+├── contacts/       # Контакты
+├── services/       # Общий раздел услуг
+├── service-detail/ # Детальные страницы услуг
+├── blog/           # Блог, статьи, новости
+├── info/           # Информационный раздел о НОК
+├── faq/            # Часто задаваемые вопросы
+├── center/         # Центр оценки квалификации
+├── qualifications/ # Квалификации и требования
+├── qa-centers/     # Центры оценки квалификации
+├── reviews/        # Отзывы
+├── feedback-popup/ # Попап обратной связи
+├── user/           # Пользовательские функции
+├── product/        # Продукты
+├── sitemap/        # Карта сайта
+├── privacy-policy/ # Политика конфиденциальности
+├── public-offer/   # Публичная оферта
+└── user-agreement/ # Пользовательское соглашение
+```
+
+## Бизнес-модель и структура сайта
+
+### Цель сайта
+Продажа услуг по прохождению независимой оценки квалификации (НОК) для строительной сферы и сферы пожарной безопасности.
+
+### Основные разделы сайта
+- **Главная страница** — краткое описание компании, преимуществ, CTA, основные услуги, отзывы, контакты
+- **Контакты** — адреса, телефоны, карта, форма обратной связи
+- **Услуги**
+  - Общая страница услуг — список всех услуг с кратким описанием и ссылками на детальные страницы
+  - Детальные страницы услуг:
+    - Прохождение НОК в строительстве
+    - Прохождение НОК по проектированию
+    - Прохождение НОК по изысканиям
+    - Прохождение НОК для специалистов по промышленной безопасности
+- **Блог** — актуальные новости, статьи, аналитика по рынку НОК, кейсы, советы
+- **Информационный раздел о НОК**
+  - Общая информация о независимой оценке квалификации
+  - Часто задаваемые вопросы (FAQ)
+  - Центр оценки квалификации (описание, контакты, лицензии)
+  - Страница о квалификациях (описание, требования, примеры)
+
+### Дополнительные требования
+- Возможность масштабирования (добавление новых услуг, разделов, страниц)
+- SEO-оптимизация (мета-теги, структурированные данные, ЧПУ-адреса)
+- Адаптивность (Tailwind CSS)
+- **SSR поддержка (Angular Universal 20.2.0+)**
+- Возможность интеграции с CRM/почтой для заявок
+- Возможность публикации и редактирования статей (блог)
+- Возможность добавления отзывов, кейсов, сертификатов
+
+## Примеры кода
+
+### Standalone Angular компонент с Tailwind CSS
+
+```typescript
+import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { catchError, throwError } from 'rxjs';
+
+/** Displays a list of users with Tailwind styling */
+@Component({
+  selector: 'app-user-list',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="container mx-auto p-4">
+      <h1 class="text-2xl font-bold mb-4 text-gray-900">User List</h1>
+      <ul class="space-y-2">
+        <li *ngFor="let user of users()" 
+            class="p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200">
+          {{ user.name }}
+        </li>
+      </ul>
+    </div>
+  `,
+  styles: []
+})
+export class UserListComponent {
+  /** Signal to store user list */
+  users = signal<{ name: string }[]>([]);
+
+  constructor(private http: HttpClient) {
+    this.fetchUsers();
+  }
+
+  /** Fetches users from the backend */
+  fetchUsers() {
+    this.http.get<{ name: string }[]>('/api/users')
+      .pipe(
+        catchError(error => {
+          console.error('Error fetching users', error);
+          return throwError(() => new Error('Failed to fetch users'));
+        })
+      )
+      .subscribe(users => this.users.set(users));
+  }
+}
+```
+
+### Tailwind конфигурация
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ['./src/**/*.{html,ts}'],
+  theme: {
+    extend: {
+      colors: {
+        primary: '#1D4ED8',
+        secondary: '#64748B',
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+    },
+  },
+  plugins: [],
+  corePlugins: {
+    preflight: true,
+  },
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
+};
+```
+
+### Пример использования @apply в SCSS
+
+```scss
+.btn {
+  @apply px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-200;
+}
+
+.card {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+}
+```
+
+## SSR и Production
+
+### SSR конфигурация
+- Проект поддерживает **Server-Side Rendering** через Angular Universal
+- Используй `RenderMode.Prerender` для статических страниц
+- Используй `getPrerenderParams` для динамических страниц с параметрами
+- SSR сервер работает на порту 4000
+- Nginx проксирует запросы к SSR серверу для динамических страниц
+
+### Docker и деплой
+- Проект контейнеризирован с Docker
+- Nginx + Node.js Express для production
+- Traefik для SSL/TLS и reverse proxy
+- Автоматическое обновление через Watchtower
+
+## Обязательные правила
+
+1. **Всегда ссылайся на этот файл** при генерации или редактировании кода
+2. **Соблюдай архитектуру** - не смешивай логику разных доменов
+3. **Используй standalone компоненты** по умолчанию
+4. **Применяй Tailwind CSS** для всех стилей
+5. **Следуй TypeScript strict mode** и типизации
+6. **Добавляй JSDoc** для публичных методов и свойств
+7. **Обрабатывай ошибки** в HTTP запросах
+8. **Тестируй SSR** перед деплоем в production
+
+## Обновления и версии
+
+- **Angular**: 20.2.1+
+- **Tailwind CSS**: 3.4.15+
+- **TypeScript**: 5.8.2+
+- **Node.js**: 20+
+- **SSR**: @angular/ssr 20.2.0+
+
+Последнее обновление: Август 2025
+
 # Правила разработки Angular проекта nokexpert-fe
 
 ## Технические требования

@@ -19,7 +19,7 @@ export const ORGANIZATION_CONFIG: OrganizationData = {
   
   // Адрес (главный офис)
   address: {
-    full: 'Санкт-Петербург, наб. Черной речки, д. 15, оф. 31',
+    full: 'Санкт-Петербург, наб. Черной речки, д. 15, оф. 311',
     city: 'Санкт-Петербург',
     street: 'наб. Черной речки',
     building: 'д. 15'

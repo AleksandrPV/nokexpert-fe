@@ -1,0 +1,199 @@
+{
+  "faqStructuredData": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "name": "Часто задаваемые вопросы о НОК",
+    "description": "Полные ответы на вопросы о независимой оценке квалификации",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Что такое НОК?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Независимая оценка квалификации - это процедура подтверждения соответствия квалификации соискателя положениям профессионального стандарта, проведенная центром оценки квалификаций в соответствии с ФЗ №238 от 03.07.2016."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Какой федеральный закон регулирует НОК?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Федеральный закон от 03.07.2016 N 238-ФЗ \"О независимой оценке квалификаций\" является основным документом, регулирующим процедуру НОК в России."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Кто может проходить НОК?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "НОК могут проходить специалисты с профильным образованием, имеющие опыт работы по специальности не менее 5 лет, без судимостей и медицинских противопоказаний."
+        }
+      }
+    ]
+  },
+
+  "servicesPricingStructuredData": {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Услуги подготовки к НОК",
+    "description": "Профессиональная подготовка к независимой оценке квалификации",
+    "provider": {
+      "@type": "Organization",
+      "name": "НОК Эксперт",
+      "url": "https://nok-expert.ru"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Россия"
+    },
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "НОК по строительству",
+        "description": "Комплексная подготовка к НОК для строителей",
+        "price": "25000",
+        "priceCurrency": "RUB",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-01-27T00:00:00.000Z",
+        "seller": {
+          "@type": "Organization",
+          "name": "НОК Эксперт"
+        },
+        "category": "construction",
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Особенность",
+            "value": "Теоретическая подготовка"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Особенность",
+            "value": "Практические задания"
+          }
+        ]
+      },
+      {
+        "@type": "Offer",
+        "name": "НОК по проектированию",
+        "description": "Подготовка проектировщиков к НОК",
+        "price": "28000",
+        "priceCurrency": "RUB",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-01-27T00:00:00.000Z",
+        "category": "design"
+      }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Каталог услуг НОК",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "position": 1,
+          "name": "НОК по строительству",
+          "price": "25000",
+          "priceCurrency": "RUB"
+        }
+      ]
+    }
+  },
+
+  "serviceAvailabilityStructuredData": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "legalName": "НОК Эксперт - Центр профессиональной подготовки к НОК",
+        "url": "https://nok-expert.ru",
+        "telephone": "+79111113396",
+        "email": "info@nok-expert.ru",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Санкт-Петербург, наб. Черной речки, д. 15, оф. 31"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+79111113396",
+          "contactType": "customer service",
+          "availableLanguage": "Russian",
+          "hoursAvailable": "Пн-Пт: 9:00-18:00"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Услуги НОК",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "@type": "Service",
+              "name": "НОК НОСТРОЙ",
+              "description": "Подготовка к НОК для строителей"
+            },
+            {
+              "@type": "Offer",
+              "@type": "Service",
+              "name": "НОК НОПРИЗ",
+              "description": "Подготовка к НОК для проектировщиков"
+            },
+            {
+              "@type": "Offer",
+              "@type": "Service",
+              "name": "НОК ОПБ",
+              "description": "Подготовка к НОК для пожарной безопасности"
+            }
+          ]
+        }
+      },
+      {
+        "@type": "LocalBusiness",
+        "name": "НОК Эксперт - Москва",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Москва, ул. Тверская, д. 15, стр. 1"
+        },
+        "telephone": "+7-800-123-45-67",
+        "email": "info@nok-expert.ru",
+        "openingHours": "Пн-Пт: 9:00-18:00",
+        "priceRange": "₽₽"
+      },
+      {
+        "@type": "LocalBusiness",
+        "name": "НОК Эксперт - Санкт-Петербург",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Санкт-Петербург, Невский проспект, д. 28"
+        },
+        "telephone": "+7-800-123-45-67",
+        "email": "spb@nok-expert.ru",
+        "openingHours": "Пн-Пт: 9:00-18:00",
+        "priceRange": "₽₽"
+      }
+    ]
+  },
+
+  "individualServiceStructuredData": {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "НОК НОСТРОЙ - Подготовка к независимой оценке квалификации",
+    "description": "Профессиональная подготовка к НОК НОСТРОЙ для специалистов строительной отрасли. 600+ вопросов, симулятор экзамена, гарантия сдачи.",
+    "provider": {
+      "@type": "Organization",
+      "name": "НОК Эксперт",
+      "url": "https://nok-expert.ru"
+    },
+    "serviceType": "Подготовка к НОК",
+    "category": "Образование",
+    "areaServed": "Российская Федерация",
+    "offers": {
+      "@type": "Offer",
+      "price": "35000",
+      "priceCurrency": "RUB",
+      "description": "Подготовка к НОК НОСТРОЙ с гарантией сдачи"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nok-expert.ru/services/nok-nostroy"
+    }
+  }
+}
