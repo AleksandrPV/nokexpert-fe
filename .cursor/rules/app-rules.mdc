@@ -1,16 +1,96 @@
+# Правила разработки Angular проекта nokexpert-fe
 
-Use TypeScript with strict type checking for all files.
-Create standalone Angular components by default, using the standalone: true property.
-Use Angular signals for reactive state management when applicable.
-Follow Angular naming conventions: suffix component files with .component.ts, .component.html, and .component.css.
-Use PascalCase for component class names and kebab-case for component selectors (e.g., app-user-list).
-Generate JSDoc comments for all public methods and properties in components.
-Use Tailwind CSS utility classes in component templates; avoid inline styles unless explicitly required.
-Ensure Tailwind classes respect Angular’s ViewEncapsulation (default: Emulated) to prevent style leaks.
-Organize Tailwind classes by category (e.g., layout, spacing, typography) for readability, following the recommended order: https://tailwindcss.com/docs/optimizing-for-production#class-order.
-When generating HTTP services, use Angular’s HttpClient with typed responses and error handling.
-Example standalone Angular component with Tailwind CSS:
+## Технические требования
 
+### Angular и TypeScript
+- Используй **Angular 20.2.1+** с strict type checking для всех файлов
+- Создавай standalone Angular компоненты по умолчанию, используя `standalone: true`
+- Используй Angular signals для реактивного управления состоянием
+- Следуй Angular naming conventions: суффикс `.component.ts`, `.component.html`, `.component.scss` для файлов компонентов
+- Используй PascalCase для имен классов компонентов и kebab-case для селекторов (например, `app-user-list`)
+- Генерируй JSDoc комментарии для всех публичных методов и свойств в компонентах
+
+### Стилизация
+- Используй **Tailwind CSS 3.4.15+** utility классы в шаблонах компонентов
+- Избегай inline стилей, если это не требуется явно
+- Убедись, что Tailwind классы уважают Angular ViewEncapsulation (по умолчанию: Emulated)
+- Организуй Tailwind классы по категориям для читаемости: layout → spacing → typography → colors → borders → effects
+- Используй `@apply` в `.component.scss` файлах только для переиспользуемых стилей
+
+### HTTP и сервисы
+- При создании HTTP сервисов используй Angular HttpClient с типизированными ответами и обработкой ошибок
+- Используй Angular dependency injection и RxJS для HTTP запросов
+- Всегда обрабатывай ошибки с помощью `catchError` оператора
+
+## Архитектура проекта
+
+### Feature-based архитектура с DDD принципами
+- Каждый бизнес-модуль (feature/domain) размещай в отдельной папке внутри `src/app/features/`
+- Внутри feature-домена храни компоненты, сервисы, модели, относящиеся только к этому домену
+- Общие компоненты, утилиты, пайпы и директивы размещай в `src/app/shared/`
+- Инфраструктурные сервисы, guards, interceptors — в `src/app/core/`
+- Соблюдай строгие границы между доменами, не смешивай бизнес-логику разных областей
+- Все новые фичи и изменения реализуй в рамках соответствующего feature/domain
+
+### Структура features/domains (текущая)
+```
+src/app/features/
+├── main/           # Главная страница
+├── contacts/       # Контакты
+├── services/       # Общий раздел услуг
+├── service-detail/ # Детальные страницы услуг
+├── blog/           # Блог, статьи, новости
+├── info/           # Информационный раздел о НОК
+├── faq/            # Часто задаваемые вопросы
+├── center/         # Центр оценки квалификации
+├── qualifications/ # Квалификации и требования
+├── qa-centers/     # Центры оценки квалификации
+├── reviews/        # Отзывы
+├── feedback-popup/ # Попап обратной связи
+├── user/           # Пользовательские функции
+├── product/        # Продукты
+├── sitemap/        # Карта сайта
+├── privacy-policy/ # Политика конфиденциальности
+├── public-offer/   # Публичная оферта
+└── user-agreement/ # Пользовательское соглашение
+```
+
+## Бизнес-модель и структура сайта
+
+### Цель сайта
+Продажа услуг по прохождению независимой оценки квалификации (НОК) для строительной сферы и сферы пожарной безопасности.
+
+### Основные разделы сайта
+- **Главная страница** — краткое описание компании, преимуществ, CTA, основные услуги, отзывы, контакты
+- **Контакты** — адреса, телефоны, карта, форма обратной связи
+- **Услуги**
+  - Общая страница услуг — список всех услуг с кратким описанием и ссылками на детальные страницы
+  - Детальные страницы услуг:
+    - Прохождение НОК в строительстве
+    - Прохождение НОК по проектированию
+    - Прохождение НОК по изысканиям
+    - Прохождение НОК для специалистов по промышленной безопасности
+- **Блог** — актуальные новости, статьи, аналитика по рынку НОК, кейсы, советы
+- **Информационный раздел о НОК**
+  - Общая информация о независимой оценке квалификации
+  - Часто задаваемые вопросы (FAQ)
+  - Центр оценки квалификации (описание, контакты, лицензии)
+  - Страница о квалификациях (описание, требования, примеры)
+
+### Дополнительные требования
+- Возможность масштабирования (добавление новых услуг, разделов, страниц)
+- SEO-оптимизация (мета-теги, структурированные данные, ЧПУ-адреса)
+- Адаптивность (Tailwind CSS)
+- **SSR поддержка (Angular Universal 20.2.0+)**
+- Возможность интеграции с CRM/почтой для заявок
+- Возможность публикации и редактирования статей (блог)
+- Возможность добавления отзывов, кейсов, сертификатов
+
+## Примеры кода
+
+### Standalone Angular компонент с Tailwind CSS
+
+```typescript
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -23,9 +103,10 @@ import { catchError, throwError } from 'rxjs';
   imports: [CommonModule],
   template: `
     <div class="container mx-auto p-4">
-      <h1 class="text-2xl font-bold mb-4">User List</h1>
+      <h1 class="text-2xl font-bold mb-4 text-gray-900">User List</h1>
       <ul class="space-y-2">
-        <li *ngFor="let user of users()" class="p-2 bg-gray-100 rounded hover:bg-gray-200">
+        <li *ngFor="let user of users()" 
+            class="p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200">
           {{ user.name }}
         </li>
       </ul>
@@ -53,7 +134,11 @@ export class UserListComponent {
       .subscribe(users => this.users.set(users));
   }
 }
-Example Tailwind configuration in tailwind.config.js:
+```
+
+### Tailwind конфигурация
+
+```javascript
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{html,ts}'],
@@ -61,84 +146,68 @@ module.exports = {
     extend: {
       colors: {
         primary: '#1D4ED8',
+        secondary: '#64748B',
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
       },
     },
   },
   plugins: [],
+  corePlugins: {
+    preflight: true,
+  },
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
 };
+```
 
-When generating templates, use Tailwind classes for layout, spacing, and typography (e.g., flex, mx-auto, text-2xl).
-Avoid duplicating Tailwind classes; use @apply in .component.css files only for reusable styles, e.g.:
+### Пример использования @apply в SCSS
+
+```scss
 .btn {
-  @apply px-4 py-2 bg-primary text-white rounded hover:bg-blue-700;
+  @apply px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors duration-200;
 }
 
-When generating services, use Angular’s dependency injection and RxJS for HTTP requests.
-Always reference this file (angular-tailwind.rules) when generating or editing code.
+.card {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+}
+```
 
-# Архитектура проекта
+## SSR и Production
 
-Используй Feature-based архитектуру с элементами Domain-Driven Design (DDD):
-- Каждый бизнес-модуль (feature/domain) размещай в отдельной папке внутри src/app/features.
-- Внутри feature-домена храни компоненты, сервисы, сторы, утилиты, типы, роуты, относящиеся только к этому домену.
-- Общие компоненты, утилиты, пайпы и директивы размещай в src/app/shared.
-- Инфраструктурные сервисы, guards, interceptors — в src/app/core.
-- Используй standalone-компоненты и Angular signals для управления состоянием.
-- Соблюдай строгие границы между доменами, не смешивай бизнес-логику разных областей.
-- Все новые фичи и изменения реализуй в рамках соответствующего feature/domain.
+### SSR конфигурация
+- Проект поддерживает **Server-Side Rendering** через Angular Universal
+- Используй `RenderMode.Prerender` для статических страниц
+- Используй `getPrerenderParams` для динамических страниц с параметрами
+- SSR сервер работает на порту 4000
+- Nginx проксирует запросы к SSR серверу для динамических страниц
 
-Это правило обязательно для всех новых изменений и генерации кода.
+### Docker и деплой
+- Проект контейнеризирован с Docker
+- Nginx + Node.js Express для production
+- Traefik для SSL/TLS и reverse proxy
+- Автоматическое обновление через Watchtower
 
+## Обязательные правила
 
+1. **Всегда ссылайся на этот файл** при генерации или редактировании кода
+2. **Соблюдай архитектуру** - не смешивай логику разных доменов
+3. **Используй standalone компоненты** по умолчанию
+4. **Применяй Tailwind CSS** для всех стилей
+5. **Следуй TypeScript strict mode** и типизации
+6. **Добавляй JSDoc** для публичных методов и свойств
+7. **Обрабатывай ошибки** в HTTP запросах
+8. **Тестируй SSR** перед деплоем в production
 
-When generating services, use Angular’s dependency injection and RxJS for HTTP requests.
-Always reference this file (angular-tailwind.rules) when generating or editing code.
+## Обновления и версии
 
-# Бизнес-модель и структура сайта
+- **Angular**: 20.2.1+
+- **Tailwind CSS**: 3.4.15+
+- **TypeScript**: 5.8.2+
+- **Node.js**: 20+
+- **SSR**: @angular/ssr 20.2.0+
 
-Цель сайта:
-Продажа услуг по прохождению независимой оценки квалификации (НОК) для строительной сферы и сферы пожарной безопасности.
-
-Основные разделы сайта:
-- Главная страница — краткое описание компании, преимуществ, CTA, основные услуги, отзывы, контакты.
-- Контакты — адреса, телефоны, карта, форма обратной связи.
-- Услуги
-  - Общая страница услуг — список всех услуг с кратким описанием и ссылками на детальные страницы.
-  - Детальные страницы услуг:
-    - Прохождение НОК в строительстве
-    - Прохождение НОК по проектированию
-    - Прохождение НОК по изысканиям
-    - Прохождение НОК для специалистов по промышленной безопасности
-    - (добавлять новые услуги по мере необходимости)
-- Блог — актуальные новости, статьи, аналитика по рынку НОК, кейсы, советы.
-- Информационный раздел о НОК
-  - Общая информация о независимой оценке квалификации
-  - Часто задаваемые вопросы (FAQ)
-  - Центр оценки квалификации (описание, контакты, лицензии)
-  - Страница о квалификациях (описание, требования, примеры)
-  - Подразделы для расширения: нормативные документы, полезные ссылки, инструкции для соискателей и работодателей
-
-Дополнительные требования:
-- Возможность масштабирования (добавление новых услуг, разделов, страниц).
-- SEO-оптимизация (мета-теги, структурированные данные, ЧПУ-адреса).
-- Адаптивность (Tailwind CSS).
-- Возможность SSR (Angular Universal).
-- Возможность интеграции с CRM/почтой для заявок.
-- Возможность публикации и редактирования статей (блог).
-- Возможность добавления отзывов, кейсов, сертификатов.
-
-Рекомендуемая структура features/domains:
-- main — главная страница
-- contacts — контакты
-- services — общий раздел услуг
-- service-detail — детальные страницы услуг (каждая услуга — отдельный компонент/feature)
-- blog — блог, статьи, новости
-- info — информационный раздел о НОК
-- faq — часто задаваемые вопросы
-- center — центр оценки квалификации
-- qualifications — квалификации и требования
-- shared — общие компоненты (header, footer, кнопки, формы)
-- core — инфраструктурные сервисы, guards, interceptors
-
-Этот блок обязателен для ориентира при проектировании, генерации и развитии приложения.
+Последнее обновление: Август 2025
 

@@ -12,17 +12,17 @@ export const ORGANIZATION_CONFIG: OrganizationData = {
   
   // Контактная информация
   phone: {
-    display: '8 (800) 123-45-67',
-    href: '+78001234567'
+    display: '+7 (911) 111-33-96',
+    href: '+79111113396'
   },
   email: 'info@nok-expert.ru',
   
   // Адрес (главный офис)
   address: {
-    full: 'Москва, ул. Тверская, д. 15, стр. 1',
-    city: 'Москва',
-    street: 'ул. Тверская',
-    building: 'д. 15, стр. 1'
+    full: 'Санкт-Петербург, наб. Черной речки, д. 15, оф. 31',
+    city: 'Санкт-Петербург',
+    street: 'наб. Черной речки',
+    building: 'д. 15'
   },
   
   // Офисы
@@ -102,7 +102,7 @@ export const ORGANIZATION_CONFIG: OrganizationData = {
   social: {
     vk: 'nok_expert',
     telegram: 'nok_expert',
-    whatsapp: '+78001234567',
+    whatsapp: '+79111113396',
     youtube: '@nokexpert',
     instagram: 'nok_expert',
     linkedin: 'nok-expert'
