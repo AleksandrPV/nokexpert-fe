@@ -434,6 +434,57 @@ export class SeoService {
     });
   }
 
+  setCenterPageSeo(): void {
+    this.setSeoData({
+      title: 'Центр оценки квалификации НОК Эксперт - Официальный ЦОК | Лицензии и аккредитации',
+      description: 'Официальный центр оценки квалификации НОК Эксперт. Аккредитация НОСТРОЙ и НОПРИЗ. 500+ проведенных экзаменов, 95% успешная сдача. Лицензия Минстроя РФ.',
+      keywords: 'центр оценки квалификации, ЦОК, центр НОК, аккредитация НОК, лицензия НОК, официальный ЦОК, НОСТРОЙ, НОПРИЗ',
+      canonical: `${this.baseUrl}/center`,
+      ogTitle: 'Центр оценки квалификации НОК Эксперт - Официальный ЦОК',
+      ogDescription: 'Официальный центр оценки квалификации с аккредитацией НОСТРОЙ и НОПРИЗ. Гарантия качества проведения экзаменов НОК.',
+      ogImage: '/assets/images/center-og.jpg',
+      ogUrl: `${this.baseUrl}/center`,
+      twitterTitle: 'Центр оценки квалификации НОК Эксперт',
+      twitterDescription: 'Официальный ЦОК с аккредитацией НОСТРОЙ и НОПРИЗ для проведения экзаменов НОК.',
+      twitterImage: '/assets/images/center-og.jpg',
+      structuredData: this.getOrganizationStructuredData()
+    });
+  }
+
+  setQualificationsPageSeo(): void {
+    this.setSeoData({
+      title: 'Профессиональные квалификации - Уровни, требования, подтверждение | НОК Эксперт',
+      description: 'Все о профессиональных квалификациях: 7 уровней квалификации, требования к кандидатам, популярные профессии. Подтверждение квалификации через НОК.',
+      keywords: 'профессиональная квалификация, уровни квалификации, требования квалификации, НРС, подтверждение квалификации, квалификационный уровень',
+      canonical: `${this.baseUrl}/qualifications`,
+      ogTitle: 'Профессиональные квалификации - Уровни и требования',
+      ogDescription: 'Полная информация о квалификационных уровнях, требованиях и процедуре подтверждения профессиональной квалификации.',
+      ogImage: '/assets/images/qualifications-og.jpg',
+      ogUrl: `${this.baseUrl}/qualifications`,
+      twitterTitle: 'Профессиональные квалификации',
+      twitterDescription: 'Уровни квалификации, требования и процедура подтверждения профессиональной компетенции.',
+      twitterImage: '/assets/images/qualifications-og.jpg',
+      structuredData: this.getOrganizationStructuredData()
+    });
+  }
+
+  setConsultationPageSeo(): void {
+    this.setSeoData({
+      title: 'Бесплатная консультация по НОК - Запись онлайн | НОК Эксперт',
+      description: 'Запишитесь на бесплатную консультацию по подготовке к НОК. Экспертные советы, анализ документов, персональный план. Телефон и онлайн форматы.',
+      keywords: 'консультация НОК, бесплатная консультация, консультация по квалификации, запись на консультацию, эксперт НОК',
+      canonical: `${this.baseUrl}/consultation`,
+      ogTitle: 'Бесплатная консультация по НОК - Запись онлайн',
+      ogDescription: 'Получите профессиональную консультацию по подготовке к независимой оценке квалификации. Бесплатно, онлайн или по телефону.',
+      ogImage: '/assets/images/consultation-og.jpg',
+      ogUrl: `${this.baseUrl}/consultation`,
+      twitterTitle: 'Бесплатная консультация по НОК',
+      twitterDescription: 'Запишитесь на консультацию с экспертом по НОК. Бесплатно и профессионально.',
+      twitterImage: '/assets/images/consultation-og.jpg',
+      structuredData: this.getOrganizationStructuredData()
+    });
+  }
+
 
 
   setSpecialistsRegistryPageSeo(): void {

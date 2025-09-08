@@ -104,6 +104,12 @@ import { ORGANIZATION_CONFIG } from '../../../../environments/organization.confi
               <a routerLink="/reviews" class="block text-brand-dark/80 hover:text-gradient-accent transition-all duration-300 hover:translate-x-2">
                 Отзывы клиентов
               </a>
+              <a routerLink="/sitemap" class="block text-brand-dark/80 hover:text-gradient-accent transition-all duration-300 hover:translate-x-2">
+                Карта сайта
+              </a>
+              <a routerLink="/consultation" class="block text-brand-dark/80 hover:text-gradient-accent transition-all duration-300 hover:translate-x-2">
+                Консультации
+              </a>
             </div>
           </div>
 

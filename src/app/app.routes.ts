@@ -23,6 +23,10 @@ export const routes: Routes = [
         data: { preload: true, priority: 'high' }
       },
       {
+        path: 'consultation',
+        loadComponent: () => import('./features/consultation/components/consultation-page.component').then(m => m.ConsultationPageComponent)
+      },
+      {
         path: 'services/nok-nostroy',
         loadComponent: () => import('./features/services/nok-nostroy/nok-nostroy-page.component').then(m => m.NokNostroyPageComponent),
         data: { preload: true, priority: 'high' }

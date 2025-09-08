@@ -48,7 +48,7 @@ export class ServicesService {
       title: 'Консультации',
       description: 'Индивидуальные консультации',
       icon: '👨‍🏫',
-      route: '/services',
+      route: '/consultation',
       color: 'bg-brand-navy/20'
     }
   ];
