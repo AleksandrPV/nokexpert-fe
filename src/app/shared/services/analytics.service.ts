@@ -8,6 +8,7 @@ declare global {
   interface Window {
     gtag: (...args: any[]) => void;
     ym: (id: string, action: string, target: string, params?: any) => void;
+    dataLayer: any[];
   }
 }
 

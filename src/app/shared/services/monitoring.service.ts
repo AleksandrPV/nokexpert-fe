@@ -197,12 +197,13 @@ export class MonitoringService implements ErrorHandler {
               const resourceEntry = entry as PerformanceResourceTiming;
               // Мониторим только крупные ресурсы
               if (resourceEntry.duration > 1000) {
-              this.recordMetric({
-                name: `Resource: ${resourceEntry.name.split('/').pop()}`,
-                value: resourceEntry.duration,
-                category: 'resource',
-                timestamp: Date.now()
-              });
+                this.recordMetric({
+                  name: `Resource: ${resourceEntry.name.split('/').pop()}`,
+                  value: resourceEntry.duration,
+                  category: 'resource',
+                  timestamp: Date.now()
+                });
+              }
             }
           });
         });

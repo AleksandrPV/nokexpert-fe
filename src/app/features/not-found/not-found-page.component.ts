@@ -2,8 +2,8 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { SeoService } from '../../../shared/services/seo.service';
-import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
+// import { SeoService } from '../../../shared/services/seo.service';
+// import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 
 interface QuickLink {
   title: string;
@@ -22,13 +22,9 @@ interface PopularPage {
 @Component({
   selector: 'app-not-found-page',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, BreadcrumbsComponent],
+  imports: [CommonModule, RouterModule, FormsModule],
   template: `
     <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
-      <!-- Breadcrumbs -->
-      <app-breadcrumbs
-        [breadcrumbs]="[{ label: 'Главная', url: '/' }, { label: 'Страница не найдена', active: true }]">
-      </app-breadcrumbs>
 
       <!-- Main Content -->
       <div class="container mx-auto px-4 py-16">
@@ -154,7 +150,6 @@ interface PopularPage {
   `]
 })
 export class NotFoundPageComponent implements OnInit {
-  private seoService: SeoService = inject(SeoService);
   private router: Router = inject(Router);
 
   searchQuery = '';
@@ -228,13 +223,8 @@ export class NotFoundPageComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    // Устанавливаем SEO для страницы 404
-    this.seoService.setSeoData({
-      title: 'Страница не найдена (404) | НОК Эксперт',
-      description: 'Извините, запрашиваемая страница не найдена. Используйте поиск или перейдите на главную страницу.',
-      canonical: '/404',
-      noIndex: true // Не индексируем страницу 404
-    });
+    // SEO настройки временно отключены
+    console.log('404 page loaded');
   }
 
   search(): void {

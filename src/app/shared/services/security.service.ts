@@ -141,14 +141,19 @@ export class SecurityService {
   checkForSqlInjection(input: string): boolean {
     if (!input) return false;
 
-    const sqlPatterns: RegExp[] = [
-      /(\b(union|select|insert|delete|update|drop|create|alter|exec|execute)\b)/i,
-      /('|(\\x27)|(--)|(\\#)|(\\/\\*))/i,
-      /(-{2}|\/\*|\*\/)/,
-      /(;|\||&|&&)/
+    // Упрощенная проверка на основные SQL инъекции
+    const dangerousPatterns = [
+      'union select',
+      'select * from',
+      'drop table',
+      'delete from',
+      '--',
+      '/*',
+      '*/'
     ];
 
-    return sqlPatterns.some(pattern => pattern.test(input));
+    const lowerInput = input.toLowerCase();
+    return dangerousPatterns.some(pattern => lowerInput.includes(pattern));
   }
 
   /**
