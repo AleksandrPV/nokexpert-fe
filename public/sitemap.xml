@@ -66,12 +66,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://nok-expert.ru/blog</loc>
-    <lastmod>2025-09-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://nok-expert.ru/faq</loc>
     <lastmod>2025-09-08</lastmod>
     <changefreq>monthly</changefreq>

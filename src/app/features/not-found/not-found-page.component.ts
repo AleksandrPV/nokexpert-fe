@@ -170,13 +170,6 @@ export class NotFoundPageComponent implements OnInit {
       category: 'faq'
     },
     {
-      title: 'Блог и новости',
-      description: 'Актуальные статьи и новости о НОК и строительстве',
-      url: '/blog',
-      icon: '📰',
-      category: 'blog'
-    },
-    {
       title: 'Что такое НОК',
       description: 'Подробная информация о независимой оценке квалификации',
       url: '/info/what-is-nok',

@@ -47,14 +47,6 @@ export const routes: Routes = [
         data: { preload: true, priority: 'medium' }
       },
       {
-        path: 'blog',
-        loadComponent: () => import('./features/blog/components/blog-page.component').then(m => m.BlogPageComponent)
-      },
-      {
-        path: 'blog/nostroy-changes-2024',
-        loadComponent: () => import('./features/blog/components/blog-article-page.component').then(m => m.BlogArticlePageComponent)
-      },
-      {
         path: 'info',
         loadComponent: () => import('./features/info/components/info-page.component').then(m => m.InfoPageComponent)
       },

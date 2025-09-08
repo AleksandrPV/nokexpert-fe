@@ -179,18 +179,6 @@ export class SeoService {
     });
   }
 
-  /**
-   * Установить SEO для страницы блога
-   */
-  setBlogPageSeo(): void {
-    this.setSeoData({
-      title: 'Блог и новости о НОК | НОК Эксперт',
-      description: 'Актуальные новости и статьи о независимой оценке квалификации, изменения в законодательстве, советы экспертов, опыт студентов.',
-      keywords: 'новости НОК, блог НОК, статьи о НОК, изменения в НОК, советы по НОК',
-      canonical: `${this.baseUrl}/blog`,
-      structuredData: this.getBlogStructuredData()
-    });
-  }
 
   /**
    * Установить SEO для страницы контактов
@@ -220,21 +208,6 @@ export class SeoService {
     });
   }
 
-  /**
-   * Установить SEO для отдельной статьи блога
-   */
-  setBlogArticleSeo(article: any): void {
-    this.setSeoData({
-      title: `${article.title} | Блог НОК Эксперт`,
-      description: article.excerpt || article.description || `Читайте статью "${article.title}" на сайте НОК Эксперт. Актуальная информация о независимой оценке квалификации.`,
-      keywords: `${article.tags?.join(', ') || ''}, НОК, независимая оценка квалификации, блог НОК`,
-      canonical: `${this.baseUrl}/blog/${article.slug}`,
-      ogTitle: article.title,
-      ogDescription: article.excerpt || article.description,
-      ogImage: article.featuredImage || this.defaultImage,
-      structuredData: this.getArticleStructuredData(article)
-    });
-  }
 
   /**
    * Установить SEO для отдельной услуги
@@ -682,22 +655,6 @@ export class SeoService {
     };
   }
 
-  /**
-   * Structured Data для блога
-   */
-  private getBlogStructuredData(): any {
-    return {
-      "@context": "https://schema.org",
-      "@type": "Blog",
-      "name": "Блог НОК Эксперт",
-      "description": "Актуальные новости и статьи о независимой оценке квалификации",
-      "url": `${this.baseUrl}/blog`,
-      "publisher": {
-        "@type": "Organization",
-        "name": "НОК Эксперт"
-      }
-    };
-  }
 
   /**
    * Structured Data для местного бизнеса
@@ -817,109 +774,6 @@ export class SeoService {
     };
   }
 
-  /**
-   * Расширенная Structured Data для статьи блога
-   */
-  private getArticleStructuredData(article: any): any {
-    return {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "BlogPosting",
-          "@id": `${this.baseUrl}/blog/${article.slug}#article`,
-          "headline": article.title,
-          "description": article.excerpt || article.description,
-          "articleSection": article.category || "Блог НОК Эксперт",
-          "wordCount": article.content ? this.countWords(article.content) : 0,
-          "timeRequired": article.readTime ? `PT${article.readTime}M` : "PT5M",
-          "image": {
-            "@type": "ImageObject",
-            "url": this.getAbsoluteUrl(article.featuredImage || this.defaultImage),
-            "width": 1200,
-            "height": 630,
-            "caption": article.title
-          },
-          "author": {
-            "@type": "Person",
-            "name": article.author?.name || "НОК Эксперт",
-            "jobTitle": article.author?.role || "Эксперт по НОК",
-            "image": article.author?.avatar ? this.getAbsoluteUrl(article.author.avatar) : undefined
-          },
-          "publisher": {
-            "@type": "Organization",
-            "@id": `${this.baseUrl}#organization`,
-            "name": "НОК Эксперт",
-            "logo": {
-              "@type": "ImageObject",
-              "url": `${this.baseUrl}/assets/images/logo.png`,
-              "width": 200,
-              "height": 60
-            }
-          },
-          "datePublished": article.publishedAt || new Date().toISOString(),
-          "dateModified": article.updatedAt || article.publishedAt || new Date().toISOString(),
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": `${this.baseUrl}/blog/${article.slug}`
-          },
-          "keywords": article.tags?.join(', ') || "НОК, независимая оценка квалификации",
-          "articleBody": article.content || article.excerpt,
-          "speakable": {
-            "@type": "SpeakableSpecification",
-            "cssSelector": [".article-content h1", ".article-content h2", ".article-content p"]
-          },
-          "about": article.tags?.map((tag: string) => ({
-            "@type": "Thing",
-            "name": tag
-          })) || [],
-          "mentions": [
-            {
-              "@type": "Thing",
-              "name": "Независимая оценка квалификации"
-            },
-            {
-              "@type": "Thing",
-              "name": "НОК НОСТРОЙ"
-            },
-            {
-              "@type": "Thing",
-              "name": "НОК НОПРИЗ"
-            }
-          ],
-          "isAccessibleForFree": true,
-          "isPartOf": {
-            "@type": "Blog",
-            "@id": `${this.baseUrl}#blog`,
-            "name": "Блог НОК Эксперт",
-            "url": `${this.baseUrl}/blog`
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Главная",
-              "item": this.baseUrl
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Блог",
-              "item": `${this.baseUrl}/blog`
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": article.title,
-              "item": `${this.baseUrl}/blog/${article.slug}`
-            }
-          ]
-        }
-      ]
-    };
-  }
 
   /**
    * Подсчет слов в тексте

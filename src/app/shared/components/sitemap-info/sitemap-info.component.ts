@@ -19,11 +19,6 @@ import { SitemapService, SitemapData } from '../../services/sitemap.service';
           <p class="text-sm text-blue-700">URL адресов</p>
         </div>
         
-        <div class="bg-green-50 p-4 rounded-lg">
-          <h4 class="font-medium text-green-900">Sitemap Блога</h4>
-          <p class="text-2xl font-bold text-green-600">{{ blogSitemapStats.totalUrls }}</p>
-          <p class="text-sm text-green-700">статей</p>
-        </div>
         
         <div class="bg-purple-50 p-4 rounded-lg">
           <h4 class="font-medium text-purple-900">Sitemap Услуг</h4>
@@ -65,11 +60,6 @@ import { SitemapService, SitemapData } from '../../services/sitemap.service';
              class="block text-blue-600 hover:text-blue-800 text-sm">
             📄 Основной sitemap.xml
           </a>
-          <a href="https://нок-эксперт.рф/sitemap-blog.xml" 
-             target="_blank"
-             class="block text-blue-600 hover:text-blue-800 text-sm">
-            📝 Sitemap блога
-          </a>
           <a href="https://нок-эксперт.рф/sitemap-services.xml" 
              target="_blank"
              class="block text-blue-600 hover:text-blue-800 text-sm">
@@ -89,7 +79,6 @@ export class SitemapInfoComponent implements OnInit {
   private sitemapService = inject(SitemapService);
 
   mainSitemapStats = { totalUrls: 0, lastUpdated: '' };
-  blogSitemapStats = { totalUrls: 0, lastUpdated: '' };
   servicesSitemapStats = { totalUrls: 0, lastUpdated: '' };
   sitemapAvailable = false;
   lastUpdated = new Date();
@@ -104,13 +93,6 @@ export class SitemapInfoComponent implements OnInit {
       this.mainSitemapStats = stats;
     });
 
-    // Загружаем статистику блога
-    this.sitemapService.generateBlogSitemap([]).subscribe(sitemap => {
-      this.blogSitemapStats = {
-        totalUrls: sitemap.urls.length,
-        lastUpdated: new Date().toISOString()
-      };
-    });
 
     // Загружаем статистику услуг
     this.sitemapService.generateServicesSitemap([]).subscribe(sitemap => {

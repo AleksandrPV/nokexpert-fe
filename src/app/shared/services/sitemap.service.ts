@@ -29,12 +29,6 @@ export class SitemapService {
     return this.http.get<SitemapData>(`${this.baseUrl}/sitemap.xml`);
   }
 
-  /**
-   * Получить sitemap блога
-   */
-  getBlogSitemap(): Observable<SitemapData> {
-    return this.http.get<SitemapData>(`${this.baseUrl}/sitemap-blog.xml`);
-  }
 
   /**
    * Получить sitemap услуг
@@ -80,12 +74,6 @@ export class SitemapService {
         priority: 0.8
       },
       {
-        loc: `${this.baseUrl}/blog`,
-        lastmod: today,
-        changefreq: 'daily',
-        priority: 0.8
-      },
-      {
         loc: `${this.baseUrl}/contacts`,
         lastmod: today,
         changefreq: 'monthly',
@@ -114,25 +102,8 @@ export class SitemapService {
   generateBlogSitemap(articles: any[]): Observable<SitemapData> {
     const today = new Date().toISOString().split('T')[0];
     
-    const urls: SitemapUrl[] = [
-      // Главная страница блога
-      {
-        loc: `${this.baseUrl}/blog`,
-        lastmod: today,
-        changefreq: 'daily',
-        priority: 0.9
-      }
-    ];
+    const urls: SitemapUrl[] = [];
 
-    // Добавляем статьи блога
-    articles.forEach(article => {
-      urls.push({
-        loc: `${this.baseUrl}/blog/${article.slug}`,
-        lastmod: article.lastUpdated ? new Date(article.lastUpdated).toISOString().split('T')[0] : today,
-        changefreq: 'monthly',
-        priority: 0.8
-      });
-    });
 
     return of({ urls });
   }

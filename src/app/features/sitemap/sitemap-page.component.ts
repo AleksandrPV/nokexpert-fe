@@ -217,19 +217,6 @@ export class SitemapPageComponent implements OnInit {
         }
       ]
     },
-    {
-      title: 'Блог и новости',
-      description: 'Актуальные новости и полезные статьи',
-      icon: '📰',
-      links: [
-        {
-          title: 'Блог',
-          url: '/blog',
-          description: 'Статьи и новости о НОК',
-          priority: 'medium'
-        }
-      ]
-    }
   ];
 
   ngOnInit(): void {

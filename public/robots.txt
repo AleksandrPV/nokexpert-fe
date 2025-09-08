@@ -6,7 +6,6 @@ User-agent: *
 Allow: /
 Allow: /services
 Allow: /info
-Allow: /blog
 Allow: /contacts
 Allow: /faq
 Allow: /qualifications
@@ -71,7 +70,6 @@ Disallow: /
 
 # Карты сайта
 Sitemap: https://nok-expert.ru/sitemap.xml
-Sitemap: https://nok-expert.ru/sitemap-blog.xml
 Sitemap: https://nok-expert.ru/sitemap-services.xml
 Sitemap: https://nok-expert.ru/sitemap-faq.xml
 

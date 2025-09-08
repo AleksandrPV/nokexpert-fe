@@ -29,14 +29,6 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender
   },
   {
-    path: 'blog',
-    renderMode: RenderMode.Prerender
-  },
-  {
-    path: 'blog/nostroy-changes-2024',
-    renderMode: RenderMode.Prerender
-  },
-  {
     path: 'info',
     renderMode: RenderMode.Prerender
   },
