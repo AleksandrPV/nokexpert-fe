@@ -54,8 +54,8 @@ export class BlogPageComponent implements OnInit {
 
     // Добавляем breadcrumbs structured data для блога
     this.seoService.addBreadcrumbsStructuredData([
-      { name: 'Главная', url: this.seoService.baseUrl },
-      { name: 'Блог', url: `${this.seoService.baseUrl}/blog` }
+      { name: 'Главная', url: this.seoService.getBaseUrl() },
+      { name: 'Блог', url: `${this.seoService.getBaseUrl()}/blog` }
     ]);
 
     this.loadCategories();

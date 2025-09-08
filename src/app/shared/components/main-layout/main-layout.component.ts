@@ -4,17 +4,21 @@ import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { CookiesBannerComponent } from '../../../features/cookies/cookies-banner.component';
 
 @Component({
   selector: 'app-main-layout',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, RouterOutlet],
+  imports: [HeaderComponent, FooterComponent, RouterOutlet, CookiesBannerComponent],
   template: `
     <app-header />
     <main class="min-h-[70vh] container mx-auto p-4">
       <router-outlet />
     </main>
     <app-footer />
+
+    <!-- Cookies Banner -->
+    <app-cookies-banner />
   `,
   styles: []
 })

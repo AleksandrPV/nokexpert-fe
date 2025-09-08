@@ -148,5 +148,9 @@ export const routes: Routes = [
       },
     ]
   },
-  { path: '**', redirectTo: '' }
+  {
+    path: '404',
+    loadComponent: () => import('./features/not-found/not-found-page.component').then(m => m.NotFoundPageComponent)
+  },
+  { path: '**', redirectTo: '/404' }
 ];

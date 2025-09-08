@@ -105,9 +105,9 @@ export class WhatIsNokPageComponent implements OnInit {
 
     // Добавляем breadcrumbs structured data для информационной страницы
     this.seoService.addBreadcrumbsStructuredData([
-      { name: 'Главная', url: this.seoService.baseUrl },
-      { name: 'Информация о НОК', url: `${this.seoService.baseUrl}/info` },
-      { name: 'Что такое НОК', url: `${this.seoService.baseUrl}/info/what-is-nok` }
+      { name: 'Главная', url: this.seoService.getBaseUrl() },
+      { name: 'Информация о НОК', url: `${this.seoService.getBaseUrl()}/info` },
+      { name: 'Что такое НОК', url: `${this.seoService.getBaseUrl()}/info/what-is-nok` }
     ]);
   }
 

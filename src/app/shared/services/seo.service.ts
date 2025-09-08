@@ -26,6 +26,13 @@ export interface SeoData {
 export class SeoService {
   private readonly baseUrl = 'https://nok-expert.ru';
   private readonly defaultImage = '/assets/images/og-default.jpg';
+
+  /**
+   * Получить базовый URL сайта
+   */
+  public getBaseUrl(): string {
+    return this.baseUrl;
+  }
   
   private readonly defaultSeoData: SeoData = {
     title: 'НОК Эксперт - Профессиональная подготовка к независимой оценке квалификации',
