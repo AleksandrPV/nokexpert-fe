@@ -118,6 +118,19 @@ const checks = [
              content.includes('portfolio-guide') &&
              content.includes('nok-qa');
     }
+  },
+  {
+    name: 'Яндекс.Метрика',
+    check: () => {
+      const indexPath = path.join(__dirname, '../src/index.html');
+      if (!fs.existsSync(indexPath)) return false;
+      const content = fs.readFileSync(indexPath, 'utf-8');
+      return content.includes('mc.yandex.ru/metrika/tag.js?id=104076182') &&
+             content.includes('ym(104076182, \'init\'') &&
+             content.includes('ssr:true') &&
+             content.includes('webvisor:true') &&
+             content.includes('clickmap:true');
+    }
   }
 ];
 
@@ -136,7 +149,7 @@ checks.forEach(({ name, check }) => {
   }
 });
 
-console.log(`\n📊 Результат: ${passed}/${total} проверок пройдено`);
+console.log(`\n📊 Результат: ${passed}/${total} проверок пройдено (включая аналитику)`);
 
 if (passed === total) {
   console.log('🎉 Отлично! Все оптимизации контента и UX внедрены!');
