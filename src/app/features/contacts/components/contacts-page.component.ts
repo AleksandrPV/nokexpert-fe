@@ -50,6 +50,9 @@ export class ContactsPageComponent implements OnInit {
 
     // Добавляем расширенную structured data для контактов и организации
     this.seoService.addContactStructuredData(this.organizationService.getData());
+
+    // Добавляем structured data для доступности услуг
+    this.seoService.addServiceAvailabilityStructuredData();
   }
 
   formData = {

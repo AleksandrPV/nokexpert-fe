@@ -102,6 +102,13 @@ export class WhatIsNokPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.seoService.setWhatIsNokPageSeo();
+
+    // Добавляем breadcrumbs structured data для информационной страницы
+    this.seoService.addBreadcrumbsStructuredData([
+      { name: 'Главная', url: this.seoService.baseUrl },
+      { name: 'Информация о НОК', url: `${this.seoService.baseUrl}/info` },
+      { name: 'Что такое НОК', url: `${this.seoService.baseUrl}/info/what-is-nok` }
+    ]);
   }
 
   openConsultationPopup(): void {

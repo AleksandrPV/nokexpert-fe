@@ -1165,6 +1165,101 @@ export class SeoService {
   }
 
   /**
+   * Добавить Structured Data для доступности услуг
+   */
+  addServiceAvailabilityStructuredData(): void {
+    const availabilityData = {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Услуги подготовки к НОК",
+      "description": "Профессиональная подготовка к независимой оценке квалификации для специалистов строительной отрасли",
+      "provider": {
+        "@type": "Organization",
+        "@id": `${this.baseUrl}#organization`,
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Россия"
+        },
+        {
+          "@type": "City",
+          "name": "Москва"
+        },
+        {
+          "@type": "City",
+          "name": "Санкт-Петербург"
+        },
+        {
+          "@type": "City",
+          "name": "Екатеринбург"
+        }
+      ],
+      "serviceType": [
+        "Подготовка к НОК",
+        "Обучение специалистов",
+        "Консультации по НОК",
+        "Сопровождение НОК"
+      ],
+      "availableChannel": [
+        {
+          "@type": "ServiceChannel",
+          "name": "Онлайн консультации",
+          "availableLanguage": "Russian",
+          "serviceUrl": `${this.baseUrl}/contacts`,
+          "hoursAvailable": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "18:00"
+          }
+        },
+        {
+          "@type": "ServiceChannel",
+          "name": "Офис в Москве",
+          "availableLanguage": "Russian",
+          "serviceLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "ул. Примерная, д. 1",
+              "addressLocality": "Москва",
+              "addressRegion": "Москва",
+              "addressCountry": "RU",
+              "postalCode": "123456"
+            }
+          },
+          "hoursAvailable": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "18:00"
+          }
+        }
+      ],
+      "hoursAvailable": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+7 (495) 123-45-67",
+        "contactType": "customer service",
+        "availableLanguage": "Russian"
+      },
+      "priceRange": "₽₽₽",
+      "paymentAccepted": ["Cash", "Credit Card", "Bank Transfer"],
+      "currenciesAccepted": "RUB"
+    };
+
+    this.updateStructuredData(availabilityData);
+  }
+
+  /**
    * Добавить расширенную Structured Data для контактов и организации
    */
   addContactStructuredData(organizationData: {

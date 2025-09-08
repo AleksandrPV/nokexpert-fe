@@ -71,6 +71,10 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
     // Устанавливаем SEO данные для главной страницы
     this.seoService.setHomePageSeo();
+
+    // Добавляем дополнительные structured data для главной страницы
+    this.seoService.addCustomerReviewsStructuredData();
+    this.seoService.addLocalBusinessStructuredData();
   }
 
   /**
