@@ -131,6 +131,13 @@ export class FeedbackPopupService {
     });
   }
 
+  openForPremium(): void {
+    this.open({
+      title: 'Премиум подготовка к НОК',
+      subtitle: 'Максимальные гарантии успеха с персональным сопровождением'
+    });
+  }
+
   /**
    * Отправка формы
    */

@@ -48,9 +48,9 @@
         class="bg-brand-coral-dark hover:bg-brand-coral text-white px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg font-bold rounded-2xl transition-all duration-500 hover:shadow-xl hover:-translate-y-1 min-w-[200px] sm:min-w-[250px] focus:outline-none focus:ring-4 focus:ring-brand-coral/30">
         Бесплатная консультация
       </button>
-      <button class="text-brand-navy hover:text-brand-coral font-bold text-base sm:text-lg transition-colors duration-300 border-b-2 border-transparent hover:border-brand-coral pb-1 focus:outline-none focus:ring-2 focus:ring-brand-navy/30 rounded">
+      <a routerLink="/services" class="text-brand-navy hover:text-brand-coral font-bold text-base sm:text-lg transition-colors duration-300 border-b-2 border-transparent hover:border-brand-coral pb-1 focus:outline-none focus:ring-2 focus:ring-brand-navy/30 rounded inline-block">
         Наши курсы →
-      </button>
+      </a>
     </div>
   </div>
 </section>
@@ -131,7 +131,9 @@
           <div class="text-brand-dark/60 text-xs sm:text-sm">+ госпошлина 22 тыс.</div>
         </div>
         
-        <button class="btn-modern w-full hover-glow focus:outline-none focus:ring-4 focus:ring-brand-navy/30">Заказать подготовку</button>
+        <button
+          (click)="openNokNoprizPopup()"
+          class="btn-modern w-full hover-glow focus:outline-none focus:ring-4 focus:ring-brand-navy/30">Заказать подготовку</button>
       </div>
 
       <!-- Premium -->
@@ -163,7 +165,9 @@
             <div class="text-brand-dark/60 text-xs sm:text-sm">Всё включено</div>
           </div>
           
-          <button class="btn-cream w-full hover-glow focus:outline-none focus:ring-4 focus:ring-brand-cream/30">Выбрать премиум</button>
+          <button
+            (click)="openPremiumPopup()"
+            class="btn-cream w-full hover-glow focus:outline-none focus:ring-4 focus:ring-brand-cream/30">Выбрать премиум</button>
         </div>
       </div>
     </div>

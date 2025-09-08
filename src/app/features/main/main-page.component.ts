@@ -16,7 +16,7 @@ import { CtaSectionComponent, CtaSectionConfig } from '../../shared/components/c
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [CommonModule, RelatedMaterialsComponent, NavigationLinksComponent, CustomerReviewsComponent, CtaSectionComponent],
+  imports: [CommonModule, RouterLink, RelatedMaterialsComponent, NavigationLinksComponent, CustomerReviewsComponent, CtaSectionComponent],
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss']
 })
@@ -89,5 +89,19 @@ export class MainPageComponent implements OnInit {
    */
   openNokNostroyPopup(): void {
     this.feedbackService.openForNokNostroy();
+  }
+
+  /**
+   * Открыть popup для НОК НОПРИЗ
+   */
+  openNokNoprizPopup(): void {
+    this.feedbackService.openForNokNopriz();
+  }
+
+  /**
+   * Открыть popup для премиум пакета
+   */
+  openPremiumPopup(): void {
+    this.feedbackService.openForPremium();
   }
 } 
