@@ -18,7 +18,7 @@ export interface TelegramResponse {
 // Конфигурация Telegram - замените на свои данные
 const TELEGRAM_CONFIG = {
   BOT_TOKEN: '8215196694:AAEHXjwAsDSiRZCmURWPIwArIS2-d_LBwm4',
-  CHAT_ID: 'ВАШ_CHAT_ID_ЗДЕСЬ'
+  CHAT_ID: '679991424'
 };
 
 @Injectable({

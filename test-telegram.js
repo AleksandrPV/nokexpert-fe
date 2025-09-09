@@ -9,7 +9,7 @@ const https = require('https');
 
 // Конфигурация из проекта
 const BOT_TOKEN = '8215196694:AAEHXjwAsDSiRZCmURWPIwArIS2-d_LBwm4';
-const CHAT_ID = '@avsemenov88'; // Временно username, нужно заменить на числовой ID
+const CHAT_ID = '679991424'; // Правильный числовой Chat ID
 
 const TEST_MESSAGE = `
 🧪 Тестовое сообщение от сайта НОК Эксперт
