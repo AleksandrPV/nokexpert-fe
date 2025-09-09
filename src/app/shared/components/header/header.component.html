@@ -189,21 +189,15 @@
         </a>
       </div>
 
-      <!-- CTA Buttons -->
-      <div class="hidden md:flex items-center gap-4">
-        <a [href]="'tel:' + phoneHref"
-           class="glass-dark px-4 py-2 rounded-full text-brand-dark font-medium hover-lift transition-all duration-300 text-sm border-brand-sky">
-          📞 Звонок
-        </a>
-        <button 
-          (click)="openConsultationPopup()"
-          class="btn-coral px-6 py-2 text-sm hover-glow">
-          🚀 Консультация
-        </button>
-      </div>
+      <!-- Desktop Consultation Button -->
+      <button
+        (click)="openConsultationPopup()"
+        class="btn-coral px-6 py-2 text-sm hover-glow">
+        🚀 Консультация
+      </button>
 
       <!-- Mobile Menu Button -->
-      <button 
+      <button
         (click)="toggleMobileMenu()"
         aria-label="Открыть мобильное меню"
         class="lg:hidden glass-dark p-3 rounded-xl hover-lift border-brand-sky">
@@ -292,9 +286,9 @@
                class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark">
               🏢 Центры ЦОК
             </a>
-            <a 
+            <a
               *ngFor="let category of menuCategories.slice(0, 3)"
-              [routerLink]="'/info/' + category.slug"
+              [routerLink]="'/info/' + category.pages[0]?.slug"
               (click)="closeMobileMenu()"
               class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark">
               {{ category.icon }} {{ category.name }}
