@@ -151,8 +151,8 @@ export class FeedbackPopupService {
       await this.delay(1000);
 
       // Валидация
-      if (!formData.name.trim() || !formData.phone.trim() || !formData.message.trim()) {
-        throw new Error('Пожалуйста, заполните все обязательные поля (Имя, Телефон, Сообщение)');
+      if (!formData.name.trim() || !formData.phone.trim()) {
+        throw new Error('Пожалуйста, заполните обязательные поля (Имя, Телефон)');
       }
 
       if (!formData.privacy) {
@@ -177,7 +177,7 @@ export class FeedbackPopupService {
       console.log('📋 Отправка формы:', {
         name: formData.name,
         phone: formData.phone,
-        email: formData.email,
+        email: formData.email || 'Не указан',
         subject: formData.subject,
         messageLength: formData.message.length
       });
