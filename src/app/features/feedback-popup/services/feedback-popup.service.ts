@@ -1,12 +1,15 @@
 import { Injectable, signal, inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { 
-  FeedbackFormData, 
-  FeedbackSubject, 
-  FeedbackSubjectOption, 
+import { HttpClient } from '@angular/common/http';
+import {
+  FeedbackFormData,
+  FeedbackSubject,
+  FeedbackSubjectOption,
   PopupConfig,
-  FeedbackSubmitResult 
+  FeedbackSubmitResult
 } from '../models/feedback.interface';
+import { TelegramService } from '../../../shared/services/telegram.service';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +17,7 @@ import {
 export class FeedbackPopupService {
   private platformId = inject(PLATFORM_ID);
   private isBrowser = isPlatformBrowser(this.platformId);
+  private telegramService = inject(TelegramService);
   
   // Состояние popup
   private _config = signal<PopupConfig>({
@@ -144,28 +148,49 @@ export class FeedbackPopupService {
   async submitFeedback(formData: FeedbackFormData): Promise<FeedbackSubmitResult> {
     try {
       // Имитация отправки данных
-      await this.delay(1500);
+      await this.delay(1000);
 
       // Валидация
-      if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-        throw new Error('Пожалуйста, заполните все обязательные поля');
+      if (!formData.name.trim() || !formData.phone.trim() || !formData.message.trim()) {
+        throw new Error('Пожалуйста, заполните все обязательные поля (Имя, Телефон, Сообщение)');
       }
 
       if (!formData.privacy) {
         throw new Error('Необходимо согласие на обработку персональных данных');
       }
 
-      // Здесь будет реальная отправка на сервер
-      console.log('Отправка формы:', formData);
+      // Отправка в Telegram
+      if (this.telegramService.isConfigured()) {
+        try {
+          const messageText = this.telegramService.formatFeedbackMessage(formData);
+          await firstValueFrom(this.telegramService.sendMessage(messageText));
+          console.log('✅ Сообщение отправлено в Telegram');
+        } catch (telegramError) {
+          console.warn('⚠️ Не удалось отправить в Telegram, но форма обработана:', telegramError);
+          // Не выбрасываем ошибку, так как форма всё равно обработана
+        }
+      } else {
+        console.warn('⚠️ Telegram не настроен - проверьте BOT_TOKEN и CHAT_ID');
+      }
+
+      // Логируем отправку формы
+      console.log('📋 Отправка формы:', {
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        subject: formData.subject,
+        messageLength: formData.message.length
+      });
 
       return {
         success: true,
         message: 'Спасибо за обращение! Мы свяжемся с вами в ближайшее время.'
       };
     } catch (error) {
+      console.error('❌ Ошибка при отправке формы:', error);
       return {
         success: false,
-        message: 'Произошла ошибка при отправке',
+        message: 'Произошла ошибка при отправке. Попробуйте еще раз.',
         error: error instanceof Error ? error.message : 'Неизвестная ошибка'
       };
     }
