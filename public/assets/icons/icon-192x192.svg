@@ -14,7 +14,7 @@
   <rect width="192" height="192" rx="24" fill="url(#bgGrad)"/>
 
   <!-- Аббревиатура НОК -->
-  <text x="96" y="110" text-anchor="middle" fill="url(#textGrad)" font-family="Arial, sans-serif" font-size="48" font-weight="bold">НОК</text>
+  <text x="96" y="115" text-anchor="middle" fill="url(#textGrad)" font-family="Arial, sans-serif" font-size="72" font-weight="bold">НОК</text>
 
   <!-- Дополнительные декоративные элементы -->
   <circle cx="40" cy="40" r="3" fill="#ffffff" opacity="0.4"/>
