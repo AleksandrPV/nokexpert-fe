@@ -48,7 +48,7 @@
    - `TELEGRAM_CHAT_ID`: `679991424`
 
 ### Шаг 4: Локальная разработка
-Для локальной разработки создайте `src/environments/environment.local.ts`:
+Для локальной разработки скопируйте `src/environments/environment.example.ts` в `src/environments/environment.local.ts` и заполните своими данными:
 
 ```typescript
 export const environment = {
