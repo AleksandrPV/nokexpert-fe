@@ -29,6 +29,12 @@ Disallow: /*.css
 Disallow: /*.map
 Disallow: /*.scss
 
+# Разрешаем доступ к favicon и иконкам для поисковых систем
+Allow: /favicon.ico
+Allow: /assets/icons/
+Allow: /icons/
+Allow: /manifest.webmanifest
+
 # Специальные правила для ботов
 User-agent: Googlebot
 Crawl-delay: 1
