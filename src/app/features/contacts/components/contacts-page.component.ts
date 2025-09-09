@@ -2,8 +2,9 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { YandexMapComponent } from '../../../shared/components/yandex-map/yandex-map.component';
-import { MapMarker } from '../../../core/services/yandex-maps.service';
+// YandexMapComponent не используется после удаления блока с картой
+// import { YandexMapComponent } from '../../../shared/components/yandex-map/yandex-map.component';
+// import { MapMarker } from '../../../core/services/yandex-maps.service';
 import { SeoService } from '../../../shared/services/seo.service';
 import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 import { OrganizationService } from '../../../shared/services/organization.service';
@@ -11,12 +12,12 @@ import { SecurityService } from '../../../shared/services/security.service';
 
 /**
  * Компонент страницы контактов
- * Содержит контактную информацию, форму обратной связи и карту
+ * Содержит контактную информацию, форму обратной связи и информацию об офисе
  */
 @Component({
   selector: 'app-contacts-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, YandexMapComponent, BreadcrumbsComponent],
+  imports: [CommonModule, FormsModule, RouterLink, BreadcrumbsComponent],
   templateUrl: './contacts-page.component.html',
   styleUrls: ['./contacts-page.component.scss']
 })
@@ -66,26 +67,7 @@ export class ContactsPageComponent implements OnInit {
     privacy: false
   };
 
-  // Координаты офиса теперь из OrganizationService
-  get officeCoordinates(): [number, number] {
-    const lat = this.organizationService.getLatitude();
-    const lng = this.organizationService.getLongitude();
-    return lat !== undefined && lng !== undefined ? [lat, lng] : [59.9851, 30.3075];
-  }
-  
-  // Маркеры для карты теперь используют координаты из OrganizationService
-  get mapMarkers(): MapMarker[] {
-    const lat = this.organizationService.getLatitude();
-    const lng = this.organizationService.getLongitude();
-    return [
-      {
-        coordinates: lat !== undefined && lng !== undefined ? [lat, lng] : [59.9851, 30.3075],
-        title: this.organizationName,
-        description: `${this.address}<br>Профессиональная подготовка к НОК`,
-        icon: 'islands#redIcon'
-      }
-    ];
-  }
+  // Геттеры для карты удалены после удаления блока "Как добраться до нас"
 
   onSubmit() {
     // Валидация и санитизация данных формы

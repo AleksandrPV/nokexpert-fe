@@ -20,20 +20,6 @@
     <priority>0.8</priority>
   </url>
 
-  <url>
-    <loc>https://nok-expert.ru/services/nok-nostroy/training</loc>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://nok-expert.ru/services/nok-nostroy/consultation</loc>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
   <!-- Услуги по НОК НОПРИЗ -->
   <url>
     <loc>https://nok-expert.ru/services/nok-nopriz</loc>
@@ -48,35 +34,6 @@
     <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-  </url>
-
-  <!-- Дополнительные услуги -->
-  <url>
-    <loc>https://nok-expert.ru/services/online-training</loc>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://nok-expert.ru/services/individual-courses</loc>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://nok-expert.ru/services/document-preparation</loc>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://nok-expert.ru/services/qualification-audit</loc>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
 
 </urlset> 

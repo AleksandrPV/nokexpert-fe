@@ -288,7 +288,7 @@
             </a>
             <a
               *ngFor="let category of menuCategories.slice(0, 3)"
-              [routerLink]="'/info/' + category.pages[0]?.slug"
+              [routerLink]="'/info/' + category.pages[0].slug"
               (click)="closeMobileMenu()"
               class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark">
               {{ category.icon }} {{ category.name }}
