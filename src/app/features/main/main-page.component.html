@@ -1,40 +1,37 @@
 <!-- Hero Section -->
-<section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-16 sm:pt-20">
-  <!-- Простой светлый фон -->
-  <div class="absolute inset-0 bg-white"></div>
-  
+<section class="relative flex items-center bg-red-600 justify-center overflow-hidden pt-8 sm:pt-12 w-full">
   <!-- Hero Content -->
   <div class="container mx-auto px-4 sm:px-6 text-center relative z-10">
     <!-- Trust Badge -->
-    <div *ngIf="hasLicense" class="inline-flex items-center gap-2 bg-gray-50 text-brand-navy px-4 sm:px-6 py-2 rounded-full mb-4 sm:mb-6 border border-gray-200">
+    <div *ngIf="hasLicense" class="inline-flex items-center gap-2 bg-white/90 text-brand-navy px-4 sm:px-6 py-2 rounded-full mb-4 sm:mb-6 border border-white/20">
       <div class="w-2 h-2 bg-brand-coral rounded-full"></div>
       <span class="text-xs sm:text-sm font-medium">{{ licenseDescription }}</span>
     </div>
 
     <!-- Main Heading -->
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-brand-dark mb-4 sm:mb-6 leading-tight">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 sm:mb-6 leading-tight">
       Гарантированная
       <br />
-      <span class="text-brand-navy font-black">сдача НОК</span>
+      <span class="text-white font-black">сдача НОК</span>
     </h1>
 
     <!-- Subtitle -->
-    <p class="text-lg sm:text-xl md:text-2xl text-brand-dark/70 mb-6 sm:mb-8 max-w-4xl mx-auto leading-relaxed font-medium px-4">
+    <p class="text-lg sm:text-xl md:text-2xl text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto leading-relaxed font-medium px-4">
       Гарантированная сдача независимой оценки квалификации (НОК)
       <br class="hidden md:block" />
-      для специалистов <strong class="text-brand-coral font-bold">НОСТРОЙ</strong> и <strong class="text-brand-coral font-bold">НОПРИЗ</strong>
+      для специалистов <strong class="text-white font-bold">НОСТРОЙ</strong> и <strong class="text-white font-bold">НОПРИЗ</strong>
     </p>
 
 
 
     <!-- CTA Buttons -->
     <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
-      <button 
+      <button
         (click)="openConsultationPopup()"
-        class="bg-brand-coral-dark hover:bg-brand-coral text-white px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg font-bold rounded-2xl transition-all duration-500 hover:shadow-xl hover:-translate-y-1 min-w-[200px] sm:min-w-[250px] focus:outline-none focus:ring-4 focus:ring-brand-coral/30">
+        class="bg-white hover:bg-gray-100 text-red-600 px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg font-bold rounded-2xl transition-all duration-500 hover:shadow-xl hover:-translate-y-1 min-w-[200px] sm:min-w-[250px] focus:outline-none focus:ring-4 focus:ring-white/30">
         Бесплатная консультация
       </button>
-      <a routerLink="/services" class="text-brand-navy hover:text-brand-coral font-bold text-base sm:text-lg transition-colors duration-300 border-b-2 border-transparent hover:border-brand-coral pb-1 focus:outline-none focus:ring-2 focus:ring-brand-navy/30 rounded inline-block">
+      <a routerLink="/services" class="text-white hover:text-yellow-300 font-bold text-base sm:text-lg transition-colors duration-300 border-b-2 border-transparent hover:border-yellow-300 pb-1 focus:outline-none focus:ring-2 focus:ring-white/30 rounded inline-block">
         Наши курсы →
       </a>
     </div>
