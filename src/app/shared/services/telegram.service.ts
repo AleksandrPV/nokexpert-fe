@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 export interface TelegramMessage {
   chat_id: string;
@@ -15,18 +16,12 @@ export interface TelegramResponse {
   description?: string;
 }
 
-// Конфигурация Telegram - замените на свои данные
-const TELEGRAM_CONFIG = {
-  BOT_TOKEN: '8215196694:AAEHXjwAsDSiRZCmURWPIwArIS2-d_LBwm4',
-  CHAT_ID: '679991424'
-};
-
 @Injectable({
   providedIn: 'root'
 })
 export class TelegramService {
-  private readonly botToken = TELEGRAM_CONFIG.BOT_TOKEN;
-  private readonly chatId = TELEGRAM_CONFIG.CHAT_ID;
+  private readonly botToken = environment.telegram.botToken;
+  private readonly chatId = environment.telegram.chatId;
   private readonly apiUrl = `https://api.telegram.org/bot${this.botToken}`;
 
   constructor(private http: HttpClient) {}

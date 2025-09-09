@@ -1,9 +1,8 @@
 export const environment = {
   production: true,
-  name: 'production',
-  apiUrl: 'https://api.nok-expert.ru/api',
-  baseUrl: 'https://nok-expert.ru',
-  enableAnalytics: true,
-  enableLogging: false,
-  version: '1.0.0'
-}; 
+  // Telegram configuration - loaded from GitHub Secrets
+  telegram: {
+    botToken: process.env['TELEGRAM_BOT_TOKEN'] || '',
+    chatId: process.env['TELEGRAM_CHAT_ID'] || ''
+  }
+};
