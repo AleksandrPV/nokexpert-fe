@@ -42,56 +42,75 @@ interface SitemapLink {
             <p class="text-brand-dark/70 mb-6">{{ section.description }}</p>
             
             <div class="grid md:grid-cols-2 gap-6">
-              <div *ngFor="let link of section.links" 
-                   class="group p-4 rounded-lg border border-brand-sky/20 hover:border-brand-sky/40 hover:bg-brand-sky/5 transition-all duration-300">
-                <a [routerLink]="link.url" 
-                   class="block space-y-2"
+              <div *ngFor="let link of section.links"
+                   class="group relative p-4 rounded-lg border border-brand-sky/20 hover:border-brand-sky/40 hover:bg-gradient-to-br hover:from-brand-sky/5 hover:to-brand-navy/5 transition-all duration-300 hover:shadow-lg hover:shadow-brand-sky/10"
                    [class]="getPriorityClass(link.priority)">
+                <a [routerLink]="link.url"
+                   class="block space-y-2 relative z-10">
                   <div class="flex items-center justify-between">
-                    <h3 class="font-semibold text-brand-dark group-hover:text-brand-navy transition-colors">
+                    <h3 class="font-semibold text-brand-dark group-hover:text-brand-navy transition-colors duration-300">
                       {{ link.title }}
                     </h3>
-                    <span class="text-xs px-2 py-1 rounded-full" 
+                    <span class="text-xs px-2 py-1 rounded-full font-medium"
                           [class]="getPriorityBadgeClass(link.priority)">
                       {{ getPriorityText(link.priority) }}
                     </span>
                   </div>
-                  <p class="text-sm text-brand-dark/60">{{ link.description }}</p>
-                  <div class="text-xs text-brand-sky font-mono">{{ link.url }}</div>
+                  <p class="text-sm text-brand-dark/60 group-hover:text-brand-dark/80 transition-colors duration-300">{{ link.description }}</p>
+                  <div class="text-xs text-brand-sky font-mono opacity-75 group-hover:opacity-100 transition-opacity duration-300">{{ link.url }}</div>
                 </a>
+
+                <!-- Декоративные элементы -->
+                <div class="absolute top-2 right-2 w-2 h-2 bg-gradient-to-br from-brand-sky/20 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="absolute bottom-2 left-2 w-1 h-1 bg-gradient-to-tr from-brand-navy/20 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Дополнительная информация -->
-        <div class="mt-12 bg-gradient-to-r from-brand-sky/10 to-brand-navy/10 rounded-xl p-8">
-          <h3 class="text-xl font-bold text-brand-navy mb-4">Информация о сайте</h3>
-          <div class="grid md:grid-cols-2 gap-6 text-sm">
-            <div>
-              <h4 class="font-semibold text-brand-dark mb-2">Техническая информация</h4>
-              <ul class="space-y-1 text-brand-dark/70">
-                <li>• Всего страниц: {{ getTotalPages() }}</li>
-                <li>• Последнее обновление: 27.01.2025</li>
-                <li>• Технология: Angular SSR</li>
-                <li>• Индексация: Разрешена</li>
-              </ul>
-            </div>
-            <div>
-              <h4 class="font-semibold text-brand-dark mb-2">Поисковая оптимизация</h4>
-              <ul class="space-y-1 text-brand-dark/70">
-                <li>• Sitemap XML: <a href="/sitemap.xml" class="text-brand-sky hover:underline">Просмотреть</a></li>
-                <li>• Robots.txt: <a href="/robots.txt" class="text-brand-sky hover:underline">Просмотреть</a></li>
-                <li>• Структурированные данные: Подключены</li>
-                <li>• SSL сертификат: Активен</li>
-              </ul>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   `,
-  styles: []
+  styles: [`
+    /* Анимации для полосок приоритета */
+    [class*="before:bg-gradient-to-b"]:hover:before {
+      animation: pulse-strip 2s ease-in-out infinite;
+      filter: brightness(1.2);
+    }
+
+    @keyframes pulse-strip {
+      0%, 100% { opacity: 1; transform: scaleY(1); }
+      50% { opacity: 0.8; transform: scaleY(1.05); }
+    }
+
+    /* Эффекты для карточек при hover */
+    .group:hover {
+      transform: translateX(2px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Градиентные эффекты для полосок */
+    [class*="before:bg-gradient-to-b"]:before {
+      content: '';
+      transition: all 0.3s ease;
+    }
+
+    /* Улучшенные стили для полосок приоритета */
+    .before\\:bg-gradient-to-b:before {
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Адаптивность для мобильных устройств */
+    @media (max-width: 768px) {
+      .group:hover {
+        transform: none;
+      }
+
+      [class*="before:bg-gradient-to-b"]:before {
+        width: 2px;
+      }
+    }
+  `]
 })
 export class SitemapPageComponent implements OnInit {
   private platformId = inject(PLATFORM_ID);
@@ -233,19 +252,19 @@ export class SitemapPageComponent implements OnInit {
 
   getPriorityClass(priority: string): string {
     switch (priority) {
-      case 'high': return 'border-l-4 border-l-green-500';
-      case 'medium': return 'border-l-4 border-l-yellow-500';
-      case 'low': return 'border-l-4 border-l-gray-400';
+      case 'high': return 'relative overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-gradient-to-b before:from-green-400 before:to-green-600 before:shadow-lg before:shadow-green-400/30';
+      case 'medium': return 'relative overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-gradient-to-b before:from-yellow-400 before:to-orange-500 before:shadow-lg before:shadow-yellow-400/30';
+      case 'low': return 'relative overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-gradient-to-b before:from-gray-400 before:to-gray-600 before:shadow-lg before:shadow-gray-400/20';
       default: return '';
     }
   }
 
   getPriorityBadgeClass(priority: string): string {
     switch (priority) {
-      case 'high': return 'bg-green-100 text-green-800';
-      case 'medium': return 'bg-yellow-100 text-yellow-800';
-      case 'low': return 'bg-gray-100 text-gray-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'high': return 'bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border border-green-200 shadow-sm';
+      case 'medium': return 'bg-gradient-to-r from-yellow-100 to-orange-100 text-orange-800 border border-yellow-200 shadow-sm';
+      case 'low': return 'bg-gradient-to-r from-gray-100 to-slate-100 text-gray-800 border border-gray-200 shadow-sm';
+      default: return 'bg-gradient-to-r from-gray-100 to-slate-100 text-gray-800 border border-gray-200 shadow-sm';
     }
   }
 
@@ -258,7 +277,4 @@ export class SitemapPageComponent implements OnInit {
     }
   }
 
-  getTotalPages(): number {
-    return this.sitemapSections.reduce((total, section) => total + section.links.length, 0);
-  }
 } 
