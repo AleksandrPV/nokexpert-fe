@@ -159,8 +159,7 @@
           
           <div *ngIf="openedIndex === i" class="px-6 pb-6 animate-fade-in">
             <div class="border-t border-gray-100 pt-4">
-              <div class="text-gray-700 leading-relaxed mb-4">
-                {{ question.shortAnswer }}
+              <div class="text-gray-700 leading-relaxed mb-4" [innerHTML]="question.shortAnswer">
               </div>
               
               <div class="flex items-center justify-between">

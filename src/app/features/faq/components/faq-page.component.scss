@@ -14,4 +14,62 @@
 button:focus {
   outline: 2px solid #ff7043;
   outline-offset: 2px;
+}
+
+/* Стили для HTML контента в shortAnswer */
+.text-gray-700 {
+  strong {
+    font-weight: 600;
+    color: #374151;
+  }
+
+  a {
+    color: #ff7043;
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #e55a3a;
+    }
+  }
+
+  em, i {
+    font-style: italic;
+    color: #6b7280;
+  }
+
+  ul, ol {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+
+    li {
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  p {
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  code {
+    background-color: #f3f4f6;
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-family: 'Monaco', 'Consolas', monospace;
+    font-size: 0.875em;
+    color: #dc2626;
+  }
+
+  blockquote {
+    border-left: 4px solid #ff7043;
+    padding-left: 1rem;
+    margin: 1rem 0;
+    font-style: italic;
+    color: #6b7280;
+  }
 } 
