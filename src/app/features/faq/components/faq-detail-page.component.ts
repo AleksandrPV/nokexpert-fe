@@ -30,7 +30,7 @@ import { switchMap, catchError, of } from 'rxjs';
             </div>
 
             <!-- Question -->
-            <h1 class="text-4xl md:text-5xl font-bold text-brand-dark mb-6 leading-tight">
+            <h1 class="text-4xl md:text-5xl font-bold text-brand-dark mb-6 leading-tight" data-speakable>
               {{ question.question }}
             </h1>
 
@@ -51,7 +51,7 @@ import { switchMap, catchError, of } from 'rxjs';
           <div class="max-w-4xl mx-auto">
             <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
               <div class="prose prose-lg max-w-none">
-                <div class="text-xl text-brand-dark leading-relaxed mb-8">
+                <div class="text-xl text-brand-dark leading-relaxed mb-8" data-speakable>
                   {{ question.fullAnswer }}
                 </div>
 
@@ -279,11 +279,15 @@ export class FaqDetailPageComponent implements OnInit {
       canonical: this.isBrowser ? `${window.location.origin}/faq/${this.question.slug}` : `/faq/${this.question.slug}`
     });
 
-    // Добавляем структурированные данные для FAQ
-    this.seo.addFaqStructuredData([{
+    // Добавляем структурированные данные для отдельной FAQ страницы
+    this.seo.addFaqPageStructuredData({
       question: this.question.question,
-      answer: this.question.fullAnswer
-    }]);
+      shortAnswer: this.question.shortAnswer,
+      fullAnswer: this.question.fullAnswer,
+      category: this.question.category,
+      tags: this.question.tags,
+      isPopular: this.question.isPopular
+    }, `/faq/${this.question.slug}`);
 
     // Добавляем breadcrumb структурированные данные
     if (this.isBrowser) {
