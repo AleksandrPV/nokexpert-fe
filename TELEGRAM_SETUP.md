@@ -11,9 +11,28 @@
 4. Сохраните **BOT TOKEN** - это секретный ключ вашего бота
 
 ### Шаг 2: Получение Chat ID
-1. Откройте созданного бота и отправьте любое сообщение
-2. Откройте в браузере: `https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates`
-3. Найдите поле `"chat":{"id":123456789}` - это ваш **CHAT ID**
+1. Откройте созданного бота (@nokexpert_bot) и отправьте любое сообщение
+2. Откройте в браузере: `https://api.telegram.org/bot8215196694:AAEHXjwAsDSiRZCmURWPIwArIS2-d_LBwm4/getUpdates`
+3. Найдите поле `"chat":{"id":ВАШ_ЧИСЛОВОЙ_ID}` - это ваш **CHAT ID**
+4. **Важно**: Chat ID должен быть числом (например: `123456789`), а не username (@avsemenov88)
+
+#### Пример ответа API:
+```json
+{
+  "ok": true,
+  "result": [
+    {
+      "message": {
+        "chat": {
+          "id": 123456789,  // ← Это нужно скопировать
+          "username": "avsemenov88",
+          "type": "private"
+        }
+      }
+    }
+  ]
+}
+```
 
 ### Шаг 3: Настройка в коде
 1. Файл `src/environments/environment.telegram.ts` уже создан
@@ -26,15 +45,13 @@ export const TELEGRAM_CONFIG = {
 };
 ```
 
-3. Откройте файл `src/app/shared/services/telegram.service.ts` и импортируйте конфигурацию:
+3. Проверьте, что в файле `src/environments/environment.telegram.ts` указан числовой Chat ID
 
-```typescript
-import { TELEGRAM_CONFIG } from '../../environments/environment.telegram';
-
-// Замените эти строки:
-private readonly botToken = TELEGRAM_CONFIG.BOT_TOKEN;
-private readonly chatId = TELEGRAM_CONFIG.CHAT_ID;
-```
+### Шаг 4: Тестирование
+1. Соберите проект: `ng build`
+2. Отправьте тестовую заявку через форму на сайте
+3. Проверьте консоль браузера (F12) - должно быть: `✅ Сообщение отправлено в Telegram`
+4. Проверьте Telegram чат с ботом - должно прийти сообщение
 
 ### Шаг 4: Сборка и деплой
 ```bash

@@ -7,7 +7,7 @@ export const TELEGRAM_CONFIG = {
 
   // ID чата, куда будут приходить сообщения
   // Можно получить отправив сообщение боту и вызвав getUpdates
-  CHAT_ID: 'ВАШ_CHAT_ID_ЗДЕСЬ'
+  CHAT_ID: '@avsemenov88'
 };
 
 // Инструкция по получению данных:
