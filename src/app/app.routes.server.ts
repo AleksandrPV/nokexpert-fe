@@ -101,10 +101,6 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender
   },
   {
-    path: 'public-offer',
-    renderMode: RenderMode.Prerender
-  },
-  {
     path: 'user-agreement',
     renderMode: RenderMode.Prerender
   },

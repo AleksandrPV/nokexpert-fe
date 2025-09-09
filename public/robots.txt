@@ -15,7 +15,6 @@ Allow: /reviews
 # Запрещаем служебные страницы
 Disallow: /privacy-policy
 Disallow: /user-agreement
-Disallow: /public-offer
 Disallow: /admin/
 Disallow: /api/
 Disallow: /sitemap

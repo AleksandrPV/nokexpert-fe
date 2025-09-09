@@ -127,10 +127,6 @@ export const routes: Routes = [
         loadComponent: () => import('./features/privacy-policy/components/privacy-policy-page.component').then(m => m.PrivacyPolicyPageComponent)
       },
       {
-        path: 'public-offer',
-        loadComponent: () => import('./features/public-offer/components/public-offer-page.component').then(m => m.PublicOfferPageComponent)
-      },
-      {
         path: 'user-agreement',
         loadComponent: () => import('./features/user-agreement/components/user-agreement-page.component').then(m => m.UserAgreementPageComponent)
       },

@@ -29,38 +29,33 @@ import { ORGANIZATION_CONFIG } from '../../../../environments/organization.confi
             <p class="text-brand-dark/80 leading-relaxed">
               Профессиональная подготовка к независимой оценке квалификации для специалистов строительной отрасли.
             </p>
-
+          <!--
             <div class="flex gap-3 sm:gap-4 flex-wrap">
-              <!-- ВКонтакте -->
               <a [href]="'https://vk.com/' + ORGANIZATION_CONFIG.social?.vk" target="_blank" rel="noopener noreferrer" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky group" title="ВКонтакте">
                 <span class="text-blue-600 group-hover:scale-110 transition-transform text-lg">🔵</span>
               </a>
-              
-              <!-- Telegram -->
+
               <a [href]="'https://t.me/' + ORGANIZATION_CONFIG.social?.telegram" target="_blank" rel="noopener noreferrer" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky group" title="Telegram">
                 <span class="text-blue-500 group-hover:scale-110 transition-transform text-lg">✈️</span>
               </a>
-              
-              <!-- WhatsApp -->
+
               <a [href]="'https://wa.me/' + ORGANIZATION_CONFIG.social?.whatsapp" target="_blank" rel="noopener noreferrer" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky group" title="WhatsApp">
                 <span class="text-green-500 group-hover:scale-110 transition-transform text-lg">📱</span>
               </a>
-              
-              <!-- YouTube -->
+
               <a [href]="'https://www.youtube.com/' + ORGANIZATION_CONFIG.social?.youtube" target="_blank" rel="noopener noreferrer" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky group" title="YouTube">
                 <span class="text-red-500 group-hover:scale-110 transition-transform text-lg">🎥</span>
               </a>
               
-              <!-- Instagram -->
               <a [href]="'https://instagram.com/' + ORGANIZATION_CONFIG.social?.instagram" target="_blank" rel="noopener noreferrer" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky group" title="Instagram">
                 <span class="text-pink-500 group-hover:scale-110 transition-transform text-lg">📸</span>
               </a>
               
-              <!-- LinkedIn -->
               <a [href]="'https://linkedin.com/company/' + ORGANIZATION_CONFIG.social?.linkedin" target="_blank" rel="noopener noreferrer" class="w-10 h-10 glass-dark rounded-xl flex items-center justify-center hover-lift border-brand-sky group" title="LinkedIn">
                 <span class="text-blue-700 group-hover:scale-110 transition-transform text-lg">💼</span>
               </a>
             </div>
+          -->
           </div>
 
           <!-- Services -->
@@ -136,7 +131,7 @@ import { ORGANIZATION_CONFIG } from '../../../../environments/organization.confi
               </a>
               <p class="text-brand-dark/60 text-xs">Ответим в течение часа</p>
             </div>
-
+            <!--
             <div class="glass-dark rounded-xl p-4 hover-lift card-coral">
               <div class="flex items-center gap-3 mb-2">
                 <div class="w-8 h-8 bg-brand-coral rounded-xl flex items-center justify-center">📍</div>
@@ -145,6 +140,7 @@ import { ORGANIZATION_CONFIG } from '../../../../environments/organization.confi
               <p class="text-brand-dark/80">{{ ORGANIZATION_CONFIG.address.full }}</p>
               <p class="text-brand-dark/60 text-xs">{{ ORGANIZATION_CONFIG.workingHours?.weekdays || 'Пн-Пт: 9:00-18:00' }}</p>
             </div>
+            -->
           </div>
         </div>
 
@@ -160,7 +156,6 @@ import { ORGANIZATION_CONFIG } from '../../../../environments/organization.confi
                       <div class="flex flex-wrap gap-6 text-sm">
               <a routerLink="/privacy-policy" class="text-brand-dark/70 hover:text-brand-dark transition-colors">Политика конфиденциальности</a>
               <a routerLink="/user-agreement" class="text-brand-dark/70 hover:text-brand-dark transition-colors">Пользовательское соглашение</a>
-              <a routerLink="/public-offer" class="text-brand-dark/70 hover:text-brand-dark transition-colors">Публичная оферта</a>
               <a routerLink="/sitemap" class="text-brand-dark/70 hover:text-brand-dark transition-colors">Карта сайта</a>
             </div>
         </div>
