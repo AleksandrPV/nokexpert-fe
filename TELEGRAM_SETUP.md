@@ -16,12 +16,24 @@
 3. Найдите поле `"chat":{"id":123456789}` - это ваш **CHAT ID**
 
 ### Шаг 3: Настройка в коде
-Откройте файл `src/app/shared/services/telegram.service.ts`:
+1. Файл `src/environments/environment.telegram.ts` уже создан
+2. Заполните реальные данные:
 
 ```typescript
+export const TELEGRAM_CONFIG = {
+  BOT_TOKEN: '123456789:ABCdefGHIjklMNOpqrsTUVwxyz', // Ваш токен
+  CHAT_ID: '123456789' // Ваш Chat ID
+};
+```
+
+3. Откройте файл `src/app/shared/services/telegram.service.ts` и импортируйте конфигурацию:
+
+```typescript
+import { TELEGRAM_CONFIG } from '../../environments/environment.telegram';
+
 // Замените эти строки:
-private readonly botToken = 'ВАШ_BOT_TOKEN_ЗДЕСЬ';
-private readonly chatId = 'ВАШ_CHAT_ID_ЗДЕСЬ';
+private readonly botToken = TELEGRAM_CONFIG.BOT_TOKEN;
+private readonly chatId = TELEGRAM_CONFIG.CHAT_ID;
 ```
 
 ### Шаг 4: Сборка и деплой

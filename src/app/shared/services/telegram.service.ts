@@ -15,12 +15,18 @@ export interface TelegramResponse {
   description?: string;
 }
 
+// Конфигурация Telegram - замените на свои данные
+const TELEGRAM_CONFIG = {
+  BOT_TOKEN: '8215196694:AAEHXjwAsDSiRZCmURWPIwArIS2-d_LBwm4',
+  CHAT_ID: 'ВАШ_CHAT_ID_ЗДЕСЬ'
+};
+
 @Injectable({
   providedIn: 'root'
 })
 export class TelegramService {
-  private readonly botToken = 'YOUR_BOT_TOKEN_HERE'; // Замените на ваш токен
-  private readonly chatId = 'YOUR_CHAT_ID_HERE'; // Замените на ваш Chat ID
+  private readonly botToken = TELEGRAM_CONFIG.BOT_TOKEN;
+  private readonly chatId = TELEGRAM_CONFIG.CHAT_ID;
   private readonly apiUrl = `https://api.telegram.org/bot${this.botToken}`;
 
   constructor(private http: HttpClient) {}
