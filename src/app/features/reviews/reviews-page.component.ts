@@ -12,10 +12,10 @@ import { OrganizationService } from '../../shared/services/organization.service'
   template: `
     <div class="min-h-screen bg-gradient-to-br from-brand-sky/5 to-brand-navy/5">
       <!-- Breadcrumbs -->
-      <app-breadcrumbs 
+      <app-breadcrumbs
         [breadcrumbs]="[
-          { label: 'Главная', url: '/', active: false },
-          { label: 'Отзывы клиентов', url: '/reviews', active: true }
+          { label: 'Главная', url: '/', icon: '🏠' },
+          { label: 'Отзывы', active: true, icon: '⭐' }
         ]">
       </app-breadcrumbs>
 

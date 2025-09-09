@@ -12,8 +12,8 @@ import { SeoService } from '../../../shared/services/seo.service';
       <!-- Breadcrumbs -->
       <app-breadcrumbs
         [breadcrumbs]="[
-          { label: 'Главная', url: '/', active: false },
-          { label: 'Консультации', url: '/consultation', active: true }
+          { label: 'Главная', url: '/', icon: '🏠' },
+          { label: 'Консультации', active: true, icon: '👨‍🏫' }
         ]">
       </app-breadcrumbs>
 

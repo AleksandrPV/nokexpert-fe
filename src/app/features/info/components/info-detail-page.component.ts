@@ -121,6 +121,7 @@ export class InfoDetailPageComponent implements OnInit {
 
   private setupBreadcrumbs(): void {
     this.breadcrumbs = [
+      { label: 'Главная', url: '/', icon: '🏠' },
       { label: 'Информация о НОК', url: '/info', icon: '📋' }
     ];
 

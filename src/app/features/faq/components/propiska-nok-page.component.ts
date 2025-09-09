@@ -23,9 +23,9 @@ export class PropiskaNokPageComponent implements OnInit {
   private isBrowser = isPlatformBrowser(this.platformId);
   
   breadcrumbs = [
-    { label: 'Главная', url: '/' },
-    { label: 'FAQ', url: '/faq' },
-    { label: 'Нужна ли прописка для сдачи экзамена НОК?', url: '/faq/propiska-nok' }
+    { label: 'Главная', url: '/', icon: '🏠' },
+    { label: 'FAQ', url: '/faq', icon: '❓' },
+    { label: 'Нужна ли прописка для сдачи экзамена НОК?', active: true, icon: '🏠' }
   ];
 
   ngOnInit(): void {

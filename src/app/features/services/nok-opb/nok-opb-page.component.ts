@@ -15,9 +15,9 @@ import { OrganizationService } from '../../../shared/services/organization.servi
 })
 export class NokOpbPageComponent implements OnInit {
   breadcrumbs = [
-    { label: 'Главная', url: '/' },
-    { label: 'Услуги', url: '/services' },
-    { label: 'НОК ОПБ', url: '/services/nok-opb' }
+    { label: 'Главная', url: '/', icon: '🏠' },
+    { label: 'Услуги', url: '/services', icon: '🛠️' },
+    { label: 'НОК ОПБ', active: true, icon: '🛡️' }
   ];
 
   phoneDisplay = '';
