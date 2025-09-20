@@ -1,166 +1,55 @@
 <!-- Hero Section -->
-<section class="relative flex items-center bg-brand-navy justify-center overflow-hidden pt-24 pb-16 w-screen left-1/2 -translate-x-1/2">
+<section class="relative flex items-center bg-brand-navy justify-center overflow-hidden pt-24 pb-16 w-screen left-1/2 -translate-x-1/2" 
+         style="background-image: url('/img/810_3660.JPG'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+  <!-- Overlay для лучшей читаемости текста -->
+  <div class="absolute inset-0 bg-brand-navy/70"></div>
+  
   <!-- Hero Content -->
   <div class="container mx-auto px-4 sm:px-6 text-center relative z-10 w-full py-8">
     <!-- Trust Badge -->
-    <div *ngIf="hasLicense" class="inline-flex items-center gap-2 bg-white/90 text-brand-navy px-4 sm:px-6 py-2 rounded-full mb-4 sm:mb-6 border border-white/20 shadow-lg">
+    <div *ngIf="hasLicense" class="inline-flex items-center gap-2 bg-white/90 text-brand-navy px-4 sm:px-6 py-2 rounded-md mb-4 sm:mb-6 border border-white/20 shadow-lg">
       <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
       <span class="text-xs sm:text-sm font-medium">
-        <span class="hidden sm:inline">{{ licenseDescription }}</span>
-        <span class="sm:hidden">Лицензия НОСТРОЙ</span>
+        <span class="">НОК Эксперт - nok-expert.ru</span>
       </span>
-      <span class="text-xs opacity-75 ml-1">✓</span>
     </div>
 
     <!-- Main Heading -->
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 sm:mb-6 leading-tight">
-      Гарантированная
-      <br />
-      <span class="text-white font-black">сдача НОК</span>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 sm:mb-6 leading-tight select-none">
+      Тут есть все, что нужно знать о успешной сдаче НОК
     </h1>
 
-    <!-- Subtitle -->
-    <p class="text-lg sm:text-xl md:text-2xl text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto leading-relaxed font-medium px-4">
-      Гарантированная сдача независимой оценки квалификации (НОК)
-      <br class="hidden md:block" />
-      для специалистов <strong class="text-white font-bold">НОСТРОЙ</strong> и <strong class="text-white font-bold">НОПРИЗ</strong>
-    </p>
+    <!-- Subtitle с темным фоном -->
+    <div class="relative inline-block mb-6 sm:mb-8 max-w-4xl mx-auto">
+      <span
+        class="absolute inset-0 rounded-xl bg-black/50 z-0"
+        aria-hidden="true"
+      ></span>
+      <p class="relative z-10 text-lg sm:text-xl md:text-xl text-white font-semibold leading-relaxed px-6 py-4 rounded-xl select-none">
+        Гарантированная сдача независимой оценки квалификации (НОК)
+        <br class="hidden md:block" />
+        для специалистов <strong class="text-white font-bold">НОСТРОЙ</strong> , <strong class="text-white font-bold">НОПРИЗ</strong> , <strong class="text-white font-bold">ЖКХ</strong> и <strong class="text-white font-bold">по пожарной безопасности</strong>
+      </p>
+    </div>
 
     <!-- CTA Buttons -->
     <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
       <button
         (click)="openConsultationPopup()"
-        class="bg-brand-coral hover:bg-brand-coral-dark text-white px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg font-bold rounded-2xl transition-all duration-500 hover:shadow-xl hover:-translate-y-1 min-w-[200px] sm:min-w-[250px] focus:outline-none focus:ring-4 focus:ring-brand-coral/30">
-        Бесплатная консультация
+        class="btn-consultation text-white px-8 sm:px-12 py-4 sm:py-5 text-base sm:text-lg font-bold rounded-2xl min-w-[220px] sm:min-w-[280px] focus:outline-none focus:ring-4 focus:ring-blue-300/30">
+        <span class="flex items-center justify-center gap-2">
+          <span class="text-xl">💬</span>
+          Бесплатная консультация
+        </span>
       </button>
       <a routerLink="/services" class="text-white hover:text-brand-coral font-bold text-base sm:text-lg transition-colors duration-300 border-b-2 border-transparent hover:border-brand-coral pb-1 focus:outline-none focus:ring-2 focus:ring-white/30 rounded inline-block">
-        Наши курсы →
+        Наши библиотека знаний →
       </a>
     </div>
   </div>
 </section>
 
-<!-- About NOK Section -->
-<section class="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-brand-sky/5 to-brand-navy/5">
-  <div class="container mx-auto px-4 sm:px-6">
-    <div class="text-center mb-12 sm:mb-16">
-      <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-gradient-primary consulting-accent">
-        Что такое НОК?
-      </h2>
-      <p class="text-lg sm:text-xl text-brand-dark/80 max-w-3xl mx-auto font-medium px-4">
-        Независимая оценка квалификации — современный механизм подтверждения профессиональной компетентности
-      </p>
-    </div>
 
-    <div class="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-      <!-- Left Column - Main Description -->
-      <div class="space-y-6">
-        <div class="glass p-6 sm:p-8 rounded-3xl hover-lift">
-          <h3 class="text-2xl font-bold text-brand-navy mb-4">🎯 Цель НОК</h3>
-          <p class="text-brand-dark/80 leading-relaxed mb-4">
-            Независимая оценка квалификации (НОК) — это процедура подтверждения уровня профессиональных
-            знаний, умений и навыков специалиста. НОК позволяет объективно оценить компетентность
-            работников и подтвердить их соответствие требованиям профессиональных стандартов.
-          </p>
-          <p class="text-brand-dark/80 leading-relaxed">
-            Процедура НОК введена Федеральным законом № 238-ФЗ "О независимой оценке квалификации"
-            и является обязательной для специалистов определенных профессий в строительной отрасли,
-            промышленности и других сферах деятельности.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-2 gap-4">
-          <div class="glass p-4 sm:p-6 rounded-2xl hover-lift text-center">
-            <div class="text-3xl font-bold text-brand-coral mb-2">98%</div>
-            <div class="text-sm text-brand-dark/60">Успешная сдача с нашей помощью</div>
-          </div>
-          <div class="glass p-4 sm:p-6 rounded-2xl hover-lift text-center">
-            <div class="text-3xl font-bold text-brand-navy mb-2">3000+</div>
-            <div class="text-sm text-brand-dark/60">Специалистов подготовлено</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Column - Key Benefits -->
-      <div class="space-y-6">
-        <h3 class="text-2xl font-bold text-brand-navy mb-6">🚀 Преимущества НОК</h3>
-
-        <div class="space-y-4">
-          <div class="flex items-start gap-4 p-4 rounded-xl bg-white/50 backdrop-blur-sm border border-brand-sky/10 hover:border-brand-sky/20 transition-all duration-300">
-            <div class="w-12 h-12 bg-brand-coral/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <span class="text-brand-coral font-bold text-xl">✓</span>
-            </div>
-            <div>
-              <h4 class="font-semibold text-brand-dark mb-1">Официальное признание компетенций</h4>
-              <p class="text-sm text-brand-dark/70">Свидетельство о квалификации — официальный документ государственного образца</p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-4 p-4 rounded-xl bg-white/50 backdrop-blur-sm border border-brand-sky/10 hover:border-brand-sky/20 transition-all duration-300">
-            <div class="w-12 h-12 bg-brand-sky/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <span class="text-brand-sky font-bold text-xl">✓</span>
-            </div>
-            <div>
-              <h4 class="font-semibold text-brand-dark mb-1">Повышение конкурентоспособности</h4>
-              <p class="text-sm text-brand-dark/70">Специалисты с подтвержденной квалификацией получают преимущество на рынке труда</p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-4 p-4 rounded-xl bg-white/50 backdrop-blur-sm border border-brand-coral/10 hover:border-brand-coral/20 transition-all duration-300">
-            <div class="w-12 h-12 bg-brand-navy/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <span class="text-brand-navy font-bold text-xl">✓</span>
-            </div>
-            <div>
-              <h4 class="font-semibold text-brand-dark mb-1">Требование законодательства</h4>
-              <p class="text-sm text-brand-dark/70">Для многих специальностей НОК является обязательным требованием</p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-4 p-4 rounded-xl bg-white/50 backdrop-blur-sm border border-brand-sky/10 hover:border-brand-sky/20 transition-all duration-300">
-            <div class="w-12 h-12 bg-brand-cream/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <span class="text-brand-cream font-bold text-xl">✓</span>
-            </div>
-            <div>
-              <h4 class="font-semibold text-brand-dark mb-1">Вхождение в НРС</h4>
-              <p class="text-sm text-brand-dark/70">Запись в Национальный реестр специалистов повышает доверие работодателей</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Process Overview -->
-    <div class="mt-16 max-w-6xl mx-auto">
-      <h3 class="text-2xl font-bold text-brand-navy mb-8 text-center">📋 Как проходит НОК</h3>
-
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="glass p-6 rounded-2xl hover-lift text-center">
-          <div class="w-16 h-16 bg-brand-coral/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-3xl">1️⃣</span>
-          </div>
-          <h4 class="font-bold text-brand-dark mb-3">Подготовка</h4>
-          <p class="text-sm text-brand-dark/70">Сбор документов, изучение теоретических материалов, подготовка портфолио</p>
-        </div>
-
-        <div class="glass p-6 rounded-2xl hover-lift text-center">
-          <div class="w-16 h-16 bg-brand-sky/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-3xl">2️⃣</span>
-          </div>
-          <h4 class="font-bold text-brand-dark mb-3">Экзамен</h4>
-          <p class="text-sm text-brand-dark/70">Теоретическая часть (тестирование) и практическая часть (решение кейсов)</p>
-        </div>
-
-        <div class="glass p-6 rounded-2xl hover-lift text-center">
-          <div class="w-16 h-16 bg-brand-navy/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-3xl">3️⃣</span>
-          </div>
-          <h4 class="font-bold text-brand-dark mb-3">Результат</h4>
-          <p class="text-sm text-brand-dark/70">Получение свидетельства о квалификации и запись в Национальный реестр</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- NOK Services Section -->
 <section class="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-brand-navy/5 via-brand-sky/5 to-brand-coral/5">
@@ -228,7 +117,7 @@
         <!-- Success Stats -->
         <div class="grid grid-cols-2 gap-4">
           <div class="glass p-6 rounded-2xl hover-lift text-center">
-            <div class="text-4xl font-bold text-brand-coral mb-2">98%</div>
+            <div class="text-4xl font-bold text-brand-coral mb-2">99%</div>
             <div class="text-sm text-brand-dark/60">Успешная сдача</div>
           </div>
           <div class="glass p-6 rounded-2xl hover-lift text-center">
@@ -329,21 +218,21 @@
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-      <!-- НОСТРОЙ -->
-      <div class="card-modern hover-lift group relative card-coral">
+      <!-- Сдача с гарантией результата -->
+      <div class="card-modern hover-lift group relative card-coral flex flex-col">
         <div class="absolute top-2 right-2 bg-brand-coral-dark text-white px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-bold z-100 shadow-lg transform -rotate-3">
           ПОПУЛЯРНЫЙ
         </div>
         
         <div class="w-16 h-16 sm:w-20 sm:h-20 neomorphic rounded-2xl sm:rounded-3xl flex items-center justify-center text-3xl sm:text-4xl mb-4 sm:mb-6 mx-auto">🏗️</div>
         
-        <h3 class="text-xl sm:text-2xl font-bold text-center text-gradient-primary mb-3 sm:mb-4 professional-border">НОК НОСТРОЙ</h3>
-        <p class="text-brand-dark/80 text-center mb-6 sm:mb-8 text-sm sm:text-base">Комплексная подготовка строительных специалистов</p>
+        <h3 class="text-xl sm:text-2xl font-bold text-center text-gradient-primary mb-3 sm:mb-4 professional-border">НОК сдача с гарантией результата</h3>
+        <p class="text-brand-dark/80 text-center mb-6 sm:mb-8 text-sm sm:text-base">Комплексная подготовка</p>
         
-        <div class="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+        <div class="space-y-3 sm:space-y-4 mb-6 sm:mb-8 flex-grow">
           <div class="flex items-center gap-2 sm:gap-3">
             <div class="w-4 h-4 sm:w-5 sm:h-5 bg-brand-sky rounded-full flex items-center justify-center text-brand-dark text-xs">✓</div>
-            <span class="text-brand-dark/80 text-xs sm:text-sm">600+ актуальных вопросов</span>
+            <span class="text-brand-dark/80 text-xs sm:text-sm">Без отрыва от профессиональной деятельности</span>
           </div>
           <div class="flex items-center gap-2 sm:gap-3">
             <div class="w-4 h-4 sm:w-5 sm:h-5 bg-brand-sky rounded-full flex items-center justify-center text-brand-dark text-xs">✓</div>
@@ -356,23 +245,23 @@
         </div>
         
         <div class="text-center mb-4 sm:mb-6">
-          <div class="text-3xl sm:text-4xl font-bold text-gradient-primary mb-1 sm:mb-2">35 000 ₽</div>
-          <div class="text-brand-dark/60 text-xs sm:text-sm">+ госпошлина 18-24 тыс.</div>
+          <div class="text-3xl sm:text-4xl font-bold text-gradient-primary mb-1 sm:mb-2">50 000 ₽</div>
+          <div class="text-brand-dark/60 text-xs sm:text-sm">бонус: сразу назначаем дату сдачи</div>
         </div>
         
         <button 
           (click)="openNokNostroyPopup()"
-          class="btn-coral w-full hover-glow focus:outline-none focus:ring-4 focus:ring-brand-coral/30">Заказать подготовку</button>
+          class="btn-coral w-full hover-glow focus:outline-none focus:ring-4 focus:ring-brand-coral/30">Сдать НОК</button>
       </div>
 
-      <!-- НОПРИЗ -->
-      <div class="card-modern hover-lift group card-sky">
+      <!-- Проверка документов -->
+      <div class="card-modern hover-lift group card-sky flex flex-col">
         <div class="w-16 h-16 sm:w-20 sm:h-20 neomorphic rounded-2xl sm:rounded-3xl flex items-center justify-center text-3xl sm:text-4xl mb-4 sm:mb-6 mx-auto">📐</div>
         
-        <h3 class="text-xl sm:text-2xl font-bold text-center text-gradient-secondary mb-3 sm:mb-4 professional-border">НОК НОПРИЗ</h3>
-        <p class="text-brand-dark/80 text-center mb-6 sm:mb-8 text-sm sm:text-base">Для проектировщиков и изыскателей</p>
+        <h3 class="text-xl sm:text-2xl font-bold text-center text-gradient-secondary mb-3 sm:mb-4 professional-border">Бесплатная проверка документов</h3>
+        <p class="text-brand-dark/80 text-center mb-6 sm:mb-8 text-sm sm:text-base">Для специалистов НОСТРОЙ, НОПРИЗ, ЖКХ и по пожарной безопасности</p>
         
-        <div class="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+        <div class="space-y-3 sm:space-y-4 mb-6 sm:mb-8 flex-grow">
           <div class="flex items-center gap-2 sm:gap-3">
             <div class="w-4 h-4 sm:w-5 sm:h-5 bg-brand-navy rounded-full flex items-center justify-center text-white text-xs">✓</div>
             <span class="text-brand-dark/80 text-xs sm:text-sm">Помощь с портфолио</span>
@@ -388,63 +277,54 @@
         </div>
         
         <div class="text-center mb-4 sm:mb-6">
-          <div class="text-3xl sm:text-4xl font-bold text-gradient-secondary mb-1 sm:mb-2">40 000 ₽</div>
-          <div class="text-brand-dark/60 text-xs sm:text-sm">+ госпошлина 22 тыс.</div>
+          <div class="text-3xl sm:text-4xl font-bold text-gradient-secondary mb-1 sm:mb-2">Бесплатно</div>
+          <div class="text-brand-dark/60 text-xs sm:text-sm">+ поможем выбрать подходящий ЦОК</div>
         </div>
         
         <button
           (click)="openNokNoprizPopup()"
-          class="btn-modern w-full hover-glow focus:outline-none focus:ring-4 focus:ring-brand-navy/30">Заказать подготовку</button>
+          class="btn-modern w-full hover-glow focus:outline-none focus:ring-4 focus:ring-brand-navy/30">Проверить документы</button>
       </div>
 
-      <!-- Premium -->
-      <div class="card-modern hover-lift group relative overflow-hidden card-navy md:col-span-2 lg:col-span-1">
+      <!-- Тренажеры -->
+      <div class="card-modern hover-lift group relative overflow-hidden card-navy md:col-span-2 lg:col-span-1 flex flex-col">
         <div class="absolute inset-0 bg-gray-50 opacity-50"></div>
-        <div class="relative">
+        <div class="relative flex flex-col h-full">
           <div class="w-16 h-16 sm:w-20 sm:h-20 neomorphic rounded-2xl sm:rounded-3xl flex items-center justify-center text-3xl sm:text-4xl mb-4 sm:mb-6 mx-auto">👑</div>
           
-          <h3 class="text-xl sm:text-2xl font-bold text-center text-gradient-accent mb-3 sm:mb-4 professional-border">ПРЕМИУМ</h3>
-          <p class="text-brand-dark/80 text-center mb-6 sm:mb-8 text-sm sm:text-base">Максимальные гарантии успеха</p>
+          <h3 class="text-xl sm:text-2xl font-bold text-center text-gradient-accent mb-3 sm:mb-4 professional-border">Тренажер</h3>
+          <p class="text-brand-dark/80 text-center mb-6 sm:mb-8 text-sm sm:text-base">Интерактивная подготовка к экзамену</p>
           
-          <div class="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+          <div class="space-y-3 sm:space-y-4 mb-6 sm:mb-8 flex-grow">
             <div class="flex items-center gap-2 sm:gap-3">
               <div class="w-4 h-4 sm:w-5 sm:h-5 bg-brand-cream rounded-full flex items-center justify-center text-brand-dark text-xs">✓</div>
-              <span class="text-brand-dark/80 text-xs sm:text-sm">Персональный куратор</span>
+              <span class="text-brand-dark/80 text-xs sm:text-sm">Портал для подготовки с материялами и тестами</span>
             </div>
             <div class="flex items-center gap-2 sm:gap-3">
               <div class="w-4 h-4 sm:w-5 sm:h-5 bg-brand-cream rounded-full flex items-center justify-center text-brand-dark text-xs">✓</div>
-              <span class="text-brand-dark/80 text-xs sm:text-sm">VIP поддержка 24/7</span>
+              <span class="text-brand-dark/80 text-xs sm:text-sm">поддержка 24/7</span>
             </div>
             <div class="flex items-center gap-2 sm:gap-3">
               <div class="w-4 h-4 sm:w-5 sm:h-5 bg-brand-cream rounded-full flex items-center justify-center text-brand-dark text-xs">✓</div>
-              <span class="text-brand-dark/80 text-xs sm:text-sm">Гарантия возврата средств</span>
+              <span class="text-brand-dark/80 text-xs sm:text-sm">Удобный интерфейс</span>
             </div>
           </div>
           
           <div class="text-center mb-4 sm:mb-6">
-            <div class="text-3xl sm:text-4xl font-bold text-gradient-accent mb-1 sm:mb-2">55 000 ₽</div>
+            <div class="text-3xl sm:text-4xl font-bold text-gradient-accent mb-1 sm:mb-2">10 000 ₽</div>
             <div class="text-brand-dark/60 text-xs sm:text-sm">Всё включено</div>
           </div>
           
           <button
             (click)="openPremiumPopup()"
-            class="btn-cream w-full hover-glow focus:outline-none focus:ring-4 focus:ring-brand-cream/30">Выбрать премиум</button>
+            class="btn-cream w-full hover-glow focus:outline-none focus:ring-4 focus:ring-brand-cream/30">Тренироваться</button>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Related Materials Section -->
-<section class="py-16 sm:py-20 lg:py-24 relative bg-gray-50">
-  <div class="container mx-auto px-4 sm:px-6">
-    <app-related-materials 
-      currentPageId="home" 
-      currentCategory="" 
-      [maxItems]="6">
-    </app-related-materials>
-  </div>
-</section>
+
 
 <!-- Navigation Links Section -->
 <app-navigation-links currentPage="home"></app-navigation-links>

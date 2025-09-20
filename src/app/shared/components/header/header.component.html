@@ -1,27 +1,25 @@
-<header class="relative bg-white shadow-sm border-b border-brand-sky/30">
+<header class="relative bg-brand-navy shadow-sm">
   <nav class="container mx-auto px-6 py-4">
     <div class="flex items-center justify-between">
       <!-- Logo -->
-      <div class="flex items-center gap-3 group cursor-pointer" routerLink="/">
+      <div class="flex items-center gap-3 group cursor-pointer focus:outline-none" routerLink="/">
         <div class="relative">
           <div class="w-12 h-12 neomorphic rounded-2xl flex items-center justify-center text-2xl group-hover:animate-pulse-glow transition-all duration-300">
             🏗️
           </div>
-          <div class="absolute -top-1 -right-1 w-4 h-4 bg-brand-sky rounded-full animate-pulse"></div>
         </div>
         <div>
-          <div class="text-xl font-black text-gradient-primary">{{ organizationName }}</div>
-          <p class="text-xs text-brand-dark/70">Гарантированный успех</p>
+          <div class="text-xl font-black text-white">{{ organizationName }}</div>
+          <p class="text-xs text-white/70">Гарантированный успех</p>
         </div>
       </div>
 
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex items-center gap-8">
         <a routerLink="/"
-           class="relative group px-4 py-2 rounded-xl transition-all duration-300 hover:glass">
-          <span class="relative z-10 text-brand-dark group-hover:text-gradient-primary">Главная</span>
-          <div class="absolute inset-0 bg-gradient-to-r from-brand-sky/20 to-brand-coral/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-          <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-brand-coral to-brand-sky group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
+           class="relative group px-4 py-2 transition-all duration-300 focus:outline-none">
+          <span class="relative text-white group-hover:text-brand-coral font-medium transition-colors duration-300">Главная</span>
+          <div class="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-brand-coral to-brand-sky group-hover:w-full transition-all duration-300"></div>
         </a>
 
         <!-- Услуги with Submenu -->
@@ -30,14 +28,13 @@
              (mouseleave)="onServicesSubmenuLeave()">
           <a routerLink="/services"
              (click)="closeServicesSubmenu()"
-             class="relative px-4 py-2 rounded-xl transition-all duration-300 hover:glass flex items-center gap-2">
-            <span class="relative z-10 text-brand-dark group-hover:text-gradient-primary">Услуги</span>
-            <svg class="w-4 h-4 text-brand-dark group-hover:text-brand-coral transition-all duration-300 transform group-hover:rotate-180" 
+             class="relative group px-4 py-2 transition-all duration-300 focus:outline-none flex items-center gap-2">
+            <span class="relative text-white group-hover:text-brand-coral font-medium transition-colors duration-300">Услуги</span>
+            <svg class="w-3.5 h-3.5 text-white/60 group-hover:text-brand-coral transition-all duration-300 transform group-hover:rotate-180"
                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
-            <div class="absolute inset-0 bg-gradient-to-r from-brand-sky/20 to-brand-coral/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-            <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-brand-coral to-brand-sky group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
+            <div class="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-brand-coral to-brand-sky group-hover:w-full transition-all duration-300"></div>
           </a>
 
           <!-- Services Submenu -->
@@ -72,9 +69,9 @@
 
             <!-- Quick Action -->
             <div class="mt-6 pt-4 border-t border-brand-sky/10">
-              <a routerLink="/services" 
+              <a routerLink="/services"
                  (click)="closeServicesSubmenu()"
-                 class="block w-full bg-brand-navy text-white px-4 py-3 rounded-xl font-medium hover:bg-brand-dark transition-all duration-300 text-center">
+                 class="block w-full bg-brand-navy text-white px-4 py-3 rounded-xl font-medium hover:bg-brand-dark transition-all duration-300 text-center focus:outline-none">
                 📋 Все услуги
               </a>
             </div>
@@ -87,14 +84,13 @@
              (mouseleave)="onMegaMenuLeave()">
           <a routerLink="/info"
              (click)="closeMegaMenu()"
-             class="relative px-4 py-2 rounded-xl transition-all duration-300 hover:glass flex items-center gap-2">
-            <span class="relative z-10 text-brand-dark group-hover:text-gradient-primary">НОК</span>
-            <svg class="w-4 h-4 text-brand-dark group-hover:text-brand-coral transition-all duration-300 transform group-hover:rotate-180" 
+             class="relative group px-4 py-2 transition-all duration-300 focus:outline-none flex items-center gap-2">
+            <span class="relative text-white group-hover:text-brand-coral font-medium transition-colors duration-300">НОК</span>
+            <svg class="w-3.5 h-3.5 text-white/60 group-hover:text-brand-coral transition-all duration-300 transform group-hover:rotate-180"
                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
-            <div class="absolute inset-0 bg-gradient-to-r from-brand-sky/20 to-brand-coral/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-            <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-brand-coral to-brand-sky group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
+            <div class="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-brand-coral to-brand-sky group-hover:w-full transition-all duration-300"></div>
           </a>
 
           <!-- Mega Menu -->
@@ -146,19 +142,19 @@
 
             <!-- Quick Actions -->
             <div class="flex justify-center gap-4 mt-8 pt-6 border-t border-brand-sky/10">
-              <a routerLink="/info" 
+              <a routerLink="/info"
                  (click)="closeMegaMenu()"
-                 class="bg-brand-navy text-white px-6 py-3 rounded-xl font-medium hover:bg-brand-dark transition-all duration-300 hover:shadow-lg">
+                 class="bg-brand-navy text-white px-6 py-3 rounded-xl font-medium hover:bg-brand-dark transition-all duration-300 hover:shadow-lg focus:outline-none">
                 📚 Все материалы
               </a>
               <a routerLink="/qa-centers"
                  (click)="closeMegaMenu()"
-                 class="bg-brand-sky text-white px-6 py-3 rounded-xl font-medium hover:bg-blue-600 transition-all duration-300 hover:shadow-lg">
+                 class="bg-brand-sky text-white px-6 py-3 rounded-xl font-medium hover:bg-blue-600 transition-all duration-300 hover:shadow-lg focus:outline-none">
                 🏢 Центры ЦОК
               </a>
               <a routerLink="/info/online-trainer"
                  (click)="closeMegaMenu()"
-                 class="bg-brand-coral text-white px-6 py-3 rounded-xl font-medium hover:bg-orange-600 transition-all duration-300 hover:shadow-lg">
+                 class="bg-brand-coral text-white px-6 py-3 rounded-xl font-medium hover:bg-orange-600 transition-all duration-300 hover:shadow-lg focus:outline-none">
                 💻 Тренажер НОК
               </a>
             </div>
@@ -167,33 +163,31 @@
 
         <!-- FAQ -->
         <a routerLink="/faq"
-           class="relative group px-4 py-2 rounded-xl transition-all duration-300 hover:glass">
-          <span class="relative z-10 text-brand-dark group-hover:text-gradient-primary">FAQ</span>
-          <div class="absolute inset-0 bg-gradient-to-r from-brand-sky/20 to-brand-coral/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-          <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-brand-coral to-brand-sky group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
+           class="relative group px-4 py-2 transition-all duration-300 focus:outline-none">
+          <span class="relative text-white group-hover:text-brand-coral font-medium transition-colors duration-300">FAQ</span>
+          <div class="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-brand-coral to-brand-sky group-hover:w-full transition-all duration-300"></div>
         </a>
 
         <a routerLink="/contacts"
-           class="relative group px-4 py-2 rounded-xl transition-all duration-300 hover:glass">
-          <span class="relative z-10 text-brand-dark group-hover:text-gradient-primary">Контакты</span>
-          <div class="absolute inset-0 bg-gradient-to-r from-brand-sky/20 to-brand-coral/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-          <div class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-brand-coral to-brand-sky group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
+           class="relative group px-4 py-2 transition-all duration-300 focus:outline-none">
+          <span class="relative text-white group-hover:text-brand-coral font-medium transition-colors duration-300">Контакты</span>
+          <div class="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-brand-coral to-brand-sky group-hover:w-full transition-all duration-300"></div>
         </a>
       </div>
 
       <!-- Desktop Consultation Button -->
       <button
         (click)="openConsultationPopup()"
-        class="btn-coral px-6 py-2 text-sm hover-glow">
-        🚀 Консультация
+        class="bg-brand-coral hover:bg-brand-coral-dark text-white px-6 py-2 rounded-xl font-medium transition-all duration-300 hover:shadow-lg focus:outline-none">
+        Консультация
       </button>
 
       <!-- Mobile Menu Button -->
       <button
         (click)="toggleMobileMenu()"
         aria-label="Открыть мобильное меню"
-        class="lg:hidden glass-dark p-3 rounded-xl hover-lift border-brand-sky">
-        <svg class="w-6 h-6 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        class="lg:hidden bg-white/20 backdrop-blur-sm p-3 rounded-xl hover:bg-white/30 transition-all duration-300 border border-white/30 focus:outline-none">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
       </button>
@@ -206,19 +200,19 @@
       <div class="space-y-4">
         <a routerLink="/"
            (click)="closeMobileMenu()"
-           class="block p-3 rounded-xl hover:glass-dark transition-all duration-300 text-brand-dark">
+           class="block p-3 rounded-lg hover:bg-brand-coral/5 transition-all duration-300 text-brand-dark focus:outline-none">
           🏠 Главная
         </a>
         <!-- Mobile Услуги Submenu -->
         <div class="space-y-2">
-          <button 
+          <button
             (click)="toggleServicesSubmenu()"
             aria-label="Открыть подменю услуг"
-            class="w-full flex items-center justify-between p-3 rounded-xl hover:glass-dark transition-all duration-300 text-brand-dark">
+            class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-brand-sky/5 transition-all duration-300 text-brand-dark focus:outline-none">
             <span>🛠️ Услуги</span>
-            <svg 
+            <svg
               [class.rotate-180]="servicesSubmenuOpen"
-              class="w-4 h-4 transition-transform duration-300" 
+              class="w-3.5 h-3.5 transition-transform duration-300"
               fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
@@ -229,22 +223,22 @@
             class="pl-4 space-y-2 border-l-2 border-brand-sky/20">
             <a routerLink="/services/nok-nostroy"
                (click)="closeMobileMenu()"
-               class="block p-2 rounded-lg hover:bg-brand-coral/10 transition-colors text-sm text-brand-dark">
+               class="block p-2 rounded-lg hover:bg-brand-coral/10 transition-colors text-sm text-brand-dark focus:outline-none">
               🏗️ НОК НОСТРОЙ
             </a>
             <a routerLink="/services/nok-nopriz"
                (click)="closeMobileMenu()"
-               class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark">
+               class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark focus:outline-none">
               📐 НОК НОПРИЗ
             </a>
             <a routerLink="/services"
                (click)="closeMobileMenu()"
-               class="block p-2 rounded-lg hover:bg-brand-navy/10 transition-colors text-sm text-brand-dark">
+               class="block p-2 rounded-lg hover:bg-brand-navy/10 transition-colors text-sm text-brand-dark focus:outline-none">
               👨‍🏫 Консультации
             </a>
             <a routerLink="/services"
                (click)="closeMobileMenu()"
-               class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark">
+               class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark focus:outline-none">
               📋 Все услуги
             </a>
           </div>
@@ -252,14 +246,14 @@
         
         <!-- Mobile НОК Submenu -->
         <div class="space-y-2">
-          <button 
+          <button
             (click)="toggleNokSubmenu()"
             aria-label="Открыть подменю НОК"
-            class="w-full flex items-center justify-between p-3 rounded-xl hover:glass-dark transition-all duration-300 text-brand-dark">
+            class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-brand-navy/5 transition-all duration-300 text-brand-dark focus:outline-none">
             <span>🏗️ НОК</span>
-            <svg 
+            <svg
               [class.rotate-180]="nokSubmenuOpen"
-              class="w-4 h-4 transition-transform duration-300" 
+              class="w-3.5 h-3.5 transition-transform duration-300"
               fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
@@ -270,19 +264,19 @@
             class="pl-4 space-y-2 border-l-2 border-brand-sky/20">
             <a routerLink="/info"
                (click)="closeMobileMenu()"
-               class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark">
+               class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark focus:outline-none">
               📚 Все материалы
             </a>
             <a routerLink="/qa-centers"
                (click)="closeMobileMenu()"
-               class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark">
+               class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark focus:outline-none">
               🏢 Центры ЦОК
             </a>
             <a
               *ngFor="let category of menuCategories.slice(0, 3)"
               [routerLink]="'/info/' + category.pages[0].slug"
               (click)="closeMobileMenu()"
-              class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark">
+              class="block p-2 rounded-lg hover:bg-brand-sky/10 transition-colors text-sm text-brand-dark focus:outline-none">
               {{ category.icon }} {{ category.name }}
             </a>
           </div>
@@ -290,20 +284,20 @@
 
         <a routerLink="/contacts"
            (click)="closeMobileMenu()"
-           class="block p-3 rounded-xl hover:glass-dark transition-all duration-300 text-brand-dark">
+           class="block p-3 rounded-lg hover:bg-brand-coral/5 transition-all duration-300 text-brand-dark focus:outline-none">
           📞 Контакты
         </a>
         <!-- FAQ -->
         <a routerLink="/faq"
            (click)="closeMobileMenu()"
-           class="block p-3 rounded-xl hover:glass-dark transition-all duration-300 text-brand-dark">
+           class="block p-3 rounded-lg hover:bg-brand-sky/5 transition-all duration-300 text-brand-dark focus:outline-none">
           ❓ FAQ
         </a>
 
         <!-- Консультации -->
         <a routerLink="/consultation"
            (click)="closeMobileMenu()"
-           class="block p-3 rounded-xl hover:glass-dark transition-all duration-300 text-brand-dark">
+           class="block p-3 rounded-lg hover:bg-brand-navy/5 transition-all duration-300 text-brand-dark focus:outline-none">
           👨‍🏫 Консультации
         </a>
 

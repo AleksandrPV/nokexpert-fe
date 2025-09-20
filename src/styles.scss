@@ -56,6 +56,17 @@ body {
   position: relative;
 }
 
+/* Цвет выделения текста */
+::selection {
+  background-color: rgba(179, 45, 0, 0.2);
+  color: inherit;
+}
+
+::-moz-selection {
+  background-color: rgba(179, 45, 0, 0.2);
+  color: inherit;
+}
+
 /* Простой чистый фон без декоративных элементов */
 
 /* Glass morphism utility class */
@@ -79,8 +90,8 @@ body {
 .neomorphic {
   background: linear-gradient(145deg, #ffffff, #f0f4f8);
   box-shadow: 
-    8px 8px 16px rgba(168, 208, 230, 0.2),
-    -8px -8px 16px #ffffff;
+    8px 8px 16px rgba(55, 71, 133, 0.2),
+    -8px -8px 16px rgba(255, 255, 255, 0.8);
 }
 
 .neomorphic-inset {
@@ -94,16 +105,94 @@ body {
 
 @keyframes professionalGlow {
   0%, 100% { 
-    box-shadow: 0 0 20px rgba(168, 208, 230, 0.1);
+    box-shadow: 0 0 20px rgba(179, 45, 0, 0.3);
   }
   50% { 
-    box-shadow: 0 0 30px rgba(168, 208, 230, 0.2);
+    box-shadow: 0 0 30px rgba(179, 45, 0, 0.5);
   }
 }
 
 /* Consulting utility animation classes - только используемые */
 .animate-professional-glow {
   animation: professionalGlow 6s ease-in-out infinite;
+}
+
+/* Минималистичная кнопка консультации */
+.btn-consultation {
+  background: #374785;
+  border: 2px solid #374785;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-consultation::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-consultation:hover {
+  background: #2B4C8B;
+  border-color: #2B4C8B;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(55, 71, 133, 0.3);
+}
+
+.btn-consultation:hover::before {
+  left: 100%;
+}
+
+.btn-consultation:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(55, 71, 133, 0.2);
+}
+
+/* Анимация фона заголовка с волновыми краями */
+@keyframes headingBg {
+  0%, 100% { 
+    transform: scale(1);
+    border-radius: 12px 12px 12px 12px;
+  }
+  25% {
+    transform: scale(1.01);
+    border-radius: 12px 12px 8px 8px;
+  }
+  50% { 
+    transform: scale(1.02);
+    border-radius: 8px 8px 12px 12px;
+  }
+  75% {
+    transform: scale(1.01);
+    border-radius: 12px 12px 8px 8px;
+  }
+}
+
+@keyframes headingBgColors {
+  0%, 100% { 
+    background: linear-gradient(90deg, #512a19, rgba(81, 42, 25, 0.8), #8B4513);
+  }
+  25% {
+    background: linear-gradient(90deg, #8B4513, rgba(139, 69, 19, 0.8), #512a19);
+  }
+  50% { 
+    background: linear-gradient(90deg, #512a19, rgba(81, 42, 25, 0.8), #8B4513);
+  }
+  75% {
+    background: linear-gradient(90deg, #8B4513, rgba(139, 69, 19, 0.8), #512a19);
+  }
+}
+
+.animate-heading-bg {
+  animation: headingBg 6s ease-in-out infinite, headingBgColors 8s ease-in-out infinite;
+  background: linear-gradient(90deg, #512a19, #8B4513);
+  position: relative;
+  overflow: hidden;
 }
 
 /* Professional decorative elements */
@@ -177,8 +266,8 @@ html {
   color: var(--brand-dark);
 }
 
-/* Focus styles */
-*:focus {
+/* Focus styles - исключаем меню header */
+*:focus:not(header a, header button, header div[routerLink]) {
   outline: 2px solid rgba(55, 71, 133, 0.5);
   outline-offset: 2px;
 }
