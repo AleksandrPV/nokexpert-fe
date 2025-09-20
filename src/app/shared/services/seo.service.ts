@@ -143,10 +143,7 @@ export class SeoService {
       canonical: this.baseUrl,
       structuredData: this.getOrganizationStructuredData()
     });
-    
-    // Добавляем Review schema для отзывов клиентов
-    this.addCustomerReviewsStructuredData();
-    
+
     // Добавляем LocalBusiness schema для офисов
     this.addLocalBusinessStructuredData();
   }
@@ -1482,64 +1479,6 @@ export class SeoService {
     };
 
     this.updateStructuredData(structuredData);
-  }
-
-  /**
-   * Добавить отзывы Structured Data
-   */
-  addReviewsStructuredData(reviews: Array<{author: string, rating: number, text: string, date: string}>): void {
-    const structuredData = {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "НОК Эксперт",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length,
-        "reviewCount": reviews.length,
-        "bestRating": 5,
-        "worstRating": 1
-      },
-      "review": reviews.map(review => ({
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": review.author
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": review.rating,
-          "bestRating": 5,
-          "worstRating": 1
-        },
-        "reviewBody": review.text,
-        "datePublished": review.date
-      }))
-    };
-    
-    this.updateStructuredData(structuredData);
-  }
-
-  /**
-   * Добавить Review schema для отзывов клиентов
-   */
-  addCustomerReviewsStructuredData(): void {
-    // Импортируем ReviewsService для получения данных
-    import('./reviews.service').then(({ ReviewsService }) => {
-      const reviewsService = new ReviewsService();
-      
-      reviewsService.getReviews().subscribe(reviews => {
-        const structuredData = {
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "НОК Эксперт",
-          "url": this.baseUrl,
-          "aggregateRating": reviewsService.generateAggregateRatingSchema(),
-          "review": reviews.map(review => reviewsService.generateReviewSchema(review))
-        };
-        
-        this.updateStructuredData(structuredData);
-      });
-    });
   }
 
   /**

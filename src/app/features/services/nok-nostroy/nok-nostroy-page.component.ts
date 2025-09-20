@@ -1,7 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
-import { CustomerReviewsComponent } from '../../../shared/components/customer-reviews/customer-reviews.component';
 import { CtaSectionComponent, CtaSectionConfig } from '../../../shared/components/cta-section/cta-section.component';
 import { SeoService } from '../../../shared/services/seo.service';
 import { FeedbackPopupService } from '../../feedback-popup/services/feedback-popup.service';
@@ -12,7 +11,7 @@ import { FaqWidgetComponent } from '../../faq/components/faq-widget.component';
 @Component({
   selector: 'app-nok-nostroy-page',
   standalone: true,
-  imports: [CommonModule, BreadcrumbsComponent, CustomerReviewsComponent, CtaSectionComponent, FaqWidgetComponent],
+  imports: [CommonModule, BreadcrumbsComponent, CtaSectionComponent, FaqWidgetComponent],
   templateUrl: './nok-nostroy-page.component.html',
   styleUrls: ['./nok-nostroy-page.component.scss']
 })

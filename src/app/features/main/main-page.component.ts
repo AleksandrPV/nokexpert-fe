@@ -6,7 +6,6 @@ import { SeoService } from '../../shared/services/seo.service';
 import { OrganizationService } from '../../shared/services/organization.service';
 import { RelatedMaterialsComponent } from '../../shared/components/related-materials/related-materials.component';
 import { NavigationLinksComponent } from '../../shared/components/navigation-links/navigation-links.component';
-import { CustomerReviewsComponent } from '../../shared/components/customer-reviews/customer-reviews.component';
 import { CtaSectionComponent, CtaSectionConfig } from '../../shared/components/cta-section/cta-section.component';
 
 /**
@@ -16,7 +15,7 @@ import { CtaSectionComponent, CtaSectionConfig } from '../../shared/components/c
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, RelatedMaterialsComponent, NavigationLinksComponent, CustomerReviewsComponent, CtaSectionComponent],
+  imports: [CommonModule, RouterLink, RelatedMaterialsComponent, NavigationLinksComponent, CtaSectionComponent],
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss']
 })
@@ -73,7 +72,6 @@ export class MainPageComponent implements OnInit {
     this.seoService.setHomePageSeo();
 
     // Добавляем дополнительные structured data для главной страницы
-    this.seoService.addCustomerReviewsStructuredData();
     this.seoService.addLocalBusinessStructuredData();
   }
 

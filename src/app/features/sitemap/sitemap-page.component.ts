@@ -227,12 +227,6 @@ export class SitemapPageComponent implements OnInit {
           url: '/qualifications',
           description: 'Справочник квалификаций и специальностей',
           priority: 'medium'
-        },
-        {
-          title: 'Отзывы клиентов',
-          url: '/reviews',
-          description: 'Отзывы о наших услугах',
-          priority: 'low'
         }
       ]
     },

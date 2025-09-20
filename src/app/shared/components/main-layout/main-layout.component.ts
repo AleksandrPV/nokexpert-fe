@@ -12,7 +12,7 @@ import { CookiesBannerComponent } from '../../../features/cookies/cookies-banner
   imports: [HeaderComponent, FooterComponent, RouterOutlet, CookiesBannerComponent],
   template: `
     <app-header />
-    <main class="min-h-[70vh] container mx-auto p-4">
+    <main class="min-h-[70vh] container mx-auto">
       <router-outlet />
     </main>
     <app-footer />

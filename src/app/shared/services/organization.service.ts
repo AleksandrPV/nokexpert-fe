@@ -73,6 +73,27 @@ export class OrganizationService {
   }
 
   /**
+   * Получить номер лицензии
+   */
+  getLicenseNumber(): string {
+    return this.organizationData.license?.number || '';
+  }
+
+  /**
+   * Получить организацию, выдавшую лицензию
+   */
+  getLicenseOrganization(): string {
+    return this.organizationData.license?.organization || '';
+  }
+
+  /**
+   * Получить срок действия лицензии
+   */
+  getLicenseValidUntil(): string {
+    return this.organizationData.license?.validUntil || '';
+  }
+
+  /**
    * Проверить наличие лицензии
    */
   hasLicense(): boolean {

@@ -10,7 +10,6 @@ Allow: /contacts
 Allow: /faq
 Allow: /qualifications
 Allow: /qa-centers
-Allow: /reviews
 
 # Запрещаем служебные страницы
 Disallow: /privacy-policy

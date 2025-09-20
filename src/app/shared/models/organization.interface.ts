@@ -24,6 +24,9 @@ export interface OrganizationData {
   license?: {
     year: number;
     description: string;
+    number?: string;
+    organization?: string;
+    validUntil?: string;
   };
   
   // Веб-сайт

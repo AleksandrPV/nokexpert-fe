@@ -8,7 +8,6 @@ const preloadPopular = () => import('./features/contacts/components/contacts-pag
 
 import { SpecialistsRegistryPageComponent } from './features/info/components/specialists-registry-page.component';
 import { NokLegislationPageComponent } from './features/info/components/nok-legislation-page.component';
-import { ReviewsPageComponent } from './features/reviews/reviews-page.component';
 import { SitemapPageComponent } from './features/sitemap/sitemap-page.component';
 
 export const routes: Routes = [
@@ -129,10 +128,6 @@ export const routes: Routes = [
       {
         path: 'user-agreement',
         loadComponent: () => import('./features/user-agreement/components/user-agreement-page.component').then(m => m.UserAgreementPageComponent)
-      },
-      {
-        path: 'reviews',
-        loadComponent: () => import('./features/reviews/reviews-page.component').then(m => m.ReviewsPageComponent)
       },
       {
         path: 'sitemap',

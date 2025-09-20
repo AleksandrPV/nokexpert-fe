@@ -105,10 +105,6 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender
   },
   {
-    path: 'reviews',
-    renderMode: RenderMode.Prerender
-  },
-  {
     path: 'sitemap',
     renderMode: RenderMode.Prerender
   },

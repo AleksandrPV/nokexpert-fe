@@ -72,6 +72,15 @@ export const ORGANIZATION_CONFIG: OrganizationData = {
     weekdays: 'Пн-Пт: 9:00-18:00'
   },
   
+  // Лицензия и сертификаты
+  license: {
+    description: 'Лицензированный центр подготовки к НОК',
+    year: 2017,
+    number: 'ЛЦ-001-2017',
+    organization: 'НОСТРОЙ',
+    validUntil: '2027'
+  },
+
   // Дополнительная информация
   description: 'Профессиональная подготовка к независимой оценке квалификации',
   foundedYear: 2017,

@@ -1,11 +1,15 @@
 <!-- Hero Section -->
-<section class="relative flex items-center bg-red-600 justify-center overflow-hidden pt-8 sm:pt-12 w-full">
+<section class="relative flex items-center bg-brand-navy justify-center overflow-hidden pt-24 pb-16 w-screen left-1/2 -translate-x-1/2">
   <!-- Hero Content -->
-  <div class="container mx-auto px-4 sm:px-6 text-center relative z-10">
+  <div class="container mx-auto px-4 sm:px-6 text-center relative z-10 w-full py-8">
     <!-- Trust Badge -->
-    <div *ngIf="hasLicense" class="inline-flex items-center gap-2 bg-white/90 text-brand-navy px-4 sm:px-6 py-2 rounded-full mb-4 sm:mb-6 border border-white/20">
-      <div class="w-2 h-2 bg-brand-coral rounded-full"></div>
-      <span class="text-xs sm:text-sm font-medium">{{ licenseDescription }}</span>
+    <div *ngIf="hasLicense" class="inline-flex items-center gap-2 bg-white/90 text-brand-navy px-4 sm:px-6 py-2 rounded-full mb-4 sm:mb-6 border border-white/20 shadow-lg">
+      <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+      <span class="text-xs sm:text-sm font-medium">
+        <span class="hidden sm:inline">{{ licenseDescription }}</span>
+        <span class="sm:hidden">Лицензия НОСТРОЙ</span>
+      </span>
+      <span class="text-xs opacity-75 ml-1">✓</span>
     </div>
 
     <!-- Main Heading -->
@@ -22,16 +26,14 @@
       для специалистов <strong class="text-white font-bold">НОСТРОЙ</strong> и <strong class="text-white font-bold">НОПРИЗ</strong>
     </p>
 
-
-
     <!-- CTA Buttons -->
     <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
       <button
         (click)="openConsultationPopup()"
-        class="bg-white hover:bg-gray-100 text-red-600 px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg font-bold rounded-2xl transition-all duration-500 hover:shadow-xl hover:-translate-y-1 min-w-[200px] sm:min-w-[250px] focus:outline-none focus:ring-4 focus:ring-white/30">
+        class="bg-brand-coral hover:bg-brand-coral-dark text-white px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg font-bold rounded-2xl transition-all duration-500 hover:shadow-xl hover:-translate-y-1 min-w-[200px] sm:min-w-[250px] focus:outline-none focus:ring-4 focus:ring-brand-coral/30">
         Бесплатная консультация
       </button>
-      <a routerLink="/services" class="text-white hover:text-yellow-300 font-bold text-base sm:text-lg transition-colors duration-300 border-b-2 border-transparent hover:border-yellow-300 pb-1 focus:outline-none focus:ring-2 focus:ring-white/30 rounded inline-block">
+      <a routerLink="/services" class="text-white hover:text-brand-coral font-bold text-base sm:text-lg transition-colors duration-300 border-b-2 border-transparent hover:border-brand-coral pb-1 focus:outline-none focus:ring-2 focus:ring-white/30 rounded inline-block">
         Наши курсы →
       </a>
     </div>
@@ -432,9 +434,6 @@
     </div>
   </div>
 </section>
-
-<!-- Customer Reviews Section -->
-<app-customer-reviews [maxReviews]="6"></app-customer-reviews>
 
 <!-- Related Materials Section -->
 <section class="py-16 sm:py-20 lg:py-24 relative bg-gray-50">
