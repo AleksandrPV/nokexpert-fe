@@ -1,0 +1,210 @@
+<!-- Хлебные крошки -->
+<app-breadcrumbs
+  [breadcrumbs]="[
+    { label: 'Главная', url: '/', icon: '🏠' },
+    { label: 'Услуги', url: '/services', icon: '🛠️' },
+    { label: 'НОК для МЧС', active: true, icon: '🚨' }
+  ]">
+</app-breadcrumbs>
+
+<!-- Hero Section -->
+<section class="relative py-20 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-red-50 to-orange-50"></div>
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left Content -->
+        <div class="space-y-8">
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-3 bg-red-100 px-6 py-3 rounded-full border border-red-200">
+            <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+            <span class="text-sm font-medium text-red-800">{{ serviceData.badge }}</span>
+          </div>
+
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            {{ serviceData.title }}
+          </h1>
+          
+          <p class="text-xl text-gray-700 leading-relaxed">
+            {{ serviceData.subtitle }}
+          </p>
+
+          <!-- Price and Duration -->
+          <div class="flex flex-wrap gap-6">
+            <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-red-200">
+              <div class="text-3xl font-bold text-red-600 mb-2">{{ serviceData.price }}</div>
+              <div class="text-sm text-gray-600">Стоимость подготовки</div>
+            </div>
+            <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-red-200">
+              <div class="text-3xl font-bold text-red-600 mb-2">{{ serviceData.duration }}</div>
+              <div class="text-sm text-gray-600">Длительность курса</div>
+            </div>
+            <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-red-200">
+              <div class="text-2xl font-bold text-gray-900 mb-2">{{ serviceData.gosposhlina }}</div>
+              <div class="text-sm text-gray-600">Госпошлина</div>
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button 
+              (click)="openConsultationPopup()"
+              class="bg-red-600 hover:bg-red-700 text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              📞 Бесплатная консультация
+            </button>
+            <a 
+              [href]="phoneHref"
+              class="bg-white border-2 border-red-600 text-red-600 hover:bg-red-50 px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 text-center">
+              📱 {{ phoneDisplay }}
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Content - Service Icon -->
+        <div class="flex justify-center lg:justify-end">
+          <div class="w-64 h-64 bg-gradient-to-br from-red-100 to-orange-100 rounded-3xl flex items-center justify-center shadow-2xl">
+            <span class="text-8xl">{{ serviceData.icon }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Что включено в подготовку</h2>
+        <p class="text-xl text-gray-600">Комплексная программа для успешной сдачи НОК МЧС</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div *ngFor="let feature of serviceData.features" class="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+            <span class="text-2xl">✓</span>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-3">{{ feature }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Levels Section -->
+<section class="py-20 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Уровни квалификации</h2>
+        <p class="text-xl text-gray-600">Выберите подходящий уровень для вашей должности</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div *ngFor="let level of serviceData.levels" class="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-shadow">
+          <div class="text-center mb-6">
+            <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl font-bold text-red-600">{{ level.level }}</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">{{ level.title }}</h3>
+            <p class="text-gray-600">{{ level.description }}</p>
+          </div>
+          
+          <div class="space-y-2">
+            <h4 class="font-semibold text-gray-900 mb-3">Примеры должностей:</h4>
+            <ul class="space-y-1">
+              <li *ngFor="let example of level.examples" class="flex items-center gap-2 text-gray-700">
+                <div class="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
+                {{ example }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process Section -->
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Как проходит подготовка</h2>
+        <p class="text-xl text-gray-600">Пошаговый процесс от консультации до получения свидетельства</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div *ngFor="let step of serviceData.process" class="text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <span class="text-3xl">{{ step.icon }}</span>
+          </div>
+          <div class="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-sm font-bold">
+            {{ step.step }}
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">{{ step.title }}</h3>
+          <p class="text-gray-600">{{ step.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Requirements Section -->
+<section class="py-20 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Требования к участникам</h2>
+        <p class="text-xl text-gray-600">Необходимые документы и условия для участия</p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-8 border border-gray-200">
+        <ul class="space-y-4">
+          <li *ngFor="let requirement of serviceData.requirements" class="flex items-start gap-4">
+            <div class="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span class="text-white text-sm">✓</span>
+            </div>
+            <span class="text-gray-700 text-lg">{{ requirement }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Наши результаты</h2>
+        <p class="text-xl text-gray-600">Статистика успешности подготовки к НОК МЧС</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div *ngFor="let stat of serviceData.stats" class="text-center bg-gray-50 rounded-2xl p-8 border border-gray-200">
+          <div class="text-4xl font-bold text-red-600 mb-2">{{ stat.value }}</div>
+          <div class="text-gray-600">{{ stat.label }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-20 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <div class="max-w-4xl mx-auto">
+      <app-faq-widget 
+        category="nok-emergency"
+        title="Часто задаваемые вопросы по НОК МЧС"
+        subtitle="Ответы на популярные вопросы о подготовке и сдаче НОК для сотрудников МЧС">
+      </app-faq-widget>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<app-cta-section [config]="nokEmergencyCtaConfig"></app-cta-section>

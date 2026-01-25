@@ -29,6 +29,8 @@ export class ServicesPageComponent implements OnInit {
     { key: ServiceCategory.DESIGN, name: 'Проектирование' },
     { key: ServiceCategory.RESEARCH, name: 'Изыскания' },
     { key: ServiceCategory.SAFETY, name: 'Пром. безопасность' },
+    { key: ServiceCategory.EMERGENCY, name: 'МЧС' },
+    { key: ServiceCategory.HOUSING, name: 'ЖКХ' },
     { key: ServiceCategory.CONSULTATION, name: 'Консультации' }
   ];
 
@@ -136,6 +138,44 @@ export class ServicesPageComponent implements OnInit {
       ],
       category: ServiceCategory.CONSULTATION,
       difficulty: 'Начальный'
+    },
+    {
+      id: 'nok-emergency',
+      title: 'НОК для МЧС',
+      description: 'Специализированная подготовка для сотрудников МЧС. Пожарная безопасность, спасательные работы, гражданская оборона и чрезвычайные ситуации.',
+      icon: '🚨',
+      price: '32 000 ₽',
+      duration: '45 дней',
+      features: [
+        'Пожарная безопасность',
+        'Спасательные работы',
+        'Гражданская оборона',
+        'Чрезвычайные ситуации',
+        'Медицинская подготовка',
+        'Работа с техникой'
+      ],
+      category: ServiceCategory.EMERGENCY,
+      difficulty: 'Продвинутый',
+      popular: true
+    },
+    {
+      id: 'nok-housing',
+      title: 'НОК для ЖКХ',
+      description: 'Подготовка специалистов жилищно-коммунального хозяйства. Управление многоквартирными домами, техническое обслуживание и энергоэффективность.',
+      icon: '🏢',
+      price: '26 000 ₽',
+      duration: '35 дней',
+      features: [
+        'Управление МКД',
+        'Техническое обслуживание',
+        'Энергоэффективность',
+        'Жилищное законодательство',
+        'Работа с жителями',
+        'Контроль качества услуг'
+      ],
+      category: ServiceCategory.HOUSING,
+      difficulty: 'Средний',
+      popular: true
     }
   ];
 

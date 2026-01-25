@@ -1881,4 +1881,100 @@ export class SeoService {
       "keywords": "НОК лифты, НОК энергетика, НОК машиностроение, НОК IT, НОК медицина, НОК ЧС, новые отрасли НОК"
     };
   }
+
+  setNokEmergencyPageSeo(): void {
+    this.setSeoData({
+      title: 'НОК для МЧС - Независимая оценка квалификации МЧС | НОК Эксперт',
+      description: 'Независимая оценка квалификации для сотрудников МЧС. Пожарная безопасность, спасательные работы, гражданская оборона. Профессиональная подготовка и сертификация.',
+      keywords: 'НОК МЧС, пожарная безопасность МЧС, спасательные работы, гражданская оборона, чрезвычайные ситуации, НОК ЧС',
+      canonical: `${this.baseUrl}/services/nok-emergency`,
+      ogTitle: 'НОК для МЧС - Пожарная безопасность и спасательные работы',
+      ogDescription: 'Профессиональная подготовка к НОК для сотрудников МЧС. Специализированные курсы по пожарной безопасности и спасательным работам.',
+      ogImage: '/assets/images/nok-emergency-og.jpg',
+      ogUrl: `${this.baseUrl}/services/nok-emergency`,
+      twitterTitle: 'НОК МЧС - Пожарная безопасность',
+      twitterDescription: 'Независимая оценка квалификации для специалистов МЧС.',
+      twitterImage: '/assets/images/nok-emergency-og.jpg',
+      structuredData: this.getNokEmergencyStructuredData()
+    });
+  }
+
+  setNokHousingPageSeo(): void {
+    this.setSeoData({
+      title: 'НОК для ЖКХ - Независимая оценка квалификации ЖКХ | НОК Эксперт',
+      description: 'Независимая оценка квалификации для специалистов ЖКХ. Управление МКД, техническое обслуживание, энергоэффективность. Профессиональная подготовка и сертификация.',
+      keywords: 'НОК ЖКХ, управление МКД, жилищно-коммунальное хозяйство, техническое обслуживание, энергоэффективность, жилищное право',
+      canonical: `${this.baseUrl}/services/nok-housing`,
+      ogTitle: 'НОК для ЖКХ - Управление многоквартирными домами',
+      ogDescription: 'Профессиональная подготовка к НОК для специалистов ЖКХ. Курсы по управлению МКД и техническому обслуживанию.',
+      ogImage: '/assets/images/nok-housing-og.jpg',
+      ogUrl: `${this.baseUrl}/services/nok-housing`,
+      twitterTitle: 'НОК ЖКХ - Управление МКД',
+      twitterDescription: 'Независимая оценка квалификации для специалистов ЖКХ.',
+      twitterImage: '/assets/images/nok-housing-og.jpg',
+      structuredData: this.getNokHousingStructuredData()
+    });
+  }
+
+  private getNokEmergencyStructuredData(): any {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "НОК для МЧС - Пожарная безопасность и спасательные работы",
+      "description": "Специализированная подготовка для сотрудников МЧС. Пожарная безопасность, спасательные работы, гражданская оборона и чрезвычайные ситуации.",
+      "provider": {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "courseMode": "online",
+      "educationalLevel": "professional",
+      "teaches": [
+        "Пожарная безопасность",
+        "Спасательные работы", 
+        "Гражданская оборона",
+        "Чрезвычайные ситуации",
+        "Медицинская подготовка"
+      ],
+      "coursePrerequisites": "Опыт работы в МЧС не менее 2 лет",
+      "timeRequired": "P45D",
+      "offers": {
+        "@type": "Offer",
+        "price": "32000",
+        "priceCurrency": "RUB"
+      },
+      "keywords": "НОК МЧС, пожарная безопасность МЧС, спасательные работы, гражданская оборона, чрезвычайные ситуации, НОК ЧС"
+    };
+  }
+
+  private getNokHousingStructuredData(): any {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "НОК для ЖКХ - Управление многоквартирными домами",
+      "description": "Подготовка специалистов жилищно-коммунального хозяйства. Управление МКД, техническое обслуживание и энергоэффективность.",
+      "provider": {
+        "@type": "Organization",
+        "name": "НОК Эксперт",
+        "url": this.baseUrl
+      },
+      "courseMode": "online",
+      "educationalLevel": "professional",
+      "teaches": [
+        "Управление МКД",
+        "Техническое обслуживание",
+        "Энергоэффективность",
+        "Жилищное законодательство",
+        "Работа с жителями"
+      ],
+      "coursePrerequisites": "Опыт работы в ЖКХ не менее 1 года",
+      "timeRequired": "P35D",
+      "offers": {
+        "@type": "Offer",
+        "price": "26000",
+        "priceCurrency": "RUB"
+      },
+      "keywords": "НОК ЖКХ, управление МКД, жилищно-коммунальное хозяйство, техническое обслуживание, энергоэффективность, жилищное право"
+    };
+  }
 } 

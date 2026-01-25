@@ -16,7 +16,9 @@ export enum ServiceCategory {
   DESIGN = 'design',
   RESEARCH = 'research',
   SAFETY = 'safety',
-  CONSULTATION = 'consultation'
+  CONSULTATION = 'consultation',
+  EMERGENCY = 'emergency',  // МЧС
+  HOUSING = 'housing'       // ЖКХ
 }
 
 export interface ServiceStats {

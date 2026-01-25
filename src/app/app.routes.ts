@@ -41,6 +41,16 @@ export const routes: Routes = [
         data: { preload: true, priority: 'high' }
       },
       {
+        path: 'services/nok-emergency',
+        loadComponent: () => import('./features/services/nok-emergency/nok-emergency-page.component').then(m => m.NokEmergencyPageComponent),
+        data: { preload: true, priority: 'high' }
+      },
+      {
+        path: 'services/nok-housing',
+        loadComponent: () => import('./features/services/nok-housing/nok-housing-page.component').then(m => m.NokHousingPageComponent),
+        data: { preload: true, priority: 'high' }
+      },
+      {
         path: 'services/:id',
         loadComponent: () => import('./features/service-detail/components/service-detail-page.component').then(m => m.ServiceDetailPageComponent)
       },

@@ -44,6 +44,24 @@ export class ServicesService {
       color: 'bg-red-500/20'
     },
     {
+      id: 'nok-emergency',
+      title: 'НОК МЧС',
+      description: 'Пожарная безопасность и спасательные работы',
+      icon: '🚨',
+      route: '/services/nok-emergency',
+      color: 'bg-red-600/20',
+      popular: true
+    },
+    {
+      id: 'nok-housing',
+      title: 'НОК ЖКХ',
+      description: 'Управление многоквартирными домами',
+      icon: '🏢',
+      route: '/services/nok-housing',
+      color: 'bg-blue-600/20',
+      popular: true
+    },
+    {
       id: 'consultation',
       title: 'Консультации',
       description: 'Индивидуальные консультации',
