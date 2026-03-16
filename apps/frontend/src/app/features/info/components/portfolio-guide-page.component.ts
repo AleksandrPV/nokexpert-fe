@@ -254,7 +254,7 @@ export class PortfolioGuidePageComponent implements OnInit, AfterViewInit, OnDes
     {
       title: 'Вопросы и ответы НОК',
       description: 'База знаний по типичным вопросам экзамена и разбор сложных тем',
-      icon: 'help-circle',
+      icon: 'circle-help',
       link: '/info/nok-qa',
       color: 'violet'
     },
@@ -286,7 +286,7 @@ export class PortfolioGuidePageComponent implements OnInit, AfterViewInit, OnDes
   }
 
   ngOnInit(): void {
-    this.seoService.setInfoPageSeo();
+    this.seoService.setPortfolioGuidePageSeo();
 
     this.seoService.addBreadcrumbsStructuredData([
       { name: 'Главная', url: this.seoService.getBaseUrl() },
@@ -372,21 +372,6 @@ export class PortfolioGuidePageComponent implements OnInit, AfterViewInit, OnDes
       { width: '100%', duration: 0.8, ease: 'power2.out' },
       1.4
     );
-
-    // Scroll indicator
-    masterTl.fromTo('.hero-scroll-indicator',
-      { opacity: 0 },
-      { opacity: 1, duration: 0.5 },
-      1.8
-    );
-
-    gsap.to('.hero-scroll-dot', {
-      y: 16,
-      duration: 1.2,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power2.inOut'
-    });
   }
 
   private async initScrollAnimations(): Promise<void> {

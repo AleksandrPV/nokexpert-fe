@@ -25,6 +25,14 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender
   },
   {
+    path: 'services/nok-housing',
+    renderMode: RenderMode.Prerender
+  },
+  {
+    path: 'consultation',
+    renderMode: RenderMode.Prerender
+  },
+  {
     path: 'contacts',
     renderMode: RenderMode.Prerender
   },

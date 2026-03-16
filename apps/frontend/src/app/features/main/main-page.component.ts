@@ -196,22 +196,6 @@ export class MainPageComponent implements OnInit, AfterViewInit, OnDestroy {
       }, 1.5);
     });
 
-    // 13. Scroll indicator
-    masterTl.fromTo('.hero-scroll-indicator',
-      { opacity: 0 },
-      { opacity: 1, duration: 0.5 },
-      2.5
-    );
-
-    // Scroll dot bouncing inside capsule
-    gsap.to('.hero-scroll-dot', {
-      y: 16,
-      duration: 1.2,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power2.inOut'
-    });
-
     // 14. Parallax on scroll
     const scrollTriggerModule = await import('gsap/ScrollTrigger');
     const ScrollTrigger = scrollTriggerModule.ScrollTrigger || scrollTriggerModule.default;

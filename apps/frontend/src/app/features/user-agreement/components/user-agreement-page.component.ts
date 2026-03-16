@@ -141,15 +141,15 @@ import { OrganizationService } from '../../../shared/services/organization.servi
               <h3 class="font-semibold text-slate-900 mb-4">Пользователи обязуются</h3>
               <ul class="space-y-3 text-slate-600">
                 <li class="flex items-start gap-3">
-                  <lucide-icon name="alert-circle" [size]="16" [strokeWidth]="2" class="text-amber-500 mt-0.5 shrink-0"></lucide-icon>
+                  <lucide-icon name="circle-alert" [size]="16" [strokeWidth]="2" class="text-amber-500 mt-0.5 shrink-0"></lucide-icon>
                   Не нарушать работу Сайта
                 </li>
                 <li class="flex items-start gap-3">
-                  <lucide-icon name="alert-circle" [size]="16" [strokeWidth]="2" class="text-amber-500 mt-0.5 shrink-0"></lucide-icon>
+                  <lucide-icon name="circle-alert" [size]="16" [strokeWidth]="2" class="text-amber-500 mt-0.5 shrink-0"></lucide-icon>
                   Предоставлять достоверную информацию при обращении
                 </li>
                 <li class="flex items-start gap-3">
-                  <lucide-icon name="alert-circle" [size]="16" [strokeWidth]="2" class="text-amber-500 mt-0.5 shrink-0"></lucide-icon>
+                  <lucide-icon name="circle-alert" [size]="16" [strokeWidth]="2" class="text-amber-500 mt-0.5 shrink-0"></lucide-icon>
                   Соблюдать законодательство РФ
                 </li>
               </ul>
@@ -312,7 +312,8 @@ export class UserAgreementPageComponent implements OnInit, AfterViewInit, OnDest
       title: 'Пользовательское соглашение - НОК Эксперт',
       description: 'Пользовательское соглашение сайта НОК Эксперт. Условия использования сайта и предоставления услуг по подготовке к НОК.',
       keywords: 'пользовательское соглашение, условия использования, НОК Эксперт',
-      canonical: 'https://nok-expert.ru/user-agreement'
+      canonical: 'https://nok-expert.ru/user-agreement',
+      noIndex: true
     });
   }
 

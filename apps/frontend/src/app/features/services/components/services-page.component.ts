@@ -58,12 +58,7 @@ export class ServicesPageComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.seoService.setSeoData({
-      title: 'Услуги подготовки к НОК — цены 2026',
-      description: 'Подготовка к НОК НОСТРОЙ, НОПРИЗ, ОПБ, МЧС и ЖКХ. Тренажёр с реальными вопросами, сопровождение до сдачи экзамена. Гарантия результата. Цены от 3 000 руб.',
-      keywords: 'услуги НОК, подготовка к НОК, сдать НОК, НОК НОСТРОЙ цена, НОК НОПРИЗ, НОК ОПБ, НОК МЧС, НОК ЖКХ',
-      canonical: 'https://nok-expert.ru/services'
-    });
+    this.seoService.setServicesPageSeo();
 
     this.servicesService.getAllServices().subscribe((services: Service[]) => {
       this.services = services;

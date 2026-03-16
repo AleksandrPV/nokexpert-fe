@@ -1,7 +1,8 @@
-import { Component, AfterViewInit, inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, AfterViewInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { IconModule } from '../../shared/components/icon/icon.component';
+import { SeoService } from '../../shared/services/seo.service';
 
 @Component({
   selector: 'app-not-found-page',
@@ -54,7 +55,7 @@ import { IconModule } from '../../shared/components/icon/icon.component';
     <div class="nf-actions flex flex-col sm:flex-row gap-4 justify-center">
       <a routerLink="/"
          class="inline-flex items-center justify-center gap-2.5 bg-white text-slate-900 px-7 py-3.5 rounded-xl font-semibold hover:bg-slate-100 transition-colors">
-        <lucide-icon name="home" [size]="18" [strokeWidth]="2"></lucide-icon>
+        <lucide-icon name="house" [size]="18" [strokeWidth]="2"></lucide-icon>
         На главную
       </a>
       <a routerLink="/services"
@@ -71,9 +72,18 @@ import { IconModule } from '../../shared/components/icon/icon.component';
     :host { display: block; }
   `]
 })
-export class NotFoundPageComponent implements AfterViewInit {
+export class NotFoundPageComponent implements OnInit, AfterViewInit {
   private platformId = inject(PLATFORM_ID);
   private isBrowser = isPlatformBrowser(this.platformId);
+  private seoService = inject(SeoService);
+
+  ngOnInit(): void {
+    this.seoService.setSeoData({
+      title: 'Страница не найдена (404) - НОК Эксперт',
+      description: 'Запрашиваемая страница не найдена. Перейдите на главную или воспользуйтесь навигацией сайта НОК Эксперт.',
+      noIndex: true
+    });
+  }
 
   ngAfterViewInit(): void {
     if (!this.isBrowser) return;

@@ -109,7 +109,7 @@ export class SitemapPageComponent implements OnInit, AfterViewInit, OnDestroy {
   sections: SitemapSection[] = [
     {
       title: 'Главные страницы',
-      icon: 'home',
+      icon: 'house',
       links: [
         { title: 'Главная страница', url: '/' },
         { title: 'Услуги', url: '/services' },

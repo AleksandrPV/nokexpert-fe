@@ -97,7 +97,7 @@ export class FaqPageComponent implements OnInit, AfterViewInit, OnDestroy {
       description: 'Полные ответы на 80+ вопросов о НОК: сроки, стоимость, документы, подготовка, НОСТРОЙ, НОПРИЗ, пожарная безопасность. Экспертные консультации.',
       keywords: 'НОК, FAQ, часто задаваемые вопросы, независимая оценка квалификации, НОСТРОЙ, НОПРИЗ, пожарная безопасность',
       ogImage: '/assets/images/og-default.jpg',
-      canonical: this.isBrowser ? `${window.location.origin}/faq` : '/faq'
+      canonical: `${this.seoService.getBaseUrl()}/faq`
     });
 
     import('../data/faq-questions').then(({ FAQ_QUESTIONS }) => {
@@ -250,19 +250,6 @@ export class FaqPageComponent implements OnInit, AfterViewInit, OnDestroy {
       1.4
     );
 
-    masterTl.fromTo('.hero-scroll-indicator',
-      { opacity: 0 },
-      { opacity: 1, duration: 0.5 },
-      1.8
-    );
-
-    gsap.to('.hero-scroll-dot', {
-      y: 16,
-      duration: 1.2,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power2.inOut'
-    });
   }
 
   private async initScrollAnimations(): Promise<void> {

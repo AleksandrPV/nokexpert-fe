@@ -340,21 +340,6 @@ export class NokOpbPageComponent implements OnInit, AfterViewInit, OnDestroy {
       ease: 'power2.inOut',
       delay: 3
     });
-
-    // Scroll indicator
-    masterTl.fromTo('.hero-scroll-indicator',
-      { opacity: 0 },
-      { opacity: 1, duration: 0.5 },
-      2.2
-    );
-
-    gsap.to('.hero-scroll-dot', {
-      y: 16,
-      duration: 1.2,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power2.inOut'
-    });
   }
 
   private async initScrollAnimations(): Promise<void> {

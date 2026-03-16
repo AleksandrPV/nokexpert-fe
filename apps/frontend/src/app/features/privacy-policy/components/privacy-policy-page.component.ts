@@ -316,7 +316,7 @@ import { OrganizationService } from '../../../shared/services/organization.servi
           </div>
           <div class="flex items-start gap-4 p-5 rounded-xl border border-slate-200 hover:border-slate-300 transition-colors">
             <div class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center shrink-0">
-              <lucide-icon name="x-circle" [size]="18" [strokeWidth]="1.8" class="text-slate-600"></lucide-icon>
+              <lucide-icon name="circle-x" [size]="18" [strokeWidth]="1.8" class="text-slate-600"></lucide-icon>
             </div>
             <div>
               <h3 class="font-semibold text-slate-900 mb-1">Право на отзыв согласия</h3>

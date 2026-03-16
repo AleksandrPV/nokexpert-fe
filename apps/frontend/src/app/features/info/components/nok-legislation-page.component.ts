@@ -83,14 +83,6 @@ import { OrganizationService } from '../../../shared/services/organization.servi
       </div>
     </div>
   </div>
-
-  <!-- Scroll indicator -->
-  <div class="hero-scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500">
-    <span class="text-xs uppercase tracking-widest">Подробнее</span>
-    <div class="w-6 h-10 rounded-full border border-slate-600 flex items-start justify-center p-1.5">
-      <div class="hero-scroll-dot w-1.5 h-1.5 rounded-full bg-slate-400"></div>
-    </div>
-  </div>
 </section>
 
 
@@ -243,7 +235,7 @@ import { OrganizationService } from '../../../shared/services/organization.servi
 
       <div class="standard-card bg-white rounded-2xl p-10 ring-1 ring-slate-200 hover:shadow-xl transition-all duration-500">
         <div class="w-14 h-14 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center mb-8">
-          <lucide-icon name="home" [size]="28" [strokeWidth]="1.5"></lucide-icon>
+          <lucide-icon name="house" [size]="28" [strokeWidth]="1.5"></lucide-icon>
         </div>
         <h3 class="text-xl font-bold text-slate-900 mb-4">ЖКХ и другие отрасли</h3>
         <ul class="space-y-3">
@@ -869,21 +861,6 @@ export class NokLegislationPageComponent implements OnInit, AfterViewInit, OnDes
       { width: '100%', duration: 0.8, ease: 'power2.out' },
       1.4
     );
-
-    // Scroll indicator
-    masterTl.fromTo('.hero-scroll-indicator',
-      { opacity: 0 },
-      { opacity: 1, duration: 0.5 },
-      1.8
-    );
-
-    gsap.to('.hero-scroll-dot', {
-      y: 16,
-      duration: 1.2,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power2.inOut'
-    });
   }
 
   private async initScrollAnimations(): Promise<void> {

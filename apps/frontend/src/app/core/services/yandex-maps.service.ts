@@ -72,7 +72,8 @@ export class YandexMapsService {
       // Создаем script для загрузки API
       const script = document.createElement('script');
       script.type = 'text/javascript';
-      script.src = `https://api-maps.yandex.ru/2.1/?apikey=${this.apiKey}&lang=ru_RU`;
+      const apiKeyParam = this.apiKey ? `apikey=${this.apiKey}&` : '';
+      script.src = `https://api-maps.yandex.ru/2.1/?${apiKeyParam}lang=ru_RU`;
       script.async = true;
 
       script.onload = () => {
@@ -140,7 +141,7 @@ export class YandexMapsService {
       },
       {
         preset: marker.icon || 'islands#redIcon',
-        iconColor: '#ff5f24' // brand-coral цвет
+        iconColor: '#2563EB' // blue-600
       }
     );
 

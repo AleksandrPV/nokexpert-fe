@@ -79,14 +79,6 @@ import { OrganizationService } from '../../../shared/services/organization.servi
       </div>
     </div>
   </div>
-
-  <!-- Scroll indicator -->
-  <div class="hero-scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500">
-    <span class="text-xs uppercase tracking-widest">Подробнее</span>
-    <div class="w-6 h-10 rounded-full border border-slate-600 flex items-start justify-center p-1.5">
-      <div class="hero-scroll-dot w-1.5 h-1.5 rounded-full bg-slate-400"></div>
-    </div>
-  </div>
 </section>
 
 
@@ -662,21 +654,6 @@ export class QualificationsPageComponent implements OnInit, AfterViewInit, OnDes
       { width: '100%', duration: 0.8, ease: 'power2.out' },
       1.4
     );
-
-    // Scroll indicator
-    masterTl.fromTo('.hero-scroll-indicator',
-      { opacity: 0 },
-      { opacity: 1, duration: 0.5 },
-      1.8
-    );
-
-    gsap.to('.hero-scroll-dot', {
-      y: 16,
-      duration: 1.2,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power2.inOut'
-    });
   }
 
   private async initScrollAnimations(): Promise<void> {

@@ -5,7 +5,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
     id: 'general',
     name: 'Общие вопросы',
     description: 'Общие вопросы по НОК, законодательству и процедурам',
-    icon: 'help-circle',
+    icon: 'circle-help',
     color: 'bg-blue-100 text-blue-800',
     count: 25
   },

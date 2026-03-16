@@ -71,7 +71,7 @@ export class PropiskaNokPageComponent implements OnInit, AfterViewInit, OnDestro
       description: 'Регистрация должна быть действительна на момент сдачи экзамена. Просроченная регистрация не принимается.'
     },
     {
-      icon: 'home',
+      icon: 'house',
       title: 'Временная или постоянная',
       description: 'Принимается как постоянная регистрация (прописка), так и временная регистрация по месту пребывания.'
     }
@@ -112,7 +112,7 @@ export class PropiskaNokPageComponent implements OnInit, AfterViewInit, OnDestro
       description: 'Узнайте, нужна ли прописка для сдачи экзамена НОК. Требования к регистрации, порядок оформления временной прописки, необходимые документы.',
       keywords: 'прописка НОК, регистрация для НОК, временная регистрация НОК, документы НОК, экзамен НОК',
       ogImage: '/assets/images/og-default.jpg',
-      canonical: this.isBrowser ? `${window.location.origin}/faq/propiska-nok` : '/faq/propiska-nok'
+      canonical: `${this.seoService.getBaseUrl()}/faq/propiska-nok`
     });
 
     this.seoService.addBreadcrumbsStructuredData([
@@ -193,19 +193,6 @@ export class PropiskaNokPageComponent implements OnInit, AfterViewInit, OnDestro
       1.4
     );
 
-    masterTl.fromTo('.hero-scroll-indicator',
-      { opacity: 0 },
-      { opacity: 1, duration: 0.5 },
-      1.8
-    );
-
-    gsap.to('.hero-scroll-dot', {
-      y: 16,
-      duration: 1.2,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power2.inOut'
-    });
   }
 
   private async initScrollAnimations(): Promise<void> {

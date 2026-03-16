@@ -305,21 +305,6 @@ export class WhatIsNokPageComponent implements OnInit, AfterViewInit, OnDestroy 
       { width: '100%', duration: 0.8, ease: 'power2.out' },
       1.4
     );
-
-    // Scroll indicator
-    masterTl.fromTo('.hero-scroll-indicator',
-      { opacity: 0 },
-      { opacity: 1, duration: 0.5 },
-      1.8
-    );
-
-    gsap.to('.hero-scroll-dot', {
-      y: 16,
-      duration: 1.2,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power2.inOut'
-    });
   }
 
   private async initScrollAnimations(): Promise<void> {
