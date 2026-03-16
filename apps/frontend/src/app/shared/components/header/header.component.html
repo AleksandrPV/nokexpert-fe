@@ -172,6 +172,67 @@
           <lucide-icon name="phone" [size]="15"></lucide-icon>
           {{ phoneDisplay }}
         </a>
+
+        <!-- Auth: User Menu or Login Button -->
+        <ng-container *ngIf="authService.isAuthenticated(); else loginBtn">
+          <div class="relative">
+            <button (click)="toggleUserMenu()"
+                    class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200"
+                    [class.text-white/80]="!isScrolled"
+                    [class.hover:bg-white/10]="!isScrolled"
+                    [class.text-slate-600]="isScrolled"
+                    [class.hover:bg-slate-100]="isScrolled">
+              <div class="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
+                {{ authService.currentUser()?.firstName?.charAt(0) }}{{ authService.currentUser()?.lastName?.charAt(0) }}
+              </div>
+              <span>{{ authService.currentUser()?.firstName }}</span>
+              <lucide-icon name="chevron-down" [size]="14"
+                           class="transition-transform duration-200"
+                           [class.rotate-180]="showUserMenu"></lucide-icon>
+            </button>
+
+            <!-- User Dropdown -->
+            <div *ngIf="showUserMenu"
+                 class="absolute top-full right-0 mt-2 w-56 bg-white rounded-2xl border border-slate-200/80 shadow-2xl shadow-slate-200/50 p-2 z-20 animate-fade-in">
+              <a routerLink="/dashboard" (click)="closeUserMenu()"
+                 class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-all duration-200 text-sm font-medium text-slate-700">
+                <lucide-icon name="layout-dashboard" [size]="16" class="text-slate-400"></lucide-icon>
+                Личный кабинет
+              </a>
+              <a routerLink="/profile" (click)="closeUserMenu()"
+                 class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-all duration-200 text-sm font-medium text-slate-700">
+                <lucide-icon name="user" [size]="16" class="text-slate-400"></lucide-icon>
+                Профиль
+              </a>
+              <a routerLink="/trainer" (click)="closeUserMenu()"
+                 class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-all duration-200 text-sm font-medium text-slate-700">
+                <lucide-icon name="dumbbell" [size]="16" class="text-slate-400"></lucide-icon>
+                Тренажёр
+              </a>
+              <div class="my-1 border-t border-slate-100"></div>
+              <button (click)="logout()"
+                      class="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-red-50 transition-all duration-200 text-sm font-medium text-red-600">
+                <lucide-icon name="log-out" [size]="16"></lucide-icon>
+                Выйти
+              </button>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-template #loginBtn>
+          <a routerLink="/login"
+             class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 border"
+             [class.text-white/80]="!isScrolled"
+             [class.border-white/20]="!isScrolled"
+             [class.hover:bg-white/10]="!isScrolled"
+             [class.text-slate-600]="isScrolled"
+             [class.border-slate-300]="isScrolled"
+             [class.hover:bg-slate-100]="isScrolled">
+            <lucide-icon name="log-in" [size]="15"></lucide-icon>
+            Войти
+          </a>
+        </ng-template>
+
         <button
           (click)="openConsultationPopup()"
           class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-blue-600/20 focus:outline-none">
@@ -238,6 +299,32 @@
       </div>
 
       <div class="mt-4 pt-4 border-t border-slate-100 space-y-3">
+        <!-- Auth section for mobile -->
+        <ng-container *ngIf="authService.isAuthenticated(); else mobileLoginBtn">
+          <a routerLink="/dashboard" (click)="closeMobileMenu()"
+             class="flex items-center gap-3 p-3.5 rounded-xl font-medium text-slate-700 bg-blue-50 hover:bg-blue-100 transition-colors">
+            <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
+              {{ authService.currentUser()?.firstName?.charAt(0) }}{{ authService.currentUser()?.lastName?.charAt(0) }}
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-slate-900">{{ authService.currentUser()?.firstName }} {{ authService.currentUser()?.lastName }}</div>
+              <div class="text-xs text-slate-500">Личный кабинет</div>
+            </div>
+          </a>
+          <button (click)="logout(); closeMobileMenu()"
+                  class="w-full flex items-center justify-center gap-2 p-3 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 transition-colors">
+            <lucide-icon name="log-out" [size]="16"></lucide-icon>
+            Выйти
+          </button>
+        </ng-container>
+        <ng-template #mobileLoginBtn>
+          <a routerLink="/login" (click)="closeMobileMenu()"
+             class="flex items-center justify-center gap-2.5 p-3.5 rounded-xl font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors">
+            <lucide-icon name="log-in" [size]="16"></lucide-icon>
+            Войти в аккаунт
+          </a>
+        </ng-template>
+
         <a [href]="'tel:' + phoneHref"
            class="flex items-center justify-center gap-2.5 p-3.5 rounded-xl font-medium text-slate-700 bg-slate-50 hover:bg-slate-100 transition-colors">
           <lucide-icon name="phone" [size]="16" class="text-slate-500"></lucide-icon>

@@ -172,6 +172,42 @@ export const serverRoutes: ServerRoute[] = [
     }
   },
   
+  // Auth & Dashboard
+  {
+    path: 'login',
+    renderMode: RenderMode.Prerender
+  },
+  {
+    path: 'register',
+    renderMode: RenderMode.Prerender
+  },
+  {
+    path: 'dashboard',
+    renderMode: RenderMode.Client
+  },
+  {
+    path: 'profile',
+    renderMode: RenderMode.Client
+  },
+
+  // Тренажёр НОК
+  {
+    path: 'trainer',
+    renderMode: RenderMode.Prerender
+  },
+  {
+    path: 'trainer/start',
+    renderMode: RenderMode.Client
+  },
+  {
+    path: 'trainer/test/:id',
+    renderMode: RenderMode.Client
+  },
+  {
+    path: 'trainer/test/:id/results',
+    renderMode: RenderMode.Client
+  },
+
   // Все остальные маршруты с динамическим рендерингом
   {
     path: '**',

@@ -44,6 +44,11 @@ export const routes: Routes = [
         loadComponent: () => import('./features/user/components/user-dashboard.component').then(m => m.UserDashboardComponent),
         canActivate: [authGuard]
       },
+      {
+        path: 'profile',
+        loadComponent: () => import('./features/user/components/profile-edit.component').then(m => m.ProfileEditComponent),
+        canActivate: [authGuard]
+      },
     ]
   },
 
