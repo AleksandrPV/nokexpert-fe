@@ -5,7 +5,7 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { TestEntity } from '../infrastructure/entities/test.entity';
 import { TestQuestionEntity } from '../infrastructure/entities/test-question.entity';
 import { UserAnswerEntity } from '../infrastructure/entities/user-answer.entity';
@@ -18,9 +18,7 @@ import {
   QuestionTypeCode,
 } from '../../../shared/types/testing.types';
 import { TestSession } from '../domain/test-session.entity';
-
-const EXAM_DURATION_SECONDS = 120 * 60;
-const PASSING_SCORE = 70;
+import { APP_CONSTANTS } from '../../../shared/constants/app.constants';
 
 @Injectable()
 export class TestingService {
@@ -269,16 +267,20 @@ export class TestingService {
       userAnswers.map((a) => [a.questionId, a]),
     );
 
+    const questionIds = testQuestions.map((tq) => tq.questionId);
+    const allQuestions = await this.questionRepo.find({
+      where: { questionId: In(questionIds) },
+      relations: ['options', 'questionType'],
+    });
+    const questionMap = new Map(allQuestions.map((q) => [q.questionId, q]));
+
     const questions: any[] = [];
     let correctCount = 0;
     let incorrectCount = 0;
     let unanswered = 0;
 
     for (const tq of testQuestions) {
-      const question = await this.questionRepo.findOne({
-        where: { questionId: tq.questionId },
-        relations: ['options', 'questionType'],
-      });
+      const question = questionMap.get(tq.questionId);
       if (!question) continue;
 
       const answer = answerMap.get(tq.questionId);
@@ -327,7 +329,7 @@ export class TestingService {
       incorrectAnswers: incorrectCount,
       unanswered,
       score: test.score ?? 0,
-      passed: (test.score ?? 0) >= PASSING_SCORE,
+      passed: (test.score ?? 0) >= APP_CONSTANTS.DEFAULT_PASSING_SCORE,
       timeTakenSeconds: timeTaken,
       questions,
     };
@@ -379,7 +381,7 @@ export class TestingService {
     return {
       testId: test.testId,
       score,
-      passed: score >= PASSING_SCORE,
+      passed: score >= APP_CONSTANTS.DEFAULT_PASSING_SCORE,
       correctAnswers: correctCount,
       totalQuestions: test.totalQuestions,
     };
