@@ -2,8 +2,6 @@ import { Component, OnInit, AfterViewInit, OnDestroy, inject, PLATFORM_ID } from
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { YandexMapComponent } from '../../../shared/components/yandex-map/yandex-map.component';
-import { MapMarker } from '../../../core/services/yandex-maps.service';
 import { SeoService } from '../../../shared/services/seo.service';
 import { OrganizationService } from '../../../shared/services/organization.service';
 import { SecurityService } from '../../../shared/services/security.service';
@@ -16,7 +14,7 @@ import { firstValueFrom } from 'rxjs';
 @Component({
   selector: 'app-contacts-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, YandexMapComponent, PhoneMaskDirective, IconModule],
+  imports: [CommonModule, FormsModule, RouterLink, PhoneMaskDirective, IconModule],
   templateUrl: './contacts-page.component.html',
   styleUrls: ['./contacts-page.component.scss']
 })
@@ -62,16 +60,6 @@ export class ContactsPageComponent implements OnInit, AfterViewInit, OnDestroy {
     privacy: false
   };
 
-  mapMarkers: MapMarker[] = [
-    {
-      coordinates: [59.9847, 30.3165],
-      title: 'НОК Эксперт',
-      description: 'Наб. Черной речки д. 15, оф. 310'
-    }
-  ];
-
-  mapCenter: [number, number] = [59.9847, 30.3165];
-  mapZoom = 16;
 
   ngOnInit(): void {
     this.seoService.setContactsPageSeo();
