@@ -48,6 +48,7 @@
     "@angular/ssr": "^20.2.0",
     "express": "^5.1.0",
     "gsap": "^3.14.2",
+    "lenis": "^1.3.18",
     "lucide-angular": "^0.577.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

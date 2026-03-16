@@ -1,9 +1,10 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FeedbackPopupComponent } from './features/feedback-popup/components/feedback-popup.component';
 import { FloatingContactsComponent } from './shared/components/floating-contacts/floating-contacts.component';
 import { BackToTopComponent } from './shared/components/back-to-top/back-to-top.component';
 import { SeoService } from './shared/services/seo.service';
+import { SmoothScrollService } from './shared/services/smooth-scroll.service';
 
 @Component({
   selector: 'app-root',
@@ -17,11 +18,15 @@ import { SeoService } from './shared/services/seo.service';
   `,
   styles: []
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   private seoService = inject(SeoService);
+  private smoothScroll = inject(SmoothScrollService);
 
   ngOnInit(): void {
-    // SEO сервис автоматически инициализируется в конструкторе
-    // Здесь можно добавить дополнительную логику при необходимости
+    this.smoothScroll.init();
+  }
+
+  ngOnDestroy(): void {
+    this.smoothScroll.destroy();
   }
 }

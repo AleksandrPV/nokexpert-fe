@@ -44,9 +44,15 @@ body {
   color: inherit;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Lenis smooth scroll handles scrolling — remove native smooth-scroll to avoid conflicts */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
 
 /* ========== Cards ========== */
