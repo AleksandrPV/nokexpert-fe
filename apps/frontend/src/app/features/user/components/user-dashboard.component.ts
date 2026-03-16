@@ -10,11 +10,12 @@ import {
 } from '../services/statistics-api.service';
 import { IconModule } from '../../../shared/components/icon/icon.component';
 import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
+import { SkeletonComponent } from '../../../shared/components/skeleton/skeleton.component';
 
 @Component({
   selector: 'app-user-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterLink, IconModule, BreadcrumbsComponent],
+  imports: [CommonModule, RouterLink, IconModule, BreadcrumbsComponent, SkeletonComponent],
   template: `
     <app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
 
@@ -51,41 +52,51 @@ import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/bre
 
           <!-- Stats Cards -->
           <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-12">
-            <!-- Total tests -->
-            <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6">
-              <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4">
-                <lucide-icon name="file-text" [size]="20" class="text-blue-400"></lucide-icon>
+            @if (isLoading() && !stats()) {
+              @for (i of [1,2,3,4]; track i) {
+                <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6">
+                  <app-skeleton width="40px" height="40px" rounded="xl"></app-skeleton>
+                  <div class="mt-4"><app-skeleton width="60px" height="28px"></app-skeleton></div>
+                  <div class="mt-2"><app-skeleton width="100px" height="16px"></app-skeleton></div>
+                </div>
+              }
+            } @else {
+              <!-- Total tests -->
+              <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6">
+                <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4">
+                  <lucide-icon name="file-text" [size]="20" class="text-blue-400"></lucide-icon>
+                </div>
+                <div class="text-2xl font-bold text-white mb-1">{{ stats()?.totalTests ?? 0 }}</div>
+                <div class="text-sm text-slate-500">Всего тестов</div>
               </div>
-              <div class="text-2xl font-bold text-white mb-1">{{ stats()?.totalTests ?? 0 }}</div>
-              <div class="text-sm text-slate-500">Всего тестов</div>
-            </div>
 
-            <!-- Avg score -->
-            <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6">
-              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4">
-                <lucide-icon name="trending-up" [size]="20" class="text-emerald-400"></lucide-icon>
+              <!-- Avg score -->
+              <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4">
+                  <lucide-icon name="trending-up" [size]="20" class="text-emerald-400"></lucide-icon>
+                </div>
+                <div class="text-2xl font-bold text-white mb-1">{{ stats()?.avgScore ?? 0 }}%</div>
+                <div class="text-sm text-slate-500">Средний балл</div>
               </div>
-              <div class="text-2xl font-bold text-white mb-1">{{ stats()?.avgScore ?? 0 }}%</div>
-              <div class="text-sm text-slate-500">Средний балл</div>
-            </div>
 
-            <!-- Best score -->
-            <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6">
-              <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center mb-4">
-                <lucide-icon name="trophy" [size]="20" class="text-amber-400"></lucide-icon>
+              <!-- Best score -->
+              <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center mb-4">
+                  <lucide-icon name="trophy" [size]="20" class="text-amber-400"></lucide-icon>
+                </div>
+                <div class="text-2xl font-bold text-white mb-1">{{ stats()?.bestScore ?? 0 }}%</div>
+                <div class="text-sm text-slate-500">Лучший результат</div>
               </div>
-              <div class="text-2xl font-bold text-white mb-1">{{ stats()?.bestScore ?? 0 }}%</div>
-              <div class="text-sm text-slate-500">Лучший результат</div>
-            </div>
 
-            <!-- Pass rate -->
-            <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6">
-              <div class="w-10 h-10 rounded-xl bg-violet-500/10 flex items-center justify-center mb-4">
-                <lucide-icon name="check-circle" [size]="20" class="text-violet-400"></lucide-icon>
+              <!-- Pass rate -->
+              <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6">
+                <div class="w-10 h-10 rounded-xl bg-violet-500/10 flex items-center justify-center mb-4">
+                  <lucide-icon name="check-circle" [size]="20" class="text-violet-400"></lucide-icon>
+                </div>
+                <div class="text-2xl font-bold text-white mb-1">{{ stats()?.passRate ?? 0 }}%</div>
+                <div class="text-sm text-slate-500">Процент сдачи</div>
               </div>
-              <div class="text-2xl font-bold text-white mb-1">{{ stats()?.passRate ?? 0 }}%</div>
-              <div class="text-sm text-slate-500">Процент сдачи</div>
-            </div>
+            }
           </div>
         </div>
       </div>
@@ -96,6 +107,18 @@ import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/bre
       <div class="px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
         <div class="max-w-6xl mx-auto">
           <h2 class="text-2xl font-bold text-slate-900 mb-8">История тестов</h2>
+
+          <!-- Loading skeleton -->
+          <div *ngIf="isLoading() && tests().length === 0" class="space-y-3">
+            <div *ngFor="let i of [1,2,3]" class="bg-white rounded-xl border border-slate-200 p-5 flex items-center gap-4">
+              <app-skeleton width="90px" height="30px" rounded="lg"></app-skeleton>
+              <div class="flex-1 space-y-2">
+                <app-skeleton width="200px" height="16px"></app-skeleton>
+                <app-skeleton width="150px" height="12px"></app-skeleton>
+              </div>
+              <app-skeleton width="50px" height="24px"></app-skeleton>
+            </div>
+          </div>
 
           <!-- Empty state -->
           <div *ngIf="tests().length === 0 && !isLoading()" class="text-center py-16">
