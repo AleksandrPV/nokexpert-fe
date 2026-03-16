@@ -12,6 +12,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { Throttle } from '@nestjs/throttler';
 import { UsersService } from '../application/users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { CreateAdminDto } from './dto/create-admin.dto';
@@ -39,6 +40,7 @@ export class UsersController {
   // Регистрация пользователя (публичный эндпоинт)
   @Post('register')
   @Public()
+  @Throttle({ default: { limit: 3, ttl: 60000 } })
   @ApiOperation({ summary: 'Регистрация пользователя' })
   @ApiResponse({ status: 201, description: 'Пользователь зарегистрирован' })
   @ApiResponse({ status: 400, description: 'Ошибка валидации' })
@@ -49,6 +51,7 @@ export class UsersController {
   // Вход в систему (публичный эндпоинт)
   @Post('login')
   @Public()
+  @Throttle({ default: { limit: 5, ttl: 60000 } })
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Вход в систему' })
   @ApiResponse({ status: 200, description: 'Успешный вход' })
