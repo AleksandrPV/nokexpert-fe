@@ -1,294 +1,252 @@
-<header class="bg-white border-b border-slate-200 sticky top-0 z-50">
-  <nav class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32 py-3">
-    <div>
-      <div class="flex items-center justify-between">
-        <!-- Logo -->
-        <div class="flex items-center gap-3 cursor-pointer focus:outline-none" routerLink="/">
-          <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white">
-            <lucide-icon name="building-2" [size]="22" [strokeWidth]="2.5"></lucide-icon>
-          </div>
-          <div>
-            <div class="text-lg font-bold text-slate-900 tracking-tight">{{ organizationName }}</div>
-            <p class="text-xs text-slate-500">Независимая оценка квалификаций</p>
-          </div>
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+        [class.bg-white/80]="isScrolled"
+        [class.backdrop-blur-xl]="isScrolled"
+        [class.border-b]="isScrolled"
+        [class.border-slate-200/60]="isScrolled"
+        [class.shadow-sm]="isScrolled"
+        [class.bg-transparent]="!isScrolled">
+  <nav class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+    <div class="flex items-center justify-between h-[72px]">
+
+      <!-- Logo -->
+      <a routerLink="/" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-600/20 group-hover:shadow-blue-600/30 transition-shadow duration-300">
+          <lucide-icon name="building-2" [size]="20" [strokeWidth]="2"></lucide-icon>
         </div>
-
-        <!-- Desktop Navigation -->
-        <div class="hidden lg:flex items-center gap-1">
-          <a routerLink="/"
-             class="px-4 py-2 text-slate-700 hover:text-blue-600 font-medium transition-colors duration-200 rounded-lg hover:bg-slate-50 focus:outline-none">
-            Главная
-          </a>
-
-          <!-- Услуги with Submenu -->
-          <div class="relative group"
-               (mouseenter)="onServicesSubmenuEnter()"
-               (mouseleave)="onServicesSubmenuLeave()">
-            <a routerLink="/services"
-               (click)="closeServicesSubmenu()"
-               class="px-4 py-2 text-slate-700 hover:text-blue-600 font-medium transition-colors duration-200 rounded-lg hover:bg-slate-50 focus:outline-none flex items-center gap-1.5">
-              <span>Услуги</span>
-              <lucide-icon
-                name="chevron-down"
-                [size]="14"
-                class="text-slate-400 transition-transform duration-200"
-                [class.rotate-180]="showServicesSubmenu"></lucide-icon>
-            </a>
-
-            <!-- Services Submenu -->
-            <div
-              *ngIf="showServicesSubmenu"
-              class="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 w-80 bg-white rounded-xl border border-slate-200 shadow-lg p-4 z-20 animate-fade-in">
-
-              <!-- Services List -->
-              <div class="space-y-1">
-                <a
-                  *ngFor="let service of headerServices"
-                  [routerLink]="service.route"
-                  (click)="closeServicesSubmenu()"
-                  class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors duration-200 group">
-                  <div class="w-9 h-9 rounded-lg flex items-center justify-center bg-blue-50 text-blue-600 text-sm font-bold"
-                       [class]="service.color">
-                    {{ service.title.charAt(0) }}
-                  </div>
-                  <div class="flex-1">
-                    <div class="font-medium text-slate-900 group-hover:text-blue-600 transition-colors text-sm">{{ service.title }}</div>
-                    <div class="text-xs text-slate-500">{{ service.description }}</div>
-                  </div>
-                  <div *ngIf="service.popular" class="bg-red-50 text-red-600 px-2 py-0.5 rounded text-xs font-semibold">Топ</div>
-                </a>
-              </div>
-
-              <!-- Quick Action -->
-              <div class="mt-3 pt-3 border-t border-slate-100">
-                <a routerLink="/services"
-                   (click)="closeServicesSubmenu()"
-                   class="block w-full text-center text-sm font-medium text-blue-600 hover:text-blue-700 py-2 rounded-lg hover:bg-blue-50 transition-colors duration-200 focus:outline-none">
-                  Все услуги
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- НОК with Mega Menu -->
-          <div class="relative group"
-               (mouseenter)="onMegaMenuEnter()"
-               (mouseleave)="onMegaMenuLeave()">
-            <a routerLink="/info"
-               (click)="closeMegaMenu()"
-               class="px-4 py-2 text-slate-700 hover:text-blue-600 font-medium transition-colors duration-200 rounded-lg hover:bg-slate-50 focus:outline-none flex items-center gap-1.5">
-              <span>НОК</span>
-              <lucide-icon
-                name="chevron-down"
-                [size]="14"
-                class="text-slate-400 transition-transform duration-200"
-                [class.rotate-180]="showMegaMenu"></lucide-icon>
-            </a>
-
-            <!-- Mega Menu -->
-            <div
-              *ngIf="showMegaMenu"
-              class="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 w-screen max-w-5xl bg-white rounded-xl border border-slate-200 shadow-lg p-6 z-20 animate-fade-in">
-
-              <!-- Categories Grid -->
-              <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div
-                  *ngFor="let category of menuCategories"
-                  class="space-y-2">
-
-                  <!-- Category Header -->
-                  <div class="flex items-center gap-2 mb-3">
-                    <h4 class="font-semibold text-slate-900 text-sm">{{ category.name }}</h4>
-                    <span class="text-xs text-slate-400">{{ category.pages.length }}</span>
-                  </div>
-
-                  <!-- Pages -->
-                  <div class="space-y-0.5">
-                    <a
-                      *ngFor="let page of category.pages.slice(0, 4)"
-                      [routerLink]="'/info/' + page.slug"
-                      (click)="closeMegaMenu()"
-                      class="block px-3 py-2 rounded-lg text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors duration-200 line-clamp-1">
-                      {{ page.title }}
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Quick Actions -->
-              <div class="flex flex-wrap justify-center gap-3 mt-6 pt-4 border-t border-slate-100">
-                <a routerLink="/info"
-                   (click)="closeMegaMenu()"
-                   class="text-sm font-medium text-blue-600 hover:text-blue-700 px-4 py-2 rounded-lg hover:bg-blue-50 transition-colors duration-200 focus:outline-none">
-                  Все материалы
-                </a>
-                <a routerLink="/qa-centers"
-                   (click)="closeMegaMenu()"
-                   class="text-sm font-medium text-blue-600 hover:text-blue-700 px-4 py-2 rounded-lg hover:bg-blue-50 transition-colors duration-200 focus:outline-none">
-                  Центры ЦОК
-                </a>
-                <a routerLink="/info/online-trainer"
-                   (click)="closeMegaMenu()"
-                   class="text-sm font-medium text-red-600 hover:text-red-700 px-4 py-2 rounded-lg hover:bg-red-50 transition-colors duration-200 focus:outline-none">
-                  Тренажер НОК
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- FAQ -->
-          <a routerLink="/faq"
-             class="px-4 py-2 text-slate-700 hover:text-blue-600 font-medium transition-colors duration-200 rounded-lg hover:bg-slate-50 focus:outline-none">
-            FAQ
-          </a>
-
-          <a routerLink="/contacts"
-             class="px-4 py-2 text-slate-700 hover:text-blue-600 font-medium transition-colors duration-200 rounded-lg hover:bg-slate-50 focus:outline-none">
-            Контакты
-          </a>
+        <div>
+          <div class="text-lg font-bold tracking-tight transition-colors duration-300"
+               [class.text-white]="!isScrolled"
+               [class.text-slate-900]="isScrolled">{{ organizationName }}</div>
+          <p class="text-[11px] font-medium tracking-wide uppercase transition-colors duration-300"
+             [class.text-slate-400]="!isScrolled"
+             [class.text-slate-500]="isScrolled">Независимая оценка квалификаций</p>
         </div>
+      </a>
 
-        <!-- Desktop Right: Phone + CTA -->
-        <div class="hidden lg:flex items-center gap-4">
-          <a [href]="'tel:' + phoneHref" class="flex items-center gap-2 text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors">
-            <lucide-icon name="phone" [size]="16" class="text-slate-400"></lucide-icon>
-            {{ phoneDisplay }}
-          </a>
-          <button
-            (click)="openConsultationPopup()"
-            class="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-lg font-semibold text-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
-            Консультация
-          </button>
-        </div>
-
-        <!-- Mobile Menu Button -->
-        <button
-          (click)="toggleMobileMenu()"
-          aria-label="Открыть мобильное меню"
-          class="lg:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 transition-colors duration-200 focus:outline-none">
-          <lucide-icon name="menu" [size]="24"></lucide-icon>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div
-      [class.hidden]="!mobileMenuOpen"
-      class="lg:hidden mt-4 bg-white rounded-xl border border-slate-200 shadow-lg p-4 mx-6">
-      <div class="space-y-1">
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center gap-0.5">
         <a routerLink="/"
-           (click)="closeMobileMenu()"
-           class="block p-3 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-colors duration-200 font-medium focus:outline-none">
+           class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none"
+           [class.text-white/80]="!isScrolled"
+           [class.hover:text-white]="!isScrolled"
+           [class.hover:bg-white/10]="!isScrolled"
+           [class.text-slate-600]="isScrolled"
+           [class.hover:text-slate-900]="isScrolled"
+           [class.hover:bg-slate-100]="isScrolled">
           Главная
         </a>
 
-        <!-- Mobile Услуги Submenu -->
-        <div class="space-y-1">
-          <button
-            (click)="toggleServicesSubmenu()"
-            aria-label="Открыть подменю услуг"
-            class="w-full flex items-center justify-between p-3 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-colors duration-200 font-medium focus:outline-none">
-            <span>Услуги</span>
-            <lucide-icon
-              name="chevron-down"
-              [size]="16"
-              class="transition-transform duration-200"
-              [class.rotate-180]="servicesSubmenuOpen"></lucide-icon>
-          </button>
+        <!-- Услуги -->
+        <div class="relative"
+             (mouseenter)="onServicesSubmenuEnter()"
+             (mouseleave)="onServicesSubmenuLeave()">
+          <a routerLink="/services"
+             (click)="closeServicesSubmenu()"
+             class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none flex items-center gap-1.5"
+             [class.text-white/80]="!isScrolled"
+             [class.hover:text-white]="!isScrolled"
+             [class.hover:bg-white/10]="!isScrolled"
+             [class.text-slate-600]="isScrolled"
+             [class.hover:text-slate-900]="isScrolled"
+             [class.hover:bg-slate-100]="isScrolled">
+            Услуги
+            <lucide-icon name="chevron-down" [size]="14"
+                         class="transition-transform duration-200"
+                         [class.text-white/40]="!isScrolled"
+                         [class.text-slate-400]="isScrolled"
+                         [class.rotate-180]="showServicesSubmenu"></lucide-icon>
+          </a>
 
-          <div
-            [class.hidden]="!servicesSubmenuOpen"
-            class="pl-4 space-y-0.5 border-l-2 border-slate-200 ml-3">
-            <a routerLink="/services/nok-nostroy"
-               (click)="closeMobileMenu()"
-               class="block p-2.5 rounded-lg text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors focus:outline-none">
-              НОК НОСТРОЙ
-            </a>
-            <a routerLink="/services/nok-nopriz"
-               (click)="closeMobileMenu()"
-               class="block p-2.5 rounded-lg text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors focus:outline-none">
-              НОК НОПРИЗ
-            </a>
-            <a routerLink="/services"
-               (click)="closeMobileMenu()"
-               class="block p-2.5 rounded-lg text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors focus:outline-none">
-              Консультации
-            </a>
-            <a routerLink="/services"
-               (click)="closeMobileMenu()"
-               class="block p-2.5 rounded-lg text-sm text-blue-600 font-medium hover:bg-blue-50 transition-colors focus:outline-none">
-              Все услуги
-            </a>
+          <!-- Services Dropdown -->
+          <div *ngIf="showServicesSubmenu"
+               class="absolute top-full left-0 mt-2 w-[340px] bg-white rounded-2xl border border-slate-200/80 shadow-2xl shadow-slate-200/50 p-2 z-20 animate-fade-in">
+            <div class="space-y-0.5">
+              <a *ngFor="let service of headerServices"
+                 [routerLink]="service.route"
+                 (click)="closeServicesSubmenu()"
+                 class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-all duration-200 group">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold shrink-0"
+                     [class]="service.color">
+                  {{ service.title.charAt(0) }}
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors text-[14px]">{{ service.title }}</div>
+                  <div class="text-xs text-slate-400 truncate">{{ service.description }}</div>
+                </div>
+                <div *ngIf="service.popular" class="shrink-0 w-2 h-2 rounded-full bg-blue-500"></div>
+              </a>
+            </div>
+            <div class="mt-1 pt-1 border-t border-slate-100">
+              <a routerLink="/services" (click)="closeServicesSubmenu()"
+                 class="flex items-center justify-between p-3 rounded-xl text-sm font-medium text-slate-500 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200">
+                <span>Все услуги и цены</span>
+                <lucide-icon name="arrow-right" [size]="14"></lucide-icon>
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- Mobile НОК Submenu -->
-        <div class="space-y-1">
-          <button
-            (click)="toggleNokSubmenu()"
-            aria-label="Открыть подменю НОК"
-            class="w-full flex items-center justify-between p-3 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-colors duration-200 font-medium focus:outline-none">
-            <span>НОК</span>
-            <lucide-icon
-              name="chevron-down"
-              [size]="16"
-              class="transition-transform duration-200"
-              [class.rotate-180]="nokSubmenuOpen"></lucide-icon>
-          </button>
+        <!-- НОК -->
+        <div class="relative"
+             (mouseenter)="onMegaMenuEnter()"
+             (mouseleave)="onMegaMenuLeave()">
+          <a routerLink="/info"
+             (click)="closeMegaMenu()"
+             class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none flex items-center gap-1.5"
+             [class.text-white/80]="!isScrolled"
+             [class.hover:text-white]="!isScrolled"
+             [class.hover:bg-white/10]="!isScrolled"
+             [class.text-slate-600]="isScrolled"
+             [class.hover:text-slate-900]="isScrolled"
+             [class.hover:bg-slate-100]="isScrolled">
+            База знаний
+            <lucide-icon name="chevron-down" [size]="14"
+                         class="transition-transform duration-200"
+                         [class.text-white/40]="!isScrolled"
+                         [class.text-slate-400]="isScrolled"
+                         [class.rotate-180]="showMegaMenu"></lucide-icon>
+          </a>
 
-          <div
-            [class.hidden]="!nokSubmenuOpen"
-            class="pl-4 space-y-0.5 border-l-2 border-slate-200 ml-3">
-            <a routerLink="/info"
-               (click)="closeMobileMenu()"
-               class="block p-2.5 rounded-lg text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors focus:outline-none">
-              Все материалы
-            </a>
-            <a routerLink="/qa-centers"
-               (click)="closeMobileMenu()"
-               class="block p-2.5 rounded-lg text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors focus:outline-none">
-              Центры ЦОК
-            </a>
-            <a
-              *ngFor="let category of menuCategories.slice(0, 3)"
-              [routerLink]="'/info/' + category.pages[0].slug"
-              (click)="closeMobileMenu()"
-              class="block p-2.5 rounded-lg text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors focus:outline-none">
-              {{ category.name }}
-            </a>
+          <!-- Mega Menu -->
+          <div *ngIf="showMegaMenu"
+               class="absolute top-full -left-32 mt-2 w-[680px] bg-white rounded-2xl border border-slate-200/80 shadow-2xl shadow-slate-200/50 p-6 z-20 animate-fade-in">
+            <div class="grid grid-cols-3 gap-6">
+              <div *ngFor="let category of menuCategories" class="space-y-1">
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 px-2">{{ category.name }}</h4>
+                <a *ngFor="let page of category.pages.slice(0, 4)"
+                   [routerLink]="'/info/' + page.slug"
+                   (click)="closeMegaMenu()"
+                   class="block px-2 py-1.5 rounded-lg text-[13px] text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200 line-clamp-1">
+                  {{ page.title }}
+                </a>
+              </div>
+            </div>
+            <div class="flex gap-3 mt-5 pt-4 border-t border-slate-100">
+              <a routerLink="/info" (click)="closeMegaMenu()"
+                 class="text-sm font-medium text-blue-600 hover:text-blue-700 px-3 py-1.5 rounded-lg hover:bg-blue-50 transition-all duration-200">
+                Все материалы
+              </a>
+              <a routerLink="/qa-centers" (click)="closeMegaMenu()"
+                 class="text-sm font-medium text-slate-500 hover:text-slate-700 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-all duration-200">
+                Центры ЦОК
+              </a>
+              <a routerLink="/info/online-trainer" (click)="closeMegaMenu()"
+                 class="text-sm font-medium text-violet-600 hover:text-violet-700 px-3 py-1.5 rounded-lg hover:bg-violet-50 transition-all duration-200">
+                Тренажёр НОК
+              </a>
+            </div>
           </div>
         </div>
-
-        <a routerLink="/contacts"
-           (click)="closeMobileMenu()"
-           class="block p-3 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-colors duration-200 font-medium focus:outline-none">
-          Контакты
-        </a>
 
         <a routerLink="/faq"
-           (click)="closeMobileMenu()"
-           class="block p-3 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-colors duration-200 font-medium focus:outline-none">
+           class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none"
+           [class.text-white/80]="!isScrolled"
+           [class.hover:text-white]="!isScrolled"
+           [class.hover:bg-white/10]="!isScrolled"
+           [class.text-slate-600]="isScrolled"
+           [class.hover:text-slate-900]="isScrolled"
+           [class.hover:bg-slate-100]="isScrolled">
           FAQ
         </a>
 
-        <a routerLink="/consultation"
-           (click)="closeMobileMenu()"
-           class="block p-3 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-colors duration-200 font-medium focus:outline-none">
-          Консультации
+        <a routerLink="/contacts"
+           class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none"
+           [class.text-white/80]="!isScrolled"
+           [class.hover:text-white]="!isScrolled"
+           [class.hover:bg-white/10]="!isScrolled"
+           [class.text-slate-600]="isScrolled"
+           [class.hover:text-slate-900]="isScrolled"
+           [class.hover:bg-slate-100]="isScrolled">
+          Контакты
+        </a>
+      </div>
+
+      <!-- Desktop Right -->
+      <div class="hidden lg:flex items-center gap-5">
+        <a [href]="'tel:' + phoneHref"
+           class="flex items-center gap-2 text-sm font-medium transition-colors duration-200"
+           [class.text-white/70]="!isScrolled"
+           [class.hover:text-white]="!isScrolled"
+           [class.text-slate-500]="isScrolled"
+           [class.hover:text-slate-900]="isScrolled">
+          <lucide-icon name="phone" [size]="15"></lucide-icon>
+          {{ phoneDisplay }}
+        </a>
+        <button
+          (click)="openConsultationPopup()"
+          class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-blue-600/20 focus:outline-none">
+          Консультация
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        (click)="toggleMobileMenu()"
+        aria-label="Открыть мобильное меню"
+        class="lg:hidden p-2.5 rounded-xl transition-all duration-200 focus:outline-none"
+        [class.text-white]="!isScrolled"
+        [class.hover:bg-white/10]="!isScrolled"
+        [class.text-slate-700]="isScrolled"
+        [class.hover:bg-slate-100]="isScrolled">
+        <lucide-icon [name]="mobileMenuOpen ? 'x' : 'menu'" [size]="24"></lucide-icon>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div *ngIf="mobileMenuOpen"
+         class="lg:hidden absolute left-4 right-4 top-[76px] bg-white rounded-2xl border border-slate-200/80 shadow-2xl p-5 animate-fade-in max-h-[calc(100vh-100px)] overflow-y-auto">
+      <div class="space-y-1">
+        <a routerLink="/" (click)="closeMobileMenu()"
+           class="block p-3.5 rounded-xl text-[15px] text-slate-700 hover:text-blue-600 hover:bg-slate-50 font-medium transition-all">
+          Главная
         </a>
 
-        <div class="pt-3 mt-2 border-t border-slate-200 space-y-3">
-          <a [href]="'tel:' + phoneHref"
-             class="flex items-center justify-center gap-2 p-3 rounded-lg font-medium text-slate-900 bg-slate-50 hover:bg-slate-100 transition-colors">
-            <lucide-icon name="phone" [size]="16" class="text-slate-500"></lucide-icon>
-            {{ phoneDisplay }}
-          </a>
-          <button
-            (click)="openConsultationPopup()"
-            class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition-colors duration-200 focus:outline-none">
-            Получить консультацию
+        <!-- Mobile Услуги -->
+        <div>
+          <button (click)="toggleServicesSubmenu()" aria-label="Услуги"
+                  class="w-full flex items-center justify-between p-3.5 rounded-xl text-[15px] text-slate-700 hover:text-blue-600 hover:bg-slate-50 font-medium transition-all">
+            Услуги
+            <lucide-icon name="chevron-down" [size]="16" class="transition-transform duration-200" [class.rotate-180]="servicesSubmenuOpen"></lucide-icon>
           </button>
+          <div *ngIf="servicesSubmenuOpen" class="pl-4 ml-4 space-y-0.5 border-l-2 border-blue-100 mt-1">
+            <a routerLink="/services/nok-nostroy" (click)="closeMobileMenu()" class="block p-2.5 rounded-lg text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors">НОК НОСТРОЙ</a>
+            <a routerLink="/services/nok-nopriz" (click)="closeMobileMenu()" class="block p-2.5 rounded-lg text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors">НОК НОПРИЗ</a>
+            <a routerLink="/services/nok-opb" (click)="closeMobileMenu()" class="block p-2.5 rounded-lg text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors">НОК МЧС</a>
+            <a routerLink="/services/nok-housing" (click)="closeMobileMenu()" class="block p-2.5 rounded-lg text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors">НОК ЖКХ</a>
+            <a routerLink="/services" (click)="closeMobileMenu()" class="block p-2.5 rounded-lg text-sm text-blue-600 font-medium hover:bg-blue-50 transition-colors">Все услуги</a>
+          </div>
         </div>
+
+        <!-- Mobile НОК -->
+        <div>
+          <button (click)="toggleNokSubmenu()" aria-label="База знаний"
+                  class="w-full flex items-center justify-between p-3.5 rounded-xl text-[15px] text-slate-700 hover:text-blue-600 hover:bg-slate-50 font-medium transition-all">
+            База знаний
+            <lucide-icon name="chevron-down" [size]="16" class="transition-transform duration-200" [class.rotate-180]="nokSubmenuOpen"></lucide-icon>
+          </button>
+          <div *ngIf="nokSubmenuOpen" class="pl-4 ml-4 space-y-0.5 border-l-2 border-blue-100 mt-1">
+            <a routerLink="/info" (click)="closeMobileMenu()" class="block p-2.5 rounded-lg text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors">Все материалы</a>
+            <a routerLink="/qa-centers" (click)="closeMobileMenu()" class="block p-2.5 rounded-lg text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors">Центры ЦОК</a>
+            <a routerLink="/info/online-trainer" (click)="closeMobileMenu()" class="block p-2.5 rounded-lg text-sm text-violet-600 font-medium hover:bg-violet-50 transition-colors">Тренажёр НОК</a>
+          </div>
+        </div>
+
+        <a routerLink="/faq" (click)="closeMobileMenu()"
+           class="block p-3.5 rounded-xl text-[15px] text-slate-700 hover:text-blue-600 hover:bg-slate-50 font-medium transition-all">FAQ</a>
+        <a routerLink="/contacts" (click)="closeMobileMenu()"
+           class="block p-3.5 rounded-xl text-[15px] text-slate-700 hover:text-blue-600 hover:bg-slate-50 font-medium transition-all">Контакты</a>
+      </div>
+
+      <div class="mt-4 pt-4 border-t border-slate-100 space-y-3">
+        <a [href]="'tel:' + phoneHref"
+           class="flex items-center justify-center gap-2.5 p-3.5 rounded-xl font-medium text-slate-700 bg-slate-50 hover:bg-slate-100 transition-colors">
+          <lucide-icon name="phone" [size]="16" class="text-slate-500"></lucide-icon>
+          {{ phoneDisplay }}
+        </a>
+        <button (click)="openConsultationPopup()"
+                class="w-full bg-blue-600 hover:bg-blue-500 text-white py-3.5 rounded-xl font-semibold text-base transition-colors">
+          Получить консультацию
+        </button>
       </div>
     </div>
   </nav>
