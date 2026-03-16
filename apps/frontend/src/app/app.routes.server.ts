@@ -182,6 +182,10 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender
   },
   {
+    path: 'forgot-password',
+    renderMode: RenderMode.Prerender
+  },
+  {
     path: 'dashboard',
     renderMode: RenderMode.Client
   },

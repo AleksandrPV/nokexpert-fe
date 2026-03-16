@@ -72,8 +72,15 @@ import { IconModule } from '../../../shared/components/icon/icon.component';
             </button>
           </form>
 
+          <!-- Forgot password -->
+          <div class="mt-4 text-center">
+            <a routerLink="/forgot-password" class="text-sm text-slate-500 hover:text-blue-400 transition-colors">
+              Забыли пароль?
+            </a>
+          </div>
+
           <!-- Register link -->
-          <p class="mt-6 text-center text-sm text-slate-400">
+          <p class="mt-4 text-center text-sm text-slate-400">
             Нет аккаунта?
             <a routerLink="/register" class="text-blue-400 hover:text-blue-300 font-medium transition-colors">
               Зарегистрироваться

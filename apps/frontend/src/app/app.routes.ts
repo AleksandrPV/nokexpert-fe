@@ -61,6 +61,10 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () => import('./features/auth/components/register-page.component').then(m => m.RegisterPageComponent)
   },
+  {
+    path: 'forgot-password',
+    loadComponent: () => import('./features/auth/components/forgot-password-page.component').then(m => m.ForgotPasswordPageComponent)
+  },
 
   // ===== Public site (main layout with public header/footer) =====
   {

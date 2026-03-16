@@ -417,6 +417,11 @@ export class UsersService {
     };
   }
 
+  async requestPasswordReset(email: string): Promise<void> {
+    this.logger.log(`Password reset requested for: ${email}`);
+    // TODO: implement email sending
+  }
+
   // Регистрация пользователя
   async register(registerDto: RegisterDto): Promise<AuthResponse> {
     // Создание пользователя

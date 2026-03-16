@@ -37,6 +37,16 @@ export class UsersController {
 
   // ===== АУТЕНТИФИКАЦИОННЫЕ ЭНДПОИНТЫ =====
 
+  @Post('forgot-password')
+  @Public()
+  @Throttle({ default: { limit: 3, ttl: 60000 } })
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Запрос восстановления пароля' })
+  async forgotPassword(@Body() body: { email: string }): Promise<{ message: string }> {
+    await this.usersService.requestPasswordReset(body.email);
+    return { message: 'Если аккаунт существует, инструкции отправлены на email' };
+  }
+
   // Регистрация пользователя (публичный эндпоинт)
   @Post('register')
   @Public()
