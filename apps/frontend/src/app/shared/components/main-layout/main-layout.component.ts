@@ -5,11 +5,12 @@ import { FooterComponent } from '../footer/footer.component';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { CookiesBannerComponent } from '../../../features/cookies/cookies-banner.component';
+import { ToastContainerComponent } from '../toast/toast-container.component';
 
 @Component({
   selector: 'app-main-layout',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, RouterOutlet, CookiesBannerComponent],
+  imports: [HeaderComponent, FooterComponent, RouterOutlet, CookiesBannerComponent, ToastContainerComponent],
   template: `
     <app-header />
     <main class="min-h-[70vh]">
@@ -19,6 +20,7 @@ import { CookiesBannerComponent } from '../../../features/cookies/cookies-banner
 
     <!-- Cookies Banner -->
     <app-cookies-banner />
+    <app-toast-container />
   `,
   styles: []
 })

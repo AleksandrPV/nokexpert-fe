@@ -7,6 +7,8 @@ import { FeedbackPopupService } from '../../../features/feedback-popup/services/
 import { OrganizationService } from '../../services/organization.service';
 import { ServicesService, HeaderService } from '../../../features/services/services/services.service';
 import { IconModule } from '../icon/icon.component';
+import { AuthService } from '../../../core/services/auth.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-header',
@@ -32,6 +34,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private organizationService = inject(OrganizationService);
   private servicesService = inject(ServicesService);
   private platformId = inject(PLATFORM_ID);
+  authService = inject(AuthService);
+  private toastService = inject(ToastService);
+  showUserMenu = false;
 
   @HostListener('window:scroll')
   onScroll(): void {
@@ -152,5 +157,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
    */
   openConsultationPopup(): void {
     this.feedbackService.openForConsultation();
+  }
+
+  toggleUserMenu(): void {
+    this.showUserMenu = !this.showUserMenu;
+  }
+
+  closeUserMenu(): void {
+    this.showUserMenu = false;
+  }
+
+  logout(): void {
+    this.showUserMenu = false;
+    this.authService.logout();
+    this.toastService.info('Вы вышли из аккаунта');
   }
 } 
