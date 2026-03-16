@@ -11,6 +11,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { ToastService } from '../../../shared/services/toast.service';
 import { IconModule } from '../../../shared/components/icon/icon.component';
+import { PasswordStrengthComponent } from '../../../shared/components/password-strength/password-strength.component';
 
 function passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
   const password = control.get('password');
@@ -25,7 +26,7 @@ function passwordMatchValidator(control: AbstractControl): ValidationErrors | nu
 @Component({
   selector: 'app-register-page',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, IconModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, IconModule, PasswordStrengthComponent],
   template: `
     <section class="min-h-screen bg-slate-950 flex items-center justify-center px-4 py-20">
       <!-- Background -->
@@ -104,6 +105,7 @@ function passwordMatchValidator(control: AbstractControl): ValidationErrors | nu
                      placeholder="Минимум 6 символов">
               <p *ngIf="form.get('password')?.touched && form.get('password')?.invalid"
                  class="mt-1.5 text-xs text-red-400">Минимум 6 символов</p>
+              <app-password-strength [value]="form.get('password')?.value ?? ''"></app-password-strength>
             </div>
 
             <!-- Confirm Password -->
