@@ -149,6 +149,17 @@
           FAQ
         </a>
 
+        <a routerLink="/trainer"
+           class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none"
+           [class.text-white/80]="!isScrolled"
+           [class.hover:text-white]="!isScrolled"
+           [class.hover:bg-white/10]="!isScrolled"
+           [class.text-slate-600]="isScrolled"
+           [class.hover:text-slate-900]="isScrolled"
+           [class.hover:bg-slate-100]="isScrolled">
+          Тренажёр
+        </a>
+
         <a routerLink="/contacts"
            class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none"
            [class.text-white/80]="!isScrolled"

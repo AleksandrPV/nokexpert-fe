@@ -79,6 +79,9 @@ import { IconModule } from '../icon/icon.component';
                 <a routerLink="/qualifications" class="block text-sm text-slate-400 hover:text-white transition-colors duration-200">
                   Квалификации
                 </a>
+                <a routerLink="/trainer" class="block text-sm text-slate-400 hover:text-white transition-colors duration-200">
+                  Тренажёр НОК
+                </a>
                 <a routerLink="/consultation" class="block text-sm text-slate-400 hover:text-white transition-colors duration-200">
                   Консультации
                 </a>
