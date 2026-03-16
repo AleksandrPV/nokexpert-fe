@@ -1,0 +1,327 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design System — Clean Modern SaaS */
+:root {
+  --brand-primary: #2563EB;
+  --brand-primary-dark: #1D4ED8;
+  --brand-primary-light: #DBEAFE;
+  --brand-accent: #DC2626;
+  --brand-accent-dark: #B91C1C;
+  --brand-dark: #0F172A;
+  --brand-text: #334155;
+  --brand-muted: #64748B;
+  --brand-border: #E2E8F0;
+  --brand-bg-alt: #F8FAFC;
+  --brand-surface: #FFFFFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #ffffff;
+  color: var(--brand-text);
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Selection color */
+::selection {
+  background-color: rgba(37, 99, 235, 0.15);
+  color: inherit;
+}
+
+::-moz-selection {
+  background-color: rgba(37, 99, 235, 0.15);
+  color: inherit;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ========== Cards ========== */
+.card {
+  background: var(--brand-surface);
+  border: 1px solid var(--brand-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* ========== Buttons ========== */
+.btn-primary {
+  background-color: var(--brand-accent);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--brand-accent-dark);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+  background-color: var(--brand-surface);
+  color: var(--brand-text);
+  border: 1px solid var(--brand-border);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: var(--brand-bg-alt);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--brand-primary);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-ghost:hover {
+  background-color: var(--brand-primary-light);
+}
+
+/* ========== Focus styles ========== */
+*:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+/* Disable focus outline for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ========== Scrollbar ========== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--brand-bg-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* ========== Section backgrounds ========== */
+.section-alt {
+  background-color: var(--brand-bg-alt);
+}
+
+/* ========== Hover transition ========== */
+.hover-lift {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* ========== Delay classes ========== */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* ========== Responsive typography ========== */
+@media (max-width: 768px) {
+  .text-responsive-xl {
+    font-size: 2.5rem;
+  }
+
+  .text-responsive-lg {
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .text-responsive-xl {
+    font-size: 4rem;
+  }
+
+  .text-responsive-lg {
+    font-size: 2.5rem;
+  }
+}
+
+/* ========== Legacy class compatibility ========== */
+/* These map old class names to new clean styles so existing templates don't break */
+.glass,
+.glass-dark {
+  background: var(--brand-surface);
+  border: 1px solid var(--brand-border);
+}
+
+.neomorphic {
+  background: var(--brand-surface);
+  border: 1px solid var(--brand-border);
+}
+
+.btn-consultation {
+  background-color: var(--brand-primary);
+  border: none;
+  color: white;
+  transition: background-color 0.2s ease;
+}
+
+.btn-consultation:hover {
+  background-color: var(--brand-primary-dark);
+}
+
+.btn-coral {
+  background-color: var(--brand-accent);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.btn-coral:hover {
+  background-color: var(--brand-accent-dark);
+}
+
+.btn-modern {
+  background-color: var(--brand-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.btn-modern:hover {
+  background-color: var(--brand-primary-dark);
+}
+
+.card-modern {
+  background: var(--brand-surface);
+  border: 1px solid var(--brand-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: box-shadow 0.2s ease;
+}
+
+.card-modern:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* Text gradient compatibility — just use solid colors */
+.text-gradient-primary { color: var(--brand-primary); }
+.text-gradient-secondary { color: var(--brand-primary); }
+.text-gradient-accent { color: var(--brand-accent); }
+.text-gradient-success { color: #16a34a; }
+.text-gradient-warning { color: #d97706; }
+
+/* Old brand color utilities — map to new palette */
+.text-brand-navy { color: var(--brand-dark); }
+.text-brand-dark { color: var(--brand-dark); }
+.text-brand-sky { color: var(--brand-primary); }
+.text-brand-coral { color: var(--brand-accent); }
+.text-brand-coral-light { color: var(--brand-accent); }
+.text-brand-coral-dark { color: var(--brand-accent-dark); }
+
+.bg-brand-navy { background-color: var(--brand-dark); }
+.bg-brand-dark { background-color: var(--brand-dark); }
+.bg-brand-sky { background-color: var(--brand-primary); }
+.bg-brand-coral { background-color: var(--brand-accent); }
+.bg-brand-coral-light { background-color: var(--brand-accent); }
+.bg-brand-coral-dark { background-color: var(--brand-accent-dark); }
+
+.border-brand-navy { border-color: var(--brand-dark); }
+.border-brand-sky { border-color: var(--brand-primary); }
+.border-brand-coral { border-color: var(--brand-accent); }
+
+/* Consulting accent — clean left border */
+.consulting-accent {
+  position: relative;
+}
+
+.consulting-accent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -20px;
+  width: 4px;
+  height: 100%;
+  background: var(--brand-primary);
+  border-radius: 2px;
+}
+
+/* ========== Full-width layout utilities ========== */
+
+/* Full-width sections with auto side padding */
+.section-full {
+  width: 100%;
+  padding-left: max(1rem, calc((100vw - 1280px) / 2));
+  padding-right: max(1rem, calc((100vw - 1280px) / 2));
+}
+
+/* For truly edge-to-edge backgrounds */
+.bg-full {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+/* Content container within full-width sections */
+.content-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 1536px) {
+  .content-container {
+    max-width: 1400px;
+  }
+}
+
+/* GSAP handles opacity via fromTo() — no CSS pre-hide needed */
+
+/* Hero word spacing — inline-block removes whitespace between spans */
+.hero-word {
+  margin-right: 0.3em;
+}
+.hero-word:last-child {
+  margin-right: 0;
+}

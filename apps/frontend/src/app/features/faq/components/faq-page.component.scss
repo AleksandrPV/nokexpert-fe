@@ -1,0 +1,97 @@
+// FAQ page -- premium SaaS styles
+
+// FAQ expand/collapse transition
+.max-h-0 {
+  max-height: 0;
+}
+
+.max-h-\[40rem\] {
+  max-height: 40rem;
+}
+
+// FAQ answer rich content
+.faq-answer {
+  strong {
+    font-weight: 600;
+    color: #1e293b;
+  }
+
+  a {
+    color: #2563eb;
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #1d4ed8;
+    }
+  }
+
+  em, i {
+    font-style: italic;
+    color: #64748b;
+  }
+
+  ul, ol {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+
+    li {
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  p {
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  code {
+    background-color: #f1f5f9;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.375rem;
+    font-family: 'Monaco', 'Consolas', monospace;
+    font-size: 0.875em;
+    color: #dc2626;
+  }
+
+  blockquote {
+    border-left: 3px solid #2563eb;
+    padding-left: 1rem;
+    margin: 1rem 0;
+    font-style: italic;
+    color: #64748b;
+  }
+}
+
+// Focus styles
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// Print styles
+@media print {
+  button {
+    display: none !important;
+  }
+
+  section {
+    break-inside: avoid;
+  }
+}

@@ -1,0 +1,44 @@
+export const APP_CONSTANTS = {
+  // Валидация
+  MIN_PASSWORD_LENGTH: 6,
+  MAX_PASSWORD_LENGTH: 50,
+  MIN_QUESTION_POINTS: 0.1,
+  MAX_QUESTION_POINTS: 10,
+  MAX_ANSWER_OPTIONS: 6,
+  MIN_ANSWER_OPTIONS: 2,
+
+  // Тестирование
+  DEFAULT_TEST_DURATION_MINUTES: 120,
+  MIN_PASSING_SCORE: 50,
+  MAX_PASSING_SCORE: 100,
+  DEFAULT_CANDIDATES_PER_SESSION: 10,
+  MAX_CANDIDATES_PER_SESSION: 50,
+
+  // Бронирование площадок
+  DEFAULT_BOOKING_ADVANCE_DAYS: 7,
+  DEFAULT_CANCELLATION_HOURS: 24,
+  MAX_SIMULTANEOUS_TESTS: 1000,
+  DEFAULT_MAX_CANDIDATES: 10,
+
+  // Координаты
+  MIN_LATITUDE: -90,
+  MAX_LATITUDE: 90,
+  MIN_LONGITUDE: -180,
+  MAX_LONGITUDE: 180,
+
+  // Пагинация
+  DEFAULT_PAGE_SIZE: 20,
+  MAX_PAGE_SIZE: 100,
+
+  // Файлы
+  MAX_FILE_SIZE_MB: 10,
+  ALLOWED_FILE_TYPES: ['image/jpeg', 'image/png', 'application/pdf'],
+
+  // Временные зоны
+  DEFAULT_TIMEZONE: 'Europe/Moscow',
+
+  // Регулярные выражения
+  PHONE_REGEX: /^\+7\d{10}$/,
+  INN_REGEX: /^\d{10}|\d{12}$/,
+  QUALIFICATION_CODE_REGEX: /^\d{2}\.\d{5}\.\d{2}$/,
+} as const;

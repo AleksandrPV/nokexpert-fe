@@ -1,0 +1,37 @@
+// NOK NOSTROY Info Page — Premium SaaS design
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// Print
+@media print {
+  section {
+    break-inside: avoid;
+  }
+
+  .bg-slate-950 {
+    background: #f8fafc !important;
+    color: #0f172a !important;
+
+    * {
+      color: #0f172a !important;
+    }
+  }
+
+  .cta-gradient-card {
+    background: #f8fafc !important;
+    color: #0f172a !important;
+
+    * {
+      color: #0f172a !important;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+// NOK NOSTROY page — premium SaaS styles
+
+// FAQ expand/collapse transition
+.max-h-0 {
+  max-height: 0;
+}
+
+.max-h-96 {
+  max-height: 24rem;
+}
+
+// Focus styles
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #2563EB;
+  outline-offset: 2px;
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// Print styles
+@media print {
+  button {
+    display: none !important;
+  }
+
+  section {
+    break-inside: avoid;
+  }
+}

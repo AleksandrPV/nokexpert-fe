@@ -1,0 +1,384 @@
+<main>
+
+<!-- ============================================ -->
+<!-- HERO — Dark, ~50vh, NOT full-screen          -->
+<!-- ============================================ -->
+<section class="relative flex items-center overflow-hidden bg-slate-950 min-h-[50vh]" id="contacts-hero">
+  <!-- Gradient overlay -->
+  <div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900/95 to-blue-950/90" aria-hidden="true"></div>
+
+  <!-- Floating orbs -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="contacts-hero-orb absolute w-[400px] h-[400px] rounded-full bg-blue-600/[0.07] blur-[100px] -top-20 -right-20"></div>
+    <div class="contacts-hero-orb absolute w-[300px] h-[300px] rounded-full bg-cyan-500/[0.05] blur-[80px] bottom-10 -left-16"></div>
+    <div class="contacts-hero-orb absolute w-[250px] h-[250px] rounded-full bg-violet-600/[0.06] blur-[90px] top-1/3 right-1/4"></div>
+  </div>
+
+  <!-- Grid lines -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="contacts-grid-line absolute top-0 left-[25%] w-px h-full bg-gradient-to-b from-transparent via-white/[0.04] to-transparent"></div>
+    <div class="contacts-grid-line absolute top-0 left-[50%] w-px h-full bg-gradient-to-b from-transparent via-white/[0.03] to-transparent"></div>
+    <div class="contacts-grid-line absolute top-0 left-[75%] w-px h-full bg-gradient-to-b from-transparent via-white/[0.04] to-transparent"></div>
+    <div class="contacts-grid-line-h absolute left-0 top-[40%] h-px w-full bg-gradient-to-r from-transparent via-white/[0.03] to-transparent"></div>
+    <div class="contacts-grid-line-h absolute left-0 top-[70%] h-px w-full bg-gradient-to-r from-transparent via-white/[0.04] to-transparent"></div>
+  </div>
+
+  <div class="relative z-10 w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32 py-24 lg:py-32">
+    <div class="max-w-4xl mx-auto text-center">
+      <!-- Badge -->
+      <div class="contacts-hero-badge inline-flex items-center gap-3 bg-blue-500/10 text-blue-400 px-5 py-2 rounded-full mb-8 border border-blue-500/20">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+        </span>
+        <span class="text-sm font-semibold tracking-wide uppercase">Отвечаем в течение 15 минут</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="contacts-hero-title text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] tracking-tight mb-6">
+        Свяжитесь с
+        <span class="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">нами</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="contacts-hero-subtitle text-xl sm:text-2xl text-slate-400 leading-relaxed max-w-2xl mx-auto mb-12">
+        Бесплатная консультация по подготовке к НОК. Проверим документы и составим план за 1 рабочий день.
+      </p>
+
+      <!-- Quick stats -->
+      <div class="flex flex-wrap items-center justify-center gap-8 text-sm text-slate-500">
+        <div class="contacts-hero-stat flex items-center gap-2">
+          <lucide-icon name="phone" [size]="16" [strokeWidth]="2" class="text-blue-400"></lucide-icon>
+          <span>Бесплатные звонки</span>
+        </div>
+        <div class="contacts-hero-stat hidden sm:block w-px h-4 bg-slate-700"></div>
+        <div class="contacts-hero-stat flex items-center gap-2">
+          <lucide-icon name="clock" [size]="16" [strokeWidth]="2" class="text-emerald-400"></lucide-icon>
+          <span>Пн-Пт 9:00-18:00, Сб 10:00-16:00</span>
+        </div>
+        <div class="contacts-hero-stat hidden sm:block w-px h-4 bg-slate-700"></div>
+        <div class="contacts-hero-stat flex items-center gap-2">
+          <lucide-icon name="shield" [size]="16" [strokeWidth]="2" class="text-violet-400"></lucide-icon>
+          <span>Консультация бесплатно</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- CONTACT INFO + FORM — bg-white               -->
+<!-- ============================================ -->
+<section class="py-24 lg:py-32 bg-white" id="contacts-section">
+  <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+
+    <!-- Section header -->
+    <div class="max-w-3xl mb-20">
+      <div class="inline-flex items-center gap-2 text-blue-600 font-semibold text-sm uppercase tracking-wider mb-4">
+        <lucide-icon name="message-circle" [size]="16" [strokeWidth]="2"></lucide-icon>
+        Контактная информация
+      </div>
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
+        Выберите удобный способ связи
+      </h2>
+      <p class="text-xl text-slate-500 leading-relaxed">
+        Позвоните, напишите или заполните форму — мы свяжемся с вами в кратчайшие сроки и ответим на все вопросы.
+      </p>
+    </div>
+
+    <!-- Two-column layout -->
+    <div class="grid lg:grid-cols-5 gap-10 lg:gap-12">
+
+      <!-- Left: Contact cards -->
+      <div class="lg:col-span-2 space-y-5">
+
+        <!-- Phone -->
+        <a [href]="'tel:' + phoneHref"
+           class="contact-card group flex items-start gap-5 bg-white rounded-2xl p-6 ring-1 ring-slate-200 hover:ring-blue-200 transition-all duration-300 hover:shadow-lg">
+          <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 transition-colors">
+            <lucide-icon name="phone" [size]="22" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <div>
+            <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-1">Телефон</h3>
+            <p class="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{{ phoneDisplay }}</p>
+            <p class="text-sm text-slate-500 mt-1">Бесплатные звонки по России</p>
+          </div>
+        </a>
+
+        <!-- Email -->
+        <a [href]="'mailto:' + email"
+           class="contact-card group flex items-start gap-5 bg-white rounded-2xl p-6 ring-1 ring-slate-200 hover:ring-blue-200 transition-all duration-300 hover:shadow-lg">
+          <div class="w-12 h-12 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-100 transition-colors">
+            <lucide-icon name="mail" [size]="22" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <div>
+            <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-1">Email</h3>
+            <p class="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{{ email }}</p>
+            <p class="text-sm text-slate-500 mt-1">Ответим в течение часа</p>
+          </div>
+        </a>
+
+        <!-- Working hours -->
+        <div class="contact-card flex items-start gap-5 bg-white rounded-2xl p-6 ring-1 ring-slate-200">
+          <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0">
+            <lucide-icon name="clock" [size]="22" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <div>
+            <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-1">Режим работы</h3>
+            <p class="text-lg font-bold text-slate-900">Пн-Пт: 9:00 - 18:00</p>
+            <p class="text-sm text-slate-500 mt-1">Сб: 10:00 - 16:00</p>
+          </div>
+        </div>
+
+        <!-- Address -->
+        <div class="contact-card flex items-start gap-5 bg-white rounded-2xl p-6 ring-1 ring-slate-200">
+          <div class="w-12 h-12 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center flex-shrink-0">
+            <lucide-icon name="map-pin" [size]="22" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <div>
+            <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-1">Адрес</h3>
+            <p class="text-lg font-bold text-slate-900">{{ address }}</p>
+            <p class="text-sm text-slate-500 mt-1">Санкт-Петербург, офис 310</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Contact form -->
+      <div class="lg:col-span-3">
+        <div class="contact-form-card bg-white rounded-3xl p-8 lg:p-10 ring-1 ring-slate-200">
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold text-slate-900 mb-2">Отправить сообщение</h2>
+            <p class="text-slate-500">Заполните форму и мы свяжемся с вами в ближайшее время</p>
+          </div>
+
+          <form class="space-y-6" (ngSubmit)="onSubmit()">
+            <!-- Name and Phone -->
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-sm font-semibold text-slate-700">Имя *</label>
+                <input
+                  type="text"
+                  [(ngModel)]="formData.name"
+                  name="name"
+                  required
+                  class="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                  placeholder="Ваше имя">
+              </div>
+              <div class="space-y-2">
+                <label class="text-sm font-semibold text-slate-700">Телефон</label>
+                <input
+                  type="tel"
+                  [(ngModel)]="formData.phone"
+                  name="phone"
+                  appPhoneMask
+                  class="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                  placeholder="+7 (___) ___-__-__">
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="space-y-2">
+              <label class="text-sm font-semibold text-slate-700">Email *</label>
+              <input
+                type="email"
+                [(ngModel)]="formData.email"
+                name="email"
+                required
+                class="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                placeholder="your@mail.ru">
+            </div>
+
+            <!-- Message -->
+            <div class="space-y-2">
+              <label class="text-sm font-semibold text-slate-700">Сообщение *</label>
+              <textarea
+                [(ngModel)]="formData.message"
+                name="message"
+                required
+                rows="5"
+                class="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all resize-none"
+                placeholder="Опишите ваш вопрос или ситуацию..."></textarea>
+            </div>
+
+            <!-- Privacy -->
+            <div class="flex items-start gap-3">
+              <input
+                type="checkbox"
+                [(ngModel)]="formData.privacy"
+                name="privacy"
+                required
+                class="mt-1 w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500/30">
+              <label class="text-sm text-slate-500">
+                Я согласен с <a routerLink="/privacy-policy" class="text-blue-600 hover:underline">политикой конфиденциальности</a>
+                и обработкой персональных данных
+              </label>
+            </div>
+
+            <!-- Success -->
+            <div *ngIf="submitSuccess" class="flex items-start gap-3 p-4 bg-emerald-50 border border-emerald-200 rounded-xl">
+              <lucide-icon name="circle-check" [size]="20" [strokeWidth]="2" class="text-emerald-600 flex-shrink-0 mt-0.5"></lucide-icon>
+              <p class="text-sm text-emerald-800">Спасибо за обращение! Мы свяжемся с вами в ближайшее время.</p>
+            </div>
+
+            <!-- Error -->
+            <div *ngIf="submitError" class="flex items-start gap-3 p-4 bg-red-50 border border-red-200 rounded-xl">
+              <lucide-icon name="circle-alert" [size]="20" [strokeWidth]="2" class="text-red-600 flex-shrink-0 mt-0.5"></lucide-icon>
+              <p class="text-sm text-red-800">{{ submitError }}</p>
+            </div>
+
+            <!-- Submit -->
+            <button
+              type="submit"
+              [disabled]="isSubmitting"
+              class="w-full bg-blue-600 hover:bg-blue-500 text-white py-4.5 text-lg font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-600/25 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:shadow-none flex items-center justify-center gap-3">
+              <ng-container *ngIf="!isSubmitting">
+                <lucide-icon name="send" [size]="20" [strokeWidth]="2"></lucide-icon>
+                <span>Отправить сообщение</span>
+              </ng-container>
+              <ng-container *ngIf="isSubmitting">
+                <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span>Отправка...</span>
+              </ng-container>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- YANDEX MAP — bg-slate-50                     -->
+<!-- ============================================ -->
+<section class="py-24 lg:py-32 bg-slate-50" id="map-section">
+  <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+
+    <!-- Section header -->
+    <div class="max-w-3xl mb-20">
+      <div class="inline-flex items-center gap-2 text-blue-600 font-semibold text-sm uppercase tracking-wider mb-4">
+        <lucide-icon name="map-pin" [size]="16" [strokeWidth]="2"></lucide-icon>
+        Наш офис
+      </div>
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
+        Приходите к нам в гости
+      </h2>
+      <p class="text-xl text-slate-500 leading-relaxed">
+        Главный офис находится в Санкт-Петербурге. Мы работаем со специалистами из всех регионов России.
+      </p>
+    </div>
+
+    <!-- Map -->
+    <div class="map-container h-[450px] lg:h-[500px] rounded-3xl overflow-hidden ring-1 ring-slate-200 shadow-xl">
+      <app-yandex-map
+        [center]="mapCenter"
+        [zoom]="mapZoom"
+        [markers]="mapMarkers"
+        officeTitle="НОК Эксперт"
+        officeAddress="Наб. Черной речки д. 15, оф. 310">
+      </app-yandex-map>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- MESSENGERS — bg-white                        -->
+<!-- ============================================ -->
+<section class="py-24 lg:py-32 bg-white" id="messengers-section">
+  <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+
+    <!-- Section header -->
+    <div class="max-w-3xl mb-20">
+      <div class="inline-flex items-center gap-2 text-blue-600 font-semibold text-sm uppercase tracking-wider mb-4">
+        <lucide-icon name="send" [size]="16" [strokeWidth]="2"></lucide-icon>
+        Мессенджеры
+      </div>
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
+        Напишите нам в мессенджере
+      </h2>
+      <p class="text-xl text-slate-500 leading-relaxed">
+        Получите быстрый ответ на ваш вопрос. Обычно отвечаем в течение 15 минут в рабочее время.
+      </p>
+    </div>
+
+    <!-- Messenger cards -->
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl">
+
+      <!-- Telegram -->
+      <a href="https://t.me/nokexpert" target="_blank" rel="noopener noreferrer"
+         class="messenger-card group bg-white rounded-3xl p-8 lg:p-10 ring-1 ring-slate-200 hover:ring-blue-300 transition-all duration-500 hover:shadow-xl">
+        <div class="w-14 h-14 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center mb-6 group-hover:bg-sky-100 transition-colors">
+          <lucide-icon name="send" [size]="28" [strokeWidth]="1.5"></lucide-icon>
+        </div>
+        <h3 class="text-2xl font-bold text-slate-900 mb-3 group-hover:text-sky-600 transition-colors">Telegram</h3>
+        <p class="text-lg text-slate-500 leading-relaxed mb-6">
+          Быстрые ответы и консультации. Отправьте вопрос и получите ответ эксперта.
+        </p>
+        <div class="flex items-center gap-2 text-sky-600 font-semibold">
+          <span>Написать в Telegram</span>
+          <lucide-icon name="arrow-right" [size]="18" [strokeWidth]="2" class="transition-transform duration-300 group-hover:translate-x-1"></lucide-icon>
+        </div>
+      </a>
+
+      <!-- WhatsApp -->
+      <a href="https://wa.me/78005553535" target="_blank" rel="noopener noreferrer"
+         class="messenger-card group bg-white rounded-3xl p-8 lg:p-10 ring-1 ring-slate-200 hover:ring-emerald-300 transition-all duration-500 hover:shadow-xl">
+        <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-6 group-hover:bg-emerald-100 transition-colors">
+          <lucide-icon name="message-circle" [size]="28" [strokeWidth]="1.5"></lucide-icon>
+        </div>
+        <h3 class="text-2xl font-bold text-slate-900 mb-3 group-hover:text-emerald-600 transition-colors">WhatsApp</h3>
+        <p class="text-lg text-slate-500 leading-relaxed mb-6">
+          Удобная связь через WhatsApp. Отправляйте документы и получайте консультации.
+        </p>
+        <div class="flex items-center gap-2 text-emerald-600 font-semibold">
+          <span>Написать в WhatsApp</span>
+          <lucide-icon name="arrow-right" [size]="18" [strokeWidth]="2" class="transition-transform duration-300 group-hover:translate-x-1"></lucide-icon>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- CTA — Final conversion block                 -->
+<!-- ============================================ -->
+<section class="py-24 lg:py-32 bg-white" id="contacts-cta">
+  <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+    <div class="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 rounded-3xl p-12 lg:p-20 overflow-hidden">
+      <!-- Decorative -->
+      <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" aria-hidden="true"></div>
+      <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" aria-hidden="true"></div>
+
+      <div class="relative z-10 text-center max-w-3xl mx-auto">
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6">
+          Начните с бесплатной консультации
+        </h2>
+        <p class="text-xl text-blue-100/80 leading-relaxed mb-10">
+          Проверим ваши документы, определим квалификацию и расскажем,
+          сколько времени займёт подготовка и сдача НОК
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a [href]="'tel:' + phoneHref"
+             class="inline-flex items-center justify-center gap-2.5 bg-white text-blue-700 px-10 py-5 text-lg font-bold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-white/20 hover:-translate-y-0.5">
+            <lucide-icon name="phone" [size]="22" [strokeWidth]="2"></lucide-icon>
+            {{ phoneDisplay }}
+          </a>
+          <a [href]="'mailto:' + email"
+             class="inline-flex items-center justify-center gap-2.5 text-white px-10 py-5 text-lg font-semibold rounded-xl border border-white/20 hover:bg-white/10 transition-all duration-300">
+            <lucide-icon name="mail" [size]="20" [strokeWidth]="2"></lucide-icon>
+            Написать на email
+          </a>
+        </div>
+        <p class="text-sm text-blue-200/60 mt-6">Ответим в течение 15 минут в рабочее время</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>

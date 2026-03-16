@@ -1,0 +1,378 @@
+<!-- Хлебные крошки -->
+<app-breadcrumbs
+  [breadcrumbs]="[
+    { label: 'Главная', url: '/' },
+    { label: 'Услуги', active: true }
+  ]">
+</app-breadcrumbs>
+
+<main>
+
+<!-- ============================================ -->
+<!-- HERO — Dark, immersive header                -->
+<!-- ============================================ -->
+<section class="relative overflow-hidden bg-slate-950" id="services-hero" aria-label="Услуги подготовки к НОК">
+  <!-- Animated floating orbs -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="absolute w-[400px] h-[400px] rounded-full bg-blue-600/[0.07] blur-[100px] -top-32 -right-32"></div>
+    <div class="absolute w-[300px] h-[300px] rounded-full bg-cyan-500/[0.05] blur-[80px] bottom-10 -left-20"></div>
+  </div>
+
+  <!-- Grid lines -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="absolute top-0 left-[25%] w-px h-full bg-gradient-to-b from-transparent via-white/[0.04] to-transparent"></div>
+    <div class="absolute top-0 left-[50%] w-px h-full bg-gradient-to-b from-transparent via-white/[0.03] to-transparent"></div>
+    <div class="absolute top-0 left-[75%] w-px h-full bg-gradient-to-b from-transparent via-white/[0.04] to-transparent"></div>
+  </div>
+
+  <div class="relative z-10 w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32 py-24 lg:py-32">
+    <div class="max-w-4xl">
+      <!-- Badge -->
+      <div class="hero-badge inline-flex items-center gap-3 bg-blue-500/10 text-blue-400 px-5 py-2 rounded-full mb-8 border border-blue-500/20">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+        </span>
+        <span class="text-sm font-semibold tracking-wide uppercase">Профессиональная подготовка к НОК</span>
+      </div>
+
+      <!-- Heading -->
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] tracking-tight mb-8">
+        Все услуги
+        <span class="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">НОК</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <div class="hero-subtitle max-w-2xl mb-12">
+        <p class="text-xl sm:text-2xl text-slate-400 leading-relaxed">
+          Подготовка и сопровождение специалистов к сдаче независимой оценки квалификации.
+          Тренажёр с реальными вопросами, помощь с документами,
+          <strong class="text-white font-semibold">гарантия результата.</strong>
+        </p>
+      </div>
+
+      <!-- Stats row -->
+      <div class="hero-stats flex flex-wrap items-center gap-8 text-sm text-slate-500">
+        <div class="flex items-center gap-2">
+          <lucide-icon name="shield" [size]="16" [strokeWidth]="2" class="text-emerald-500"></lucide-icon>
+          <span>Лицензированный центр</span>
+        </div>
+        <div class="hidden sm:block w-px h-4 bg-slate-700"></div>
+        <div class="flex items-center gap-2">
+          <lucide-icon name="users" [size]="16" [strokeWidth]="2" class="text-blue-400"></lucide-icon>
+          <span>3 000+ специалистов</span>
+        </div>
+        <div class="hidden sm:block w-px h-4 bg-slate-700"></div>
+        <div class="flex items-center gap-2">
+          <lucide-icon name="trending-up" [size]="16" [strokeWidth]="2" class="text-cyan-400"></lucide-icon>
+          <span>99% успешная сдача</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- FILTER TABS                                  -->
+<!-- ============================================ -->
+<section class="py-8 bg-white border-b border-slate-200" id="services-filter">
+  <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+    <div class="flex flex-wrap gap-3">
+      <button
+        *ngFor="let category of categories"
+        (click)="selectCategory(category.key)"
+        [class]="selectedCategory === category.key
+          ? 'bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-600/20'
+          : 'bg-white text-slate-600 border-slate-200 hover:border-blue-200 hover:bg-blue-50/50 hover:text-blue-600'"
+        class="filter-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm transition-all duration-300 border">
+        <lucide-icon [name]="category.icon" [size]="16" [strokeWidth]="1.5"></lucide-icon>
+        {{ category.name }}
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- SERVICES GRID — Premium cards                -->
+<!-- ============================================ -->
+<section class="py-24 lg:py-32 bg-white" id="services-grid" aria-label="Каталог услуг">
+  <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+
+    <!-- Section header -->
+    <div class="max-w-3xl mb-20">
+      <div class="inline-flex items-center gap-2 text-blue-600 font-semibold text-sm uppercase tracking-wider mb-4">
+        <lucide-icon name="zap" [size]="16" [strokeWidth]="2"></lucide-icon>
+        Каталог услуг
+      </div>
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
+        Выберите подходящую услугу
+      </h2>
+      <p class="text-xl text-slate-500 leading-relaxed">
+        От первичной консультации до внесения в Национальный реестр специалистов.
+        Каждая услуга включает тренажёр с реальными вопросами и сопровождение до результата.
+      </p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid lg:grid-cols-3 gap-8 lg:gap-6">
+      <article
+        *ngFor="let service of filteredServices; trackBy: trackByServiceId; let i = index"
+        class="service-card relative flex flex-col transition-all duration-500 hover:shadow-2xl"
+        [class]="service.popular
+          ? 'service-card bg-slate-900 text-white rounded-3xl p-10 lg:p-12 flex flex-col ring-1 ring-slate-800 hover:ring-blue-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-600/10'
+          : 'service-card bg-white rounded-3xl p-10 lg:p-12 flex flex-col ring-1 ring-slate-200 hover:ring-blue-200 transition-all duration-500 hover:shadow-xl'"
+        [attr.itemscope]="true"
+        itemtype="https://schema.org/Service">
+
+        <!-- Popular Badge -->
+        <div
+          *ngIf="service.popular"
+          class="absolute -top-4 right-8 bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-5 py-1.5 rounded-full text-sm font-bold shadow-lg shadow-blue-600/25">
+          Популярное
+        </div>
+
+        <!-- Icon -->
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-8"
+             [ngClass]="service.popular ? getIconBgClass(service.icon) : getIconBgClassLight(service.icon)">
+          <lucide-icon [name]="getServiceLucideIcon(service.icon)" [size]="28" [strokeWidth]="1.5"></lucide-icon>
+        </div>
+
+        <!-- Title -->
+        <h3 class="text-2xl font-bold mb-3" itemprop="name"
+            [class]="service.popular ? 'text-white' : 'text-slate-900'">
+          <a
+            *ngIf="service.route"
+            [routerLink]="service.route"
+            [class]="service.popular ? 'hover:text-blue-400 transition-colors' : 'hover:text-blue-600 transition-colors'">
+            {{ service.title }}
+          </a>
+          <span *ngIf="!service.route">{{ service.title }}</span>
+        </h3>
+
+        <!-- Duration -->
+        <div class="flex items-center gap-2 mb-4"
+             [class]="service.popular ? 'text-slate-500' : 'text-slate-400'">
+          <lucide-icon name="clock" [size]="16" [strokeWidth]="1.5"></lucide-icon>
+          <span class="text-sm">{{ service.duration }}</span>
+        </div>
+
+        <!-- Description -->
+        <p class="text-lg mb-8 leading-relaxed" itemprop="description"
+           [class]="service.popular ? 'text-slate-400' : 'text-slate-500'">
+          {{ service.description }}
+        </p>
+
+        <!-- Features -->
+        <div class="space-y-4 mb-10 flex-grow">
+          <div *ngFor="let feature of service.features.slice(0, 4)" class="flex items-start gap-3">
+            <lucide-icon name="check" [size]="20" [strokeWidth]="2.5"
+                         [class]="service.popular ? 'text-emerald-400 flex-shrink-0 mt-0.5' : 'text-emerald-500 flex-shrink-0 mt-0.5'">
+            </lucide-icon>
+            <span class="text-base"
+                  [class]="service.popular ? 'text-slate-300' : 'text-slate-600'">
+              {{ feature }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Price -->
+        <div class="mb-8 pb-8"
+             [class]="service.popular ? 'border-b border-slate-700' : 'border-b border-slate-100'">
+          <div class="text-5xl font-bold tracking-tight"
+               [class]="service.popular ? 'text-white' : 'text-slate-900'"
+               itemprop="price">
+            {{ service.price }}
+          </div>
+          <div class="text-sm mt-2"
+               [class]="service.popular ? 'text-slate-500' : 'text-slate-400'">
+            за полный курс
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="space-y-3 mt-auto">
+          <a
+            *ngIf="service.route"
+            [routerLink]="service.route"
+            [class]="service.popular
+              ? 'w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white py-4.5 text-lg font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-600/25'
+              : 'w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white py-4.5 text-lg font-semibold rounded-xl transition-all duration-300 hover:shadow-lg'">
+            Подробнее об услуге
+            <lucide-icon name="arrow-right" [size]="18" [strokeWidth]="2"></lucide-icon>
+          </a>
+          <button
+            *ngIf="!service.route"
+            (click)="openServicePopup(service)"
+            [class]="service.popular
+              ? 'w-full bg-blue-600 hover:bg-blue-500 text-white py-4.5 text-lg font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-600/25'
+              : 'w-full bg-slate-900 hover:bg-slate-800 text-white py-4.5 text-lg font-semibold rounded-xl transition-all duration-300 hover:shadow-lg'">
+            Оставить заявку
+          </button>
+          <button
+            (click)="openConsultationPopup()"
+            [class]="service.popular
+              ? 'w-full flex items-center justify-center gap-2 py-3.5 text-base font-medium rounded-xl border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white transition-all duration-300 hover:bg-white/5'
+              : 'w-full flex items-center justify-center gap-2 py-3.5 text-base font-medium rounded-xl border border-slate-200 hover:border-blue-200 text-slate-600 hover:text-blue-600 transition-all duration-300 hover:bg-blue-50/50'">
+            <lucide-icon name="message-circle" [size]="18" [strokeWidth]="1.5"></lucide-icon>
+            Бесплатная консультация
+          </button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- DIRECTIONS — Link cards by direction          -->
+<!-- ============================================ -->
+<section class="py-24 lg:py-32 bg-slate-50" id="directions-section" aria-label="Направления подготовки">
+  <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+
+    <!-- Section header -->
+    <div class="max-w-3xl mb-20">
+      <div class="inline-flex items-center gap-2 text-blue-600 font-semibold text-sm uppercase tracking-wider mb-4">
+        <lucide-icon name="compass" [size]="16" [strokeWidth]="2"></lucide-icon>
+        Направления
+      </div>
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
+        Работаем по всем направлениям НОК
+      </h2>
+      <p class="text-xl text-slate-500 leading-relaxed">
+        Выберите своё направление подготовки. Мы обеспечим полное сопровождение от документов до внесения в НРС.
+      </p>
+    </div>
+
+    <!-- Directions grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+      <a routerLink="/services/nok-nostroy"
+         class="direction-card group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 hover:border-blue-200 hover:bg-blue-50/50 transition-all duration-300 hover:shadow-lg ring-1 ring-transparent hover:ring-blue-100">
+        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 transition-colors">
+          <lucide-icon name="building-2" [size]="22" [strokeWidth]="1.5"></lucide-icon>
+        </div>
+        <div>
+          <div class="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">НОСТРОЙ</div>
+          <div class="text-sm text-slate-400">Строительство</div>
+        </div>
+      </a>
+
+      <a routerLink="/services/nok-nopriz"
+         class="direction-card group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 hover:border-cyan-200 hover:bg-cyan-50/50 transition-all duration-300 hover:shadow-lg ring-1 ring-transparent hover:ring-cyan-100">
+        <div class="w-12 h-12 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-100 transition-colors">
+          <lucide-icon name="search" [size]="22" [strokeWidth]="1.5"></lucide-icon>
+        </div>
+        <div>
+          <div class="font-semibold text-slate-900 group-hover:text-cyan-600 transition-colors">НОПРИЗ</div>
+          <div class="text-sm text-slate-400">Проектирование</div>
+        </div>
+      </a>
+
+      <a routerLink="/services/nok-opb"
+         class="direction-card group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 hover:border-red-200 hover:bg-red-50/50 transition-all duration-300 hover:shadow-lg ring-1 ring-transparent hover:ring-red-100">
+        <div class="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center flex-shrink-0 group-hover:bg-red-100 transition-colors">
+          <lucide-icon name="siren" [size]="22" [strokeWidth]="1.5"></lucide-icon>
+        </div>
+        <div>
+          <div class="font-semibold text-slate-900 group-hover:text-red-600 transition-colors">МЧС</div>
+          <div class="text-sm text-slate-400">Пожарная безопасность</div>
+        </div>
+      </a>
+
+      <a routerLink="/services/nok-housing"
+         class="direction-card group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 hover:border-teal-200 hover:bg-teal-50/50 transition-all duration-300 hover:shadow-lg ring-1 ring-transparent hover:ring-teal-100">
+        <div class="w-12 h-12 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center flex-shrink-0 group-hover:bg-teal-100 transition-colors">
+          <lucide-icon name="house" [size]="22" [strokeWidth]="1.5"></lucide-icon>
+        </div>
+        <div>
+          <div class="font-semibold text-slate-900 group-hover:text-teal-600 transition-colors">ЖКХ</div>
+          <div class="text-sm text-slate-400">Жилищное хозяйство</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- STATS — Dark trust section                   -->
+<!-- ============================================ -->
+<section class="py-24 lg:py-32 bg-slate-950" id="stats-section" aria-label="Наши результаты">
+  <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+
+    <!-- Section header -->
+    <div class="max-w-3xl mb-20">
+      <div class="inline-flex items-center gap-2 text-blue-400 font-semibold text-sm uppercase tracking-wider mb-4">
+        <lucide-icon name="bar-chart-3" [size]="16" [strokeWidth]="2"></lucide-icon>
+        Результаты
+      </div>
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6">
+        Почему выбирают НОК Эксперт
+      </h2>
+      <p class="text-xl text-slate-400 leading-relaxed">
+        Более 7 лет помогаем специалистам успешно проходить независимую оценку квалификации. Наши цифры говорят сами за себя.
+      </p>
+    </div>
+
+    <!-- Stats grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="stat-card bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.07] transition-all duration-500 hover:border-blue-500/20">
+        <div class="text-5xl font-bold text-white mb-3">99%</div>
+        <div class="text-base text-slate-400">Успешная сдача<br>с первого раза</div>
+      </div>
+      <div class="stat-card bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.07] transition-all duration-500 hover:border-cyan-500/20">
+        <div class="text-5xl font-bold text-white mb-3">3 000+</div>
+        <div class="text-base text-slate-400">Подготовленных<br>специалистов</div>
+      </div>
+      <div class="stat-card bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.07] transition-all duration-500 hover:border-violet-500/20">
+        <div class="text-5xl font-bold text-white mb-3">7 лет</div>
+        <div class="text-base text-slate-400">Работы на рынке<br>подготовки к НОК</div>
+      </div>
+      <div class="stat-card bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.07] transition-all duration-500 hover:border-emerald-500/20">
+        <div class="text-5xl font-bold text-white mb-3">5</div>
+        <div class="text-base text-slate-400">Направлений<br>подготовки</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
+<!-- CTA — Blue gradient conversion block         -->
+<!-- ============================================ -->
+<section class="py-24 lg:py-32 bg-white" id="services-cta" aria-label="Запись на консультацию">
+  <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+    <div class="cta-card relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 rounded-3xl p-12 lg:p-20 overflow-hidden">
+      <!-- Decorative -->
+      <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" aria-hidden="true"></div>
+      <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" aria-hidden="true"></div>
+
+      <div class="relative z-10 text-center max-w-3xl mx-auto">
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6">
+          Начните с бесплатной консультации
+        </h2>
+        <p class="text-xl text-blue-100/80 leading-relaxed mb-10">
+          Проверим ваши документы, определим квалификацию и расскажем,
+          сколько времени займёт подготовка и сдача НОК
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            (click)="openConsultationPopup()"
+            class="inline-flex items-center justify-center gap-2.5 bg-white text-blue-700 px-10 py-5 text-lg font-bold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-white/20 hover:-translate-y-0.5">
+            <lucide-icon name="message-circle" [size]="22" [strokeWidth]="2"></lucide-icon>
+            Получить консультацию
+          </button>
+          <a [href]="'tel:' + phoneHref"
+             class="inline-flex items-center justify-center gap-2.5 text-white px-10 py-5 text-lg font-semibold rounded-xl border border-white/20 hover:bg-white/10 transition-all duration-300">
+            <lucide-icon name="phone" [size]="20" [strokeWidth]="2"></lucide-icon>
+            {{ phoneDisplay }}
+          </a>
+        </div>
+        <p class="text-sm text-blue-200/60 mt-6">Ответим в течение 15 минут в рабочее время</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>

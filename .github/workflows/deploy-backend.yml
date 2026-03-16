@@ -1,0 +1,155 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'apps/backend/**'
+      - '.github/workflows/deploy-backend.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'apps/backend/**'
+
+env:
+  VPS_HOST: ${{ secrets.VPS_HOST }}
+  VPS_USER: ${{ secrets.VPS_USER }}
+  VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/backend
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_DB: nok_system_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: apps/backend/package-lock.json
+
+    - name: Install dependencies
+      run: npm ci --legacy-peer-deps
+
+    - name: Create test environment file
+      run: |
+        cat > .env << EOF
+        NODE_ENV=test
+        PORT=3000
+        DB_HOST=localhost
+        DB_PORT=5432
+        DB_USERNAME=postgres
+        DB_PASSWORD=password
+        DB_DATABASE=nok_system_test
+        JWT_SECRET=test_secret_key
+        JWT_EXPIRES_IN=1h
+        CORS_ORIGIN=http://localhost:4200
+        EOF
+
+    - name: Run tests
+      run: npm test
+      env:
+        CI: true
+
+  build-and-deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    defaults:
+      run:
+        working-directory: apps/backend
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: apps/backend/package-lock.json
+
+    - name: Install dependencies
+      run: npm ci --legacy-peer-deps
+
+    - name: Build application
+      run: npm run build
+
+    - name: Setup SSH
+      run: |
+        mkdir -p ~/.ssh
+        chmod 700 ~/.ssh
+
+        eval "$(ssh-agent -s)"
+
+        cat > ~/.ssh/id_rsa << 'EOF'
+        ${{ secrets.VPS_SSH_KEY }}
+        EOF
+
+        chmod 600 ~/.ssh/id_rsa
+        ssh-add ~/.ssh/id_rsa
+        ssh-add -l
+
+        ssh-keyscan -H $VPS_HOST >> ~/.ssh/known_hosts 2>/dev/null || true
+
+    - name: Test SSH connection
+      run: |
+        ssh -v -o StrictHostKeyChecking=no -o ConnectTimeout=30 -o ServerAliveInterval=60 $VPS_USER@$VPS_HOST "echo 'SSH connection successful' && whoami && pwd" || {
+          echo "SSH connection failed"
+          exit 1
+        }
+
+    - name: Deploy to server
+      run: |
+        echo "Starting deploy to $VPS_HOST..."
+
+        ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "mkdir -p /tmp/nok-deploy"
+        ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "mkdir -p /opt/nok-expert-backend"
+
+        ls -la dist/ || { echo "dist/ not found"; exit 1; }
+        ls -la package*.json || { echo "package.json not found"; exit 1; }
+        ls -la docker-compose.prod.yml || { echo "docker-compose.prod.yml not found"; exit 1; }
+        ls -la Dockerfile || { echo "Dockerfile not found"; exit 1; }
+        ls -la env.example || { echo "env.example not found"; exit 1; }
+
+        scp -o StrictHostKeyChecking=no -r dist/ $VPS_USER@$VPS_HOST:/tmp/nok-deploy/
+        scp -o StrictHostKeyChecking=no package*.json $VPS_USER@$VPS_HOST:/tmp/nok-deploy/
+        scp -o StrictHostKeyChecking=no docker-compose.prod.yml $VPS_USER@$VPS_HOST:/tmp/nok-deploy/
+        scp -o StrictHostKeyChecking=no Dockerfile $VPS_USER@$VPS_HOST:/tmp/nok-deploy/
+        scp -o StrictHostKeyChecking=no env.example $VPS_USER@$VPS_HOST:/tmp/nok-deploy/
+
+        ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "cd /opt/nok-expert-backend && docker-compose -f docker-compose.prod.yml down || true"
+        ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "cp -r /tmp/nok-deploy/* /opt/nok-expert-backend/"
+        ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "cd /opt/nok-expert-backend && cp env.example .env"
+        ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "cd /opt/nok-expert-backend && docker-compose -f docker-compose.prod.yml up -d --build"
+
+        sleep 30
+
+        curl -f -k https://$VPS_HOST/api/health || {
+          echo "Health check failed"
+          ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "cd /opt/nok-expert-backend && docker-compose -f docker-compose.prod.yml logs --tail=50"
+          exit 1
+        }
+
+        echo "Backend deploy completed!"
+        ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "rm -rf /tmp/nok-deploy"
