@@ -58,6 +58,7 @@ export class TestingController {
       dto.mode,
       dto.questionCount,
       userId,
+      req.ip ?? null,
     );
   }
 

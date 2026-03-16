@@ -41,6 +41,7 @@ export class TestingService {
     mode: TestMode,
     questionCount: number,
     userId: string | null = null,
+    ipAddress: string | null = null,
   ) {
     const questions = await this.questionService.getRandomQuestions(
       profQualId,
@@ -59,6 +60,7 @@ export class TestingService {
       status: TestStatus.IN_PROGRESS,
       totalQuestions: questions.length,
       userId,
+      ipAddress,
     });
     const savedTest = await this.testRepo.save(test);
 
