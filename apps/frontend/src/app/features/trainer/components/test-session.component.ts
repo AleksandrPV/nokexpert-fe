@@ -220,10 +220,15 @@ import {
     @if (session.totalQuestions() > 0) {
       <div class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3">
-          <div class="flex flex-wrap gap-1.5 justify-center max-h-20 overflow-y-auto">
+          <div class="flex flex-wrap gap-1.5 justify-center max-h-20 overflow-y-auto"
+               role="toolbar" aria-label="Навигация по вопросам">
             @for (num of questionNumbers(); track num) {
               <button
                 (click)="goToQuestion(num)"
+                (keydown.arrowRight)="focusGridButton(num + 1, $event)"
+                (keydown.arrowLeft)="focusGridButton(num - 1, $event)"
+                [attr.aria-label]="'Вопрос ' + num + (session.answeredQuestions().has(num) ? ', отвечен' : ', не отвечен')"
+                [attr.data-grid-num]="num"
                 class="w-8 h-8 text-xs font-medium rounded-lg flex items-center justify-center transition-all duration-150 hover:scale-110"
                 [class]="getGridButtonClasses(num)"
               >
@@ -597,6 +602,14 @@ export class TestSessionComponent implements OnInit, OnDestroy {
       return 'bg-blue-100 text-blue-700 border border-blue-200';
     }
     return 'bg-gray-100 text-gray-500 border border-gray-200 hover:bg-gray-200';
+  }
+
+  focusGridButton(num: number, event: Event): void {
+    event.preventDefault();
+    const total = this.session.totalQuestions();
+    if (num < 1 || num > total) return;
+    const btn = document.querySelector(`[data-grid-num="${num}"]`) as HTMLElement;
+    btn?.focus();
   }
 
   private autoAdvance(): void {
