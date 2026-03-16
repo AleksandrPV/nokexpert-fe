@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 import { MainPageComponent } from './features/main/main-page.component';
+import { authGuard } from './core/guards/auth.guard';
+import { canLeaveTestGuard } from './core/guards/can-leave-test.guard';
 
 // Preload strategy for critical routes
 const preloadCritical = () => import('./features/services/components/services-page.component').then(m => m.ServicesPageComponent);
@@ -11,6 +13,51 @@ import { NokLegislationPageComponent } from './features/info/components/nok-legi
 import { SitemapPageComponent } from './features/sitemap/sitemap-page.component';
 
 export const routes: Routes = [
+  // ===== Trainer layout (separate header, auth required) =====
+  {
+    path: '',
+    loadComponent: () => import('./features/trainer/components/trainer-layout.component').then(m => m.TrainerLayoutComponent),
+    children: [
+      {
+        path: 'trainer',
+        loadComponent: () => import('./features/trainer/components/trainer-dashboard.component').then(m => m.TrainerDashboardComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'trainer/start',
+        loadComponent: () => import('./features/trainer/components/test-config.component').then(m => m.TestConfigComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'trainer/test/:id',
+        loadComponent: () => import('./features/trainer/components/test-session.component').then(m => m.TestSessionComponent),
+        canActivate: [authGuard],
+        canDeactivate: [canLeaveTestGuard]
+      },
+      {
+        path: 'trainer/test/:id/results',
+        loadComponent: () => import('./features/trainer/components/test-results.component').then(m => m.TestResultsComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./features/user/components/user-dashboard.component').then(m => m.UserDashboardComponent),
+        canActivate: [authGuard]
+      },
+    ]
+  },
+
+  // ===== Auth pages (no layout chrome) =====
+  {
+    path: 'login',
+    loadComponent: () => import('./features/auth/components/login-page.component').then(m => m.LoginPageComponent)
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./features/auth/components/register-page.component').then(m => m.RegisterPageComponent)
+  },
+
+  // ===== Public site (main layout with public header/footer) =====
   {
     path: '',
     component: MainLayoutComponent,
