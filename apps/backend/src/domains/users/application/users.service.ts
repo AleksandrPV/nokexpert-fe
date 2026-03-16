@@ -1,5 +1,6 @@
 import {
   Injectable,
+  Logger,
   NotFoundException,
   ForbiddenException,
   ConflictException,
@@ -26,6 +27,8 @@ import {
 
 @Injectable()
 export class UsersService {
+  private readonly logger = new Logger(UsersService.name);
+
   constructor(
     @Inject('IUserRepository')
     private readonly userRepository: IUserRepository,
@@ -69,7 +72,7 @@ export class UsersService {
     const savedUser = await this.userRepository.create(user);
 
     // Логирование критической операции
-    console.log(`User created: ${savedUser.email} by admin`);
+    this.logger.log(`User created: ${savedUser.email} by admin`);
 
     return savedUser.toSafeResponse();
   }
@@ -112,7 +115,7 @@ export class UsersService {
     const savedUser = await this.userRepository.create(user);
 
     // Логирование критической операции
-    console.log(`Admin created: ${savedUser.email} by admin`);
+    this.logger.log(`Admin created: ${savedUser.email} by admin`);
 
     return savedUser.toSafeResponse();
   }
@@ -249,7 +252,7 @@ export class UsersService {
     const savedUser = await this.userRepository.update(deactivatedUser);
 
     // Логирование критической операции
-    console.log(`User deactivated: ${user.email} by admin`);
+    this.logger.log(`User deactivated: ${user.email} by admin`);
 
     return savedUser.toSafeResponse();
   }
