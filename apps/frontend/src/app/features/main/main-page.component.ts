@@ -169,16 +169,29 @@ export class MainPageComponent implements OnInit, AfterViewInit, OnDestroy {
       1.0
     );
 
-    // 11. Stat cards — continuous gentle float
-    gsap.to('.stat-card', {
-      y: 'random(-8, 8)',
-      duration: 'random(2.5, 4)',
-      repeat: -1,
-      yoyo: true,
-      ease: 'sine.inOut',
-      stagger: { amount: 1.5, from: 'random' },
-      delay: 2.5
-    });
+    // 11. Stat cards — gentle synchronized hover effect
+    // Left column (cards 1,3) float up slightly, right column (cards 2,4) float down — then reverse
+    const statCards = document.querySelectorAll('.stat-card');
+    if (statCards.length >= 4) {
+      // Left column cards (0, 2) — float up
+      gsap.to([statCards[0], statCards[2]], {
+        y: -6,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        delay: 2.5
+      });
+      // Right column cards (1, 3) — float down (opposite phase)
+      gsap.to([statCards[1], statCards[3]], {
+        y: 6,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        delay: 2.5
+      });
+    }
 
     // 12. Counter animation for stat numbers
     const statNumbers = document.querySelectorAll('.stat-number');
