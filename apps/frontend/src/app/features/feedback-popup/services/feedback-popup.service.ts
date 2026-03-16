@@ -33,36 +33,12 @@ export class FeedbackPopupService {
 
   // Опции для выбора темы обращения
   readonly subjectOptions: FeedbackSubjectOption[] = [
-    {
-      value: FeedbackSubject.NOK_NOSTROY,
-      label: 'НОК НОСТРОЙ',
-      icon: '🏗️'
-    },
-    {
-      value: FeedbackSubject.NOK_NOPRIZ,
-      label: 'НОК НОПРИЗ',
-      icon: '📐'
-    },
-    {
-      value: FeedbackSubject.CONSULTATION,
-      label: 'Консультация',
-      icon: '💬'
-    },
-    {
-      value: FeedbackSubject.DOCUMENTS,
-      label: 'Подготовка документов',
-      icon: '📄'
-    },
-    {
-      value: FeedbackSubject.PRICING,
-      label: 'Стоимость услуг',
-      icon: '💰'
-    },
-    {
-      value: FeedbackSubject.OTHER,
-      label: 'Другое',
-      icon: '❓'
-    }
+    { value: FeedbackSubject.NOK_NOSTROY, label: 'НОК НОСТРОЙ', icon: '' },
+    { value: FeedbackSubject.NOK_NOPRIZ, label: 'НОК НОПРИЗ', icon: '' },
+    { value: FeedbackSubject.CONSULTATION, label: 'Консультация', icon: '' },
+    { value: FeedbackSubject.DOCUMENTS, label: 'Подготовка документов', icon: '' },
+    { value: FeedbackSubject.PRICING, label: 'Стоимость услуг', icon: '' },
+    { value: FeedbackSubject.OTHER, label: 'Другое', icon: '' },
   ];
 
   /**
@@ -172,17 +148,17 @@ export class FeedbackPopupService {
         try {
           const messageText = this.telegramService.formatFeedbackMessage(formData);
           await firstValueFrom(this.telegramService.sendMessage(messageText));
-          console.log('✅ Сообщение отправлено в Telegram');
+          console.log('[OK] Сообщение отправлено в Telegram');
         } catch (telegramError) {
-          console.warn('⚠️ Не удалось отправить в Telegram, но форма обработана:', telegramError);
+          console.warn('[WARN] Не удалось отправить в Telegram, но форма обработана:', telegramError);
           // Не выбрасываем ошибку, так как форма всё равно обработана
         }
       } else {
-        console.warn('⚠️ Telegram не настроен - проверьте BOT_TOKEN и CHAT_ID');
+        console.warn('[WARN] Telegram не настроен - проверьте BOT_TOKEN и CHAT_ID');
       }
 
       // Логируем отправку формы
-      console.log('📋 Отправка формы:', {
+      console.log('[FORM] Отправка формы:', {
         name: formData.name,
         phone: formData.phone,
         email: formData.email || 'Не указан',
@@ -195,7 +171,7 @@ export class FeedbackPopupService {
         message: 'Спасибо за обращение! Мы свяжемся с вами в ближайшее время.'
       };
     } catch (error) {
-      console.error('❌ Ошибка при отправке формы:', error);
+      console.error('[ERROR] Ошибка при отправке формы:', error);
       return {
         success: false,
         message: 'Произошла ошибка при отправке. Попробуйте еще раз.',
