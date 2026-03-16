@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { forkJoin } from 'rxjs';
@@ -106,7 +106,45 @@ import { SkeletonComponent } from '../../../shared/components/skeleton/skeleton.
     <section class="bg-slate-50 py-16 lg:py-20">
       <div class="px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
         <div class="max-w-6xl mx-auto">
-          <h2 class="text-2xl font-bold text-slate-900 mb-8">История тестов</h2>
+          <h2 class="text-2xl font-bold text-slate-900 mb-6">История тестов</h2>
+
+          <!-- Filters -->
+          <div *ngIf="tests().length > 0" class="flex flex-wrap gap-2 mb-6">
+            <div class="flex gap-1 bg-white rounded-xl border border-slate-200 p-1">
+              <button (click)="modeFilter.set('all')"
+                      class="px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors"
+                      [ngClass]="modeFilter() === 'all' ? 'bg-blue-600 text-white' : 'text-slate-500 hover:text-slate-700'">
+                Все
+              </button>
+              <button (click)="modeFilter.set('training')"
+                      class="px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors"
+                      [ngClass]="modeFilter() === 'training' ? 'bg-blue-600 text-white' : 'text-slate-500 hover:text-slate-700'">
+                Тренировка
+              </button>
+              <button (click)="modeFilter.set('exam')"
+                      class="px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors"
+                      [ngClass]="modeFilter() === 'exam' ? 'bg-blue-600 text-white' : 'text-slate-500 hover:text-slate-700'">
+                Экзамен
+              </button>
+            </div>
+            <div class="flex gap-1 bg-white rounded-xl border border-slate-200 p-1">
+              <button (click)="resultFilter.set('all')"
+                      class="px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors"
+                      [ngClass]="resultFilter() === 'all' ? 'bg-blue-600 text-white' : 'text-slate-500 hover:text-slate-700'">
+                Все
+              </button>
+              <button (click)="resultFilter.set('passed')"
+                      class="px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors"
+                      [ngClass]="resultFilter() === 'passed' ? 'bg-emerald-600 text-white' : 'text-slate-500 hover:text-slate-700'">
+                Сдан
+              </button>
+              <button (click)="resultFilter.set('failed')"
+                      class="px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors"
+                      [ngClass]="resultFilter() === 'failed' ? 'bg-red-600 text-white' : 'text-slate-500 hover:text-slate-700'">
+                Не сдан
+              </button>
+            </div>
+          </div>
 
           <!-- Loading skeleton -->
           <div *ngIf="isLoading() && tests().length === 0" class="space-y-3">
@@ -133,9 +171,14 @@ import { SkeletonComponent } from '../../../shared/components/skeleton/skeleton.
             </a>
           </div>
 
+          <!-- No results with active filters -->
+          <div *ngIf="tests().length > 0 && filteredTests().length === 0 && !isLoading()" class="text-center py-12">
+            <p class="text-slate-500">Нет тестов, соответствующих фильтрам</p>
+          </div>
+
           <!-- Test list -->
-          <div *ngIf="tests().length > 0" class="space-y-3">
-            <div *ngFor="let test of tests()"
+          <div *ngIf="filteredTests().length > 0" class="space-y-3">
+            <div *ngFor="let test of filteredTests()"
                  class="bg-white rounded-xl border border-slate-200 p-5 flex flex-col sm:flex-row sm:items-center gap-4 hover:shadow-md transition-shadow">
               <!-- Mode badge -->
               <div class="shrink-0">
@@ -201,6 +244,25 @@ export class UserDashboardComponent implements OnInit {
   isLoading = signal(false);
   currentPage = 1;
   totalTests = 0;
+
+  modeFilter = signal<'all' | 'training' | 'exam'>('all');
+  resultFilter = signal<'all' | 'passed' | 'failed'>('all');
+
+  filteredTests = computed(() => {
+    let result = this.tests();
+    const mode = this.modeFilter();
+    const res = this.resultFilter();
+
+    if (mode !== 'all') {
+      result = result.filter((t) => t.mode === mode);
+    }
+    if (res === 'passed') {
+      result = result.filter((t) => t.passed);
+    } else if (res === 'failed') {
+      result = result.filter((t) => t.score !== null && !t.passed);
+    }
+    return result;
+  });
 
   breadcrumbs = [
     { label: 'Главная', url: '/' },
