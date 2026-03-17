@@ -34,6 +34,6 @@ import { JwtStrategy } from './infrastructure/strategies/jwt.strategy';
       useClass: UserRepository,
     },
   ],
-  exports: [UsersService, AdminSeedService],
+  exports: [UsersService, AdminSeedService, JwtStrategy],
 })
 export class UsersModule {}

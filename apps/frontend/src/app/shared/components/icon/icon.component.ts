@@ -20,6 +20,7 @@ import {
   CalendarClock, CalendarX, SquareCheck, EyeOff, FilePlus, FileX,
   Focus, FolderCheck, IdCard, List, Puzzle, ShieldAlert,
   Scan, Shuffle, Copy, MessageSquare, Printer,
+  LogIn, LogOut, LayoutDashboard,
 } from 'lucide-angular';
 
 const ICONS = {
@@ -41,6 +42,7 @@ const ICONS = {
   CalendarClock, CalendarX, SquareCheck, EyeOff, FilePlus, FileX,
   Focus, FolderCheck, IdCard, List, Puzzle, ShieldAlert,
   Scan, Shuffle, Copy, MessageSquare, Printer,
+  LogIn, LogOut, LayoutDashboard,
 };
 
 @NgModule({
