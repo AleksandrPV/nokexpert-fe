@@ -13,45 +13,6 @@ import { NokLegislationPageComponent } from './features/info/components/nok-legi
 import { SitemapPageComponent } from './features/sitemap/sitemap-page.component';
 
 export const routes: Routes = [
-  // ===== Trainer layout (separate header, auth required) =====
-  {
-    path: '',
-    loadComponent: () => import('./features/trainer/components/trainer-layout.component').then(m => m.TrainerLayoutComponent),
-    children: [
-      {
-        path: 'trainer',
-        loadComponent: () => import('./features/trainer/components/trainer-dashboard.component').then(m => m.TrainerDashboardComponent),
-        canActivate: [authGuard]
-      },
-      {
-        path: 'trainer/start',
-        loadComponent: () => import('./features/trainer/components/test-config.component').then(m => m.TestConfigComponent),
-        canActivate: [authGuard]
-      },
-      {
-        path: 'trainer/test/:id',
-        loadComponent: () => import('./features/trainer/components/test-session.component').then(m => m.TestSessionComponent),
-        canActivate: [authGuard],
-        canDeactivate: [canLeaveTestGuard]
-      },
-      {
-        path: 'trainer/test/:id/results',
-        loadComponent: () => import('./features/trainer/components/test-results.component').then(m => m.TestResultsComponent),
-        canActivate: [authGuard]
-      },
-      {
-        path: 'dashboard',
-        loadComponent: () => import('./features/user/components/user-dashboard.component').then(m => m.UserDashboardComponent),
-        canActivate: [authGuard]
-      },
-      {
-        path: 'profile',
-        loadComponent: () => import('./features/user/components/profile-edit.component').then(m => m.ProfileEditComponent),
-        canActivate: [authGuard]
-      },
-    ]
-  },
-
   // ===== Auth pages (no layout chrome) =====
   {
     path: 'login',
@@ -67,6 +28,7 @@ export const routes: Routes = [
   },
 
   // ===== Public site (main layout with public header/footer) =====
+  // Must be before TrainerLayout so that '/' matches MainPageComponent
   {
     path: '',
     component: MainLayoutComponent,
@@ -200,6 +162,46 @@ export const routes: Routes = [
       },
     ]
   },
+
+  // ===== Trainer layout (separate header, auth required) =====
+  {
+    path: '',
+    loadComponent: () => import('./features/trainer/components/trainer-layout.component').then(m => m.TrainerLayoutComponent),
+    children: [
+      {
+        path: 'trainer',
+        loadComponent: () => import('./features/trainer/components/trainer-dashboard.component').then(m => m.TrainerDashboardComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'trainer/start',
+        loadComponent: () => import('./features/trainer/components/test-config.component').then(m => m.TestConfigComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'trainer/test/:id',
+        loadComponent: () => import('./features/trainer/components/test-session.component').then(m => m.TestSessionComponent),
+        canActivate: [authGuard],
+        canDeactivate: [canLeaveTestGuard]
+      },
+      {
+        path: 'trainer/test/:id/results',
+        loadComponent: () => import('./features/trainer/components/test-results.component').then(m => m.TestResultsComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./features/user/components/user-dashboard.component').then(m => m.UserDashboardComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'profile',
+        loadComponent: () => import('./features/user/components/profile-edit.component').then(m => m.ProfileEditComponent),
+        canActivate: [authGuard]
+      },
+    ]
+  },
+
   {
     path: '404',
     loadComponent: () => import('./features/not-found/not-found-page.component').then(m => m.NotFoundPageComponent)
