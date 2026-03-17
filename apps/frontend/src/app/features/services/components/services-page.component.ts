@@ -43,7 +43,8 @@ export class ServicesPageComponent implements OnInit, AfterViewInit, OnDestroy {
     { key: ServiceCategory.SAFETY, name: 'Пожарная безопасность', icon: 'shield' },
     { key: ServiceCategory.EMERGENCY, name: 'МЧС', icon: 'zap' },
     { key: ServiceCategory.HOUSING, name: 'ЖКХ', icon: 'house' },
-    { key: ServiceCategory.CONSULTATION, name: 'Консультации', icon: 'message-circle' }
+    { key: ServiceCategory.CONSULTATION, name: 'Консультации', icon: 'message-circle' },
+    { key: ServiceCategory.TRAINER, name: 'Тренажёр', icon: 'dumbbell' }
   ];
 
   services: Service[] = [];
@@ -90,7 +91,8 @@ export class ServicesPageComponent implements OnInit, AfterViewInit, OnDestroy {
       'emergency': 'zap',
       'housing': 'house',
       'consultation': 'message-circle',
-      'refresher': 'graduation-cap'
+      'refresher': 'graduation-cap',
+      'trainer': 'dumbbell'
     };
     return map[icon] || 'briefcase';
   }
@@ -105,7 +107,8 @@ export class ServicesPageComponent implements OnInit, AfterViewInit, OnDestroy {
       'emergency': 'bg-red-500/15 text-red-400',
       'housing': 'bg-teal-500/15 text-teal-400',
       'consultation': 'bg-slate-500/15 text-slate-400',
-      'refresher': 'bg-amber-500/15 text-amber-400'
+      'refresher': 'bg-amber-500/15 text-amber-400',
+      'trainer': 'bg-violet-500/15 text-violet-400'
     };
     return map[icon] || 'bg-blue-500/15 text-blue-400';
   }
@@ -120,7 +123,8 @@ export class ServicesPageComponent implements OnInit, AfterViewInit, OnDestroy {
       'emergency': 'bg-red-50 text-red-600',
       'housing': 'bg-teal-50 text-teal-600',
       'consultation': 'bg-slate-100 text-slate-600',
-      'refresher': 'bg-amber-50 text-amber-600'
+      'refresher': 'bg-amber-50 text-amber-600',
+      'trainer': 'bg-violet-50 text-violet-600'
     };
     return map[icon] || 'bg-blue-50 text-blue-600';
   }

@@ -68,6 +68,11 @@ export const routes: Routes = [
         data: { preload: true, priority: 'high' }
       },
       {
+        path: 'services/trainer',
+        loadComponent: () => import('./features/services/trainer/trainer-service-page.component').then(m => m.TrainerServicePageComponent),
+        data: { preload: true, priority: 'high' }
+      },
+      {
         path: 'services/:id',
         loadComponent: () => import('./features/service-detail/components/service-detail-page.component').then(m => m.ServiceDetailPageComponent)
       },

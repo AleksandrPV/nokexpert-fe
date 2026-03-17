@@ -29,6 +29,10 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender
   },
   {
+    path: 'services/trainer',
+    renderMode: RenderMode.Prerender
+  },
+  {
     path: 'consultation',
     renderMode: RenderMode.Prerender
   },

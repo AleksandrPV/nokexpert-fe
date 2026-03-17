@@ -55,6 +55,15 @@ export class ServicesService {
       popular: true
     },
     {
+      id: 'trainer',
+      title: 'Тренажёр НОК',
+      description: 'Онлайн-подготовка к экзамену',
+      icon: 'trainer',
+      route: '/services/trainer',
+      color: 'bg-violet-50',
+      popular: true
+    },
+    {
       id: 'consultation',
       title: 'Консультации',
       description: 'Индивидуальные консультации',
@@ -157,6 +166,25 @@ export class ServicesService {
       difficulty: 'Средний',
       popular: true,
       route: '/services/nok-housing'
+    },
+    {
+      id: 'trainer',
+      title: 'Тренажёр НОК',
+      description: 'Онлайн-тренажёр с реальными вопросами НОК для самостоятельной подготовки к экзамену. Режимы тренировки и симуляции экзамена, детальная аналитика.',
+      icon: 'trainer',
+      price: PRICING['trainer'].price,
+      duration: PRICING['trainer'].duration,
+      features: [
+        'Реальные вопросы экзамена НОК',
+        'Режимы тренировки и симуляции экзамена',
+        'Детальная статистика и аналитика',
+        'Доступ 24/7 с любого устройства',
+        'Мобильная версия'
+      ],
+      category: ServiceCategory.TRAINER,
+      difficulty: 'Начальный',
+      popular: true,
+      route: '/services/trainer'
     },
     {
       id: 'consultation',

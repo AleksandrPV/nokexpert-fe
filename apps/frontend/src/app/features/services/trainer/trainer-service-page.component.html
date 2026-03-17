@@ -1,0 +1,603 @@
+<!-- Breadcrumbs -->
+<app-breadcrumbs [breadcrumbs]="[
+    { label: 'Главная', url: '/' },
+    { label: 'Услуги', url: '/services' },
+    { label: 'Тренажёр НОК', active: true }
+  ]">
+</app-breadcrumbs>
+
+<main>
+
+  <!-- ============================================ -->
+  <!-- HERO — Immersive dark, min-h-[70vh]          -->
+  <!-- ============================================ -->
+  <section class="relative min-h-[70vh] flex items-center overflow-hidden bg-slate-950" id="hero-section">
+    <!-- Floating orbs -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div class="hero-orb absolute w-[500px] h-[500px] rounded-full bg-violet-600/[0.07] blur-[100px] -top-32 -right-32">
+      </div>
+      <div class="hero-orb absolute w-[400px] h-[400px] rounded-full bg-purple-500/[0.05] blur-[80px] bottom-20 -left-20">
+      </div>
+      <div
+        class="hero-orb absolute w-[300px] h-[300px] rounded-full bg-blue-600/[0.06] blur-[90px] top-1/3 right-1/4">
+      </div>
+    </div>
+
+    <!-- Grid lines -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div
+        class="hero-grid-line absolute top-0 left-[20%] w-px h-full bg-gradient-to-b from-transparent via-white/[0.04] to-transparent">
+      </div>
+      <div
+        class="hero-grid-line absolute top-0 left-[40%] w-px h-full bg-gradient-to-b from-transparent via-white/[0.03] to-transparent">
+      </div>
+      <div
+        class="hero-grid-line absolute top-0 left-[60%] w-px h-full bg-gradient-to-b from-transparent via-white/[0.04] to-transparent">
+      </div>
+      <div
+        class="hero-grid-line absolute top-0 left-[80%] w-px h-full bg-gradient-to-b from-transparent via-white/[0.03] to-transparent">
+      </div>
+      <div
+        class="hero-grid-line-h absolute left-0 top-[30%] h-px w-full bg-gradient-to-r from-transparent via-white/[0.03] to-transparent">
+      </div>
+      <div
+        class="hero-grid-line-h absolute left-0 top-[70%] h-px w-full bg-gradient-to-r from-transparent via-white/[0.04] to-transparent">
+      </div>
+    </div>
+
+    <!-- Particles -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div class="hero-particle absolute w-1 h-1 rounded-full bg-violet-400/40 top-[15%] left-[10%]"></div>
+      <div class="hero-particle absolute w-1.5 h-1.5 rounded-full bg-purple-400/30 top-[25%] left-[75%]"></div>
+      <div class="hero-particle absolute w-1 h-1 rounded-full bg-violet-300/40 top-[65%] left-[85%]"></div>
+      <div class="hero-particle absolute w-2 h-2 rounded-full bg-blue-400/20 top-[45%] left-[5%]"></div>
+      <div class="hero-particle absolute w-1 h-1 rounded-full bg-purple-300/30 top-[80%] left-[40%]"></div>
+      <div class="hero-particle absolute w-1.5 h-1.5 rounded-full bg-violet-400/25 top-[10%] left-[55%]"></div>
+    </div>
+
+    <div class="relative z-10 w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32 py-24 lg:py-32">
+      <div class="max-w-4xl">
+        <!-- Badge -->
+        <div
+          class="hero-badge inline-flex items-center gap-3 bg-violet-500/10 text-violet-400 px-5 py-2 rounded-full mb-10 border border-violet-500/20">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+          </span>
+          <span class="text-sm font-semibold tracking-wide uppercase">{{ serviceData.price }} за {{ serviceData.duration }}</span>
+        </div>
+
+        <!-- H1 with word stagger -->
+        <h1
+          class="hero-title text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-extrabold text-white leading-[1.05] tracking-tight mb-8">
+          <span class="hero-word inline-block">Тренажёр</span>
+          <span
+            class="hero-word inline-block bg-gradient-to-r from-violet-400 via-purple-400 to-violet-500 bg-clip-text text-transparent">НОК</span>
+          <br class="hidden sm:block" />
+          <span
+            class="hero-word inline-block text-3xl sm:text-4xl md:text-5xl lg:text-5xl text-slate-300 font-bold mt-2 block">Онлайн-подготовка
+            к экзамену с реальными вопросами</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="hero-subtitle text-xl sm:text-2xl text-slate-400 leading-relaxed max-w-2xl mb-12">
+          Тренируйтесь на реальных вопросах экзамена НОК. Режимы тренировки и симуляции экзамена,
+          детальная статистика и аналитика по каждой теме.
+          <strong class="text-white font-semibold">94% наших пользователей сдают с первого раза.</strong>
+        </p>
+
+        <!-- Stats row -->
+        <div class="flex flex-wrap gap-4 sm:gap-6 mb-12">
+          <div
+            class="hero-stat bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] rounded-2xl px-6 sm:px-8 py-5">
+            <div class="text-2xl sm:text-3xl font-bold text-white">{{ serviceData.price }}</div>
+            <div class="text-sm text-slate-400 mt-1">Стоимость доступа</div>
+          </div>
+          <div
+            class="hero-stat bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] rounded-2xl px-6 sm:px-8 py-5">
+            <div class="text-2xl sm:text-3xl font-bold text-white">{{ serviceData.duration }}</div>
+            <div class="text-sm text-slate-400 mt-1">Срок доступа</div>
+          </div>
+          <div
+            class="hero-stat bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] rounded-2xl px-6 sm:px-8 py-5">
+            <div class="text-2xl sm:text-3xl font-bold text-emerald-400">1 000+</div>
+            <div class="text-sm text-slate-400 mt-1">Вопросов в базе</div>
+          </div>
+        </div>
+
+        <!-- CTA buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 mb-10">
+          <a routerLink="/trainer"
+            class="hero-btn-primary group relative inline-flex items-center justify-center gap-3 bg-violet-600 hover:bg-violet-500 text-white px-10 py-5 text-lg font-semibold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-violet-600/25 hover:-translate-y-0.5 overflow-hidden">
+            <div
+              class="hero-btn-shine absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12">
+            </div>
+            <lucide-icon name="play" [size]="22" [strokeWidth]="2" class="relative z-10"></lucide-icon>
+            <span class="relative z-10">Начать тренировку</span>
+            <lucide-icon name="arrow-right" [size]="18" [strokeWidth]="2"
+              class="relative z-10 transition-transform duration-300 group-hover:translate-x-1"></lucide-icon>
+          </a>
+          <button (click)="openConsultationPopup()"
+            class="hero-btn-secondary inline-flex items-center justify-center gap-2 text-slate-300 hover:text-white px-8 py-5 text-lg font-medium rounded-xl border border-slate-700 hover:border-slate-500 transition-all duration-300 hover:bg-white/5">
+            <lucide-icon name="message-circle" [size]="20" [strokeWidth]="2"></lucide-icon>
+            Получить консультацию
+          </button>
+        </div>
+
+        <!-- Social proof -->
+        <div class="flex items-center gap-6 text-sm text-slate-500">
+          <div class="flex items-center gap-2">
+            <lucide-icon name="shield" [size]="16" [strokeWidth]="2" class="text-emerald-500"></lucide-icon>
+            <span>Реальные вопросы экзамена</span>
+          </div>
+          <div class="hidden sm:block w-px h-4 bg-slate-700"></div>
+          <div class="hidden sm:flex items-center gap-2">
+            <lucide-icon name="clock" [size]="16" [strokeWidth]="2" class="text-violet-400"></lucide-icon>
+            <span>Доступ 24/7</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- WHAT IS TRAINER — bg-white                   -->
+  <!-- ============================================ -->
+  <section class="py-24 lg:py-32 bg-white" id="what-is-trainer">
+    <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+      <div class="max-w-3xl mb-20">
+        <div
+          class="section-label inline-flex items-center gap-2 text-violet-600 font-semibold text-sm uppercase tracking-wider mb-4">
+          <lucide-icon name="info" [size]="16" [strokeWidth]="2"></lucide-icon>
+          О тренажёре
+        </div>
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
+          Что такое тренажёр НОК
+        </h2>
+        <p class="section-subtitle text-lg lg:text-xl text-slate-500 leading-relaxed">
+          Онлайн-платформа для самостоятельной подготовки к экзамену независимой оценки квалификации.
+          Реальные вопросы, два режима работы и подробная статистика для эффективной подготовки.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          class="about-card bg-white rounded-2xl p-10 lg:p-12 ring-1 ring-slate-200 hover:shadow-xl transition-all duration-500">
+          <div class="w-14 h-14 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center mb-8">
+            <lucide-icon name="book-open" [size]="28" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">Реальные вопросы</h3>
+          <p class="text-lg text-slate-500 leading-relaxed">
+            База содержит более 1 000 вопросов, идентичных тем, что используются на реальном экзамене НОК.
+            Вопросы регулярно обновляются в соответствии с изменениями профстандартов.
+          </p>
+        </div>
+
+        <div
+          class="about-card bg-white rounded-2xl p-10 lg:p-12 ring-1 ring-slate-200 hover:shadow-xl transition-all duration-500">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-8">
+            <lucide-icon name="repeat" [size]="28" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">Режимы тренировки и экзамена</h3>
+          <p class="text-lg text-slate-500 leading-relaxed">
+            Тренируйтесь без ограничений по времени или сдайте пробный экзамен в условиях,
+            максимально приближённых к реальным --- с таймером и итоговой оценкой.
+          </p>
+        </div>
+
+        <div
+          class="about-card bg-white rounded-2xl p-10 lg:p-12 ring-1 ring-slate-200 hover:shadow-xl transition-all duration-500">
+          <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-8">
+            <lucide-icon name="bar-chart-3" [size]="28" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">Детальная аналитика</h3>
+          <p class="text-lg text-slate-500 leading-relaxed">
+            Подробная статистика по каждой теме: процент правильных ответов, слабые места,
+            динамика прогресса и персональные рекомендации по подготовке.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- AUDIENCE — bg-slate-50                       -->
+  <!-- ============================================ -->
+  <section class="py-24 lg:py-32 bg-slate-50" id="audience">
+    <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+      <div class="max-w-3xl mb-20">
+        <div
+          class="section-label inline-flex items-center gap-2 text-violet-600 font-semibold text-sm uppercase tracking-wider mb-4">
+          <lucide-icon name="users" [size]="16" [strokeWidth]="2"></lucide-icon>
+          Для кого
+        </div>
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
+          Кому подойдёт тренажёр
+        </h2>
+        <p class="section-subtitle text-lg lg:text-xl text-slate-500 leading-relaxed">
+          Тренажёр содержит вопросы по всем направлениям НОК.
+          Выберите своё направление и начните подготовку прямо сейчас.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div *ngFor="let item of serviceData.audience"
+          class="audience-card bg-white rounded-2xl p-10 ring-1 ring-slate-200 hover:shadow-xl transition-all duration-500 hover:ring-violet-200">
+          <div class="w-14 h-14 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center mb-8">
+            <lucide-icon [name]="item.icon" [size]="28" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">{{ item.title }}</h3>
+          <p class="text-lg text-slate-500 leading-relaxed">{{ item.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- WHAT'S INCLUDED — bg-white                   -->
+  <!-- ============================================ -->
+  <section class="py-24 lg:py-32 bg-white" id="whats-included">
+    <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+      <div class="max-w-3xl mb-20">
+        <div
+          class="section-label inline-flex items-center gap-2 text-violet-600 font-semibold text-sm uppercase tracking-wider mb-4">
+          <lucide-icon name="package" [size]="16" [strokeWidth]="2"></lucide-icon>
+          Что входит
+        </div>
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
+          Возможности тренажёра
+        </h2>
+        <p class="section-subtitle text-lg lg:text-xl text-slate-500 leading-relaxed">
+          Всё необходимое для эффективной самостоятельной подготовки к экзамену НОК.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div *ngFor="let feature of serviceData.features"
+          class="feature-card bg-white rounded-2xl p-10 lg:p-12 ring-1 ring-slate-200 hover:shadow-xl transition-all duration-500">
+          <div class="w-14 h-14 rounded-2xl bg-slate-100 text-slate-700 flex items-center justify-center mb-8">
+            <lucide-icon [name]="feature.icon" [size]="28" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">{{ feature.title }}</h3>
+          <p class="text-lg text-slate-500 leading-relaxed">{{ feature.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- PRICING — bg-slate-950 dark                  -->
+  <!-- ============================================ -->
+  <section class="py-24 lg:py-32 bg-slate-950 overflow-hidden" id="pricing">
+    <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+      <div class="max-w-3xl mb-20">
+        <div
+          class="section-label inline-flex items-center gap-2 text-violet-400 font-semibold text-sm uppercase tracking-wider mb-4">
+          <lucide-icon name="tag" [size]="16" [strokeWidth]="2"></lucide-icon>
+          Стоимость
+        </div>
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6">
+          Доступная цена
+        </h2>
+      </div>
+
+      <div class="max-w-3xl mx-auto">
+        <div
+          class="pricing-card relative bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] rounded-3xl p-10 lg:p-14">
+          <!-- Popular badge -->
+          <div
+            class="absolute -top-4 right-8 bg-gradient-to-r from-violet-600 to-purple-500 text-white px-5 py-1.5 rounded-full text-sm font-bold shadow-lg shadow-violet-600/25">
+            Онлайн-доступ
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-10 lg:gap-14">
+            <!-- Left: Price -->
+            <div>
+              <h3 class="text-2xl font-bold text-white mb-4">Тренажёр НОК</h3>
+              <p class="text-lg text-slate-400 leading-relaxed mb-8">
+                Полный доступ ко всем вопросам, режимам тренировки и экзамена, статистике и аналитике
+              </p>
+              <div class="mb-6">
+                <div class="text-5xl sm:text-6xl font-bold text-white tracking-tight">{{ serviceData.price }}</div>
+                <div class="text-base text-slate-500 mt-2">Срок доступа --- {{ serviceData.duration }}</div>
+              </div>
+
+              <div class="bg-white/[0.04] border border-white/[0.08] rounded-xl p-5 flex items-start gap-3">
+                <lucide-icon name="info" [size]="20" [strokeWidth]="2"
+                  class="text-violet-400 flex-shrink-0 mt-0.5"></lucide-icon>
+                <div>
+                  <p class="text-sm text-slate-300 font-semibold">Мгновенная активация</p>
+                  <p class="text-sm text-slate-500 mt-1">Доступ к тренажёру активируется сразу после оплаты</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: What's included -->
+            <div>
+              <p class="text-sm font-semibold text-slate-400 uppercase tracking-wide mb-6">Включено в стоимость:</p>
+              <ul class="space-y-4 mb-10">
+                <li *ngFor="let feature of serviceData.features" class="flex items-start gap-3">
+                  <lucide-icon name="check" [size]="20" [strokeWidth]="2.5"
+                    class="text-emerald-400 flex-shrink-0 mt-0.5"></lucide-icon>
+                  <span class="text-base text-slate-300">{{ feature.title }}</span>
+                </li>
+              </ul>
+
+              <button (click)="openConsultationPopup()"
+                class="w-full bg-violet-600 hover:bg-violet-500 text-white py-4.5 text-lg font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-violet-600/25">
+                <span class="flex items-center justify-center gap-2">
+                  <lucide-icon name="send" [size]="20" [strokeWidth]="2"></lucide-icon>
+                  Получить доступ
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- HOW IT WORKS — bg-slate-50                   -->
+  <!-- ============================================ -->
+  <section class="py-24 lg:py-32 bg-slate-50" id="how-it-works">
+    <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+      <div class="max-w-3xl mb-20">
+        <div
+          class="section-label inline-flex items-center gap-2 text-violet-600 font-semibold text-sm uppercase tracking-wider mb-4">
+          <lucide-icon name="list-checks" [size]="16" [strokeWidth]="2"></lucide-icon>
+          Как это работает
+        </div>
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
+          4 простых шага
+        </h2>
+        <p class="section-subtitle text-lg lg:text-xl text-slate-500 leading-relaxed">
+          От регистрации до успешной сдачи экзамена --- всё максимально просто и понятно.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div *ngFor="let step of serviceData.howItWorks; let last = last" class="process-step group">
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="step-number w-16 h-16 rounded-2xl bg-violet-600 text-white flex items-center justify-center text-2xl font-bold group-hover:scale-110 transition-transform duration-300"
+              [class.bg-emerald-600]="last">
+              <ng-container *ngIf="!last">{{ step.step }}</ng-container>
+              <lucide-icon *ngIf="last" name="check" [size]="28" [strokeWidth]="2.5"></lucide-icon>
+            </div>
+            <div class="hidden lg:block flex-1 h-px bg-gradient-to-r from-violet-200 to-transparent"
+              [class.from-emerald-200]="last"></div>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3" [class.text-emerald-600]="last">{{ step.title }}</h3>
+          <p class="text-lg text-slate-500 leading-relaxed">{{ step.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- RESULTS — bg-slate-950 dark                  -->
+  <!-- ============================================ -->
+  <section class="py-24 lg:py-32 bg-slate-950 overflow-hidden" id="results">
+    <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+      <div class="max-w-3xl mb-20">
+        <div
+          class="section-label inline-flex items-center gap-2 text-violet-400 font-semibold text-sm uppercase tracking-wider mb-4">
+          <lucide-icon name="trophy" [size]="16" [strokeWidth]="2"></lucide-icon>
+          Результаты
+        </div>
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6">
+          Наши пользователи сдают экзамен
+        </h2>
+        <p class="section-subtitle text-xl text-slate-400 leading-relaxed">
+          Тренажёр доказал свою эффективность --- вот реальная статистика наших пользователей.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div
+          class="result-card bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.07] transition-all duration-500 hover:border-violet-500/20">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-6">
+            <lucide-icon name="check-circle" [size]="24" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <div class="text-4xl font-bold text-white mb-3">94%</div>
+          <h3 class="text-lg font-semibold text-white mb-2">Успешная сдача</h3>
+          <p class="text-base text-slate-400 leading-relaxed">Наших пользователей сдают экзамен НОК с первого раза</p>
+        </div>
+
+        <div
+          class="result-card bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.07] transition-all duration-500 hover:border-violet-500/20">
+          <div class="w-12 h-12 rounded-xl bg-violet-500/10 text-violet-400 flex items-center justify-center mb-6">
+            <lucide-icon name="calendar" [size]="24" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <div class="text-4xl font-bold text-white mb-3">2 нед.</div>
+          <h3 class="text-lg font-semibold text-white mb-2">Средний срок</h3>
+          <p class="text-base text-slate-400 leading-relaxed">Подготовки до уверенного уровня сдачи экзамена</p>
+        </div>
+
+        <div
+          class="result-card bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.07] transition-all duration-500 hover:border-violet-500/20">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mb-6">
+            <lucide-icon name="users" [size]="24" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <div class="text-4xl font-bold text-white mb-3">1 200+</div>
+          <h3 class="text-lg font-semibold text-white mb-2">Пользователей</h3>
+          <p class="text-base text-slate-400 leading-relaxed">Уже подготовились к экзамену с помощью тренажёра</p>
+        </div>
+
+        <div
+          class="result-card bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.07] transition-all duration-500 hover:border-violet-500/20">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mb-6">
+            <lucide-icon name="star" [size]="24" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <div class="text-4xl font-bold text-white mb-3">4.8</div>
+          <h3 class="text-lg font-semibold text-white mb-2">Средняя оценка</h3>
+          <p class="text-base text-slate-400 leading-relaxed">По отзывам пользователей тренажёра НОК</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- FAQ — bg-slate-50                            -->
+  <!-- ============================================ -->
+  <section class="py-24 lg:py-32 bg-slate-50" id="faq">
+    <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+      <div class="max-w-3xl mb-20">
+        <div
+          class="section-label inline-flex items-center gap-2 text-violet-600 font-semibold text-sm uppercase tracking-wider mb-4">
+          <lucide-icon name="circle-help" [size]="16" [strokeWidth]="2"></lucide-icon>
+          Вопросы и ответы
+        </div>
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1]">
+          Часто задаваемые вопросы
+        </h2>
+      </div>
+
+      <div class="max-w-3xl">
+        <div class="space-y-4">
+          <div *ngFor="let item of serviceData.faqItems; let i = index"
+            class="faq-item bg-white rounded-2xl ring-1 ring-slate-200 overflow-hidden transition-all duration-300"
+            [class.ring-violet-200]="expandedFaq === i">
+            <button (click)="toggleFaq(i)"
+              class="w-full flex items-center justify-between gap-4 p-6 sm:p-8 text-left cursor-pointer">
+              <h3 class="text-lg font-semibold text-slate-900">{{ item.question }}</h3>
+              <div
+                class="flex-shrink-0 w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center transition-transform duration-300"
+                [class.rotate-180]="expandedFaq === i" [class.bg-violet-100]="expandedFaq === i">
+                <lucide-icon name="chevron-down" [size]="18" [strokeWidth]="2" [class.text-violet-600]="expandedFaq === i"
+                  [class.text-slate-500]="expandedFaq !== i"></lucide-icon>
+              </div>
+            </button>
+            <div class="overflow-hidden transition-all duration-300" [class.max-h-0]="expandedFaq !== i"
+              [class.max-h-96]="expandedFaq === i">
+              <div class="px-6 sm:px-8 pb-6 sm:pb-8">
+                <p class="text-lg text-slate-500 leading-relaxed">{{ item.answer }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- RELATED SERVICES — bg-white                  -->
+  <!-- ============================================ -->
+  <section class="py-24 lg:py-32 bg-white" id="related">
+    <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+      <div class="max-w-3xl mb-20">
+        <div
+          class="section-label inline-flex items-center gap-2 text-violet-600 font-semibold text-sm uppercase tracking-wider mb-4">
+          <lucide-icon name="layout-grid" [size]="16" [strokeWidth]="2"></lucide-icon>
+          Полная подготовка
+        </div>
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
+          Нужна подготовка под ключ?
+        </h2>
+        <p class="text-lg lg:text-xl text-slate-500 leading-relaxed">
+          Тренажёр --- отличный инструмент для самоподготовки. Но если вам нужно полное сопровождение
+          с гарантией сдачи --- выберите комплексную подготовку.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a *ngFor="let service of serviceData.relatedServices" [routerLink]="service.link"
+          class="related-card group flex items-center gap-4 p-6 rounded-2xl ring-1 ring-slate-200 hover:shadow-xl transition-all duration-500">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors" [ngClass]="{
+               'bg-blue-50 text-blue-600 group-hover:bg-blue-100': service.color === 'blue',
+               'bg-cyan-50 text-cyan-600 group-hover:bg-cyan-100': service.color === 'cyan',
+               'bg-orange-50 text-orange-600 group-hover:bg-orange-100': service.color === 'orange',
+               'bg-teal-50 text-teal-600 group-hover:bg-teal-100': service.color === 'teal'
+             }">
+            <lucide-icon [name]="service.icon" [size]="24" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <div>
+            <div class="font-semibold text-slate-900 text-lg group-hover:text-violet-600 transition-colors">{{
+              service.title }}</div>
+            <div class="text-sm text-slate-400">{{ service.subtitle }}</div>
+          </div>
+          <lucide-icon name="arrow-right" [size]="18" [strokeWidth]="2"
+            class="ml-auto text-slate-300 group-hover:text-violet-600 transition-all duration-300 group-hover:translate-x-1"></lucide-icon>
+        </a>
+      </div>
+
+      <!-- Additional links -->
+      <div class="mt-12 pt-12 border-t border-slate-200">
+        <div class="flex flex-wrap gap-3">
+          <a routerLink="/info/online-trainer"
+            class="inline-flex items-center gap-1 text-sm text-violet-600 hover:text-violet-800 bg-violet-50 rounded-lg px-4 py-2.5 transition-colors duration-200 font-medium">
+            Подробнее о тренажёре
+            <lucide-icon name="arrow-right" [size]="14" [strokeWidth]="2"></lucide-icon>
+          </a>
+          <a routerLink="/info/exam-preparation"
+            class="inline-flex items-center gap-1 text-sm text-violet-600 hover:text-violet-800 bg-violet-50 rounded-lg px-4 py-2.5 transition-colors duration-200 font-medium">
+            Подготовка к экзамену
+            <lucide-icon name="arrow-right" [size]="14" [strokeWidth]="2"></lucide-icon>
+          </a>
+          <a routerLink="/info/what-is-nok"
+            class="inline-flex items-center gap-1 text-sm text-violet-600 hover:text-violet-800 bg-violet-50 rounded-lg px-4 py-2.5 transition-colors duration-200 font-medium">
+            Что такое НОК
+            <lucide-icon name="arrow-right" [size]="14" [strokeWidth]="2"></lucide-icon>
+          </a>
+          <a routerLink="/faq"
+            class="inline-flex items-center gap-1 text-sm text-violet-600 hover:text-violet-800 bg-violet-50 rounded-lg px-4 py-2.5 transition-colors duration-200 font-medium">
+            Все вопросы и ответы
+            <lucide-icon name="arrow-right" [size]="14" [strokeWidth]="2"></lucide-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- CTA — Final conversion                       -->
+  <!-- ============================================ -->
+  <section class="py-24 lg:py-32 bg-white">
+    <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+      <div
+        class="cta-gradient-card relative bg-gradient-to-br from-violet-600 via-purple-700 to-violet-800 rounded-3xl p-12 lg:p-20 overflow-hidden">
+        <!-- Decorative -->
+        <div
+          class="absolute top-0 right-0 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"
+          aria-hidden="true"></div>
+        <div
+          class="absolute bottom-0 left-0 w-64 h-64 bg-violet-400/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"
+          aria-hidden="true"></div>
+
+        <div class="relative z-10 text-center max-w-3xl mx-auto">
+          <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6">
+            Готовы начать подготовку к экзамену?
+          </h2>
+          <p class="text-xl text-violet-100/80 leading-relaxed mb-10">
+            Получите доступ к тренажёру с реальными вопросами НОК и подготовьтесь к экзамену уверенно.
+            Начните прямо сейчас.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a routerLink="/trainer"
+              class="inline-flex items-center justify-center gap-2.5 bg-white text-violet-700 px-10 py-5 text-lg font-bold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-white/20 hover:-translate-y-0.5">
+              <lucide-icon name="play" [size]="22" [strokeWidth]="2"></lucide-icon>
+              Начать тренировку
+            </a>
+            <button (click)="openConsultationPopup()"
+              class="inline-flex items-center justify-center gap-2.5 text-white px-10 py-5 text-lg font-semibold rounded-xl border border-white/20 hover:bg-white/10 transition-all duration-300">
+              <lucide-icon name="message-circle" [size]="20" [strokeWidth]="2"></lucide-icon>
+              Получить консультацию
+            </button>
+          </div>
+          <p class="text-sm text-violet-200/60 mt-6">Ответим в течение 15 минут в рабочее время</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
