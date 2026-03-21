@@ -322,7 +322,7 @@ html.lenis, html.lenis body {
   }
 }
 
-/* GSAP handles opacity via fromTo() — no CSS pre-hide needed */
+/* Hero FOUC prevention is in index.html <style> block (critical CSS) */
 
 /* Hero word spacing — inline-block removes whitespace between spans */
 .hero-word {
