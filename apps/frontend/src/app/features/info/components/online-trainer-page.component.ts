@@ -96,13 +96,13 @@ import { PRICING } from '../../../shared/config/pricing.config';
       <div class="hero-cta flex flex-col sm:flex-row gap-4">
         <button
           (click)="scrollToSection('pricing')"
-          class="inline-flex items-center justify-center gap-2.5 bg-white text-slate-900 px-10 py-5 text-lg font-bold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-white/20 hover:-translate-y-0.5">
+          class="inline-flex items-center justify-center gap-2.5 bg-white text-slate-900 px-6 py-4 sm:px-10 sm:py-5 text-base sm:text-lg font-bold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-white/20 hover:-translate-y-0.5">
           <lucide-icon name="play" [size]="22" [strokeWidth]="2"></lucide-icon>
           Получить доступ
         </button>
         <button
           (click)="scrollToSection('pricing')"
-          class="inline-flex items-center justify-center gap-2.5 text-white px-10 py-5 text-lg font-semibold rounded-xl border border-white/20 hover:bg-white/10 transition-all duration-300">
+          class="inline-flex items-center justify-center gap-2.5 text-white px-6 py-4 sm:px-10 sm:py-5 text-base sm:text-lg font-semibold rounded-xl border border-white/20 hover:bg-white/10 transition-all duration-300">
           <lucide-icon name="tag" [size]="20" [strokeWidth]="2"></lucide-icon>
           Подробнее о тарифе
         </button>
@@ -495,12 +495,12 @@ import { PRICING } from '../../../shared/config/pricing.config';
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             (click)="scrollToSection('pricing')"
-            class="inline-flex items-center justify-center gap-2.5 bg-white text-blue-700 px-10 py-5 text-lg font-bold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-white/20 hover:-translate-y-0.5">
+            class="inline-flex items-center justify-center gap-2.5 bg-white text-blue-700 px-6 py-4 sm:px-10 sm:py-5 text-base sm:text-lg font-bold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-white/20 hover:-translate-y-0.5">
             <lucide-icon name="play" [size]="22" [strokeWidth]="2"></lucide-icon>
             Получить доступ к тренажёру
           </button>
           <a [href]="'tel:' + phoneHref"
-             class="inline-flex items-center justify-center gap-2.5 text-white px-10 py-5 text-lg font-semibold rounded-xl border border-white/20 hover:bg-white/10 transition-all duration-300">
+             class="inline-flex items-center justify-center gap-2.5 text-white px-6 py-4 sm:px-10 sm:py-5 text-base sm:text-lg font-semibold rounded-xl border border-white/20 hover:bg-white/10 transition-all duration-300">
             <lucide-icon name="phone" [size]="20" [strokeWidth]="2"></lucide-icon>
             {{ phoneDisplay }}
           </a>

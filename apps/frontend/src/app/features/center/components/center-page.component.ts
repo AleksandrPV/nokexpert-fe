@@ -336,12 +336,12 @@ import { OrganizationService } from '../../../shared/services/organization.servi
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             (click)="openConsultationPopup()"
-            class="inline-flex items-center justify-center gap-2.5 bg-white text-blue-700 px-10 py-5 text-lg font-bold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-white/20 hover:-translate-y-0.5">
+            class="inline-flex items-center justify-center gap-2.5 bg-white text-blue-700 px-6 py-4 sm:px-10 sm:py-5 text-base sm:text-lg font-bold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-white/20 hover:-translate-y-0.5">
             <lucide-icon name="message-circle" [size]="22" [strokeWidth]="2"></lucide-icon>
             Получить консультацию
           </button>
           <a [href]="phoneHref"
-             class="inline-flex items-center justify-center gap-2.5 text-white px-10 py-5 text-lg font-semibold rounded-xl border border-white/20 hover:bg-white/10 transition-all duration-300">
+             class="inline-flex items-center justify-center gap-2.5 text-white px-6 py-4 sm:px-10 sm:py-5 text-base sm:text-lg font-semibold rounded-xl border border-white/20 hover:bg-white/10 transition-all duration-300">
             <lucide-icon name="phone" [size]="20" [strokeWidth]="2"></lucide-icon>
             {{ phoneDisplay }}
           </a>
