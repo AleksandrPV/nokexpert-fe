@@ -13,6 +13,7 @@ import appConfig from './config/app.config';
 import { UsersModule } from './domains/users/users.module';
 import { QualificationModule } from './domains/qualification/qualification.module';
 import { TestingModule } from './domains/testing/testing.module';
+import { TrainerDemoModule } from './domains/trainer-demo/trainer-demo.module';
 
 // Базовые компоненты NestJS
 import { AppController } from './app.controller';
@@ -31,6 +32,7 @@ import { AnswerOptionEntity } from './domains/testing/infrastructure/entities/an
 import { TestEntity } from './domains/testing/infrastructure/entities/test.entity';
 import { TestQuestionEntity } from './domains/testing/infrastructure/entities/test-question.entity';
 import { UserAnswerEntity } from './domains/testing/infrastructure/entities/user-answer.entity';
+import { TrainerDemoRequestEntity } from './domains/trainer-demo/infrastructure/entities/trainer-demo-request.entity';
 
 @Module({
   imports: [
@@ -62,13 +64,11 @@ import { UserAnswerEntity } from './domains/testing/infrastructure/entities/user
           TestEntity,
           TestQuestionEntity,
           UserAnswerEntity,
+          TrainerDemoRequestEntity,
         ],
         synchronize: configService.get<string>('NODE_ENV') === 'development', // Только для разработки!
         logging: configService.get<string>('NODE_ENV') === 'development',
-        ssl:
-          configService.get<string>('NODE_ENV') === 'production'
-            ? { rejectUnauthorized: false }
-            : false,
+        ssl: false, // PostgreSQL on internal Docker network, no SSL needed
       }),
     }),
 
@@ -81,6 +81,7 @@ import { UserAnswerEntity } from './domains/testing/infrastructure/entities/user
     UsersModule,
     QualificationModule,
     TestingModule,
+    TrainerDemoModule,
   ],
   controllers: [AppController],
   providers: [
