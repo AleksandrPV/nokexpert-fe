@@ -24,6 +24,7 @@ export const appConfig: ApplicationConfig = {
         anchorScrolling: 'enabled'
       })
     ),
+    provideClientHydration(withEventReplay()),
     // Service Worker для кэширования
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),

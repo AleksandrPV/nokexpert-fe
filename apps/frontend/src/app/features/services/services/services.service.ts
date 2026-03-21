@@ -20,13 +20,20 @@ export class ServicesService {
 
   private headerServices: HeaderService[] = [
     {
+      id: 'trainer',
+      title: 'Тренажёр НОК',
+      description: 'Онлайн-подготовка к экзамену',
+      icon: 'trainer',
+      route: '/services/trainer',
+      color: 'bg-violet-50'
+    },
+    {
       id: 'nok-nostroy',
       title: 'НОК НОСТРОЙ',
       description: 'Строительные специальности',
       icon: 'construction',
       route: '/services/nok-nostroy',
-      color: 'bg-blue-50',
-      popular: true
+      color: 'bg-blue-50'
     },
     {
       id: 'nok-nopriz',
@@ -42,8 +49,7 @@ export class ServicesService {
       description: 'Пожарная безопасность и МЧС',
       icon: 'safety',
       route: '/services/nok-opb',
-      color: 'bg-red-50',
-      popular: true
+      color: 'bg-red-50'
     },
     {
       id: 'nok-housing',
@@ -51,17 +57,7 @@ export class ServicesService {
       description: 'Управление многоквартирными домами',
       icon: 'housing',
       route: '/services/nok-housing',
-      color: 'bg-blue-50',
-      popular: true
-    },
-    {
-      id: 'trainer',
-      title: 'Тренажёр НОК',
-      description: 'Онлайн-подготовка к экзамену',
-      icon: 'trainer',
-      route: '/services/trainer',
-      color: 'bg-violet-50',
-      popular: true
+      color: 'bg-blue-50'
     },
     {
       id: 'consultation',

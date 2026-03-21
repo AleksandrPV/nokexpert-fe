@@ -94,19 +94,28 @@ import { OrganizationService } from '../../../shared/services/organization.servi
 <!-- ============================================ -->
 <section class="py-24 lg:py-32 bg-white" id="what-is-nrs">
   <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
-    <div class="max-w-3xl mb-20">
-      <div class="section-label inline-flex items-center gap-2 text-amber-600 font-semibold text-sm uppercase tracking-wider mb-4">
-        <lucide-icon name="database" [size]="16" [strokeWidth]="2"></lucide-icon>
-        О реестре
+    <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+      <div class="max-w-3xl">
+        <div class="section-label inline-flex items-center gap-2 text-amber-600 font-semibold text-sm uppercase tracking-wider mb-4">
+          <lucide-icon name="database" [size]="16" [strokeWidth]="2"></lucide-icon>
+          О реестре
+        </div>
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
+          Что такое Национальный реестр специалистов
+        </h2>
+        <p class="section-subtitle text-lg lg:text-xl text-slate-500 leading-relaxed">
+          НРС --- это официальная база данных, содержащая сведения
+          о специалистах, имеющих право занимать ответственные должности
+          в строительстве, проектировании и инженерных изысканиях.
+        </p>
       </div>
-      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
-        Что такое Национальный реестр специалистов
-      </h2>
-      <p class="section-subtitle text-lg lg:text-xl text-slate-500 leading-relaxed">
-        НРС --- это официальная государственная база данных, содержащая сведения
-        о специалистах, имеющих право занимать ответственные должности
-        в строительстве, проектировании и инженерных изысканиях.
-      </p>
+      <div class="flex justify-center lg:justify-end mt-8 lg:mt-0">
+        <div class="relative group">
+          <div class="absolute inset-0 bg-gradient-to-tr from-amber-400/20 to-orange-400/20 rounded-[2.5rem] blur-2xl transform group-hover:scale-110 transition-transform duration-700 ease-out"></div>
+          <div class="absolute inset-0 bg-gradient-to-bl from-white/40 to-transparent rounded-3xl opacity-50"></div>
+          <img src="/assets/images/registry.png" alt="Реестр специалистов НРС" class="relative z-10 w-full max-w-sm lg:max-w-[420px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.15)] group-hover:-translate-y-4 group-hover:scale-105 transition-all duration-700 ease-out" />
+        </div>
+      </div>
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -512,7 +521,7 @@ export class SpecialistsRegistryPageComponent implements OnInit, AfterViewInit, 
     {
       icon: 'briefcase',
       title: 'Стаж работы',
-      description: 'Не менее 3 лет стажа работы на инженерных должностях. Для руководителей --- не менее 5 лет.'
+      description: 'Не менее 3 лет стажа на инженерных должностях и не менее 10 лет общего стажа (или 5 лет при наличии свидетельства НОК).'
     },
     {
       icon: 'badge-check',
@@ -563,7 +572,7 @@ export class SpecialistsRegistryPageComponent implements OnInit, AfterViewInit, 
     'Главные архитекторы проекта (ГАП)',
     'Специалисты по инженерным изысканиям',
     'Требуется профстандарт в области проектирования/изысканий',
-    'Стаж работы: минимум 5 лет по профилю',
+    'Стаж работы: минимум 3 года на инженерных должностях',
     'Свидетельство НОК НОПРИЗ обязательно'
   ];
 
@@ -664,7 +673,7 @@ export class SpecialistsRegistryPageComponent implements OnInit, AfterViewInit, 
     },
     {
       question: 'Как долго действует включение в НРС?',
-      answer: 'Включение в НРС действует бессрочно, однако привязано к действию свидетельства НОК. При истечении срока свидетельства НОК (обычно 5 лет) необходимо пройти процедуру повторной оценки квалификации и обновить данные в реестре.'
+      answer: 'Включение в НРС действует бессрочно, однако привязано к действию свидетельства НОК. При истечении срока свидетельства НОК (от 3 до 5 лет в зависимости от квалификации) необходимо пройти процедуру повторной оценки квалификации и обновить данные в реестре.'
     }
   ];
 

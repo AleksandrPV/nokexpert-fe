@@ -1,38 +1,40 @@
-<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-        [class.bg-white/80]="isScrolled"
-        [class.backdrop-blur-xl]="isScrolled"
-        [class.border-b]="isScrolled"
-        [class.border-slate-200/60]="isScrolled"
-        [class.shadow-sm]="isScrolled"
-        [class.bg-transparent]="!isScrolled">
+<header class="fixed top-0 left-0 right-0 z-50 bg-slate-950">
   <nav class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
     <div class="flex items-center justify-between h-[72px]">
 
       <!-- Logo -->
-      <a routerLink="/" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-600/20 group-hover:shadow-blue-600/30 transition-shadow duration-300">
-          <lucide-icon name="building-2" [size]="20" [strokeWidth]="2"></lucide-icon>
-        </div>
-        <div>
-          <div class="text-lg font-bold tracking-tight transition-colors duration-300"
-               [class.text-white]="!isScrolled"
-               [class.text-slate-900]="isScrolled">{{ organizationName }}</div>
-          <p class="text-[11px] font-medium tracking-wide uppercase transition-colors duration-300"
-             [class.text-slate-400]="!isScrolled"
-             [class.text-slate-500]="isScrolled">Независимая оценка квалификаций</p>
+      <a routerLink="/" class="flex items-center gap-3.5 group relative">
+        <!-- Abstract Shield mark -->
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="relative z-10 shrink-0 transform group-hover:scale-105 group-hover:-translate-y-0.5 transition-all duration-300 drop-shadow-md">
+          <!-- Shield shape base -->
+          <path d="M12 21.5C12 21.5 4 16.5 4 9.5V5.5L12 2.5L20 5.5V9.5C20 16.5 12 21.5 12 21.5Z" fill="url(#logo-shield-grad)" stroke="url(#logo-shield-border)" stroke-width="1.5" stroke-linejoin="round"/>
+          <!-- Checkmark indicating assessment/quality (NOK) -->
+          <path d="M8.5 11.5L11 14L16 8" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="logo-shield-grad" x1="4" y1="2.5" x2="20" y2="21.5" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#3B82F6"/>
+              <stop offset="1" stop-color="#1D4ED8"/>
+            </linearGradient>
+            <linearGradient id="logo-shield-border" x1="4" y1="2.5" x2="20" y2="21.5" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#60A5FA"/>
+              <stop offset="1" stop-color="#2563EB"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        
+        <div class="flex flex-col justify-center">
+          <div class="text-[20px] tracking-tight flex items-center leading-none text-white">
+            <span class="font-extrabold text-blue-400">НОК</span>
+            <span class="ml-1 font-bold">Эксперт</span>
+          </div>
+          <p class="text-[9.5px] font-bold tracking-[0.06em] uppercase mt-[5px] text-slate-400">Независимая оценка квалификаций</p>
         </div>
       </a>
 
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex items-center gap-0.5">
         <a routerLink="/"
-           class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none"
-           [class.text-white/80]="!isScrolled"
-           [class.hover:text-white]="!isScrolled"
-           [class.hover:bg-white/10]="!isScrolled"
-           [class.text-slate-600]="isScrolled"
-           [class.hover:text-slate-900]="isScrolled"
-           [class.hover:bg-slate-100]="isScrolled">
+           class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none text-white/80 hover:text-white hover:bg-white/10">
           Главная
         </a>
 
@@ -42,18 +44,10 @@
              (mouseleave)="onServicesSubmenuLeave()">
           <a routerLink="/services"
              (click)="closeServicesSubmenu()"
-             class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none flex items-center gap-1.5"
-             [class.text-white/80]="!isScrolled"
-             [class.hover:text-white]="!isScrolled"
-             [class.hover:bg-white/10]="!isScrolled"
-             [class.text-slate-600]="isScrolled"
-             [class.hover:text-slate-900]="isScrolled"
-             [class.hover:bg-slate-100]="isScrolled">
+             class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none flex items-center gap-1.5 text-white/80 hover:text-white hover:bg-white/10">
             Услуги
             <lucide-icon name="chevron-down" [size]="14"
-                         class="transition-transform duration-200"
-                         [class.text-white/40]="!isScrolled"
-                         [class.text-slate-400]="isScrolled"
+                         class="transition-transform duration-200 text-white/50"
                          [class.rotate-180]="showServicesSubmenu"></lucide-icon>
           </a>
 
@@ -64,16 +58,9 @@
               <a *ngFor="let service of headerServices"
                  [routerLink]="service.route"
                  (click)="closeServicesSubmenu()"
-                 class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-all duration-200 group">
-                <div class="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold shrink-0"
-                     [class]="service.color">
-                  {{ service.title.charAt(0) }}
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors text-[14px]">{{ service.title }}</div>
-                  <div class="text-xs text-slate-400 truncate">{{ service.description }}</div>
-                </div>
-                <div *ngIf="service.popular" class="shrink-0 w-2 h-2 rounded-full bg-blue-500"></div>
+                 class="flex flex-col p-3 rounded-xl hover:bg-slate-50 transition-all duration-200 group">
+                <div class="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors text-[14px]">{{ service.title }}</div>
+                <div class="text-xs text-slate-400 truncate">{{ service.description }}</div>
               </a>
             </div>
             <div class="mt-1 pt-1 border-t border-slate-100">
@@ -92,31 +79,23 @@
              (mouseleave)="onMegaMenuLeave()">
           <a routerLink="/info"
              (click)="closeMegaMenu()"
-             class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none flex items-center gap-1.5"
-             [class.text-white/80]="!isScrolled"
-             [class.hover:text-white]="!isScrolled"
-             [class.hover:bg-white/10]="!isScrolled"
-             [class.text-slate-600]="isScrolled"
-             [class.hover:text-slate-900]="isScrolled"
-             [class.hover:bg-slate-100]="isScrolled">
+             class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none flex items-center gap-1.5 text-white/80 hover:text-white hover:bg-white/10">
             База знаний
             <lucide-icon name="chevron-down" [size]="14"
-                         class="transition-transform duration-200"
-                         [class.text-white/40]="!isScrolled"
-                         [class.text-slate-400]="isScrolled"
+                         class="transition-transform duration-200 text-white/50"
                          [class.rotate-180]="showMegaMenu"></lucide-icon>
           </a>
 
           <!-- Mega Menu -->
           <div *ngIf="showMegaMenu"
-               class="absolute top-full -left-32 mt-2 w-[680px] bg-white rounded-2xl border border-slate-200/80 shadow-2xl shadow-slate-200/50 p-6 z-20 animate-fade-in">
+               class="absolute top-full -left-32 mt-2 w-[780px] bg-white rounded-2xl border border-slate-200/80 shadow-2xl shadow-slate-200/50 p-6 z-20 animate-fade-in">
             <div class="grid grid-cols-3 gap-6">
               <div *ngFor="let category of menuCategories" class="space-y-1">
                 <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 px-2">{{ category.name }}</h4>
                 <a *ngFor="let page of category.pages.slice(0, 4)"
                    [routerLink]="'/info/' + page.slug"
                    (click)="closeMegaMenu()"
-                   class="block px-2 py-1.5 rounded-lg text-[13px] text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200 line-clamp-1">
+                   class="block px-2 py-1.5 rounded-lg text-[13px] text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-all duration-200 truncate">
                   {{ page.title }}
                 </a>
               </div>
@@ -138,36 +117,18 @@
           </div>
         </div>
 
-        <a routerLink="/faq"
-           class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none"
-           [class.text-white/80]="!isScrolled"
-           [class.hover:text-white]="!isScrolled"
-           [class.hover:bg-white/10]="!isScrolled"
-           [class.text-slate-600]="isScrolled"
-           [class.hover:text-slate-900]="isScrolled"
-           [class.hover:bg-slate-100]="isScrolled">
-          FAQ
-        </a>
-
-        <a routerLink="/trainer"
-           class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none"
-           [class.text-white/80]="!isScrolled"
-           [class.hover:text-white]="!isScrolled"
-           [class.hover:bg-white/10]="!isScrolled"
-           [class.text-slate-600]="isScrolled"
-           [class.hover:text-slate-900]="isScrolled"
-           [class.hover:bg-slate-100]="isScrolled">
+        <a routerLink="/info/online-trainer"
+           class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none text-white/80 hover:text-white hover:bg-white/10">
           Тренажёр
         </a>
 
+        <a routerLink="/faq"
+           class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none text-white/80 hover:text-white hover:bg-white/10">
+          FAQ
+        </a>
+
         <a routerLink="/contacts"
-           class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none"
-           [class.text-white/80]="!isScrolled"
-           [class.hover:text-white]="!isScrolled"
-           [class.hover:bg-white/10]="!isScrolled"
-           [class.text-slate-600]="isScrolled"
-           [class.hover:text-slate-900]="isScrolled"
-           [class.hover:bg-slate-100]="isScrolled">
+           class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none text-white/80 hover:text-white hover:bg-white/10">
           Контакты
         </a>
       </div>
@@ -175,11 +136,7 @@
       <!-- Desktop Right -->
       <div class="hidden lg:flex items-center gap-5">
         <a [href]="'tel:' + phoneHref"
-           class="flex items-center gap-2 text-sm font-medium transition-colors duration-200"
-           [class.text-white/70]="!isScrolled"
-           [class.hover:text-white]="!isScrolled"
-           [class.text-slate-500]="isScrolled"
-           [class.hover:text-slate-900]="isScrolled">
+           class="hidden xl:flex items-center gap-2 text-sm font-medium transition-colors duration-200 text-white/70 hover:text-white">
           <lucide-icon name="phone" [size]="15"></lucide-icon>
           {{ phoneDisplay }}
         </a>
@@ -188,17 +145,12 @@
         <ng-container *ngIf="authService.isAuthenticated(); else loginBtn">
           <div class="relative">
             <button (click)="toggleUserMenu()"
-                    class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200"
-                    [class.text-white/80]="!isScrolled"
-                    [class.hover:bg-white/10]="!isScrolled"
-                    [class.text-slate-600]="isScrolled"
-                    [class.hover:bg-slate-100]="isScrolled">
+                    class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 text-white/80 hover:bg-white/10">
               <div class="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
                 {{ authService.currentUser()?.firstName?.charAt(0) }}{{ authService.currentUser()?.lastName?.charAt(0) }}
               </div>
-              <span>{{ authService.currentUser()?.firstName }}</span>
               <lucide-icon name="chevron-down" [size]="14"
-                           class="transition-transform duration-200"
+                           class="transition-transform duration-200 text-white/50"
                            [class.rotate-180]="showUserMenu"></lucide-icon>
             </button>
 
@@ -232,13 +184,7 @@
 
         <ng-template #loginBtn>
           <a routerLink="/login"
-             class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 border"
-             [class.text-white/80]="!isScrolled"
-             [class.border-white/20]="!isScrolled"
-             [class.hover:bg-white/10]="!isScrolled"
-             [class.text-slate-600]="isScrolled"
-             [class.border-slate-300]="isScrolled"
-             [class.hover:bg-slate-100]="isScrolled">
+             class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 border text-white/80 border-white/30 hover:bg-white/10 hover:text-white">
             <lucide-icon name="log-in" [size]="15"></lucide-icon>
             Войти
           </a>
@@ -246,7 +192,7 @@
 
         <button
           (click)="openConsultationPopup()"
-          class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-blue-600/20 focus:outline-none">
+          class="hidden xl:inline-flex bg-white hover:bg-blue-50 text-slate-900 px-6 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 hover:shadow-lg focus:outline-none">
           Консультация
         </button>
       </div>
@@ -255,11 +201,7 @@
       <button
         (click)="toggleMobileMenu()"
         aria-label="Открыть мобильное меню"
-        class="lg:hidden p-2.5 rounded-xl transition-all duration-200 focus:outline-none"
-        [class.text-white]="!isScrolled"
-        [class.hover:bg-white/10]="!isScrolled"
-        [class.text-slate-700]="isScrolled"
-        [class.hover:bg-slate-100]="isScrolled">
+        class="lg:hidden p-2.5 rounded-xl transition-all duration-200 focus:outline-none text-white hover:bg-white/10">
         <lucide-icon [name]="mobileMenuOpen ? 'x' : 'menu'" [size]="24"></lucide-icon>
       </button>
     </div>
@@ -278,7 +220,7 @@
           <button (click)="toggleServicesSubmenu()" aria-label="Услуги"
                   class="w-full flex items-center justify-between p-3.5 rounded-xl text-[15px] text-slate-700 hover:text-blue-600 hover:bg-slate-50 font-medium transition-all">
             Услуги
-            <lucide-icon name="chevron-down" [size]="16" class="transition-transform duration-200" [class.rotate-180]="servicesSubmenuOpen"></lucide-icon>
+            <lucide-icon name="chevron-down" [size]="16" class="transition-transform duration-200 text-white/50" [class.rotate-180]="servicesSubmenuOpen"></lucide-icon>
           </button>
           <div *ngIf="servicesSubmenuOpen" class="pl-4 ml-4 space-y-0.5 border-l-2 border-blue-100 mt-1">
             <a routerLink="/services/nok-nostroy" (click)="closeMobileMenu()" class="block p-2.5 rounded-lg text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors">НОК НОСТРОЙ</a>
@@ -294,7 +236,7 @@
           <button (click)="toggleNokSubmenu()" aria-label="База знаний"
                   class="w-full flex items-center justify-between p-3.5 rounded-xl text-[15px] text-slate-700 hover:text-blue-600 hover:bg-slate-50 font-medium transition-all">
             База знаний
-            <lucide-icon name="chevron-down" [size]="16" class="transition-transform duration-200" [class.rotate-180]="nokSubmenuOpen"></lucide-icon>
+            <lucide-icon name="chevron-down" [size]="16" class="transition-transform duration-200 text-white/50" [class.rotate-180]="nokSubmenuOpen"></lucide-icon>
           </button>
           <div *ngIf="nokSubmenuOpen" class="pl-4 ml-4 space-y-0.5 border-l-2 border-blue-100 mt-1">
             <a routerLink="/info" (click)="closeMobileMenu()" class="block p-2.5 rounded-lg text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors">Все материалы</a>
@@ -303,6 +245,8 @@
           </div>
         </div>
 
+        <a routerLink="/info/online-trainer" (click)="closeMobileMenu()"
+           class="block p-3.5 rounded-xl text-[15px] text-slate-700 hover:text-blue-600 hover:bg-slate-50 font-medium transition-all">Тренажёр</a>
         <a routerLink="/faq" (click)="closeMobileMenu()"
            class="block p-3.5 rounded-xl text-[15px] text-slate-700 hover:text-blue-600 hover:bg-slate-50 font-medium transition-all">FAQ</a>
         <a routerLink="/contacts" (click)="closeMobileMenu()"

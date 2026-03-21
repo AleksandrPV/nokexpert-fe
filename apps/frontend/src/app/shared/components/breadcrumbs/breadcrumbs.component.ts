@@ -47,17 +47,17 @@ export interface BreadcrumbItem {
   `,
   styles: [`
     .breadcrumbs {
-      @apply py-4 px-6 bg-white border-b border-gray-100;
+      @apply py-3 px-6;
     }
-    
+
     .breadcrumbs ol {
       @apply max-w-7xl mx-auto;
     }
-    
+
     .breadcrumbs a:hover {
       @apply text-blue-900;
     }
-    
+
     .breadcrumbs span[aria-current="page"] {
       @apply text-blue-900 font-medium;
     }

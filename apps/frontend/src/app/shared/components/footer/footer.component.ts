@@ -15,13 +15,27 @@ import { IconModule } from '../icon/icon.component';
 
             <!-- Company Info -->
             <div class="space-y-5">
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white">
-                  <lucide-icon name="building-2" [size]="22" [strokeWidth]="2.5"></lucide-icon>
-                </div>
-                <div>
-                  <h3 class="text-lg font-bold text-white tracking-tight">НОК Эксперт</h3>
-                  <p class="text-xs text-slate-500">Независимая оценка квалификаций</p>
+              <div class="flex items-center gap-3.5 group relative">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="relative z-10 shrink-0 transform group-hover:scale-105 group-hover:-translate-y-0.5 transition-all duration-300 drop-shadow-md">
+                  <path d="M12 21.5C12 21.5 4 16.5 4 9.5V5.5L12 2.5L20 5.5V9.5C20 16.5 12 21.5 12 21.5Z" fill="url(#footer-shield-grad)" stroke="url(#footer-shield-border)" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M8.5 11.5L11 14L16 8" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <defs>
+                    <linearGradient id="footer-shield-grad" x1="4" y1="2.5" x2="20" y2="21.5" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#3B82F6"/>
+                      <stop offset="1" stop-color="#1D4ED8"/>
+                    </linearGradient>
+                    <linearGradient id="footer-shield-border" x1="4" y1="2.5" x2="20" y2="21.5" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#60A5FA"/>
+                      <stop offset="1" stop-color="#2563EB"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="flex flex-col justify-center">
+                  <div class="text-[20px] tracking-tight transition-colors duration-300 flex items-center leading-none">
+                    <span class="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">НОК</span>
+                    <span class="ml-1 font-bold text-white/95">Эксперт</span>
+                  </div>
+                  <p class="text-[9.5px] font-bold tracking-[0.06em] uppercase text-[#A5B4FC] mt-[5px]">Независимая оценка квалификаций</p>
                 </div>
               </div>
 

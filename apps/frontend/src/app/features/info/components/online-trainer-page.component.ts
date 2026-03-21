@@ -1,18 +1,20 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, inject, PLATFORM_ID, signal } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 import { IconModule } from '../../../shared/components/icon/icon.component';
 import { AnimationService } from '../../../shared/services/animation.service';
 import { SeoService } from '../../../shared/services/seo.service';
 import { FeedbackPopupService } from '../../feedback-popup/services/feedback-popup.service';
 import { OrganizationService } from '../../../shared/services/organization.service';
+import { TrainerDemoService } from '../services/trainer-demo.service';
 import { PRICING } from '../../../shared/config/pricing.config';
 
 @Component({
   selector: 'app-online-trainer-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, BreadcrumbsComponent, IconModule],
+  imports: [CommonModule, RouterLink, FormsModule, BreadcrumbsComponent, IconModule],
   template: `
 <!-- Breadcrumbs -->
 <app-breadcrumbs
@@ -93,7 +95,7 @@ import { PRICING } from '../../../shared/config/pricing.config';
       <!-- CTA -->
       <div class="hero-cta flex flex-col sm:flex-row gap-4">
         <button
-          (click)="openConsultationPopup()"
+          (click)="scrollToSection('pricing')"
           class="inline-flex items-center justify-center gap-2.5 bg-white text-slate-900 px-10 py-5 text-lg font-bold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-white/20 hover:-translate-y-0.5">
           <lucide-icon name="play" [size]="22" [strokeWidth]="2"></lucide-icon>
           Получить доступ
@@ -115,18 +117,27 @@ import { PRICING } from '../../../shared/config/pricing.config';
 <!-- ============================================ -->
 <section class="py-24 lg:py-32 bg-white" id="how-it-works">
   <div class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
-    <div class="max-w-3xl mb-20">
-      <div class="section-label inline-flex items-center gap-2 text-blue-600 font-semibold text-sm uppercase tracking-wider mb-4">
-        <lucide-icon name="list-checks" [size]="16" [strokeWidth]="2"></lucide-icon>
-        Как это работает
+    <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+      <div class="max-w-3xl">
+        <div class="section-label inline-flex items-center gap-2 text-blue-600 font-semibold text-sm uppercase tracking-wider mb-4">
+          <lucide-icon name="list-checks" [size]="16" [strokeWidth]="2"></lucide-icon>
+          Как это работает
+        </div>
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
+          Три шага к успешной сдаче
+        </h2>
+        <p class="section-subtitle text-lg lg:text-xl text-slate-500 leading-relaxed">
+          Простой и эффективный процесс подготовки к экзамену НОК.
+          Начните прямо сейчас и отслеживайте свой прогресс.
+        </p>
       </div>
-      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
-        Три шага к успешной сдаче
-      </h2>
-      <p class="section-subtitle text-lg lg:text-xl text-slate-500 leading-relaxed">
-        Простой и эффективный процесс подготовки к экзамену НОК.
-        Начните прямо сейчас и отслеживайте свой прогресс.
-      </p>
+      <div class="flex justify-center lg:justify-end mt-8 lg:mt-0">
+        <div class="relative group">
+          <div class="absolute inset-0 bg-gradient-to-tr from-blue-400/20 to-cyan-400/20 rounded-[2.5rem] blur-2xl transform group-hover:scale-110 transition-transform duration-700 ease-out"></div>
+          <div class="absolute inset-0 bg-gradient-to-bl from-white/40 to-transparent rounded-3xl opacity-50"></div>
+          <img src="/assets/images/online_testing.png" alt="Онлайн-тренажер НОК" class="relative z-10 w-full max-w-sm lg:max-w-[420px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.15)] group-hover:-translate-y-4 group-hover:scale-105 transition-all duration-700 ease-out" />
+        </div>
+      </div>
     </div>
 
     <div class="grid md:grid-cols-3 gap-8">
@@ -252,43 +263,110 @@ import { PRICING } from '../../../shared/config/pricing.config';
     <div class="max-w-3xl mb-20">
       <div class="section-label inline-flex items-center gap-2 text-blue-400 font-semibold text-sm uppercase tracking-wider mb-4">
         <lucide-icon name="tag" [size]="16" [strokeWidth]="2"></lucide-icon>
-        Тариф
+        Доступ к тренажёру
       </div>
       <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6">
-        Одна цена --- полный доступ
+        Выберите удобный вариант
       </h2>
       <p class="section-subtitle text-xl text-slate-400 leading-relaxed">
-        Без скрытых платежей. Все возможности тренажёра включены в один тариф.
+        Попробуйте демо-версию бесплатно или получите полный доступ ко всем возможностям тренажёра.
       </p>
     </div>
 
-    <div class="max-w-lg">
-      <div class="pricing-card relative bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] rounded-3xl p-10 lg:p-14 hover:bg-white/[0.07] transition-all duration-500 hover:border-blue-500/20">
-        <!-- Popular badge -->
+    <div class="grid lg:grid-cols-2 gap-8 max-w-4xl">
+
+      <!-- Demo Access Form -->
+      <div class="pricing-card relative bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] rounded-3xl p-10 lg:p-12 hover:bg-white/[0.07] transition-all duration-500 hover:border-cyan-500/20">
+        <div class="absolute -top-4 left-8 bg-cyan-500 text-white text-sm font-semibold px-5 py-1.5 rounded-full">
+          Бесплатно
+        </div>
+
+        <h3 class="text-2xl font-bold text-white mb-2 mt-2">Демо-версия</h3>
+        <p class="text-slate-400 mb-8">Оставьте контакты и получите бесплатный доступ к демо-версии тренажёра с ограниченным набором вопросов.</p>
+
+        <!-- Success message -->
+        <div *ngIf="demoFormSuccess()" class="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-6 text-center">
+          <div class="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
+            <lucide-icon name="check" [size]="32" [strokeWidth]="2" class="text-emerald-400"></lucide-icon>
+          </div>
+          <h4 class="text-lg font-bold text-white mb-2">Заявка отправлена!</h4>
+          <p class="text-slate-400">Мы свяжемся с вами в ближайшее время и предоставим доступ к демо-версии.</p>
+        </div>
+
+        <!-- Error message -->
+        <div *ngIf="demoFormError()" class="bg-red-500/10 border border-red-500/20 rounded-xl p-4 mb-4">
+          <p class="text-red-400 text-sm">{{ demoFormError() }}</p>
+        </div>
+
+        <!-- Form -->
+        <form *ngIf="!demoFormSuccess()" (ngSubmit)="submitDemoForm()" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-slate-300 mb-1.5">Имя *</label>
+            <input
+              type="text"
+              [(ngModel)]="demoForm.name"
+              name="name"
+              required
+              placeholder="Иван Иванов"
+              class="w-full bg-white/[0.06] border border-white/[0.1] rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 focus:bg-white/[0.08] transition-all duration-200">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-300 mb-1.5">Телефон *</label>
+            <input
+              type="tel"
+              [(ngModel)]="demoForm.phone"
+              name="phone"
+              required
+              placeholder="+7 (999) 123-45-67"
+              class="w-full bg-white/[0.06] border border-white/[0.1] rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 focus:bg-white/[0.08] transition-all duration-200">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-300 mb-1.5">Email *</label>
+            <input
+              type="email"
+              [(ngModel)]="demoForm.email"
+              name="email"
+              required
+              placeholder="user&#64;example.com"
+              class="w-full bg-white/[0.06] border border-white/[0.1] rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 focus:bg-white/[0.08] transition-all duration-200">
+          </div>
+          <button
+            type="submit"
+            [disabled]="demoFormSubmitting()"
+            class="w-full inline-flex items-center justify-center gap-2.5 bg-cyan-500 text-white px-8 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:bg-cyan-400 hover:shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0">
+            <lucide-icon [name]="demoFormSubmitting() ? 'loader-2' : 'send'" [size]="20" [strokeWidth]="2"
+                         [class.animate-spin]="demoFormSubmitting()"></lucide-icon>
+            {{ demoFormSubmitting() ? 'Отправка...' : 'Получить демо-доступ' }}
+          </button>
+        </form>
+      </div>
+
+      <!-- Full Access Card -->
+      <div class="pricing-card relative bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] rounded-3xl p-10 lg:p-12 hover:bg-white/[0.07] transition-all duration-500 hover:border-blue-500/20">
         <div class="absolute -top-4 left-8 bg-blue-500 text-white text-sm font-semibold px-5 py-1.5 rounded-full">
           Полный доступ
         </div>
 
-        <div class="flex items-end gap-2 mb-2">
+        <div class="flex items-end gap-2 mb-2 mt-2">
           <span class="text-5xl sm:text-6xl font-extrabold text-white">{{ trainerPrice }}</span>
         </div>
-        <p class="text-lg text-slate-400 mb-10">за {{ trainerDuration }} доступа</p>
+        <p class="text-lg text-slate-400 mb-8">за {{ trainerDuration }} доступа</p>
 
-        <ul class="space-y-4 mb-10">
+        <ul class="space-y-3 mb-8">
           <li *ngFor="let item of pricingFeatures" class="flex items-start gap-3">
             <div class="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
               <lucide-icon name="check" [size]="14" [strokeWidth]="2.5" class="text-emerald-400"></lucide-icon>
             </div>
-            <span class="text-lg text-slate-300">{{ item }}</span>
+            <span class="text-base text-slate-300">{{ item }}</span>
           </li>
         </ul>
 
-        <button
-          (click)="openConsultationPopup()"
-          class="w-full inline-flex items-center justify-center gap-2.5 bg-white text-slate-900 px-8 py-5 text-lg font-bold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-white/20 hover:-translate-y-0.5">
-          <lucide-icon name="play" [size]="22" [strokeWidth]="2"></lucide-icon>
-          Получить доступ
-        </button>
+        <a
+          href="#"
+          class="w-full inline-flex items-center justify-center gap-2.5 bg-white text-slate-900 px-8 py-4 text-lg font-bold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-white/20 hover:-translate-y-0.5">
+          <lucide-icon name="credit-card" [size]="20" [strokeWidth]="2"></lucide-icon>
+          Оплатить и получить доступ
+        </a>
 
         <p class="text-sm text-slate-500 text-center mt-4">Мгновенное подключение после оплаты</p>
       </div>
@@ -416,7 +494,7 @@ import { PRICING } from '../../../shared/config/pricing.config';
         <p class="text-2xl font-bold text-white mb-10">{{ trainerPrice }} за {{ trainerDuration }}</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <button
-            (click)="openConsultationPopup()"
+            (click)="scrollToSection('pricing')"
             class="inline-flex items-center justify-center gap-2.5 bg-white text-blue-700 px-10 py-5 text-lg font-bold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-white/20 hover:-translate-y-0.5">
             <lucide-icon name="play" [size]="22" [strokeWidth]="2"></lucide-icon>
             Получить доступ к тренажёру
@@ -446,11 +524,18 @@ export class OnlineTrainerPageComponent implements OnInit, AfterViewInit, OnDest
   private feedbackService = inject(FeedbackPopupService);
   private organizationService = inject(OrganizationService);
   private animationService = inject(AnimationService);
+  private trainerDemoService = inject(TrainerDemoService);
   private platformId = inject(PLATFORM_ID);
   private isBrowser = isPlatformBrowser(this.platformId);
 
   trainerPrice = PRICING['trainer'].price;
   trainerDuration = PRICING['trainer'].duration;
+
+  // Demo form state
+  demoForm = { name: '', phone: '', email: '' };
+  demoFormSubmitting = signal(false);
+  demoFormSuccess = signal(false);
+  demoFormError = signal<string | null>(null);
 
   get phoneDisplay(): string {
     return this.organizationService.getPhoneDisplay();
@@ -639,7 +724,7 @@ export class OnlineTrainerPageComponent implements OnInit, AfterViewInit, OnDest
 
   reviews = [
     {
-      text: 'Готовился к НОК НОСТРОЙ 10 дней. Вопросы в тренажёре практически совпали с реальным экзаменом. Сдал на 92 балла из 100.',
+      text: 'Готовился к НОК НОСТРОЙ 10 дней. Вопросы в тренажёре практически совпали с реальным экзаменом. Сдал на 46 баллов из 50.',
       name: 'Алексей К.',
       role: 'Инженер-строитель, Москва'
     },
@@ -696,6 +781,27 @@ export class OnlineTrainerPageComponent implements OnInit, AfterViewInit, OnDest
       { name: 'Информация о НОК', url: `${this.seoService.getBaseUrl()}/info` },
       { name: 'Онлайн-тренажёр НОК', url: `${this.seoService.getBaseUrl()}/info/online-trainer` }
     ]);
+  }
+
+  submitDemoForm(): void {
+    if (!this.demoForm.name.trim() || !this.demoForm.phone.trim() || !this.demoForm.email.trim()) {
+      this.demoFormError.set('Пожалуйста, заполните все поля.');
+      return;
+    }
+
+    this.demoFormSubmitting.set(true);
+    this.demoFormError.set(null);
+
+    this.trainerDemoService.submitDemoRequest(this.demoForm).subscribe({
+      next: () => {
+        this.demoFormSubmitting.set(false);
+        this.demoFormSuccess.set(true);
+      },
+      error: () => {
+        this.demoFormSubmitting.set(false);
+        this.demoFormError.set('Произошла ошибка при отправке. Попробуйте ещё раз.');
+      },
+    });
   }
 
   openConsultationPopup(): void {

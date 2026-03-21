@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy, HostListener, inject, PLATFORM_ID } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { InfoService } from '../../../features/info/services/info.service';
 import { InfoCategory } from '../../../features/info/models/info-page.interface';
@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   mobileMenuOpen = false;
   nokSubmenuOpen = false;
   servicesSubmenuOpen = false;
-  isScrolled = false;
   menuCategories: InfoCategory[] = [];
   headerServices: HeaderService[] = [];
   megaMenuTimeout: any = null;
@@ -33,17 +32,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private feedbackService = inject(FeedbackPopupService);
   private organizationService = inject(OrganizationService);
   private servicesService = inject(ServicesService);
-  private platformId = inject(PLATFORM_ID);
   authService = inject(AuthService);
   private toastService = inject(ToastService);
   showUserMenu = false;
-
-  @HostListener('window:scroll')
-  onScroll(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.isScrolled = window.scrollY > 50;
-    }
-  }
 
   // Геттеры для данных организации
   get organizationName(): string {

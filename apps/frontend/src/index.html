@@ -88,6 +88,11 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-192x192.png">
   <link rel="manifest" href="/assets/icons/site.webmanifest">
   
+  <!-- Critical CSS: prevent FOUC for GSAP-animated hero elements -->
+  <style>
+    .hero-word, .hero-breadcrumb, .hero-subtitle { opacity: 0; }
+  </style>
+
   <!-- Theme Color -->
   <meta name="theme-color" content="#2B4C8B">
   <meta name="msapplication-TileColor" content="#2B4C8B">
