@@ -331,4 +331,31 @@ html.lenis, html.lenis body {
 .hero-word:last-child {
   margin-right: 0;
 }
-/* ci trigger */
+
+/* ========== Section with decorative orbs — clips overflow ========== */
+.section-clip {
+  overflow: hidden;
+  position: relative;
+}
+
+/* ========== Font smoothing ========== */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ========== Prevent layout shift for images ========== */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ========== Reduce motion ========== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

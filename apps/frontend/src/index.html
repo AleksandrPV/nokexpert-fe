@@ -104,9 +104,11 @@
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="dns-prefetch" href="//api-maps.yandex.ru">
 
-  <!-- Preload critical fonts -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+  <!-- Preload critical fonts — blocking load prevents FOUT/font jump -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+
+  <!-- Preload hero background image for LCP -->
+  <link rel="preload" href="/img/810_3660.JPG" as="image" fetchpriority="high">
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://nok-expert.ru">
