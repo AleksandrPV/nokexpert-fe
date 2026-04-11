@@ -32,7 +32,7 @@
       </a>
 
       <!-- Desktop Navigation -->
-      <div class="hidden lg:flex items-center gap-0.5">
+      <div class="hidden xl:flex items-center gap-0.5">
         <a routerLink="/"
            class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none text-white/80 hover:text-white hover:bg-white/10">
           Главная
@@ -152,7 +152,7 @@
       </div>
 
       <!-- Desktop Right -->
-      <div class="hidden lg:flex items-center gap-5">
+      <div class="hidden xl:flex items-center gap-5">
         <a [href]="'tel:' + phoneHref"
            class="hidden xl:flex items-center gap-2 text-sm font-medium transition-colors duration-200 text-white/70 hover:text-white">
           <lucide-icon name="phone" [size]="15"></lucide-icon>
@@ -217,7 +217,7 @@
       </div>
 
       <!-- Mobile: phone + burger -->
-      <div class="lg:hidden flex items-center gap-1">
+      <div class="xl:hidden flex items-center gap-1">
         <a [href]="'tel:' + phoneHref"
            aria-label="Позвонить нам"
            class="p-2.5 rounded-xl transition-all duration-200 text-white hover:bg-white/10">
@@ -236,7 +236,7 @@
 
   <!-- Mobile Menu (outside nav to avoid padding constraints) -->
   <div *ngIf="mobileMenuOpen"
-       class="lg:hidden bg-white shadow-2xl px-5 pt-3 pb-5 animate-fade-in max-h-[calc(100vh-72px)] overflow-y-auto">
+       class="xl:hidden bg-white shadow-2xl px-5 pt-3 pb-5 animate-fade-in max-h-[calc(100vh-72px)] overflow-y-auto">
     <div class="space-y-1">
       <a routerLink="/" (click)="closeMobileMenu()"
          class="block p-3.5 rounded-xl text-[15px] text-slate-700 hover:text-blue-600 hover:bg-slate-50 font-medium transition-all">
