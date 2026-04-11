@@ -16,24 +16,24 @@ describe('AppController', () => {
 
   describe('health', () => {
     it('should return health status', () => {
-      const result = appController.getHealth() as unknown as Record<string, unknown>;
-      expect(result).toHaveProperty('status', 'ok');
-      expect(result).toHaveProperty('timestamp');
-      expect(result).toHaveProperty('uptime');
-      expect(result).toHaveProperty('environment');
-      expect(result).toHaveProperty('version');
+      const result = appController.getHealth();
+      expect(result.status).toBe('ok');
+      expect(result.timestamp).toBeDefined();
+      expect(result.uptime).toBeDefined();
+      expect(result.environment).toBeDefined();
+      expect(result.version).toBeDefined();
     });
   });
 
   describe('api health', () => {
     it('should return API health status', () => {
-      const result = appController.getApiHealth() as unknown as Record<string, unknown>;
-      expect(result).toHaveProperty('status', 'ok');
-      expect(result).toHaveProperty('service', 'nok-expert-backend');
-      expect(result).toHaveProperty('timestamp');
-      expect(result).toHaveProperty('uptime');
-      expect(result).toHaveProperty('environment');
-      expect(result).toHaveProperty('version');
+      const result = appController.getApiHealth();
+      expect(result.status).toBe('ok');
+      expect(result.service).toBe('nok-expert-backend');
+      expect(result.timestamp).toBeDefined();
+      expect(result.uptime).toBeDefined();
+      expect(result.environment).toBeDefined();
+      expect(result.version).toBeDefined();
     });
   });
 });
