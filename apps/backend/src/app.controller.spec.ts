@@ -16,7 +16,7 @@ describe('AppController', () => {
 
   describe('health', () => {
     it('should return health status', () => {
-      const result = appController.getHealth();
+      const result = appController.getHealth() as unknown as Record<string, unknown>;
       expect(result).toHaveProperty('status', 'ok');
       expect(result).toHaveProperty('timestamp');
       expect(result).toHaveProperty('uptime');
@@ -27,7 +27,7 @@ describe('AppController', () => {
 
   describe('api health', () => {
     it('should return API health status', () => {
-      const result = appController.getApiHealth();
+      const result = appController.getApiHealth() as unknown as Record<string, unknown>;
       expect(result).toHaveProperty('status', 'ok');
       expect(result).toHaveProperty('service', 'nok-expert-backend');
       expect(result).toHaveProperty('timestamp');
