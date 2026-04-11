@@ -38,6 +38,7 @@ export class FeedbackPopupService {
     { value: FeedbackSubject.CONSULTATION, label: 'Консультация', icon: '' },
     { value: FeedbackSubject.DOCUMENTS, label: 'Подготовка документов', icon: '' },
     { value: FeedbackSubject.PRICING, label: 'Стоимость услуг', icon: '' },
+    { value: FeedbackSubject.TRAINER, label: 'Тренажёр НОК', icon: '' },
     { value: FeedbackSubject.OTHER, label: 'Другое', icon: '' },
   ];
 

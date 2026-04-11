@@ -5,6 +5,7 @@ import { RouterLink, Router } from '@angular/router';
 import { SeoService } from '../../../shared/services/seo.service';
 import { OrganizationService } from '../../../shared/services/organization.service';
 import { SecurityService } from '../../../shared/services/security.service';
+import { AnalyticsService } from '../../../shared/services/analytics.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { PhoneMaskDirective } from '../../../shared/directives/phone-mask.directive';
@@ -23,6 +24,7 @@ export class ContactsPageComponent implements OnInit, AfterViewInit, OnDestroy {
   private seoService = inject(SeoService);
   private organizationService = inject(OrganizationService);
   private securityService = inject(SecurityService);
+  private analyticsService = inject(AnalyticsService);
   private http = inject(HttpClient);
   private animationService = inject(AnimationService);
   private router = inject(Router);
@@ -247,6 +249,7 @@ export class ContactsPageComponent implements OnInit, AfterViewInit, OnDestroy {
         )
       );
       this.submitSuccess = true;
+      this.analyticsService.trackFormSubmit('contacts_page');
       this.resetForm();
       setTimeout(() => this.router.navigate(['/success']), 1500);
     } catch {

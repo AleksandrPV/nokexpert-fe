@@ -166,6 +166,10 @@ export const routes: Routes = [
         loadComponent: () => import('./features/sitemap/sitemap-page.component').then(m => m.SitemapPageComponent)
       },
       {
+        path: 'pricing',
+        loadComponent: () => import('./features/pricing/pricing-page.component').then(m => m.PricingPageComponent)
+      },
+      {
         path: 'about',
         loadComponent: () => import('./features/about/about-page.component').then(m => m.AboutPageComponent)
       },

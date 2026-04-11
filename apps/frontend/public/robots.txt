@@ -13,6 +13,7 @@ Allow: /qa-centers
 Allow: /about
 Allow: /reviews
 Allow: /consultation
+Allow: /pricing
 Allow: /privacy-policy
 Allow: /user-agreement
 

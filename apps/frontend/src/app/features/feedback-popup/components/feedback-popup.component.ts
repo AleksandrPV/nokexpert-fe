@@ -1,13 +1,14 @@
-import { Component, computed, signal, OnInit, OnDestroy } from '@angular/core';
+import { Component, computed, signal, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink, Router, NavigationStart } from '@angular/router';
 import { FeedbackPopupService } from '../services/feedback-popup.service';
-import { 
-  FeedbackFormData, 
-  FeedbackSubject, 
-  FeedbackSubmitResult 
+import {
+  FeedbackFormData,
+  FeedbackSubject,
+  FeedbackSubmitResult
 } from '../models/feedback.interface';
+import { AnalyticsService } from '../../../shared/services/analytics.service';
 
 @Component({
   selector: 'app-feedback-popup',
@@ -31,6 +32,10 @@ export class FeedbackPopupComponent implements OnInit, OnDestroy {
   private _submitResult = signal<FeedbackSubmitResult | null>(null);
   private routerSubscription?: any;
 
+  // Blur-валидация
+  touchedName = signal(false);
+  touchedPhone = signal(false);
+
   // Вычисляемые свойства
   readonly formData = this._formData.asReadonly();
   readonly isSubmitting = this._isSubmitting.asReadonly();
@@ -38,6 +43,8 @@ export class FeedbackPopupComponent implements OnInit, OnDestroy {
   readonly config: any;
   readonly subjectOptions: any;
   readonly isVisible: any;
+
+  private analyticsService = inject(AnalyticsService);
 
   constructor(private feedbackService: FeedbackPopupService, private router: Router) {
     this.config = this.feedbackService.config;
@@ -88,6 +95,9 @@ export class FeedbackPopupComponent implements OnInit, OnDestroy {
   async onSubmit(): Promise<void> {
     if (this._isSubmitting()) return;
 
+    this.touchedName.set(true);
+    this.touchedPhone.set(true);
+
     this._isSubmitting.set(true);
     this._submitResult.set(null);
 
@@ -96,6 +106,7 @@ export class FeedbackPopupComponent implements OnInit, OnDestroy {
       this._submitResult.set(result);
 
       if (result.success) {
+        this.analyticsService.trackFormSubmit('feedback_popup', this._formData().subject);
         // Redirect to /success page after short delay
         setTimeout(() => {
           this.close();
@@ -127,5 +138,7 @@ export class FeedbackPopupComponent implements OnInit, OnDestroy {
     });
     this._isSubmitting.set(false);
     this._submitResult.set(null);
+    this.touchedName.set(false);
+    this.touchedPhone.set(false);
   }
 } 

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { FeedbackPopupService } from '../../../features/feedback-popup/services/feedback-popup.service';
 import { FeedbackSubject } from '../../../features/feedback-popup/models/feedback.interface';
+import { AnalyticsService } from '../../services/analytics.service';
 import { IconModule } from '../icon/icon.component';
 import { PhoneMaskDirective } from '../../directives/phone-mask.directive';
 
@@ -149,6 +150,7 @@ export class InlineContactFormComponent {
   ];
 
   private feedbackService = inject(FeedbackPopupService);
+  private analyticsService = inject(AnalyticsService);
   private router = inject(Router);
 
   isSubmitting = signal(false);
@@ -189,6 +191,7 @@ export class InlineContactFormComponent {
       });
 
       if (result.success) {
+        this.analyticsService.trackFormSubmit('inline_form', this.subject);
         this.isSuccess.set(true);
         setTimeout(() => this.router.navigate(['/success']), 1500);
       } else {

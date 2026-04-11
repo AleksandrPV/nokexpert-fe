@@ -132,6 +132,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://nok-expert.ru/pricing</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://nok-expert.ru/about</loc>
     <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>

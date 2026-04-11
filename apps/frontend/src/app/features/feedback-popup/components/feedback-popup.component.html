@@ -36,14 +36,16 @@
         <div class="grid md:grid-cols-2 gap-4">
           <div class="space-y-2">
             <label class="text-sm font-medium text-slate-900/80">Имя *</label>
-            <input 
-              type="text" 
+            <input
+              type="text"
               [(ngModel)]="formData().name"
               name="name"
               required
               [disabled]="isSubmitting()"
-              class="w-full px-3 py-2 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-transparent focus:bg-white transition-all text-slate-900 placeholder-gray-400"
+              (blur)="touchedName.set(true)"
+              [class]="'w-full px-3 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:border-transparent focus:bg-white transition-all text-slate-900 placeholder-gray-400 ' + (touchedName() && !formData().name.trim() ? 'border-red-400 bg-red-50 focus:ring-red-400/30' : 'border-gray-200 bg-gray-50 focus:ring-blue-500/30')"
               placeholder="Ваше имя">
+            <p *ngIf="touchedName() && !formData().name.trim()" class="text-xs text-red-500">Укажите ваше имя</p>
           </div>
           <div class="space-y-2">
             <label class="text-sm font-medium text-slate-900/80">Email</label>
@@ -59,14 +61,17 @@
 
         <!-- Phone -->
         <div class="space-y-2">
-          <label class="text-sm font-medium text-slate-900/80">Телефон</label>
-          <input 
-            type="tel" 
+          <label class="text-sm font-medium text-slate-900/80">Телефон *</label>
+          <input
+            type="tel"
             [(ngModel)]="formData().phone"
             name="phone"
+            required
             [disabled]="isSubmitting()"
-            class="w-full px-3 py-2 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-transparent focus:bg-white transition-all text-slate-900 placeholder-gray-400"
+            (blur)="touchedPhone.set(true)"
+            [class]="'w-full px-3 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:border-transparent focus:bg-white transition-all text-slate-900 placeholder-gray-400 ' + (touchedPhone() && formData().phone.length < 10 ? 'border-red-400 bg-red-50 focus:ring-red-400/30' : 'border-gray-200 bg-gray-50 focus:ring-blue-500/30')"
             placeholder="+7 (___) ___-__-__">
+          <p *ngIf="touchedPhone() && formData().phone.length < 10" class="text-xs text-red-500">Введите корректный номер телефона</p>
         </div>
 
         <!-- Subject -->

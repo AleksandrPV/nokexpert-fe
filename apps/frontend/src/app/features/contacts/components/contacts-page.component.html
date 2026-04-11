@@ -272,19 +272,26 @@
       </p>
     </div>
 
-    <!-- Map — бесплатная iframe вставка Яндекс.Карт -->
-    <div class="map-container h-[450px] lg:h-[500px] rounded-3xl overflow-hidden ring-1 ring-slate-200 shadow-xl">
-      <iframe
-        src="https://yandex.ru/map-widget/v1/?um=constructor%3A0&amp;source=constructorStatic&amp;ll=30.316500%2C59.984700&amp;z=16&amp;pt=30.316500%2C59.984700%2Cpm2blm"
-        width="100%"
-        height="100%"
-        frameborder="0"
-        allowfullscreen
-        loading="lazy"
-        style="border:0"
-        title="НОК Эксперт на карте — Наб. Черной речки д. 15, оф. 310">
-      </iframe>
-    </div>
+    <!-- Map — Яндекс.Карты с @defer для экономии ресурсов -->
+    @defer (on viewport) {
+      <div class="map-container h-[450px] lg:h-[500px] rounded-3xl overflow-hidden ring-1 ring-slate-200 shadow-xl">
+        <iframe
+          src="https://yandex.ru/map-widget/v1/?um=constructor%3A0&amp;source=constructorStatic&amp;ll=30.316500%2C59.984700&amp;z=16&amp;pt=30.316500%2C59.984700%2Cpm2blm"
+          width="100%"
+          height="100%"
+          frameborder="0"
+          allowfullscreen
+          loading="lazy"
+          style="border:0"
+          title="НОК Эксперт на карте — Наб. Черной речки д. 15, оф. 310">
+        </iframe>
+      </div>
+    } @placeholder {
+      <div class="h-[450px] lg:h-[500px] rounded-3xl ring-1 ring-slate-200 shadow-xl bg-slate-100 flex flex-col items-center justify-center gap-4 text-slate-400">
+        <lucide-icon name="map-pin" [size]="40" [strokeWidth]="1.5"></lucide-icon>
+        <p class="text-sm font-medium">Загрузка карты...</p>
+      </div>
+    }
   </div>
 </section>
 
