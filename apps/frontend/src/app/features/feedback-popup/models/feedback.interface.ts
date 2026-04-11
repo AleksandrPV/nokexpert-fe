@@ -13,6 +13,7 @@ export enum FeedbackSubject {
   CONSULTATION = 'consultation',
   DOCUMENTS = 'documents',
   PRICING = 'pricing',
+  TRAINER = 'trainer',
   OTHER = 'other'
 }
 

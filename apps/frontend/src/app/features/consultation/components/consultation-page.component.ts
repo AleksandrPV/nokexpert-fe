@@ -7,11 +7,13 @@ import { FeedbackPopupService } from '../../feedback-popup/services/feedback-pop
 import { OrganizationService } from '../../../shared/services/organization.service';
 import { IconModule } from '../../../shared/components/icon/icon.component';
 import { AnimationService } from '../../../shared/services/animation.service';
+import { InlineContactFormComponent } from '../../../shared/components/inline-contact-form/inline-contact-form.component';
+import { FeedbackSubject } from '../../feedback-popup/models/feedback.interface';
 
 @Component({
   selector: 'app-consultation-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, IconModule, BreadcrumbsComponent],
+  imports: [CommonModule, RouterLink, IconModule, BreadcrumbsComponent, InlineContactFormComponent],
   template: `
 <main>
 
@@ -310,6 +312,22 @@ import { AnimationService } from '../../../shared/services/animation.service';
 
 
   <!-- ============================================ -->
+  <!-- INLINE FORM — Conversion                     -->
+  <!-- ============================================ -->
+  <app-inline-contact-form
+    title="Запишитесь на консультацию прямо сейчас"
+    subtitle="Оставьте заявку, и наш эксперт свяжется с вами в течение 15 минут. Консультация бесплатна."
+    [subject]="FeedbackSubject.CONSULTATION"
+    [points]="[
+      'Проверим ваши документы на соответствие требованиям НОК',
+      'Определим квалификационный уровень',
+      'Подберём ближайший ЦОК с удобным расписанием',
+      'Составим персональный план подготовки к экзамену'
+    ]">
+  </app-inline-contact-form>
+
+
+  <!-- ============================================ -->
   <!-- CTA — Final conversion block                 -->
   <!-- ============================================ -->
   <section class="py-24 lg:py-32 bg-white" id="consult-cta">
@@ -351,6 +369,8 @@ import { AnimationService } from '../../../shared/services/animation.service';
   styles: []
 })
 export class ConsultationPageComponent implements OnInit, AfterViewInit, OnDestroy {
+  readonly FeedbackSubject = FeedbackSubject;
+
   private seoService = inject(SeoService);
   private feedbackService = inject(FeedbackPopupService);
   private organizationService = inject(OrganizationService);

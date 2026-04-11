@@ -6,11 +6,12 @@ import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { CookiesBannerComponent } from '../../../features/cookies/cookies-banner.component';
 import { ToastContainerComponent } from '../toast/toast-container.component';
+import { BackToTopComponent } from '../back-to-top/back-to-top.component';
 
 @Component({
   selector: 'app-main-layout',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, RouterOutlet, CookiesBannerComponent, ToastContainerComponent],
+  imports: [HeaderComponent, FooterComponent, RouterOutlet, CookiesBannerComponent, ToastContainerComponent, BackToTopComponent],
   template: `
     <!-- Skip to main content (accessibility) -->
     <a href="#main-content"
@@ -26,6 +27,7 @@ import { ToastContainerComponent } from '../toast/toast-container.component';
     <!-- Cookies Banner -->
     <app-cookies-banner />
     <app-toast-container />
+    <app-back-to-top />
   `,
   styles: []
 })

@@ -6,18 +6,22 @@ import { IconModule } from '../../../shared/components/icon/icon.component';
 import { AnimationService } from '../../../shared/services/animation.service';
 import { SeoService } from '../../../shared/services/seo.service';
 import { FeedbackPopupService } from '../../feedback-popup/services/feedback-popup.service';
+import { FeedbackSubject } from '../../feedback-popup/models/feedback.interface';
 import { OrganizationService } from '../../../shared/services/organization.service';
 import { ServicesService } from '../services/services.service';
 import { PRICING } from '../../../shared/config/pricing.config';
+import { InlineContactFormComponent } from '../../../shared/components/inline-contact-form/inline-contact-form.component';
 
 @Component({
   selector: 'app-trainer-service-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, BreadcrumbsComponent, IconModule],
+  imports: [CommonModule, RouterLink, BreadcrumbsComponent, IconModule, InlineContactFormComponent],
   templateUrl: './trainer-service-page.component.html',
   styleUrls: ['./trainer-service-page.component.scss']
 })
 export class TrainerServicePageComponent implements OnInit, AfterViewInit, OnDestroy {
+  readonly FeedbackSubject = FeedbackSubject;
+
   private seoService = inject(SeoService);
   private feedbackService = inject(FeedbackPopupService);
   private organizationService = inject(OrganizationService);
