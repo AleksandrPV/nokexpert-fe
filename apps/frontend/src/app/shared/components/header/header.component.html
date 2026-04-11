@@ -1,6 +1,6 @@
 <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950">
-  <nav class="w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
-    <div class="flex items-center justify-between h-[72px]">
+  <nav class="w-full px-6 sm:px-10 lg:px-16 xl:px-16 2xl:px-24">
+    <div class="flex items-center justify-between h-16">
 
       <!-- Logo -->
       <a routerLink="/" class="flex items-center gap-3.5 group relative">
@@ -34,7 +34,7 @@
       <!-- Desktop Navigation -->
       <div class="hidden xl:flex items-center gap-0.5">
         <a routerLink="/"
-           class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none text-white/80 hover:text-white hover:bg-white/10">
+           class="px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none text-white/80 hover:text-white hover:bg-white/10">
           Главная
         </a>
 
@@ -44,7 +44,7 @@
              (mouseleave)="onServicesSubmenuLeave()">
           <a routerLink="/services"
              (click)="closeServicesSubmenu()"
-             class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none flex items-center gap-1.5 text-white/80 hover:text-white hover:bg-white/10">
+             class="px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none flex items-center gap-1 text-white/80 hover:text-white hover:bg-white/10">
             Услуги
             <lucide-icon name="chevron-down" [size]="14"
                          class="transition-transform duration-200 text-white/50"
@@ -84,7 +84,7 @@
              (mouseleave)="onMegaMenuLeave()">
           <a routerLink="/info"
              (click)="closeMegaMenu()"
-             class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none flex items-center gap-1.5 text-white/80 hover:text-white hover:bg-white/10">
+             class="px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none flex items-center gap-1 text-white/80 hover:text-white hover:bg-white/10">
             База знаний
             <lucide-icon name="chevron-down" [size]="14"
                          class="transition-transform duration-200 text-white/50"
@@ -131,30 +131,30 @@
         </div>
 
         <a routerLink="/info/online-trainer"
-           class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none text-white/80 hover:text-white hover:bg-white/10">
+           class="px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none text-white/80 hover:text-white hover:bg-white/10">
           Тренажёр
         </a>
 
         <a routerLink="/faq"
-           class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none text-white/80 hover:text-white hover:bg-white/10">
+           class="px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none text-white/80 hover:text-white hover:bg-white/10">
           FAQ
         </a>
 
         <a routerLink="/reviews"
-           class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none text-white/80 hover:text-white hover:bg-white/10">
+           class="px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none text-white/80 hover:text-white hover:bg-white/10">
           Отзывы
         </a>
 
         <a routerLink="/contacts"
-           class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none text-white/80 hover:text-white hover:bg-white/10">
+           class="px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none text-white/80 hover:text-white hover:bg-white/10">
           Контакты
         </a>
       </div>
 
       <!-- Desktop Right -->
-      <div class="hidden xl:flex items-center gap-5">
+      <div class="hidden xl:flex items-center gap-3">
         <a [href]="'tel:' + phoneHref"
-           class="hidden xl:flex items-center gap-2 text-sm font-medium transition-colors duration-200 text-white/70 hover:text-white">
+           class="hidden xl:flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 text-white/70 hover:text-white">
           <lucide-icon name="phone" [size]="15"></lucide-icon>
           {{ phoneDisplay }}
         </a>
@@ -203,15 +203,15 @@
 
         <ng-template #loginBtn>
           <a routerLink="/login"
-             class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 border text-white/80 border-white/30 hover:bg-white/10 hover:text-white">
-            <lucide-icon name="log-in" [size]="15"></lucide-icon>
+             class="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 border text-white/80 border-white/30 hover:bg-white/10 hover:text-white">
+            <lucide-icon name="log-in" [size]="14"></lucide-icon>
             Войти
           </a>
         </ng-template>
 
         <button
           (click)="openConsultationPopup()"
-          class="hidden xl:inline-flex bg-white hover:bg-blue-50 text-slate-900 px-6 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 hover:shadow-lg focus:outline-none">
+          class="hidden xl:inline-flex bg-white hover:bg-blue-50 text-slate-900 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 hover:shadow-lg focus:outline-none">
           Консультация
         </button>
       </div>
