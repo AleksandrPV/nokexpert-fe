@@ -10,6 +10,7 @@ import { OrganizationService } from '../../../shared/services/organization.servi
 import { ServicesService } from '../services/services.service';
 import { PRICING } from '../../../shared/config/pricing.config';
 import { InlineContactFormComponent } from '../../../shared/components/inline-contact-form/inline-contact-form.component';
+import { FeedbackSubject } from '../../feedback-popup/models/feedback.interface';
 
 @Component({
   selector: 'app-nok-nopriz-page',
@@ -26,6 +27,7 @@ export class NokNoprizPageComponent implements OnInit, AfterViewInit, OnDestroy 
   private animationService = inject(AnimationService);
   private platformId = inject(PLATFORM_ID);
   private isBrowser = isPlatformBrowser(this.platformId);
+  readonly FeedbackSubject = FeedbackSubject;
 
   get phoneDisplay(): string {
     return this.organizationService.getPhoneDisplay();
