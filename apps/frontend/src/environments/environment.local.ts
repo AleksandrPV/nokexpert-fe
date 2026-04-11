@@ -17,9 +17,4 @@ export const environment = {
   enableAnalytics: false,
   enableLogging: true,
   version: '1.0.0',
-  // Telegram configuration
-  telegram: {
-    botToken: getEnvVar('TELEGRAM_BOT_TOKEN', '8215196694:AAEHXjwAsDSiRZCmURWPIwArIS2-d_LBwm4'),
-    chatId: getEnvVar('TELEGRAM_CHAT_ID', '679991424')
-  }
 };

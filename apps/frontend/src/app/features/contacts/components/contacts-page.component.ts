@@ -5,7 +5,8 @@ import { RouterLink } from '@angular/router';
 import { SeoService } from '../../../shared/services/seo.service';
 import { OrganizationService } from '../../../shared/services/organization.service';
 import { SecurityService } from '../../../shared/services/security.service';
-import { TelegramService } from '../../../shared/services/telegram.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../environments/environment';
 import { PhoneMaskDirective } from '../../../shared/directives/phone-mask.directive';
 import { IconModule } from '../../../shared/components/icon/icon.component';
 import { AnimationService } from '../../../shared/services/animation.service';
@@ -22,7 +23,7 @@ export class ContactsPageComponent implements OnInit, AfterViewInit, OnDestroy {
   private seoService = inject(SeoService);
   private organizationService = inject(OrganizationService);
   private securityService = inject(SecurityService);
-  private telegramService = inject(TelegramService);
+  private http = inject(HttpClient);
   private animationService = inject(AnimationService);
   private platformId = inject(PLATFORM_ID);
   private isBrowser = isPlatformBrowser(this.platformId);
@@ -232,8 +233,18 @@ export class ContactsPageComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isSubmitting = true;
 
     try {
-      const messageText = this.telegramService.formatFeedbackMessage(safeFormData);
-      await firstValueFrom(this.telegramService.sendMessage(messageText));
+      await firstValueFrom(
+        this.http.post<{ success: boolean; message: string }>(
+          `${environment.apiUrl}/feedback`,
+          {
+            name: safeFormData.name,
+            phone: safeFormData.phone,
+            email: safeFormData.email || undefined,
+            subject: safeFormData.subject,
+            message: safeFormData.message || undefined,
+          }
+        )
+      );
       this.submitSuccess = true;
       this.resetForm();
     } catch {

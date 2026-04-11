@@ -8,7 +8,7 @@ import {
   PopupConfig,
   FeedbackSubmitResult
 } from '../models/feedback.interface';
-import { TelegramService } from '../../../shared/services/telegram.service';
+import { environment } from '../../../../environments/environment';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable({
@@ -17,7 +17,7 @@ import { firstValueFrom } from 'rxjs';
 export class FeedbackPopupService {
   private platformId = inject(PLATFORM_ID);
   private isBrowser = isPlatformBrowser(this.platformId);
-  private telegramService = inject(TelegramService);
+  private http = inject(HttpClient);
   
   // Состояние popup
   private _config = signal<PopupConfig>({
@@ -134,48 +134,36 @@ export class FeedbackPopupService {
    */
   async submitFeedback(formData: FeedbackFormData): Promise<FeedbackSubmitResult> {
     try {
-      // Валидация
       if (!formData.name.trim() || !formData.phone.trim()) {
         throw new Error('Пожалуйста, заполните обязательные поля (Имя, Телефон)');
       }
-
       if (!formData.privacy) {
         throw new Error('Необходимо согласие на обработку персональных данных');
       }
 
-      // Отправка в Telegram
-      if (this.telegramService.isConfigured()) {
-        try {
-          const messageText = this.telegramService.formatFeedbackMessage(formData);
-          await firstValueFrom(this.telegramService.sendMessage(messageText));
-          console.log('[OK] Сообщение отправлено в Telegram');
-        } catch (telegramError) {
-          console.warn('[WARN] Не удалось отправить в Telegram, но форма обработана:', telegramError);
-          // Не выбрасываем ошибку, так как форма всё равно обработана
-        }
-      } else {
-        console.warn('[WARN] Telegram не настроен - проверьте BOT_TOKEN и CHAT_ID');
-      }
-
-      // Логируем отправку формы
-      console.log('[FORM] Отправка формы:', {
-        name: formData.name,
-        phone: formData.phone,
-        email: formData.email || 'Не указан',
-        subject: formData.subject,
-        messageLength: formData.message.length
-      });
+      const response = await firstValueFrom(
+        this.http.post<{ success: boolean; message: string }>(
+          `${environment.apiUrl}/feedback`,
+          {
+            name: formData.name,
+            phone: formData.phone,
+            email: formData.email || undefined,
+            subject: formData.subject,
+            message: formData.message || undefined,
+          }
+        )
+      );
 
       return {
-        success: true,
-        message: 'Спасибо за обращение! Мы свяжемся с вами в ближайшее время.'
+        success: response.success,
+        message: response.message,
       };
     } catch (error) {
-      console.error('[ERROR] Ошибка при отправке формы:', error);
+      console.error('[ERROR] Feedback submit failed:', error);
       return {
         success: false,
         message: 'Произошла ошибка при отправке. Попробуйте еще раз.',
-        error: error instanceof Error ? error.message : 'Неизвестная ошибка'
+        error: error instanceof Error ? error.message : 'Неизвестная ошибка',
       };
     }
   }
