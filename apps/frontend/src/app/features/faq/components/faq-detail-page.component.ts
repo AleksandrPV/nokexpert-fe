@@ -1,9 +1,8 @@
-import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
-import { NgFor, NgIf, NgClass, DatePipe, isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
+import { NgFor, NgIf, NgClass, DatePipe } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SeoService } from '../../../shared/services/seo.service';
 import { FeedbackPopupService } from '../../../features/feedback-popup/services/feedback-popup.service';
-import { MainLayoutComponent } from '../../../shared/components/main-layout/main-layout.component';
 import { BreadcrumbsComponent, BreadcrumbItem } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 import { OrganizationService } from '../../../shared/services/organization.service';
 import { FaqService } from '../services/faq.service';
@@ -164,9 +163,6 @@ import { switchMap, catchError, of } from 'rxjs';
   `,
 })
 export class FaqDetailPageComponent implements OnInit {
-  private platformId = inject(PLATFORM_ID);
-  private isBrowser = isPlatformBrowser(this.platformId);
-  
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private seo = inject(SeoService);
@@ -249,7 +245,7 @@ export class FaqDetailPageComponent implements OnInit {
       ogImage: '/assets/images/og-default.jpg',
       ogTitle: seoTitle,
       ogDescription: seoDescription,
-      canonical: this.isBrowser ? `${window.location.origin}/faq/${this.question.slug}` : `/faq/${this.question.slug}`
+      canonical: `${this.seo.getBaseUrl()}/faq/${this.question.slug}`
     });
 
     // Добавляем структурированные данные для отдельной FAQ страницы
@@ -263,13 +259,11 @@ export class FaqDetailPageComponent implements OnInit {
     }, `/faq/${this.question.slug}`);
 
     // Добавляем breadcrumb структурированные данные
-    if (this.isBrowser) {
-      this.seo.addBreadcrumbsStructuredData([
-        { name: 'Главная', url: window.location.origin },
-        { name: 'FAQ', url: `${window.location.origin}/faq` },
-        { name: this.question.question, url: `${window.location.origin}/faq/${this.question.slug}` }
-      ]);
-    }
+    this.seo.addBreadcrumbsStructuredData([
+      { name: 'Главная', url: this.seo.getBaseUrl() },
+      { name: 'FAQ', url: `${this.seo.getBaseUrl()}/faq` },
+      { name: this.question.question, url: `${this.seo.getBaseUrl()}/faq/${this.question.slug}` }
+    ]);
   }
 
   openConsultationPopup(): void {

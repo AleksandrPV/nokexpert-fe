@@ -1,6 +1,5 @@
 import { RenderMode, ServerRoute } from '@angular/ssr';
 import { ServicesService } from './features/services/services/services.service';
-import { FaqService } from './features/faq/services/faq.service';
 
 export const serverRoutes: ServerRoute[] = [
   // Статические маршруты с prerendering
@@ -159,36 +158,9 @@ export const serverRoutes: ServerRoute[] = [
     path: 'faq/:slug',
     renderMode: RenderMode.Prerender,
     getPrerenderParams: async () => {
-      // Получаем все FAQ вопросы для prerendering
-      const faqSlugs = [
-        'chto-takoe-nok',
-        'federalnyy-zakon-nok',
-        'chto-takoe-tsok',
-        'zachem-nuzhna-nok',
-        'chto-takoe-nrs',
-        'kto-reguliruet-nok',
-        'kto-dolzhen-prokhodit-nok',
-        'kogda-stala-obyazatelnoy-nok',
-        'skolko-stoit-nok',
-        'skolko-deystvuet-svidetelstvo',
-        'kak-podgotovitsya-k-nok',
-        'kakie-dokumenty-nuzhny',
-        'gde-prokhodit-nok',
-        'mozhno-li-proyti-nok-distantsionno',
-        'chto-vklyuchaet-ekzamen-nok',
-        'kak-prokhodit-ekzamen-nok',
-        'skolko-voprosov-v-ekzamene',
-        'kak-otsenivaetsya-ekzamen',
-        'chto-delat-esli-ne-sdal',
-        'mozhno-li-peresdat-nok',
-        'kak-podat-apellyatsiyu',
-        'kak-proverit-rezultat-nok',
-        'kak-poluchit-svidetelstvo',
-        'kak-vklyuchitsya-v-nrs',
-        'nuzhna-li-propiska-dlya-sdachi-ekzamena-nok'
-      ];
-      
-      return faqSlugs.map(slug => ({ slug }));
+      // Динамически загружаем все FAQ вопросы для prerendering
+      const { FAQ_QUESTIONS } = await import('./features/faq/data/faq-questions');
+      return FAQ_QUESTIONS.map(q => ({ slug: q.slug }));
     }
   },
   
