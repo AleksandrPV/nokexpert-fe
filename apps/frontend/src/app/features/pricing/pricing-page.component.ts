@@ -474,14 +474,121 @@ export class PricingPageComponent implements OnInit, AfterViewInit, OnDestroy {
       ogTitle: 'Стоимость подготовки к НОК — прозрачные цены',
       ogDescription: 'НОК НОСТРОЙ от 35 000 ₽, МЧС от 13 900 ₽. Полное сопровождение, тренажёр, гарантия результата.',
       ogUrl: `${this.seoService.getBaseUrl()}/pricing`,
-      structuredData: {
-        '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
-        'itemListElement': [
-          { '@type': 'ListItem', 'position': 1, 'name': 'Главная', 'item': this.seoService.getBaseUrl() },
-          { '@type': 'ListItem', 'position': 2, 'name': 'Стоимость услуг', 'item': `${this.seoService.getBaseUrl()}/pricing` }
-        ]
-      }
+      structuredData: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          'itemListElement': [
+            { '@type': 'ListItem', 'position': 1, 'name': 'Главная', 'item': this.seoService.getBaseUrl() },
+            { '@type': 'ListItem', 'position': 2, 'name': 'Стоимость услуг', 'item': `${this.seoService.getBaseUrl()}/pricing` }
+          ]
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'ItemList',
+          'name': 'Стоимость подготовки к НОК',
+          'description': 'Цены на полное сопровождение при подготовке к независимой оценке квалификации',
+          'url': `${this.seoService.getBaseUrl()}/pricing`,
+          'itemListElement': [
+            {
+              '@type': 'ListItem',
+              'position': 1,
+              'item': {
+                '@type': 'Service',
+                'name': 'Подготовка к НОК НОСТРОЙ',
+                'description': 'Полное сопровождение при подготовке к независимой оценке квалификации в строительстве и капитальном ремонте',
+                'url': `${this.seoService.getBaseUrl()}/services/nok-nostroy`,
+                'provider': { '@type': 'Organization', 'name': 'НОК Эксперт', 'url': this.seoService.getBaseUrl() },
+                'offers': {
+                  '@type': 'Offer',
+                  'priceCurrency': 'RUB',
+                  'price': '35000',
+                  'priceSpecification': {
+                    '@type': 'PriceSpecification',
+                    'price': '35000',
+                    'priceCurrency': 'RUB',
+                    'minPrice': '35000',
+                    'description': 'Полное сопровождение, без скрытых платежей'
+                  },
+                  'availability': 'https://schema.org/InStock'
+                }
+              }
+            },
+            {
+              '@type': 'ListItem',
+              'position': 2,
+              'item': {
+                '@type': 'Service',
+                'name': 'Подготовка к НОК НОПРИЗ',
+                'description': 'Полное сопровождение при подготовке к независимой оценке квалификации в проектировании',
+                'url': `${this.seoService.getBaseUrl()}/services/nok-nopriz`,
+                'provider': { '@type': 'Organization', 'name': 'НОК Эксперт', 'url': this.seoService.getBaseUrl() },
+                'offers': {
+                  '@type': 'Offer',
+                  'priceCurrency': 'RUB',
+                  'price': '40000',
+                  'priceSpecification': {
+                    '@type': 'PriceSpecification',
+                    'price': '40000',
+                    'priceCurrency': 'RUB',
+                    'minPrice': '40000',
+                    'description': 'Полное сопровождение, без скрытых платежей'
+                  },
+                  'availability': 'https://schema.org/InStock'
+                }
+              }
+            },
+            {
+              '@type': 'ListItem',
+              'position': 3,
+              'item': {
+                '@type': 'Service',
+                'name': 'Подготовка к НОК МЧС (ОПБ)',
+                'description': 'Полное сопровождение при подготовке к независимой оценке квалификации в области пожарной безопасности',
+                'url': `${this.seoService.getBaseUrl()}/services/nok-opb`,
+                'provider': { '@type': 'Organization', 'name': 'НОК Эксперт', 'url': this.seoService.getBaseUrl() },
+                'offers': {
+                  '@type': 'Offer',
+                  'priceCurrency': 'RUB',
+                  'price': '13900',
+                  'priceSpecification': {
+                    '@type': 'PriceSpecification',
+                    'price': '13900',
+                    'priceCurrency': 'RUB',
+                    'minPrice': '13900',
+                    'description': 'Полное сопровождение, без скрытых платежей'
+                  },
+                  'availability': 'https://schema.org/InStock'
+                }
+              }
+            },
+            {
+              '@type': 'ListItem',
+              'position': 4,
+              'item': {
+                '@type': 'Service',
+                'name': 'Подготовка к НОК ЖКХ',
+                'description': 'Полное сопровождение при подготовке к независимой оценке квалификации в сфере ЖКХ',
+                'url': `${this.seoService.getBaseUrl()}/services/nok-housing`,
+                'provider': { '@type': 'Organization', 'name': 'НОК Эксперт', 'url': this.seoService.getBaseUrl() },
+                'offers': {
+                  '@type': 'Offer',
+                  'priceCurrency': 'RUB',
+                  'price': '26000',
+                  'priceSpecification': {
+                    '@type': 'PriceSpecification',
+                    'price': '26000',
+                    'priceCurrency': 'RUB',
+                    'minPrice': '26000',
+                    'description': 'Полное сопровождение, без скрытых платежей'
+                  },
+                  'availability': 'https://schema.org/InStock'
+                }
+              }
+            }
+          ]
+        }
+      ]
     });
   }
 

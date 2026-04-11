@@ -107,11 +107,11 @@
       <!-- Right: Stats cards with staggered float animation -->
       <div class="hidden lg:grid grid-cols-2 gap-5 hero-stats-grid">
         <div class="stat-card bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.07] transition-all duration-500 hover:border-blue-500/20">
-          <div class="stat-number text-5xl font-bold text-white mb-3" data-target="99" data-suffix="%">0</div>
+          <div class="stat-number text-5xl font-bold text-white mb-3" data-target="99" data-suffix="%">99%</div>
           <div class="text-base text-slate-400">Успешная сдача<br>с первого раза</div>
         </div>
         <div class="stat-card bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.07] transition-all duration-500 translate-y-8 hover:border-cyan-500/20">
-          <div class="stat-number text-5xl font-bold text-white mb-3" data-target="3000" data-suffix="+">0</div>
+          <div class="stat-number text-5xl font-bold text-white mb-3" data-target="3000" data-suffix="+">3 000+</div>
           <div class="text-base text-slate-400">Специалистов<br>подготовлено</div>
         </div>
         <div class="stat-card bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.07] transition-all duration-500 hover:border-violet-500/20">
@@ -197,7 +197,7 @@
 
         <button
           (click)="openNokNostroyPopup()"
-          class="w-full bg-blue-600 hover:bg-blue-500 text-white py-4.5 text-lg font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-600/25">
+          class="w-full bg-blue-600 hover:bg-blue-500 text-white py-5 text-lg font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-600/25">
           Оставить заявку
         </button>
       </div>
@@ -239,7 +239,7 @@
 
         <button
           (click)="openConsultationPopup()"
-          class="w-full bg-slate-900 hover:bg-slate-800 text-white py-4.5 text-lg font-semibold rounded-xl transition-all duration-300 hover:shadow-lg">
+          class="w-full bg-slate-900 hover:bg-slate-800 text-white py-5 text-lg font-semibold rounded-xl transition-all duration-300 hover:shadow-lg">
           Записаться на консультацию
         </button>
       </div>
@@ -281,7 +281,7 @@
 
         <button
           (click)="openPremiumPopup()"
-          class="w-full bg-violet-600 hover:bg-violet-500 text-white py-4.5 text-lg font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-violet-600/20">
+          class="w-full bg-violet-600 hover:bg-violet-500 text-white py-5 text-lg font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-violet-600/20">
           Начать подготовку
         </button>
       </div>
@@ -290,7 +290,7 @@
     <!-- Directions row -->
     <div class="mt-16 pt-16 border-t border-slate-200">
       <h3 class="text-lg font-semibold text-slate-900 mb-8">Работаем по всем направлениям НОК:</h3>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 directions-grid">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 directions-grid">
         <a routerLink="/services/nok-nostroy"
            class="direction-card group flex items-center gap-4 p-5 rounded-xl border border-slate-200 hover:border-blue-200 hover:bg-blue-50/50 transition-all duration-300">
           <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 transition-colors">

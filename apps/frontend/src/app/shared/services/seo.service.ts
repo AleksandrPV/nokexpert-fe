@@ -163,7 +163,15 @@ export class SeoService {
           "publisher": {
             "@id": `${this.baseUrl}/#organization`
           },
-          "inLanguage": "ru-RU"
+          "inLanguage": "ru-RU",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": `${this.baseUrl}/faq?q={search_term_string}`
+            },
+            "query-input": "required name=search_term_string"
+          }
         },
         {
           "@type": "WebPage",
@@ -733,10 +741,24 @@ export class SeoService {
       },
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+7-800-123-45-67",
+        "telephone": "+7-911-111-33-96",
         "contactType": "customer service",
         "areaServed": "RU",
         "availableLanguage": "Russian"
+      },
+      "sameAs": [
+        "https://t.me/nok_expert",
+        "https://vk.com/nok_expert",
+        "https://wa.me/79111113396",
+        "https://www.youtube.com/@nokexpert"
+      ],
+      "foundingDate": "2017",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "1500",
+        "bestRating": "5",
+        "worstRating": "1"
       }
     };
   }

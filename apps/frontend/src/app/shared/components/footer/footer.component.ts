@@ -76,6 +76,9 @@ import { IconModule } from '../icon/icon.component';
                 <a routerLink="/services/nok-housing" class="block text-sm text-slate-400 hover:text-white transition-colors duration-200">
                   НОК ЖКХ
                 </a>
+                <a routerLink="/pricing" class="block text-sm text-slate-400 hover:text-white transition-colors duration-200">
+                  Стоимость услуг
+                </a>
               </div>
             </div>
 

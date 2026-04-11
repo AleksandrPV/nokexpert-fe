@@ -21,7 +21,7 @@ Allow: /user-agreement
 Disallow: /success
 Disallow: /admin/
 Disallow: /api/
-Disallow: /sitemap
+Allow: /sitemap
 Disallow: /login
 Disallow: /register
 Disallow: /forgot-password

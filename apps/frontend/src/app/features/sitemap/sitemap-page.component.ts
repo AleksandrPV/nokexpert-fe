@@ -113,6 +113,7 @@ export class SitemapPageComponent implements OnInit, AfterViewInit, OnDestroy {
       links: [
         { title: 'Главная страница', url: '/' },
         { title: 'Услуги', url: '/services' },
+        { title: 'Стоимость услуг', url: '/pricing' },
         { title: 'Контакты', url: '/contacts' },
         { title: 'Консультация', url: '/consultation' }
       ]
