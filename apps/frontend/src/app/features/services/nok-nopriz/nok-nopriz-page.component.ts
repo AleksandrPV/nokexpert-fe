@@ -9,11 +9,12 @@ import { FeedbackPopupService } from '../../feedback-popup/services/feedback-pop
 import { OrganizationService } from '../../../shared/services/organization.service';
 import { ServicesService } from '../services/services.service';
 import { PRICING } from '../../../shared/config/pricing.config';
+import { InlineContactFormComponent } from '../../../shared/components/inline-contact-form/inline-contact-form.component';
 
 @Component({
   selector: 'app-nok-nopriz-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, BreadcrumbsComponent, IconModule],
+  imports: [CommonModule, RouterLink, BreadcrumbsComponent, IconModule, InlineContactFormComponent],
   templateUrl: './nok-nopriz-page.component.html',
   styleUrls: ['./nok-nopriz-page.component.scss']
 })

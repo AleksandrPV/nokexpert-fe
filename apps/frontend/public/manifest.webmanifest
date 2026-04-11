@@ -1,9 +1,14 @@
 {
-  "name": "nokexpert-fe",
-  "short_name": "nokexpert-fe",
+  "name": "НОК Эксперт",
+  "short_name": "НОК Эксперт",
+  "description": "Подготовка и сдача НОК НОСТРОЙ, НОПРИЗ, ОПБ и ЖКХ с гарантией результата",
+  "theme_color": "#2563EB",
+  "background_color": "#0F172A",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
+  "lang": "ru",
+  "categories": ["education", "business"],
   "icons": [
     {
       "src": "icons/icon-72x72.png",

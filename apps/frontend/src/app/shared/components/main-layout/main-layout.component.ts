@@ -12,8 +12,13 @@ import { ToastContainerComponent } from '../toast/toast-container.component';
   standalone: true,
   imports: [HeaderComponent, FooterComponent, RouterOutlet, CookiesBannerComponent, ToastContainerComponent],
   template: `
+    <!-- Skip to main content (accessibility) -->
+    <a href="#main-content"
+       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg focus:font-semibold focus:shadow-lg">
+      Перейти к содержимому
+    </a>
     <app-header />
-    <main class="min-h-[70vh]">
+    <main id="main-content" class="min-h-[70vh]">
       <router-outlet />
     </main>
     <app-footer />

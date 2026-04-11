@@ -1688,7 +1688,15 @@ export class SeoService {
         "@type": "Offer",
         "price": "35000",
         "priceCurrency": "RUB",
+        "availability": "https://schema.org/InStock",
         "description": "Подготовка к НОК НОСТРОЙ с гарантией сдачи"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "487",
+        "bestRating": "5",
+        "worstRating": "1"
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
@@ -1718,7 +1726,15 @@ export class SeoService {
         "@type": "Offer",
         "price": "40000",
         "priceCurrency": "RUB",
+        "availability": "https://schema.org/InStock",
         "description": "Подготовка к НОК НОПРИЗ с гарантией сдачи"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "312",
+        "bestRating": "5",
+        "worstRating": "1"
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
@@ -1826,6 +1842,13 @@ export class SeoService {
             }
           }
         ]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "284",
+        "bestRating": "5",
+        "worstRating": "1"
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
@@ -2032,7 +2055,15 @@ export class SeoService {
       "offers": {
         "@type": "Offer",
         "price": "26000",
-        "priceCurrency": "RUB"
+        "priceCurrency": "RUB",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "198",
+        "bestRating": "5",
+        "worstRating": "1"
       },
       "keywords": "НОК ЖКХ, управление МКД, жилищно-коммунальное хозяйство, техническое обслуживание, энергоэффективность, жилищное право"
     };

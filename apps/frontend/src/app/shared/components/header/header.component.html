@@ -198,13 +198,20 @@
         </button>
       </div>
 
-      <!-- Mobile Menu Button -->
-      <button
-        (click)="toggleMobileMenu()"
-        aria-label="Открыть мобильное меню"
-        class="lg:hidden p-2.5 rounded-xl transition-all duration-200 focus:outline-none text-white hover:bg-white/10">
-        <lucide-icon [name]="mobileMenuOpen ? 'x' : 'menu'" [size]="24"></lucide-icon>
-      </button>
+      <!-- Mobile: phone + burger -->
+      <div class="lg:hidden flex items-center gap-1">
+        <a [href]="'tel:' + phoneHref"
+           aria-label="Позвонить нам"
+           class="p-2.5 rounded-xl transition-all duration-200 text-white hover:bg-white/10">
+          <lucide-icon name="phone" [size]="20"></lucide-icon>
+        </a>
+        <button
+          (click)="toggleMobileMenu()"
+          aria-label="Открыть мобильное меню"
+          class="p-2.5 rounded-xl transition-all duration-200 focus:outline-none text-white hover:bg-white/10">
+          <lucide-icon [name]="mobileMenuOpen ? 'x' : 'menu'" [size]="24"></lucide-icon>
+        </button>
+      </div>
     </div>
 
   </nav>
