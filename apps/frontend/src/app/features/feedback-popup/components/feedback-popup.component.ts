@@ -96,10 +96,11 @@ export class FeedbackPopupComponent implements OnInit, OnDestroy {
       this._submitResult.set(result);
 
       if (result.success) {
-        // Автоматически закрыть popup через 3 секунды после успешной отправки
+        // Redirect to /success page after short delay
         setTimeout(() => {
           this.close();
-        }, 3000);
+          this.router.navigate(['/success']);
+        }, 1500);
       }
     } catch (error) {
       this._submitResult.set({

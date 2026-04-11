@@ -45,15 +45,17 @@ import { IconModule } from '../icon/icon.component';
 
               <div class="flex gap-3">
                 <a [href]="'https://t.me/' + ORGANIZATION_CONFIG.social?.telegram" target="_blank" rel="noopener noreferrer"
+                   aria-label="Написать в Telegram"
                    class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-slate-700 transition-colors duration-200 text-slate-400 hover:text-white"
                    title="Telegram">
-                  <lucide-icon name="send" [size]="20"></lucide-icon>
+                  <lucide-icon name="send" [size]="20" aria-hidden="true"></lucide-icon>
                 </a>
 
                 <a [href]="'https://wa.me/' + ORGANIZATION_CONFIG.social?.whatsapp" target="_blank" rel="noopener noreferrer"
+                   aria-label="Написать в WhatsApp"
                    class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-slate-700 transition-colors duration-200 text-slate-400 hover:text-white"
                    title="WhatsApp">
-                  <lucide-icon name="message-circle" [size]="20"></lucide-icon>
+                  <lucide-icon name="message-circle" [size]="20" aria-hidden="true"></lucide-icon>
                 </a>
               </div>
             </div>
@@ -98,6 +100,12 @@ import { IconModule } from '../icon/icon.component';
                 </a>
                 <a routerLink="/consultation" class="block text-sm text-slate-400 hover:text-white transition-colors duration-200">
                   Консультации
+                </a>
+                <a routerLink="/about" class="block text-sm text-slate-400 hover:text-white transition-colors duration-200">
+                  О компании
+                </a>
+                <a routerLink="/reviews" class="block text-sm text-slate-400 hover:text-white transition-colors duration-200">
+                  Отзывы
                 </a>
                 <a routerLink="/sitemap" class="block text-sm text-slate-400 hover:text-white transition-colors duration-200">
                   Карта сайта

@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { SeoService } from '../../../shared/services/seo.service';
 import { OrganizationService } from '../../../shared/services/organization.service';
 import { SecurityService } from '../../../shared/services/security.service';
@@ -25,6 +25,7 @@ export class ContactsPageComponent implements OnInit, AfterViewInit, OnDestroy {
   private securityService = inject(SecurityService);
   private http = inject(HttpClient);
   private animationService = inject(AnimationService);
+  private router = inject(Router);
   private platformId = inject(PLATFORM_ID);
   private isBrowser = isPlatformBrowser(this.platformId);
 
@@ -247,6 +248,7 @@ export class ContactsPageComponent implements OnInit, AfterViewInit, OnDestroy {
       );
       this.submitSuccess = true;
       this.resetForm();
+      setTimeout(() => this.router.navigate(['/success']), 1500);
     } catch {
       this.submitError = 'Произошла ошибка при отправке. Попробуйте ещё раз или свяжитесь с нами по телефону.';
     } finally {

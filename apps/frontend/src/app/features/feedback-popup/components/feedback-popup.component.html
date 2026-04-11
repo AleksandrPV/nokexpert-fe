@@ -13,10 +13,11 @@
     (click)="$event.stopPropagation()">
     
     <!-- Close Button -->
-    <button 
+    <button
       (click)="close()"
+      aria-label="Закрыть форму"
       class="absolute top-6 right-6 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-800 transition-all duration-200 z-10">
-      <span class="text-lg leading-none">×</span>
+      <span class="text-lg leading-none" aria-hidden="true">×</span>
     </button>
     
     <!-- Header -->

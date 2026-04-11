@@ -145,6 +145,7 @@
         <ng-container *ngIf="authService.isAuthenticated(); else loginBtn">
           <div class="relative">
             <button (click)="toggleUserMenu()"
+                    aria-label="Меню пользователя"
                     class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 text-white/80 hover:bg-white/10">
               <div class="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
                 {{ authService.currentUser()?.firstName?.charAt(0) }}{{ authService.currentUser()?.lastName?.charAt(0) }}
