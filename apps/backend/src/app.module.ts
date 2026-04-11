@@ -14,6 +14,7 @@ import { UsersModule } from './domains/users/users.module';
 import { QualificationModule } from './domains/qualification/qualification.module';
 import { TestingModule } from './domains/testing/testing.module';
 import { TrainerDemoModule } from './domains/trainer-demo/trainer-demo.module';
+import { FeedbackModule } from './domains/feedback/feedback.module';
 
 // Базовые компоненты NestJS
 import { AppController } from './app.controller';
@@ -82,6 +83,7 @@ import { TrainerDemoRequestEntity } from './domains/trainer-demo/infrastructure/
     QualificationModule,
     TestingModule,
     TrainerDemoModule,
+    FeedbackModule,
   ],
   controllers: [AppController],
   providers: [
