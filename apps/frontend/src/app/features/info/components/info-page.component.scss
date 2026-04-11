@@ -1,29 +1,3 @@
 // Info Page — Premium SaaS styles
-
-// Initial hidden states for GSAP animations
-.info-hero-badge,
-.info-hero-title,
-.info-hero-subtitle,
-.info-hero-search {
-  opacity: 0;
-}
-
-.category-card,
-.popular-card {
-  opacity: 0;
-}
-
-.section-label {
-  opacity: 0;
-}
-
-#info-categories h2,
-#info-categories h2 + p,
-#info-popular h2,
-#info-popular h2 + p {
-  opacity: 0;
-}
-
-.info-cta-card {
-  opacity: 0;
-}
+// Примечание: opacity:0 для GSAP-анимаций убран — GSAP задаёт from-состояние сам через fromTo().
+// Это гарантирует видимость контента если GSAP не загрузился (медленный интернет, ошибка).

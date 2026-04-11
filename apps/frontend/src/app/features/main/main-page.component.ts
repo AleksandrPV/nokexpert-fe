@@ -63,11 +63,46 @@ export class MainPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     if (!this.isBrowser) return;
-    this.initHeroAnimations();
-    this.initScrollAnimations();
+
+    // Если пользователь предпочитает меньше движения — не скрываем контент
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    // Включаем скрытие hero-элементов через CSS (предотвращение FOUC)
+    document.documentElement.classList.add('gsap-ready');
+
+    // Страховочный таймер: если GSAP завис или упал — показываем всё через 3 сек
+    const safetyTimer = setTimeout(() => {
+      this.revealHeroContent();
+    }, 3000);
+
+    Promise.all([
+      this.initHeroAnimations(),
+      this.initScrollAnimations()
+    ])
+      .then(() => clearTimeout(safetyTimer))
+      .catch(() => {
+        clearTimeout(safetyTimer);
+        this.revealHeroContent();
+      });
+  }
+
+  /** Показывает hero-контент при сбое анимаций */
+  private revealHeroContent(): void {
+    document.documentElement.classList.remove('gsap-ready');
+    // Сбрасываем любые inline-стили которые GSAP мог частично применить
+    document.querySelectorAll('.hero-word, .hero-breadcrumb, .hero-subtitle, .hero-badge, .hero-btn-primary, .hero-btn-secondary, .hero-stats, .stat-card').forEach(el => {
+      (el as HTMLElement).style.opacity = '';
+      (el as HTMLElement).style.transform = '';
+    });
   }
 
   private async initHeroAnimations(): Promise<void> {
+    // Не запускаем если prefers-reduced-motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    try {
     const gsapModule = await import('gsap');
     const gsap = gsapModule.gsap || gsapModule.default;
 
@@ -224,6 +259,10 @@ export class MainPageComponent implements OnInit, AfterViewInit, OnDestroy {
         scrub: 0.5,
       }
     });
+    } catch {
+      // GSAP не загрузился — revealHeroContent() вызовет safetyTimer в ngAfterViewInit
+      throw new Error('GSAP hero init failed');
+    }
   }
 
   private async initScrollAnimations(): Promise<void> {

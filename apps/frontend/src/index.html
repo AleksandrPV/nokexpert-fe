@@ -88,9 +88,13 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-192x192.png">
   <link rel="manifest" href="/assets/icons/site.webmanifest">
   
-  <!-- Critical CSS: prevent FOUC for GSAP-animated hero elements -->
+  <!-- Critical CSS: prevent FOUC for GSAP-animated hero elements.
+       opacity:0 applies ONLY when .gsap-ready class is present (set by JS).
+       If GSAP fails to load, class is never added → elements always visible. -->
   <style>
-    .hero-word, .hero-breadcrumb, .hero-subtitle { opacity: 0; }
+    .gsap-ready .hero-word,
+    .gsap-ready .hero-breadcrumb,
+    .gsap-ready .hero-subtitle { opacity: 0; }
   </style>
 
   <!-- Theme Color -->

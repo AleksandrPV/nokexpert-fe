@@ -15,10 +15,23 @@ export class AnimationService {
     if (!this.isBrowser) return null;
     if (this.initialized) return { gsap: this.gsapInstance, ScrollTrigger: this.ScrollTriggerInstance };
 
-    try {
-      const gsapModule = await import('gsap');
-      const scrollTriggerModule = await import('gsap/ScrollTrigger');
+    // Не запускаем анимации если пользователь предпочитает меньше движения
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return null;
+    }
 
+    try {
+      // Таймаут 5 сек — если GSAP не загрузился, возвращаем null (контент остаётся видимым)
+      const withTimeout = <T>(p: Promise<T>): Promise<T | null> =>
+        Promise.race([p, new Promise<null>(r => setTimeout(() => r(null), 5000))]);
+
+      const result = await withTimeout(
+        Promise.all([import('gsap'), import('gsap/ScrollTrigger')])
+      );
+
+      if (!result) return null; // таймаут — показываем контент как есть
+
+      const [gsapModule, scrollTriggerModule] = result;
       this.gsapInstance = gsapModule.gsap || gsapModule.default;
       this.ScrollTriggerInstance = scrollTriggerModule.ScrollTrigger || scrollTriggerModule.default;
       this.gsapInstance.registerPlugin(this.ScrollTriggerInstance);
