@@ -259,17 +259,7 @@ export class ReviewsPageComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.seoService.setSeoData({
-      title: 'Отзывы клиентов о подготовке к НОК — НОК Эксперт',
-      description: 'Реальные отзывы специалистов о прохождении НОК НОСТРОЙ, НОПРИЗ, ОПБ, ЖКХ с поддержкой НОК Эксперт. 99% успешных сдач. Более 1500 довольных клиентов.',
-      keywords: 'отзывы НОК, отзывы НОК Эксперт, независимая оценка квалификации отзывы, НОК НОСТРОЙ отзывы',
-      canonical: `${this.seoService.getBaseUrl()}/reviews`
-    });
-
-    this.seoService.addBreadcrumbsStructuredData([
-      { name: 'Главная', url: this.seoService.getBaseUrl() },
-      { name: 'Отзывы', url: `${this.seoService.getBaseUrl()}/reviews` }
-    ]);
+    this.seoService.setReviewsPageSeo();
   }
 
   ngAfterViewInit(): void {

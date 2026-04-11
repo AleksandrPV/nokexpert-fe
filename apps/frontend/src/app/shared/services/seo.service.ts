@@ -2068,4 +2068,125 @@ export class SeoService {
       "keywords": "НОК ЖКХ, управление МКД, жилищно-коммунальное хозяйство, техническое обслуживание, энергоэффективность, жилищное право"
     };
   }
+
+  setAboutPageSeo(): void {
+    this.setSeoData({
+      title: 'О компании НОК Эксперт — лидер в подготовке к НОК с 2018 года',
+      description: 'НОК Эксперт — 6 лет опыта, более 1500 специалистов успешно сдали НОК. Помогаем пройти независимую оценку квалификации в строительстве, ЖКХ и пожарной безопасности с гарантией.',
+      keywords: 'о компании НОК Эксперт, подготовка к НОК, независимая оценка квалификации, опыт, гарантия, НОК НОСТРОЙ, НОК НОПРИЗ',
+      canonical: `${this.baseUrl}/about`,
+      ogTitle: 'О компании НОК Эксперт — 6 лет, 1500+ клиентов, 99% успешных сдач',
+      ogDescription: 'Лидер в подготовке специалистов к независимой оценке квалификации. Строительство, проектирование, ЖКХ, пожарная безопасность.',
+      ogUrl: `${this.baseUrl}/about`,
+      structuredData: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Organization',
+            '@id': `${this.baseUrl}/#organization`,
+            'name': 'НОК Эксперт',
+            'alternateName': 'NOK Expert',
+            'url': this.baseUrl,
+            'foundingDate': '2018',
+            'description': 'Компания по подготовке специалистов к независимой оценке квалификации (НОК) в строительстве, проектировании, ЖКХ и пожарной безопасности.',
+            'numberOfEmployees': { '@type': 'QuantitativeValue', 'value': 15 },
+            'slogan': 'Сдайте НОК с первого раза — гарантированно',
+            'logo': {
+              '@type': 'ImageObject',
+              'url': `${this.baseUrl}/icons/icon-512x512.png`,
+              'width': 512,
+              'height': 512
+            },
+            'contactPoint': {
+              '@type': 'ContactPoint',
+              'telephone': '+7-800-550-23-45',
+              'contactType': 'customer service',
+              'areaServed': 'RU',
+              'availableLanguage': 'Russian'
+            },
+            'address': {
+              '@type': 'PostalAddress',
+              'addressCountry': 'RU',
+              'addressLocality': 'Москва'
+            },
+            'aggregateRating': {
+              '@type': 'AggregateRating',
+              'ratingValue': '4.9',
+              'reviewCount': '1500',
+              'bestRating': '5',
+              'worstRating': '1'
+            }
+          },
+          {
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+              { '@type': 'ListItem', 'position': 1, 'name': 'Главная', 'item': this.baseUrl },
+              { '@type': 'ListItem', 'position': 2, 'name': 'О компании', 'item': `${this.baseUrl}/about` }
+            ]
+          }
+        ]
+      }
+    });
+  }
+
+  setReviewsPageSeo(): void {
+    const reviews = [
+      { author: 'Александр К.', rating: 5, text: 'Долго откладывал НОК, думал что это сложно. Обратился в НОК Эксперт — всё оказалось намного проще. Помогли с документами, дали доступ к тренажёру. Сдал с первого раза.' },
+      { author: 'Елена С.', rating: 5, text: 'Очень быстро записали в ЦОК, проверили все документы. Подготовка заняла 2 недели. Результат — успешная сдача. Рекомендую всем проектировщикам!' },
+      { author: 'Дмитрий П.', rating: 5, text: 'Работаю инженером по пожарной безопасности. НОК сдал успешно. Особенно понравился онлайн-тренажёр — очень удобно повторять материал в любое время.' },
+      { author: 'Ирина Н.', rating: 5, text: 'Первый раз не сдала самостоятельно. Ребята помогли разобраться в ошибках, подготовили к пересдаче бесплатно. Второй раз — сдала без проблем. Спасибо!' },
+      { author: 'Сергей М.', rating: 5, text: 'Профессиональный подход с первого звонка. Подобрали удобный ЦОК в нашем городе, помогли оформить портфолио. Свидетельство получил через 2 недели.' },
+      { author: 'Михаил В.', rating: 5, text: 'Никогда не думал, что НОК можно сдать так быстро. За 3 недели от обращения до свидетельства. Всё чётко, без лишних звонков и бюрократии.' },
+      { author: 'Анна Т.', rating: 5, text: 'Обратилась по совету коллеги. Не пожалела. Всё объяснили, помогли собрать документы. Очень вежливые и оперативные. Сдала НОК с первого раза.' },
+      { author: 'Олег Р.', rating: 5, text: 'Сделали всё под ключ: от записи до получения свидетельства. Тренажёр хорошо помог при подготовке — реальные вопросы, удобный интерфейс. Результат отличный.' },
+      { author: 'Наталья Б.', rating: 5, text: 'Боялась, что не успею подготовиться к сроку. Ребята организовали всё буквально за 2 недели. Свидетельство получила вовремя!' }
+    ];
+
+    this.setSeoData({
+      title: 'Отзывы клиентов о подготовке к НОК — 99% успешных сдач | НОК Эксперт',
+      description: 'Реальные отзывы 1500+ специалистов о прохождении НОК НОСТРОЙ, НОПРИЗ, ОПБ, ЖКХ с поддержкой НОК Эксперт. Средняя оценка 4.9 из 5.',
+      keywords: 'отзывы НОК, отзывы НОК Эксперт, независимая оценка квалификации отзывы, НОК НОСТРОЙ отзывы, НОК НОПРИЗ отзывы',
+      canonical: `${this.baseUrl}/reviews`,
+      ogTitle: 'Отзывы клиентов — 4.9★, 1500+ специалистов',
+      ogDescription: 'Реальные истории специалистов, которые успешно прошли НОК при поддержке НОК Эксперт. 99% успешных сдач.',
+      ogUrl: `${this.baseUrl}/reviews`,
+      structuredData: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'LocalBusiness',
+            '@id': `${this.baseUrl}/#business`,
+            'name': 'НОК Эксперт',
+            'url': this.baseUrl,
+            'aggregateRating': {
+              '@type': 'AggregateRating',
+              'ratingValue': '4.9',
+              'reviewCount': '1500',
+              'bestRating': '5',
+              'worstRating': '1'
+            },
+            'review': reviews.map(r => ({
+              '@type': 'Review',
+              'author': { '@type': 'Person', 'name': r.author },
+              'reviewRating': {
+                '@type': 'Rating',
+                'ratingValue': String(r.rating),
+                'bestRating': '5',
+                'worstRating': '1'
+              },
+              'reviewBody': r.text,
+              'publisher': { '@type': 'Organization', 'name': 'НОК Эксперт' }
+            }))
+          },
+          {
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+              { '@type': 'ListItem', 'position': 1, 'name': 'Главная', 'item': this.baseUrl },
+              { '@type': 'ListItem', 'position': 2, 'name': 'Отзывы', 'item': `${this.baseUrl}/reviews` }
+            ]
+          }
+        ]
+      }
+    });
+  }
 } 

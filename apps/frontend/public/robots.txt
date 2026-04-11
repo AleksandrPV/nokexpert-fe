@@ -10,13 +10,22 @@ Allow: /contacts
 Allow: /faq
 Allow: /qualifications
 Allow: /qa-centers
+Allow: /about
+Allow: /reviews
+Allow: /consultation
+Allow: /privacy-policy
+Allow: /user-agreement
 
 # Запрещаем служебные страницы
-Disallow: /privacy-policy
-Disallow: /user-agreement
+Disallow: /success
 Disallow: /admin/
 Disallow: /api/
 Disallow: /sitemap
+Disallow: /login
+Disallow: /register
+Disallow: /forgot-password
+Disallow: /dashboard
+Disallow: /profile
 
 # Запрещаем статические файлы от индексации
 Disallow: /assets/

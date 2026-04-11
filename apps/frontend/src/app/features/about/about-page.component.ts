@@ -330,17 +330,7 @@ export class AboutPageComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.seoService.setSeoData({
-      title: 'О компании НОК Эксперт — подготовка к НОК с гарантией',
-      description: 'НОК Эксперт — лидер в подготовке специалистов к независимой оценке квалификации. С 2018 года. 99% успешных сдач, 1500+ специалистов в НРС. Узнайте больше о нашей компании.',
-      keywords: 'НОК Эксперт, о компании, подготовка к НОК, независимая оценка квалификаций',
-      canonical: `${this.seoService.getBaseUrl()}/about`
-    });
-
-    this.seoService.addBreadcrumbsStructuredData([
-      { name: 'Главная', url: this.seoService.getBaseUrl() },
-      { name: 'О компании', url: `${this.seoService.getBaseUrl()}/about` }
-    ]);
+    this.seoService.setAboutPageSeo();
   }
 
   ngAfterViewInit(): void {

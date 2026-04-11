@@ -100,7 +100,7 @@
                 </a>
               </div>
             </div>
-            <div class="flex gap-3 mt-5 pt-4 border-t border-slate-100">
+            <div class="flex gap-3 mt-5 pt-4 border-t border-slate-100 flex-wrap">
               <a routerLink="/info" (click)="closeMegaMenu()"
                  class="text-sm font-medium text-blue-600 hover:text-blue-700 px-3 py-1.5 rounded-lg hover:bg-blue-50 transition-all duration-200">
                 Все материалы
@@ -112,6 +112,14 @@
               <a routerLink="/info/online-trainer" (click)="closeMegaMenu()"
                  class="text-sm font-medium text-violet-600 hover:text-violet-700 px-3 py-1.5 rounded-lg hover:bg-violet-50 transition-all duration-200">
                 Тренажёр НОК
+              </a>
+              <a routerLink="/reviews" (click)="closeMegaMenu()"
+                 class="text-sm font-medium text-amber-600 hover:text-amber-700 px-3 py-1.5 rounded-lg hover:bg-amber-50 transition-all duration-200">
+                Отзывы
+              </a>
+              <a routerLink="/about" (click)="closeMegaMenu()"
+                 class="text-sm font-medium text-slate-500 hover:text-slate-700 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-all duration-200">
+                О компании
               </a>
             </div>
           </div>
@@ -125,6 +133,11 @@
         <a routerLink="/faq"
            class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none text-white/80 hover:text-white hover:bg-white/10">
           FAQ
+        </a>
+
+        <a routerLink="/reviews"
+           class="px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 focus:outline-none text-white/80 hover:text-white hover:bg-white/10">
+          Отзывы
         </a>
 
         <a routerLink="/contacts"
@@ -259,6 +272,10 @@
          class="block p-3.5 rounded-xl text-[15px] text-slate-700 hover:text-blue-600 hover:bg-slate-50 font-medium transition-all">Тренажёр</a>
       <a routerLink="/faq" (click)="closeMobileMenu()"
          class="block p-3.5 rounded-xl text-[15px] text-slate-700 hover:text-blue-600 hover:bg-slate-50 font-medium transition-all">FAQ</a>
+      <a routerLink="/reviews" (click)="closeMobileMenu()"
+         class="block p-3.5 rounded-xl text-[15px] text-slate-700 hover:text-amber-600 hover:bg-amber-50 font-medium transition-all">Отзывы</a>
+      <a routerLink="/about" (click)="closeMobileMenu()"
+         class="block p-3.5 rounded-xl text-[15px] text-slate-700 hover:text-blue-600 hover:bg-slate-50 font-medium transition-all">О компании</a>
       <a routerLink="/contacts" (click)="closeMobileMenu()"
          class="block p-3.5 rounded-xl text-[15px] text-slate-700 hover:text-blue-600 hover:bg-slate-50 font-medium transition-all">Контакты</a>
     </div>

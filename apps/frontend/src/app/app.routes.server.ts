@@ -120,6 +120,18 @@ export const serverRoutes: ServerRoute[] = [
     path: 'sitemap',
     renderMode: RenderMode.Prerender
   },
+  {
+    path: 'about',
+    renderMode: RenderMode.Prerender
+  },
+  {
+    path: 'reviews',
+    renderMode: RenderMode.Prerender
+  },
+  {
+    path: 'success',
+    renderMode: RenderMode.Client
+  },
   
   // Динамические маршруты с getPrerenderParams
   {
