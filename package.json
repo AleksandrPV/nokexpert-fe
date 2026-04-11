@@ -19,5 +19,11 @@
   },
   "devDependencies": {
     "concurrently": "^9.2.1"
+  },
+  "dependencies": {
+    "@angular-devkit/architect": "^0.2000.6",
+    "@angular-devkit/build-angular": "^20.3.23",
+    "@angular-devkit/core": "^20.3.23",
+    "@angular-devkit/schematics": "^20.3.23"
   }
 }
