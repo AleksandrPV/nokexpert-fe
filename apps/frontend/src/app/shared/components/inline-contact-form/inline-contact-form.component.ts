@@ -1,4 +1,4 @@
-import { Component, Input, signal, inject } from '@angular/core';
+import { Component, Input, signal, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -65,10 +65,12 @@ import { PhoneMaskDirective } from '../../directives/phone-mask.directive';
                 type="text"
                 name="name"
                 [(ngModel)]="formData.name"
+                (blur)="touchedName.set(true)"
                 required
                 placeholder="Иван Иванов"
                 autocomplete="name"
-                class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm">
+                [class]="'w-full px-4 py-3 rounded-xl border text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:border-transparent transition-all text-sm ' + (touchedName() && !formData.name.trim() ? 'border-red-400 focus:ring-red-400 bg-red-50' : 'border-slate-200 focus:ring-blue-500')">
+              <p *ngIf="touchedName() && !formData.name.trim()" class="text-xs text-red-500 mt-1">Укажите ваше имя</p>
             </div>
 
             <!-- Phone -->
@@ -82,10 +84,12 @@ import { PhoneMaskDirective } from '../../directives/phone-mask.directive';
                 name="phone"
                 [(ngModel)]="formData.phone"
                 appPhoneMask
+                (blur)="touchedPhone.set(true)"
                 required
                 placeholder="+7 (999) 000-00-00"
                 autocomplete="tel"
-                class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm">
+                [class]="'w-full px-4 py-3 rounded-xl border text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:border-transparent transition-all text-sm ' + (touchedPhone() && formData.phone.length < 10 ? 'border-red-400 focus:ring-red-400 bg-red-50' : 'border-slate-200 focus:ring-blue-500')">
+              <p *ngIf="touchedPhone() && formData.phone.length < 10" class="text-xs text-red-500 mt-1">Введите корректный номер телефона</p>
             </div>
           </div>
 
@@ -150,6 +154,8 @@ export class InlineContactFormComponent {
   isSubmitting = signal(false);
   isSuccess = signal(false);
   errorMessage = signal('');
+  touchedName = signal(false);
+  touchedPhone = signal(false);
 
   formData = {
     name: '',
@@ -159,6 +165,8 @@ export class InlineContactFormComponent {
 
   async onSubmit(): Promise<void> {
     this.errorMessage.set('');
+    this.touchedName.set(true);
+    this.touchedPhone.set(true);
 
     if (!this.formData.name.trim() || !this.formData.phone.trim()) {
       this.errorMessage.set('Пожалуйста, заполните имя и телефон.');
