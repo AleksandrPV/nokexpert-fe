@@ -55,12 +55,11 @@ export class AnalyticsService {
     if (!this.isBrowser) return;
 
     // Google Analytics 4
-    if (typeof window !== 'undefined' && window.dataLayer) {
-      window.dataLayer.push({
-        'event': 'page_view',
-        'page_title': pageView.title,
-        'page_location': window.location.href,
-        'page_path': pageView.url
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'page_view', {
+        page_title: pageView.title,
+        page_location: window.location.href,
+        page_path: pageView.url
       });
     }
 
@@ -81,12 +80,11 @@ export class AnalyticsService {
     if (!this.isBrowser) return;
 
     // Google Analytics 4
-    if (typeof window !== 'undefined' && window.dataLayer) {
-      window.dataLayer.push({
-        'event': event.action,
-        'event_category': event.category,
-        'event_label': event.label,
-        'value': event.value
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', event.action, {
+        event_category: event.category,
+        event_label: event.label,
+        value: event.value
       });
     }
 
