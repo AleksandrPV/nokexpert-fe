@@ -179,9 +179,11 @@ export class RegisterPageComponent {
     this.isLoading.set(true);
     this.errorMessage.set('');
 
-    const { confirmPassword, ...data } = this.form.getRawValue();
+    const { confirmPassword, firstName, lastName, ...data } = this.form.getRawValue();
     const payload = {
       ...data,
+      first_name: firstName,
+      last_name: lastName,
       phone: data.phone || undefined,
     };
 
