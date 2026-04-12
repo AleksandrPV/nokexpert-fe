@@ -51,15 +51,14 @@ export class SeoService {
   ) {
     // Устанавливаем базовые SEO теги при инициализации
     this.setDefaultSeoData();
-    
-    // Автоматическое обновление canonical URL при навигации только в браузере
-    if (isPlatformBrowser(this.platformId)) {
-      this.router.events
-        .pipe(filter(event => event instanceof NavigationEnd))
-        .subscribe((event: NavigationEnd) => {
-          this.updateCanonicalUrl(this.baseUrl + event.url);
-        });
-    }
+
+    // Автоматическое обновление canonical URL при навигации (и SSR, и браузер)
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        const cleanUrl = event.urlAfterRedirects.split('?')[0].split('#')[0];
+        this.updateCanonicalUrl(this.baseUrl + cleanUrl);
+      });
   }
 
   /**
@@ -87,9 +86,10 @@ export class SeoService {
     this.updateMetaTag('twitter:description', this.defaultSeoData.description || '');
     this.updateMetaTag('twitter:image', this.getAbsoluteUrl(this.defaultSeoData.twitterImage || ''));
     
-    // Canonical URL
-    this.updateCanonicalUrl(this.baseUrl);
-    
+    // Canonical URL — устанавливается из текущего URL роутера, не из корня
+    const currentUrl = this.router.url.split('?')[0].split('#')[0];
+    this.updateCanonicalUrl(this.baseUrl + currentUrl);
+
     // Базовые структурированные данные
     this.updateStructuredData(this.getOrganizationStructuredData());
   }

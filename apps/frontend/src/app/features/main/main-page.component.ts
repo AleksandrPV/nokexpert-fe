@@ -270,6 +270,26 @@ export class MainPageComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!lib) return;
     const { gsap } = lib;
 
+    // ===== DIRECTIONS SECTION =====
+    const directionsTl = await this.animationService.sectionTimeline('#directions');
+    if (directionsTl) {
+      directionsTl.fromTo('#directions .uppercase',
+        { x: -30, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.5 }, 0);
+      directionsTl.fromTo('#directions h2',
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6 }, 0.1);
+      directionsTl.fromTo('#directions h2 + p',
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5 }, 0.25);
+      directionsTl.fromTo('.direction-overview-card',
+        { y: 60, opacity: 0, scale: 0.95 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.7, stagger: 0.12, ease: 'back.out(1.3)' }, 0.35);
+      directionsTl.fromTo('.directions-testimonial',
+        { y: 30, opacity: 0, scale: 0.97 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.2)' }, 0.9);
+    }
+
     // ===== SERVICES SECTION =====
     const servicesTl = await this.animationService.sectionTimeline('#services');
     if (servicesTl) {

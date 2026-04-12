@@ -129,6 +129,199 @@
 
 
 <!-- ============================================ -->
+<!-- DIRECTIONS — NOK service categories overview -->
+<!-- ============================================ -->
+<section class="relative py-24 lg:py-32 bg-slate-50 overflow-hidden" id="directions">
+  <!-- Decorative background -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute -top-24 left-1/4 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-24 right-1/4 w-[500px] h-[500px] bg-emerald-500/[0.04] rounded-full blur-3xl"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,42,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_75%)]"></div>
+  </div>
+
+  <div class="relative w-full px-6 sm:px-10 lg:px-16 xl:px-24 2xl:px-32">
+
+    <!-- Section header -->
+    <div class="max-w-3xl mb-16 lg:mb-20">
+      <div class="inline-flex items-center gap-2 text-blue-600 font-semibold text-sm uppercase tracking-wider mb-4">
+        <lucide-icon name="layers" [size]="16" [strokeWidth]="2"></lucide-icon>
+        Направления НОК
+      </div>
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-6">
+        Сопровождаем НОК во всех&nbsp;отраслях
+      </h2>
+      <p class="text-xl text-slate-500 leading-relaxed">
+        Полный цикл: подбор квалификации, подготовка документов, тренажёр, экзамен в ЦОК и внесение в Национальный реестр специалистов. Работаем со специалистами по всем направлениям независимой оценки квалификаций.
+      </p>
+    </div>
+
+    <!-- Directions grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
+
+      <!-- Card 1: НОСТРОЙ -->
+      <a routerLink="/services/nok-nostroy"
+         class="direction-overview-card group relative bg-white rounded-3xl p-8 lg:p-10 ring-1 ring-slate-200/80 hover:ring-blue-300 hover:shadow-2xl hover:shadow-blue-600/10 hover:-translate-y-1 transition-all duration-500 flex flex-col overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="relative flex items-start justify-between mb-8">
+          <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white group-hover:scale-110 transition-all duration-500">
+            <lucide-icon name="building-2" [size]="28" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <span class="text-[11px] font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full tracking-wider">НОСТРОЙ</span>
+        </div>
+        <h3 class="relative text-xl lg:text-2xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
+          Строительство
+        </h3>
+        <p class="relative text-slate-500 leading-relaxed mb-8 flex-grow">
+          Для главных инженеров, ГИПов, прорабов и специалистов по организации строительных работ. Внесение в НРС НОСТРОЙ.
+        </p>
+        <div class="relative inline-flex items-center gap-2 text-blue-600 font-semibold group-hover:gap-3 transition-all duration-300">
+          Подробнее
+          <lucide-icon name="arrow-right" [size]="18" [strokeWidth]="2"></lucide-icon>
+        </div>
+      </a>
+
+      <!-- Card 2: НОПРИЗ -->
+      <a routerLink="/services/nok-nopriz"
+         class="direction-overview-card group relative bg-white rounded-3xl p-8 lg:p-10 ring-1 ring-slate-200/80 hover:ring-cyan-300 hover:shadow-2xl hover:shadow-cyan-600/10 hover:-translate-y-1 transition-all duration-500 flex flex-col overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="relative flex items-start justify-between mb-8">
+          <div class="w-14 h-14 rounded-2xl bg-cyan-50 text-cyan-600 flex items-center justify-center group-hover:bg-cyan-600 group-hover:text-white group-hover:scale-110 transition-all duration-500">
+            <lucide-icon name="compass" [size]="28" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <span class="text-[11px] font-bold text-cyan-700 bg-cyan-50 px-3 py-1.5 rounded-full tracking-wider">НОПРИЗ</span>
+        </div>
+        <h3 class="relative text-xl lg:text-2xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">
+          Проектирование и изыскания
+        </h3>
+        <p class="relative text-slate-500 leading-relaxed mb-8 flex-grow">
+          Для ГИПов и ГАПов, архитекторов, инженеров-проектировщиков и специалистов по инженерным изысканиям. Внесение в НРС НОПРИЗ.
+        </p>
+        <div class="relative inline-flex items-center gap-2 text-cyan-600 font-semibold group-hover:gap-3 transition-all duration-300">
+          Подробнее
+          <lucide-icon name="arrow-right" [size]="18" [strokeWidth]="2"></lucide-icon>
+        </div>
+      </a>
+
+      <!-- Card 3: ОПБ / МЧС -->
+      <a routerLink="/services/nok-opb"
+         class="direction-overview-card group relative bg-white rounded-3xl p-8 lg:p-10 ring-1 ring-slate-200/80 hover:ring-red-300 hover:shadow-2xl hover:shadow-red-600/10 hover:-translate-y-1 transition-all duration-500 flex flex-col overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-red-500/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="relative flex items-start justify-between mb-8">
+          <div class="w-14 h-14 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center group-hover:bg-red-600 group-hover:text-white group-hover:scale-110 transition-all duration-500">
+            <lucide-icon name="flame" [size]="28" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <span class="text-[11px] font-bold text-red-700 bg-red-50 px-3 py-1.5 rounded-full tracking-wider">ОПБ · МЧС</span>
+        </div>
+        <h3 class="relative text-xl lg:text-2xl font-bold text-slate-900 mb-3 group-hover:text-red-600 transition-colors">
+          Пожарная безопасность
+        </h3>
+        <p class="relative text-slate-500 leading-relaxed mb-8 flex-grow">
+          Для специалистов по противопожарной защите зданий и сооружений, проектирования систем пожарной автоматики и аудита.
+        </p>
+        <div class="relative inline-flex items-center gap-2 text-red-600 font-semibold group-hover:gap-3 transition-all duration-300">
+          Подробнее
+          <lucide-icon name="arrow-right" [size]="18" [strokeWidth]="2"></lucide-icon>
+        </div>
+      </a>
+
+      <!-- Card 4: ЖКХ -->
+      <a routerLink="/services/nok-housing"
+         class="direction-overview-card group relative bg-white rounded-3xl p-8 lg:p-10 ring-1 ring-slate-200/80 hover:ring-teal-300 hover:shadow-2xl hover:shadow-teal-600/10 hover:-translate-y-1 transition-all duration-500 flex flex-col overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="relative flex items-start justify-between mb-8">
+          <div class="w-14 h-14 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center group-hover:bg-teal-600 group-hover:text-white group-hover:scale-110 transition-all duration-500">
+            <lucide-icon name="house" [size]="28" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <span class="text-[11px] font-bold text-teal-700 bg-teal-50 px-3 py-1.5 rounded-full tracking-wider">ЖКХ</span>
+        </div>
+        <h3 class="relative text-xl lg:text-2xl font-bold text-slate-900 mb-3 group-hover:text-teal-600 transition-colors">
+          Жилищно-коммунальное хозяйство
+        </h3>
+        <p class="relative text-slate-500 leading-relaxed mb-8 flex-grow">
+          Для руководителей и специалистов управляющих компаний, ТСЖ и служб эксплуатации жилого фонда. Подтверждение квалификации.
+        </p>
+        <div class="relative inline-flex items-center gap-2 text-teal-600 font-semibold group-hover:gap-3 transition-all duration-300">
+          Подробнее
+          <lucide-icon name="arrow-right" [size]="18" [strokeWidth]="2"></lucide-icon>
+        </div>
+      </a>
+
+      <!-- Card 5: Тренажёр -->
+      <a routerLink="/info/online-trainer"
+         class="direction-overview-card group relative bg-white rounded-3xl p-8 lg:p-10 ring-1 ring-slate-200/80 hover:ring-violet-300 hover:shadow-2xl hover:shadow-violet-600/10 hover:-translate-y-1 transition-all duration-500 flex flex-col overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-violet-500/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="relative flex items-start justify-between mb-8">
+          <div class="w-14 h-14 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center group-hover:bg-violet-600 group-hover:text-white group-hover:scale-110 transition-all duration-500">
+            <lucide-icon name="graduation-cap" [size]="28" [strokeWidth]="1.5"></lucide-icon>
+          </div>
+          <span class="text-[11px] font-bold text-violet-700 bg-violet-50 px-3 py-1.5 rounded-full tracking-wider">ТРЕНАЖЁР</span>
+        </div>
+        <h3 class="relative text-xl lg:text-2xl font-bold text-slate-900 mb-3 group-hover:text-violet-600 transition-colors">
+          Онлайн-подготовка к экзамену
+        </h3>
+        <p class="relative text-slate-500 leading-relaxed mb-8 flex-grow">
+          600+ реальных вопросов экзамена НОК, симуляция с таймером, детальные разборы и неограниченные попытки. Доступ 24/7.
+        </p>
+        <div class="relative inline-flex items-center gap-2 text-violet-600 font-semibold group-hover:gap-3 transition-all duration-300">
+          Подробнее
+          <lucide-icon name="arrow-right" [size]="18" [strokeWidth]="2"></lucide-icon>
+        </div>
+      </a>
+
+      <!-- Featured: Акция -->
+      <div class="direction-overview-card relative bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-700 text-white rounded-3xl p-8 lg:p-10 overflow-hidden flex flex-col shadow-xl shadow-emerald-900/10">
+        <!-- Decorative glows -->
+        <div class="absolute -top-16 -right-16 w-56 h-56 bg-white/10 rounded-full blur-2xl" aria-hidden="true"></div>
+        <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-teal-300/20 rounded-full blur-3xl" aria-hidden="true"></div>
+        <div class="absolute top-6 right-6 w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center" aria-hidden="true">
+          <lucide-icon name="sparkles" [size]="22" [strokeWidth]="2"></lucide-icon>
+        </div>
+
+        <div class="relative flex-grow flex flex-col">
+          <div class="inline-flex self-start items-center gap-2 bg-white/15 backdrop-blur-sm text-white text-[11px] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-full mb-6">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-200 animate-pulse"></span>
+            Акция
+          </div>
+          <h3 class="text-2xl lg:text-3xl font-bold mb-4 leading-[1.2]">
+            Консультация<br>без предоплаты
+          </h3>
+          <p class="text-emerald-50/90 leading-relaxed mb-8 flex-grow">
+            Проверим документы, определим квалификацию и составим план подготовки. Платите только когда уверены в результате — без обязательств и рисков.
+          </p>
+          <button type="button" (click)="openConsultationPopup()"
+                  class="group/btn inline-flex items-center justify-center gap-2 bg-white text-emerald-700 font-semibold px-6 py-4 rounded-xl hover:bg-emerald-50 transition-all duration-300 shadow-lg shadow-emerald-900/20 hover:shadow-xl hover:shadow-emerald-900/30">
+            Получить консультацию
+            <lucide-icon name="arrow-right" [size]="18" [strokeWidth]="2.5" class="group-hover/btn:translate-x-1 transition-transform duration-300"></lucide-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom testimonial bar -->
+    <div class="directions-testimonial mt-8 lg:mt-10 relative bg-white rounded-3xl p-8 lg:p-10 ring-1 ring-slate-200/80 flex flex-col md:flex-row items-start md:items-center gap-6 overflow-hidden">
+      <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl" aria-hidden="true"></div>
+
+      <div class="relative w-16 h-16 lg:w-20 lg:h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 text-white flex items-center justify-center flex-shrink-0 ring-4 ring-blue-50 shadow-lg shadow-blue-600/20">
+        <lucide-icon name="user" [size]="36" [strokeWidth]="1.5"></lucide-icon>
+      </div>
+
+      <div class="relative flex-grow">
+        <p class="text-lg lg:text-xl text-slate-700 leading-relaxed mb-4 italic">
+          «Наша задача — провести специалиста через всю процедуру НОК без стресса и потерь времени. Чёткие сроки, прозрачные документы, реальный результат.»
+        </p>
+        <div class="font-bold text-slate-900">Артём Веденин</div>
+        <div class="text-sm text-slate-500">Руководитель направления НОК</div>
+      </div>
+
+      <div class="relative hidden lg:flex w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 items-center justify-center flex-shrink-0">
+        <lucide-icon name="message-square" [size]="24" [strokeWidth]="1.75"></lucide-icon>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================ -->
 <!-- SERVICES — Pricing cards, premium look       -->
 <!-- ============================================ -->
 <section class="py-24 lg:py-32 bg-white" id="services">
