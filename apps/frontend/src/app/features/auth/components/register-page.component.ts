@@ -87,14 +87,14 @@ function passwordMatchValidator(control: AbstractControl): ValidationErrors | nu
                  class="mt-1.5 text-xs text-red-400">Введите корректный email</p>
             </div>
 
-            <!-- Phone (optional) -->
+            <!-- Phone (required) -->
             <div class="mb-5">
-              <label class="block text-sm font-medium text-slate-300 mb-2">
-                Телефон <span class="text-slate-500">(необязательно)</span>
-              </label>
+              <label class="block text-sm font-medium text-slate-300 mb-2">Телефон</label>
               <input type="tel" formControlName="phone"
                      class="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
-                     placeholder="+7 (999) 123-45-67">
+                     placeholder="+79991234567">
+              <p *ngIf="form.get('phone')?.touched && form.get('phone')?.invalid"
+                 class="mt-1.5 text-xs text-red-400">Введите телефон в формате +7XXXXXXXXXX</p>
             </div>
 
             <!-- Password -->
@@ -160,7 +160,7 @@ export class RegisterPageComponent {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: [''],
+      phone: ['', [Validators.required, Validators.pattern(/^\+7\d{10}$/)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
     },
@@ -184,13 +184,11 @@ export class RegisterPageComponent {
       ...data,
       first_name: firstName,
       last_name: lastName,
-      phone: data.phone || undefined,
     };
 
     this.authService.register(payload).subscribe({
       next: () => {
-        this.toastService.success('Регистрация успешна');
-        this.router.navigate(['/trainer']);
+        this.router.navigate(['/registration-success']);
       },
       error: (err) => {
         this.isLoading.set(false);

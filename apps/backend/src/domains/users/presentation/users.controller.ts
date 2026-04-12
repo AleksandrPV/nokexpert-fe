@@ -7,13 +7,16 @@ import {
   Body,
   Param,
   Request,
+  Res,
   UseGuards,
   HttpCode,
   HttpStatus,
 } from '@nestjs/common';
+import { Response } from 'express';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { Throttle } from '@nestjs/throttler';
 import { UsersService } from '../application/users.service';
+import { MailService } from '../../feedback/application/mail.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -33,7 +36,10 @@ import {
 @ApiTags('Пользователи и аутентификация')
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly mailService: MailService,
+  ) {}
 
   // ===== АУТЕНТИФИКАЦИОННЫЕ ЭНДПОИНТЫ =====
 
@@ -54,8 +60,30 @@ export class UsersController {
   @ApiOperation({ summary: 'Регистрация пользователя' })
   @ApiResponse({ status: 201, description: 'Пользователь зарегистрирован' })
   @ApiResponse({ status: 400, description: 'Ошибка валидации' })
-  async register(@Body() registerDto: RegisterDto): Promise<AuthResponse> {
-    return await this.usersService.register(registerDto);
+  async register(@Body() registerDto: RegisterDto) {
+    return await this.usersService.register(registerDto, this.mailService);
+  }
+
+  // Активация аккаунта по ссылке из письма менеджеру
+  @Get('activate/:token')
+  @Public()
+  @ApiOperation({ summary: 'Активация аккаунта по токену' })
+  async activateByToken(
+    @Param('token') token: string,
+    @Res() res: Response,
+  ) {
+    const user = await this.usersService.activateByToken(token);
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.send(`<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Аккаунт активирован</title>
+<style>body{font-family:Arial,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;background:#f0fdf4}
+.card{background:#fff;padding:48px;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,.08);text-align:center;max-width:480px}
+h1{color:#16a34a;margin-bottom:16px}p{color:#374151;font-size:18px;line-height:1.6}
+.user{margin-top:16px;padding:16px;background:#f9fafb;border-radius:8px;color:#6b7280;font-size:14px}</style></head>
+<body><div class="card"><h1>Аккаунт активирован!</h1>
+<p>${user.firstName} ${user.lastName} теперь может войти в тренажёр НОК.</p>
+<div class="user">Email: ${user.email}</div></div></body></html>`);
   }
 
   // Вход в систему (публичный эндпоинт)

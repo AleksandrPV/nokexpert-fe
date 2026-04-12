@@ -344,7 +344,7 @@ export class UsersService {
   // Создание пользователя из Auth модуля (регистрация)
   async createUserFromAuth(
     registerDto: RegisterDto,
-  ): Promise<UserSafeResponse> {
+  ): Promise<User> {
     // Проверка уникальности email
     const existingUser = await this.userRepository.findByEmail(
       registerDto.email,
@@ -373,7 +373,7 @@ export class UsersService {
     // Сохранение через репозиторий
     const savedUser = await this.userRepository.create(user);
 
-    return savedUser.toSafeResponse();
+    return savedUser;
   }
 
   // ===== АУТЕНТИФИКАЦИОННЫЕ МЕТОДЫ =====
@@ -385,10 +385,17 @@ export class UsersService {
   ): Promise<UserSafeResponse | null> {
     const user = await this.userRepository.findByEmail(email);
 
-    if (user && (await bcrypt.compare(password, user.passwordHash))) {
-      return user.toSafeResponse();
+    if (!user || !(await bcrypt.compare(password, user.passwordHash))) {
+      return null;
     }
-    return null;
+
+    if (!user.isActive) {
+      throw new UnauthorizedException(
+        'Аккаунт ещё не активирован. Ожидайте звонка менеджера.',
+      );
+    }
+
+    return user.toSafeResponse();
   }
 
   // Вход в систему
@@ -422,15 +429,54 @@ export class UsersService {
     // TODO: implement email sending
   }
 
-  // Регистрация пользователя
-  async register(registerDto: RegisterDto): Promise<AuthResponse> {
-    // Создание пользователя
-    await this.createUserFromAuth(registerDto);
+  // Регистрация пользователя (без авто-логина, с отправкой писем)
+  async register(
+    registerDto: RegisterDto,
+    mailService: { sendAdminNewRegistration: Function; sendUserRegistrationPending: Function },
+  ): Promise<{ success: true; message: string }> {
+    const savedUser = await this.createUserFromAuth(registerDto);
 
-    // Автоматический вход после регистрации
-    return this.login({
-      email: registerDto.email,
-      password: registerDto.password,
-    });
+    // Отправка писем (не блокируем ответ при ошибке)
+    try {
+      await Promise.all([
+        mailService.sendAdminNewRegistration({
+          firstName: savedUser.firstName,
+          lastName: savedUser.lastName,
+          email: savedUser.email,
+          phone: registerDto.phone || '',
+          activationToken: savedUser.activationToken,
+        }),
+        mailService.sendUserRegistrationPending({
+          firstName: savedUser.firstName,
+          email: savedUser.email,
+        }),
+      ]);
+    } catch (error) {
+      this.logger.error(`Failed to send registration emails: ${error.message}`);
+    }
+
+    return {
+      success: true,
+      message: 'Регистрация прошла успешно. Ожидайте звонка менеджера для активации аккаунта.',
+    };
+  }
+
+  // Активация аккаунта по токену (ссылка из письма менеджеру)
+  async activateByToken(token: string): Promise<User> {
+    const user = await this.userRepository.findByActivationToken(token);
+
+    if (!user) {
+      throw new NotFoundException('Ссылка активации недействительна или уже использована.');
+    }
+
+    if (user.isActive) {
+      throw new BadRequestException('Аккаунт уже активирован.');
+    }
+
+    const activatedUser = user.activate();
+    await this.userRepository.update(activatedUser);
+
+    this.logger.log(`User activated via token: ${user.email}`);
+    return activatedUser;
   }
 }

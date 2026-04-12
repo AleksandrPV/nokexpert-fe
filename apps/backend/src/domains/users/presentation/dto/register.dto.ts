@@ -68,17 +68,17 @@ export class RegisterDto {
   @IsNotEmpty({ message: 'Фамилия не может быть пустой' })
   last_name: string;
 
-  @ApiPropertyOptional({
+  @ApiProperty({
     description: 'Телефон пользователя',
     example: '+79161234567',
     pattern: APP_CONSTANTS.PHONE_REGEX.source,
   })
-  @IsOptional()
   @IsString()
+  @IsNotEmpty({ message: 'Телефон обязателен для заполнения' })
   @Matches(APP_CONSTANTS.PHONE_REGEX, {
     message: 'Номер телефона должен быть в формате +7XXXXXXXXXX',
   })
-  phone?: string;
+  phone: string;
 
   @ApiProperty({
     description: 'Роль пользователя',

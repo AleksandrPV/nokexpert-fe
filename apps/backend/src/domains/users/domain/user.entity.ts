@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto';
 import { UserRole, UserStatus } from '../../../shared/types/user.types';
 
 export class User {
@@ -15,6 +16,7 @@ export class User {
     public readonly qualifications: string[] | null,
     public readonly qaCenterId: string | null,
     public readonly isActive: boolean,
+    public readonly activationToken: string | null,
     public readonly createdAt: Date,
     public readonly updatedAt: Date,
   ) {}
@@ -35,6 +37,7 @@ export class User {
       this.qualifications,
       this.qaCenterId,
       this.isActive,
+      this.activationToken,
       this.createdAt,
       new Date(),
     );
@@ -59,6 +62,7 @@ export class User {
       this.qualifications,
       this.qaCenterId,
       true,
+      null,
       this.createdAt,
       new Date(),
     );
@@ -83,6 +87,7 @@ export class User {
       this.qualifications,
       this.qaCenterId,
       false,
+      null,
       this.createdAt,
       new Date(),
     );
@@ -110,6 +115,7 @@ export class User {
       qualifications !== undefined ? qualifications : this.qualifications,
       this.qaCenterId,
       this.isActive,
+      this.activationToken,
       this.createdAt,
       new Date(),
     );
@@ -170,10 +176,11 @@ export class User {
       lastName,
       phone || null,
       role,
-      UserStatus.ACTIVE,
+      UserStatus.PENDING,
       qualifications || null,
       qaCenterId || null,
-      true,
+      false,
+      randomUUID(),
       now,
       now,
     );

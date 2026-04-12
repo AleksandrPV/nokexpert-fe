@@ -23,6 +23,10 @@ export const routes: Routes = [
     loadComponent: () => import('./features/auth/components/register-page.component').then(m => m.RegisterPageComponent)
   },
   {
+    path: 'registration-success',
+    loadComponent: () => import('./features/auth/components/registration-success-page.component').then(m => m.RegistrationSuccessPageComponent)
+  },
+  {
     path: 'forgot-password',
     loadComponent: () => import('./features/auth/components/forgot-password-page.component').then(m => m.ForgotPasswordPageComponent)
   },

@@ -53,8 +53,11 @@ export class UserEntity {
   @Column({ name: 'qa_center_id', nullable: true, type: 'uuid' })
   qaCenterId: string | null;
 
-  @Column({ name: 'is_active', default: true, type: 'boolean' })
+  @Column({ name: 'is_active', default: false, type: 'boolean' })
   isActive: boolean;
+
+  @Column({ name: 'activation_token', nullable: true, type: 'uuid' })
+  activationToken: string | null;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

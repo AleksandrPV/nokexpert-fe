@@ -106,9 +106,17 @@ export class UserRepository implements IUserRepository {
       entity.qualifications,
       entity.qaCenterId,
       entity.isActive,
+      entity.activationToken,
       entity.createdAt,
       entity.updatedAt,
     );
+  }
+
+  async findByActivationToken(token: string): Promise<User | null> {
+    const entity = await this.repository.findOne({
+      where: { activationToken: token },
+    });
+    return entity ? this.mapToDomain(entity) : null;
   }
 
   private mapToEntity(domain: User): UserEntity {
@@ -129,6 +137,7 @@ export class UserRepository implements IUserRepository {
     entity.qualifications = domain.qualifications;
     entity.qaCenterId = domain.qaCenterId;
     entity.isActive = domain.isActive;
+    entity.activationToken = domain.activationToken;
     entity.createdAt = domain.createdAt;
     entity.updatedAt = domain.updatedAt;
     return entity;

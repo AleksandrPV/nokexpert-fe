@@ -38,11 +38,10 @@ export class AuthService {
       );
   }
 
-  register(data: RegisterRequest): Observable<AuthResponse> {
+  register(data: RegisterRequest): Observable<{ success: true; message: string }> {
     return this.http
-      .post<AuthResponse>(`${environment.apiUrl}/users/register`, data)
+      .post<{ success: true; message: string }>(`${environment.apiUrl}/users/register`, data)
       .pipe(
-        tap((res) => this.handleAuth(res)),
         catchError((err) => throwError(() => err)),
       );
   }

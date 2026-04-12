@@ -9,11 +9,13 @@ import { AdminSeedService } from './application/admin-seed.service';
 import { UserRepository } from './infrastructure/repositories/user.repository';
 import { UserEntity } from './infrastructure/entities/user.entity';
 import { JwtStrategy } from './infrastructure/strategies/jwt.strategy';
+import { FeedbackModule } from '../feedback/feedback.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([UserEntity]),
     PassportModule,
+    FeedbackModule,
     JwtModule.registerAsync({
       useFactory: (configService: ConfigService) => ({
         secret: configService.get<string>('jwt.secret') || 'default-secret',

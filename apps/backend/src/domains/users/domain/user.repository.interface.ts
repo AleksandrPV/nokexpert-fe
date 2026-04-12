@@ -13,4 +13,5 @@ export interface IUserRepository {
   countByRole(role: UserRole): Promise<number>;
   countActiveByRole(role: UserRole): Promise<number>;
   exists(id: string): Promise<boolean>;
+  findByActivationToken(token: string): Promise<User | null>;
 }
